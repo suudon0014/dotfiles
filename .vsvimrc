@@ -40,6 +40,9 @@ noremap <Leader>h ^
 noremap <Leader>l $
 vnoremap <Leader>l $h
 
+"move to the bracket counterpart
+noremap <Leader>b %
+
 "tab
 set tabstop=4 "set indent to four spaces
 set autoindent

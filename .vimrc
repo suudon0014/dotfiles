@@ -83,6 +83,9 @@ noremap <Leader>h ^
 noremap <Leader>l $
 vnoremap <Leader>l $h
 
+"move to the bracket counterpart
+noremap <Leader>b %
+
 "color scheme
 "colorscheme molokai 
 
