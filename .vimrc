@@ -81,6 +81,7 @@ noremap <Leader>y 0v$hy
 "space + h/l : move to beginning/end of the line
 noremap <Leader>h ^
 noremap <Leader>l $
+vnoremap <Leader>l $h
 
 "color scheme
 "colorscheme molokai 
