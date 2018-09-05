@@ -62,3 +62,4 @@ set incsearch
 set t_Co=256
 syntax on
 set nowrap
+set matchpairs+=<:>,＜:＞,（:）,「:」,『:』,［:］,【:】

@@ -111,3 +111,4 @@ set t_Co=256
 syntax on "show code in color
 set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
+set matchpairs+=<:>,＜:＞,（:）,「:」,『:』,［:］,【:】
