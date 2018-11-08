@@ -1,55 +1,72 @@
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
+Ôªøfiletype off
 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      if empty(&shellxquote)
-        let l:shxq_sav = ''
-        set shellxquote&
-      endif
-      let cmd = '"' . $VIMRUNTIME . '\diff"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+augroup MyAutoCmd
+    autocmd!
+augroup END
+
+if has('kaoriya')
+    let g:no_vimrc_example=0
+    let g:vimrc_local_finish=1
+    let g:gvimrc_local_finish=1
+    
+	"$VIM/plugins/kaoriya/autodate.vim
+	let plugin_autodate_disable  = 1
+	"$VIM/plugins/kaoriya/cmdex.vim
+	let plugin_cmdex_disable     = 1
+	"$VIM/plugins/kaoriya/dicwin.vim
+	let plugin_dicwin_disable    = 1
+	"$VIMRUNTIME/plugin/format.vim
+	let plugin_format_disable    = 1
+	"$VIM/plugins/kaoriya/hz_ja.vim
+	let plugin_hz_ja_disable     = 1
+	"$VIM/plugins/kaoriya/scrnmode.vim
+	let plugin_scrnmode_disable  = 1
+	"$VIM/plugins/kaoriya/verifyenc.vim
+	let plugin_verifyenc_disable = 1
+endif
+
+"Plugin managed by dein.vim
+"installing directory
+let s:dein_dir = expand('~\vimfiles\dein')
+" dir of dein.vim
+let s:dein_repo_dir = s:dein_dir . '\repos\github.com\Shougo\dein.vim'
+
+"download dein.vim if there's no dein.vim
+if &runtimepath !~# '\dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
     endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-  if exists('l:shxq_sav')
-    let &shellxquote=l:shxq_sav
-  endif
-endfunction
+    execute 'set runtimepath^=' . s:dein_repo_dir
+endif
 
-"dein.vim
-"if &compatible
-"	set nocompatible
-"endif
-"set runtimepath+=E:/vim/bundle/dein.vim
-"call dein#begin(expand('E:\vim\bundle'))
-"call dein#add('lightline.vim')
-"call dein#end()
+"dein.vim settings
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-"set folders for plugin
-"set runtimepath+=C:/Users/sudo/vimfiles/plugin
+    "create plugins list file using TOML format beforehand
+    let g:rc_dir = expand('~\dotfiles')
+    let s:toml = g:rc_dir . '\dein.toml'
+    let s:lazy_toml = g:rc_dir . '\dein_lazy.toml'
 
-set guifont=ÇlÇr_ÉSÉVÉbÉN:h10:cSHIFTJIS:qDRAFT
+    "read and cache the toml files
+    call dein#load_toml(s:toml, {'lazy':0})
+    call dein#load_toml(s:lazy_toml, {'lazy':1})
+
+    "end the setting
+    call dein#end()
+    call dein#save_state()
+endif
+
+"install if there are plugins not installed
+if dein#check_install()
+    call dein#install()
+endif
+
 
 "set backup folders
-set undodir=C:/vimtmp/undo
-set backupdir=C:/vimtmp/bk
-set directory=C:/vimtmp/swap
+set undodir=$HOME/vimtmp/undo
+set backupdir=$HOME/vimtmp/bk
+set directory=$HOME/vimtmp/swap
 
 "about search
 set hlsearch
@@ -67,8 +84,8 @@ imap < <><left>
 "map jj to Esc
 inoremap jj <Esc>
 cnoremap jj <Esc>
-inoremap ÇäÇä <Esc>
-cnoremap ÇäÇä <Esc>
+inoremap ÔΩäÔΩä <Esc>
+cnoremap ÔΩäÔΩä <Esc>
 
 imap <C-j> <esc>
 
@@ -85,9 +102,6 @@ vnoremap <Leader>l $h
 
 "move to the bracket counterpart
 noremap <Leader>b %
-
-"color scheme
-"colorscheme molokai 
 
 "tab
 set tabstop=4 "set indent to four spaces
@@ -108,7 +122,14 @@ set iminsert=0
 set imsearch=-1
 set incsearch
 set t_Co=256
-syntax on "show code in color
 set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
-set matchpairs+=<:>,ÅÉ:ÅÑ,Åi:Åj,Åu:Åv,Åw:Åx,Åm:Ån,Åy:Åz
+set matchpairs+=<:>
+
+"encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
+
+filetype plugin indent on
