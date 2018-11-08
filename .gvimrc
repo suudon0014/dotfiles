@@ -9,6 +9,6 @@ colorscheme molokai
 syntax on
 
 "font
-set guifont=MS_Gothic:h11:cDEFAULT
-set guifontwide=MS_Gothic:h11:cDEFAULT
+set guifont=MS_Gothic:h10.5:cDEFAULT
+set guifontwide=MS_Gothic:h10.5:cDEFAULT
 
