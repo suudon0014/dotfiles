@@ -1,9 +1,5 @@
 ﻿filetype off
 
-augroup MyAutoCmd
-    autocmd!
-augroup END
-
 if has('kaoriya')
     let g:no_vimrc_example=0
     let g:vimrc_local_finish=1
@@ -125,6 +121,7 @@ set t_Co=256
 set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
+let g:airline_theme = 'molokai'
 
 "encoding
 set encoding=utf-8

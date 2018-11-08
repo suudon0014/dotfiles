@@ -1,5 +1,27 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+#color scheme
 [[plugins]]
 repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+#need for vimfiler
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+#display directories
+[[plugins]]
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
