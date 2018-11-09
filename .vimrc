@@ -122,6 +122,7 @@ set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
 let g:airline_theme = 'molokai'
+let g:indentLine_char = '¦'
 
 "encoding
 set encoding=utf-8
