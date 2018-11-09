@@ -68,8 +68,6 @@ set directory=$HOME/vimtmp/swap
 set hlsearch
 set ignorecase "search both upper/lower case
 set smartcase "distinguish upper/lower if search word include upper
-"hide highlight
-nmap <esc><esc> :nohlsearch<CR><esc> 
 
 "completion of parentheses
 imap [ []<left>
@@ -123,6 +121,15 @@ set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
 let g:airline_theme = 'molokai'
 let g:indentLine_char = '¦'
+
+"vim-anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+set statusline=%{anzu#search_status()}
+"hide highlight and anzu-status
+nmap <esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
 "encoding
 set encoding=utf-8
