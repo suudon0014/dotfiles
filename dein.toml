@@ -6,11 +6,7 @@ repo = 'Shougo/dein.vim'
 repo = 'tomasr/molokai'
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-depends = ['vim-airline-themes']
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
+repo = 'itchyny/lightline.vim'
 
 #need for vimfiler
 [[plugins]]
@@ -42,7 +38,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
+repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
-repo = 'osyo-manga/vim-anzu'
+repo = 'tyru/restart.vim'

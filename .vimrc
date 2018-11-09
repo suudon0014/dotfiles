@@ -4,7 +4,7 @@ if has('kaoriya')
     let g:no_vimrc_example=0
     let g:vimrc_local_finish=1
     let g:gvimrc_local_finish=1
-    
+
 	"$VIM/plugins/kaoriya/autodate.vim
 	let plugin_autodate_disable  = 1
 	"$VIM/plugins/kaoriya/cmdex.vim
@@ -57,7 +57,6 @@ endif
 if dein#check_install()
     call dein#install()
 endif
-
 
 "set backup folders
 set undodir=$HOME/vimtmp/undo
@@ -119,8 +118,72 @@ set t_Co=256
 set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
-let g:airline_theme = 'molokai'
 let g:indentLine_char = '¦'
+
+
+"lightline
+let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+\ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+"end lightline
+
+nnoremap <C-p> :bnext<CR>
+nnoremap <C-n> :bprevious<CR>
 
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
@@ -131,10 +194,17 @@ set statusline=%{anzu#search_status()}
 "hide highlight and anzu-status
 nmap <esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
+"restart
+let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+
 "encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
 set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
+
+"use only when delete plugins
+"call map(dein#check_clean(), "delete(v:val, 'rf')")
+"after above, execute :call dein#recache_runtimepath()
 
 filetype plugin indent on
