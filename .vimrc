@@ -194,6 +194,11 @@ set statusline=%{anzu#search_status()}
 "hide highlight and anzu-status
 nmap <esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
+"gitgutter
+nmap <leader>gp <Plug>GitGutterPreviewHunk
+nmap <leader>gu <Plug>GitGutterUndoHunk
+nmap <leader>gs <Plug>GitGutterStageHunk
+
 "restart
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
