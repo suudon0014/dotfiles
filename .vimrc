@@ -75,10 +75,10 @@ imap { {}<left>
 imap < <><left>
 
 "map jj to Esc
-inoremap jj <Esc>
-cnoremap jj <Esc>
-inoremap ｊｊ <Esc>
-cnoremap ｊｊ <Esc>
+inoremap <silent> jj <Esc>:<C-u>w<CR>
+cnoremap <silent> jj <Esc>:<C-u>w<CR>
+inoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
+cnoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
 
 imap <C-j> <esc>
 
