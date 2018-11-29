@@ -42,3 +42,6 @@ repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
 repo = 'tyru/restart.vim'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
