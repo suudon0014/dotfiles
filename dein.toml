@@ -51,3 +51,15 @@ repo = 'lazywei/vim-matlab'
 
 [[plugins]]
 repo = 'kana/vim-submode'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
+
+# [[plugins]]
+# repo = 'roxma/vim-hug-neovim-rpc'

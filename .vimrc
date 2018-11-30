@@ -245,9 +245,15 @@ nnoremap sP :<C-u>bp<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+"NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "restart
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+
+"deoplete
+" let g:deoplete#enable_at_startup = 1
 
 "encoding
 set encoding=utf-8
