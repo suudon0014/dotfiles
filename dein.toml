@@ -48,3 +48,6 @@ repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'lazywei/vim-matlab'
+
+[[plugins]]
+repo = 'kana/vim-submode'
