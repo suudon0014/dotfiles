@@ -45,3 +45,6 @@ repo = 'tyru/restart.vim'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'lazywei/vim-matlab'

@@ -243,7 +243,7 @@ set termencoding=utf-8
 set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
 
 "use only when delete plugins
-"call map(dein#check_clean(), "delete(v:val, 'rf')")
+" call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
 
 filetype plugin indent on
