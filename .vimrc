@@ -118,6 +118,7 @@ set t_Co=256
 set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
+set belloff=all
 let g:indentLine_char = '¦'
 
 
