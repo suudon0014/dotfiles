@@ -55,6 +55,9 @@ repo = 'kana/vim-submode'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+
 # [[plugins]]
 # repo = 'Shougo/deoplete.nvim'
 

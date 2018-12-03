@@ -251,6 +251,9 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+"vim-easymotion
+let g:EasyMotion_smartcase = 1
+
 "restart
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
