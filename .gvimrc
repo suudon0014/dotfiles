@@ -5,7 +5,8 @@
 endif
 
 "color scheme
-colorscheme molokai 
+autocmd ColorScheme * highlight Visual guibg=#646464
+colorscheme molokai
 syntax on
 
 "font
