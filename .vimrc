@@ -270,6 +270,9 @@ let g:deoplete#max_list = 10000
 " 補完候補が出ていたら確定、なければ改行
 inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "<CR>"
 
+"vim-commentary
+autocmd FileType matlab setlocal commentstring=%\ %s
+
 "encoding
 set encoding=utf-8
 set fileencoding=utf-8
