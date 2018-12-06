@@ -119,6 +119,7 @@ set nowrap
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
 set belloff=all
+set noshowmode
 let g:indentLine_char = '¦'
 
 
@@ -127,7 +128,12 @@ let g:lightline = {
         \ 'colorscheme': 'wombat',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+        \   'right': [ ['lineinfo'], ['fileformat', 'fileencoding', 'filetype'] ]
+        \ },
+        \ 'inactive': {
+        \   'left': [['filename']],
+        \   'right': [['lineinfo'], ['filetype']]
         \ },
         \ 'component_function': {
         \   'modified': 'LightlineModified',
