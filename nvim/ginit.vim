@@ -11,10 +11,7 @@ colorscheme molokai
 syntax on
 
 "font
-set guifont=MS_Gothic:h10.5:cDEFAULT
-set guifontwide=MS_Gothic:h10.5:cDEFAULT
-"set guifont=Fira_Mono_for_Powerline:h10:cANSI:qDRAFT
-"set guifontwide=Fira_Mono_for_Powerline:h10:cANSI:qDRAFT
+Guifont! Ricty Diminished:h11
 
 "hide bars
 set guioptions-=m
