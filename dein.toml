@@ -8,19 +8,15 @@ repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
-#need for vimfiler
 [[plugins]]
 repo = 'Shougo/unite.vim'
-
-#display directories
-[[plugins]]
-repo = 'Shougo/vimfiler'
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 
+#linting and formatting
 [[plugins]]
-repo = 'scrooloose/syntastic'
+repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -31,12 +27,15 @@ repo = 'Yggdroot/indentLine'
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
+# git(display changes)
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+# git(various commands)
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+# display match count
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
 
@@ -60,9 +59,3 @@ repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
