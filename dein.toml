@@ -1,9 +1,12 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-#color scheme
+#color schemes
 [[plugins]]
 repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'herrbischoff/cobalt2.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'

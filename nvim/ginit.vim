@@ -7,7 +7,7 @@ endif
 "color scheme
 autocmd ColorScheme * highlight Visual guibg=#646464
 autocmd ColorScheme * highlight LineNr guifg=#b0c4de
-colorscheme molokai 
+colorscheme cobalt2
 syntax on
 
 "font
