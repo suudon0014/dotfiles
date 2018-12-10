@@ -174,7 +174,7 @@ nnoremap <C-n> :bprevious<CR>
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
+nmap * <Plug>(anzu-star-with-echo)N
 nmap # <Plug>(anzu-sharp-with-echo)
 set statusline=%{anzu#search_status()}
 "hide highlight and anzu-status
