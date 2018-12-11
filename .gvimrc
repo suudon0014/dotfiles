@@ -7,6 +7,8 @@ endif
 "color scheme
 autocmd ColorScheme * highlight Visual guibg=#646464
 autocmd ColorScheme * highlight LineNr guifg=#b0c4de
+autocmd ColorScheme * highlight IncSearch guifg=#000000 guibg=#ffff00
+autocmd ColorScheme * highlight Search guifg=#000000 guibg=#66cdaa
 colorscheme cobalt2
 syntax on
 
