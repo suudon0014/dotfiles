@@ -50,3 +50,6 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
