@@ -50,3 +50,11 @@ hook_source = '''
     let g:deoplete#sources#jedi#server_timeout = 20
 '''
 on_ft = 'python'
+
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+on_i = 1
+
+[[plugins]]
+repo = 'lazywei/vim-matlab'
+on_ft = 'matlab'

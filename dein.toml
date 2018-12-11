@@ -14,9 +14,6 @@ repo = 'itchyny/lightline.vim'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
-[[plugins]]
-repo = 'Townk/vim-autoclose'
-
 #linting and formatting
 [[plugins]]
 repo = 'w0rp/ale'
@@ -43,13 +40,7 @@ repo = 'airblade/vim-gitgutter'
 repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
-repo = 'tyru/restart.vim'
-
-[[plugins]]
 repo = 'tpope/vim-commentary'
-
-[[plugins]]
-repo = 'lazywei/vim-matlab'
 
 [[plugins]]
 repo = 'kana/vim-submode'
