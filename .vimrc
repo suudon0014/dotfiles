@@ -289,6 +289,14 @@ set fileencoding=utf-8
 set termencoding=utf-8
 set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
 
+"ctags
+set tags=./.tags;
+nnoremap tjc <C-]>
+nnoremap <silent>tjl :vsp<CR> <C-w>l :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <silent>tjh :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <silent>tjj :sp<CR> <C-w>j :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <silent>tjk :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
+
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
