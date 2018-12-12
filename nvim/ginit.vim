@@ -4,6 +4,10 @@
     source $VIMRUNTIME/menu.vim
 endif
 
+" deopleteのポップアップ色の変更
+autocmd ColorScheme * highlight Pmenu guifg=#ffffff guibg=#3c2ba0
+autocmd ColorScheme * highlight PmenuSel guifg=#ffffff guibg=#4174f4
+
 "color scheme
 autocmd ColorScheme * highlight Visual guibg=#646464
 autocmd ColorScheme * highlight LineNr guifg=#b0c4de
