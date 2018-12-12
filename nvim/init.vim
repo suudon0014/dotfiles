@@ -168,8 +168,8 @@ function! LightlineMode()
 endfunction
 "end lightline
 
-nnoremap <C-p> :bnext<CR>
-nnoremap <C-n> :bprevious<CR>
+" nnoremap <C-p> :bnext<CR>
+" nnoremap <C-n> :bprevious<CR>
 
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
@@ -178,7 +178,7 @@ nmap * <Plug>(anzu-star-with-echo)N
 nmap # <Plug>(anzu-sharp-with-echo)
 set statusline=%{anzu#search_status()}
 "hide highlight and anzu-status
-nmap <esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
+nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
 "gitgutter
 nmap <leader>gp <Plug>GitGutterPreviewHunk
@@ -232,7 +232,7 @@ nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 "NERDTree
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <silent><leader>t :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
