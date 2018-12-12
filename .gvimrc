@@ -17,10 +17,12 @@ colorscheme cobalt2
 syntax on
 
 "font
-set guifont=Ricty_Diminished:h11
-set guifontwide=Ricty_Diminished:h11
-" set guifont=MS_Gothic:h10.5:cDEFAULT
-" set guifontwide=MS_Gothic:h10.5:cDEFAULT
+if has('nvim')
+    Guifont! Ricty Diminished:h11
+else
+    set guifont=Ricty_Diminished:h11
+    set guifontwide=Ricty_Diminished:h11
+endif
 
 "hide bars
 set guioptions-=m
