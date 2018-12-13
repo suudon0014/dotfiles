@@ -302,6 +302,19 @@ nnoremap <silent>tjk :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 "markdown
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
+"colorscheme
+" deopleteのポップアップ色の変更
+autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
+autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
+
+"color scheme
+autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
+autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
+autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
+autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
+colorscheme cobalt2
+syntax on
+
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
