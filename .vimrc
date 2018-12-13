@@ -120,6 +120,7 @@ set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
 set belloff=all
 set noshowmode
+set conceallevel=0
 autocmd BufRead,BufNewFile *.toml set filetype=conf
 let g:indentLine_char = '¦'
 
@@ -299,7 +300,7 @@ nnoremap <silent>tjj :sp<CR> <C-w>j :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <silent>tjk :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 "markdown
-
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
