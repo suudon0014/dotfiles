@@ -3,12 +3,12 @@ repo = 'Shougo/deoplete.nvim'
 hook_source = '''
     let g:deoplete#enable_at_startup = 1
 
-    " tabで候補選択
+    # tabで候補選択
     inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
         \   "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 
-    " 補完候補が出ていたら確定、なければ改行
+    # 補完候補が出ていたら確定、なければ改行
     inoremap <expr><CR> pumvisible() ?
     \   deoplete#mappings#close_popup() : "<CR>"
 
@@ -20,8 +20,18 @@ hook_source = '''
     let g:deoplete#file#enable_buffer_path = 1
     let g:deoplete#max_list = 10000
     let g:deoplete#auto_complete_start_length = 1
+
+    # マルチカーソル使用時は補完機能をオフにする
+    function! Multiple_cursors_before()
+        let b:deoplete_disable_auto_complete = 1
+    endfunction
+
+    function! Multiple_cursors_after()
+        let b:deoplete_disable_auto_complete = 0
+    endfunction
 '''
 on_i = 1
+depends = ['vim-multiple-cursors']
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
