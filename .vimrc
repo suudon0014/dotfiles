@@ -260,6 +260,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
+let g:NERDTreeChDirMode=2
 
 "vim-easymotion
 let g:EasyMotion_smartcase = 1
@@ -294,7 +295,7 @@ set termencoding=utf-8
 set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
 
 "ctags
-set tags=./.tags;
+set tags=./.tags;,.tags;
 nnoremap tjc g<C-]>
 nnoremap <silent>tjl :vsp<CR> <C-w>l :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <silent>tjh :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
