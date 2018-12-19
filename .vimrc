@@ -105,6 +105,7 @@ set shiftwidth=4
 "etc.
 set ruler
 set number "display line number
+set relativenumber
 set title "display file name
 set showmatch "show corresponding bracket
 set wildmenu
