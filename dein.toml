@@ -1,12 +1,19 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-#color schemes
+#colorscheme start
 [[plugins]]
 repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'herrbischoff/cobalt2.vim'
+
+[[plugins]]
+repo = 'nightsense/stellarized'
+
+[[plugins]]
+repo = 'nightsense/nemo'
+# colorscheme end
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
