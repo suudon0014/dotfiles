@@ -220,6 +220,7 @@ nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sH <C-w>H
 nnoremap sr <C-w>r
+nnoremap sR <C-w>R
 nnoremap s= <C-w>=
 nnoremap sO <C-w>=
 nnoremap sw <C-w>w
