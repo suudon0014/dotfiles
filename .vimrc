@@ -116,7 +116,9 @@ set iminsert=0
 set imsearch=-1
 set incsearch
 set t_Co=256
-set nowrap
+set wrap
+set breakindent
+set linebreak
 set virtualedit+=block "enable to select place w/o character in <C-v> mode
 set matchpairs+=<:>
 set belloff=all
