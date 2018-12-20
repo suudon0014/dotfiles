@@ -124,7 +124,10 @@ set noshowmode
 set conceallevel=0
 autocmd BufRead,BufNewFile *.toml set filetype=conf
 let g:indentLine_char = '¦'
-
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
 
 "lightline
 let g:lightline = {
