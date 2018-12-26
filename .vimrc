@@ -132,6 +132,7 @@ set matchpairs+=<:>
 set belloff=all
 set noshowmode
 set conceallevel=0
+set ambiwidth=double
 autocmd BufRead,BufNewFile *.toml set filetype=conf
 let g:indentLine_char = '¦'
 noremap j gj
@@ -276,6 +277,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 "vim-easymotion
 let g:EasyMotion_smartcase = 1
