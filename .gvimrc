@@ -6,10 +6,10 @@ endif
 
 "font
 if has('nvim')
-    Guifont! Ricty Diminished:h11
+    Guifont! Cica:h11
 else
-    set guifont=Ricty_Diminished:h11
-    set guifontwide=Ricty_Diminished:h11
+    set guifont=Cica:h11
+    set guifontwide=Cica:h11
 endif
 
 "hide bars
