@@ -328,6 +328,12 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
 autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
 
+" カーソル行,列の色
+set cursorline
+autocmd ColorScheme * highlight CursorLine guibg=#28516f
+" set cursorcolumn
+" autocmd ColorScheme * highlight CursorColumn guibg=#28516f
+
 "color scheme
 autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
 autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
