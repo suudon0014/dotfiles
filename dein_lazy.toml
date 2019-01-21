@@ -90,3 +90,12 @@ hook_source = '''
 '''
 on_ft = 'markdown'
 depends = ['vim-markdown', 'open-browser.vim']
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+hook_source = '''
+    let g:deoplete#sources#clang#libclang_path = 'C:/Program Files/LLVM/bin/libclang.dll'
+    let g:deoplete#sources#clang#clang_header = 'C:/Program Files/LLVM/lib/clang'
+    set completeopt-=preview
+'''
+on_ft = ['c', 'cpp', 'cmake']
