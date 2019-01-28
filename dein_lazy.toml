@@ -101,6 +101,22 @@ hook_source = '''
 on_ft = ['c', 'cpp', 'cmake']
 
 [[plugins]]
+repo = 'rhysd/vim-clang-format'
+hook_source = '''
+    function! CCodeCleanup()
+        let l:lines="all"
+        let g:clang_format_fallback_style = 'Google'
+        :pyf C:/Program Files/LLVM/share/clang/clang-format.py
+    endfunction
+    command! CCodeCleanup call CCodeCleanup()
+    autocmd BufWrite *.{c} :CCodeCleanup
+    autocmd BufWrite *.{h} :CCodeCleanup
+    autocmd BufWrite *.{cpp} :CCodeCleanup
+    autocmd BufWrite *.{hpp} :CCodeCleanup
+'''
+on_ft = ['c', 'cpp', 'cmake']
+
+[[plugins]]
 repo = 'prettier/vim-prettier'
 build = 'npm install'
 on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']
