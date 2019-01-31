@@ -103,10 +103,21 @@ on_ft = ['c', 'cpp', 'cmake']
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
 hook_source = '''
+    let g:clang_format#style_options = {
+        \ "AlignConsecutiveAssignments" : "true",
+        \ "AlignConsecutiveDeclarations" : "true",
+        \ "AlignOperands" : "true",
+        \ "AlignTrailingComments" : "true",
+        \ "AllowShortBlocksOnASingleLine": "true",
+        \ "AllowShortCaseLabelsOnASingleLine": "true",
+        \ "AllowShortIfStatementsOnASingleLine": "true",
+        \ "AllowShortLoopsOnASingleLine": "true"
+    \ }
+
     function! CCodeCleanup()
         let l:lines="all"
         let g:clang_format_fallback_style = 'Google'
-        :pyf C:/Program Files/LLVM/share/clang/clang-format.py
+        :ClangFormat
     endfunction
     command! CCodeCleanup call CCodeCleanup()
     autocmd BufWrite *.{c} :CCodeCleanup
