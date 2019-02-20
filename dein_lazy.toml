@@ -111,7 +111,8 @@ hook_source = '''
         \ "AllowShortBlocksOnASingleLine": "true",
         \ "AllowShortCaseLabelsOnASingleLine": "true",
         \ "AllowShortIfStatementsOnASingleLine": "true",
-        \ "AllowShortLoopsOnASingleLine": "true"
+        \ "AllowShortLoopsOnASingleLine": "true",
+        \ "ColumnLimit" : 0
     \ }
 
     function! CCodeCleanup()
