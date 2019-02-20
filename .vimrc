@@ -75,10 +75,14 @@ imap { {}<left>
 imap < <><left>
 
 "map jj to Esc
-inoremap <silent> jj <Esc>:<C-u>w<CR>
-cnoremap <silent> jj <Esc>:<C-u>w<CR>
-inoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
-cnoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
+" inoremap <silent> jj <Esc>:<C-u>w<CR>
+" cnoremap <silent> jj <Esc>:<C-u>w<CR>
+" inoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
+" cnoremap <silent> ｊｊ <Esc>:<C-u>w<CR>
+inoremap <silent> jj <Esc>
+cnoremap <silent> jj <Esc>
+inoremap <silent> ｊｊ <Esc>
+cnoremap <silent> ｊｊ <Esc>
 
 imap <C-j> <esc>
 
@@ -339,6 +343,7 @@ autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
 autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
 autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
 autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
+autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#006d10 guibg=#006d10
 colorscheme cobalt2
 syntax on
 
