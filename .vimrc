@@ -72,7 +72,7 @@ set smartcase "distinguish upper/lower if search word include upper
 imap [ []<left>
 imap ( ()<left>
 imap { {}<left>
-imap < <><left>
+" imap < <><left>
 
 "map jj to Esc
 " inoremap <silent> jj <Esc>:<C-u>w<CR>
