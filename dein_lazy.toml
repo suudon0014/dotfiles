@@ -87,6 +87,7 @@ on_ft = 'markdown'
 repo = 'kannokanno/previm'
 hook_source = '''
     nnoremap <silent><C-p> :PrevimOpen<CR>
+    let g:previm_show_header = 0
 '''
 on_ft = 'markdown'
 depends = ['vim-markdown', 'open-browser.vim']
@@ -125,10 +126,10 @@ hook_source = '''
     autocmd BufWrite *.{h} :CCodeCleanup
     autocmd BufWrite *.{cpp} :CCodeCleanup
     autocmd BufWrite *.{hpp} :CCodeCleanup
-    autocmd FileType c imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    autocmd FileType cpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    autocmd FileType h imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    autocmd FileType hpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+    "autocmd FileType c imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+    "autocmd FileType cpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+    "autocmd FileType h imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+    "autocmd FileType hpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
 '''
 on_ft = ['c', 'cpp', 'cmake']
 
