@@ -144,6 +144,9 @@ noremap k gk
 noremap gj j
 noremap gk k
 
+"always search in very magic mode
+nnoremap / /\v
+
 "lightline
 let g:lightline = {
         \ 'colorscheme': 'wombat',
