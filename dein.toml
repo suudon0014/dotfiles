@@ -13,6 +13,9 @@ repo = 'nightsense/stellarized'
 
 [[plugins]]
 repo = 'nightsense/nemo'
+
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
 # colorscheme end
 
 [[plugins]]
