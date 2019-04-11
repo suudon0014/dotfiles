@@ -263,12 +263,21 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" submode
+call submode#enter_with('changetab', 'n', '', 'sn', 'gt')
+call submode#enter_with('changetab', 'n', '', 'sp', 'gT')
+call submode#map('changetab', 'n', '', 'n', 'gt')
+call submode#map('changetab', 'n', '', 'p', 'gT')
+call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+call submode#map('undo/redo', 'n', '', '-', 'g-')
+call submode#map('undo/redo', 'n', '', '+', 'g+')
+let g:submode_always_show_submode = 1
 let g:submode_timeoutlen = 800
 
 
 "tab
-nnoremap sn gt
-nnoremap sp gT
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sT :<C-u>Unite tab<CR>
 
