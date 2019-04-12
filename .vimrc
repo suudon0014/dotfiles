@@ -114,13 +114,25 @@ set autoindent
 set expandtab
 set shiftwidth=4
 
+"command line mode
+set wildmenu
+set wildmode=longest:full,full
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+cnoremap <C-Space>h <Home>
+cnoremap <C-Space><C-h> <Home>
+cnoremap <C-Space>l <End>
+cnoremap <C-Space><C-l> <End>
+cnoremap <C-d> <Del>
+
 "etc.
 set ruler
 set number "display line number
 " set relativenumber
 set title "display file name
 set showmatch "show corresponding bracket
-set wildmenu
 set showcmd
 set clipboard=unnamed
 set mouse=a
