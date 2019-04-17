@@ -69,3 +69,9 @@ repo = 'rking/ag.vim'
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
