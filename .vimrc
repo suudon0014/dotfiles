@@ -285,6 +285,14 @@ call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
 call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
 call submode#map('undo/redo', 'n', '', '-', 'g-')
 call submode#map('undo/redo', 'n', '', '+', 'g+')
+call submode#enter_with('winmove', 'n', '', 'sl', '<C-w>l')
+call submode#enter_with('winmove', 'n', '', 'sh', '<C-w>h')
+call submode#enter_with('winmove', 'n', '', 'sj', '<C-w>j')
+call submode#enter_with('winmove', 'n', '', 'sk', '<C-w>k')
+call submode#map('winmove', 'n', '', 'l', '<C-w>l')
+call submode#map('winmove', 'n', '', 'h', '<C-w>h')
+call submode#map('winmove', 'n', '', 'j', '<C-w>j')
+call submode#map('winmove', 'n', '', 'k', '<C-w>k')
 let g:submode_always_show_submode = 1
 let g:submode_timeoutlen = 800
 
