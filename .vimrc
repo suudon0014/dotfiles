@@ -385,6 +385,9 @@ autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#006d10 guib
 colorscheme cobalt2
 syntax on
 
+" Folding
+autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
+
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
