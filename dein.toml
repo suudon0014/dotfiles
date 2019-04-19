@@ -22,7 +22,7 @@ repo = 'ayu-theme/ayu-vim'
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'Shougo/denite.nvim'
 
 #linting and formatting
 [[plugins]]
