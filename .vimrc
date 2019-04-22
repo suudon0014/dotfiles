@@ -381,7 +381,7 @@ autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
 autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
 autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
 autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
-autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#006d10 guibg=#006d10
+autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#1c47b2 guibg=#1c47b2
 colorscheme cobalt2
 syntax on
 
