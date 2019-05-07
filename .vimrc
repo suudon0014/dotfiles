@@ -83,6 +83,7 @@ inoremap <silent> jj <Esc>
 cnoremap <silent> jj <Esc>
 inoremap <silent> ｊｊ <Esc>
 cnoremap <silent> ｊｊ <Esc>
+tnoremap <silent> jj <C-\><C-n>
 
 imap <C-j> <esc>
 
@@ -268,13 +269,21 @@ nnoremap s< <C-w><
 nnoremap s+ <C-w>+
 nnoremap s- <C-w>-
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's.', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's,', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's;', '<C-w>+')
 call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#enter_with('bufmove', 'n', '', 's=', '<C-w>-')
 call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '.', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', ',', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', ';', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '=', '<C-w>-')
 call submode#leave_with('bufmove', 'n', '', 'e')
 
 " submode
