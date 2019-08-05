@@ -154,3 +154,7 @@ hook_source = '''
 
   autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
 '''
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'css', 'xml']
