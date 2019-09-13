@@ -150,12 +150,17 @@ set belloff=all
 set noshowmode
 set conceallevel=0
 set ambiwidth=double
-autocmd BufRead,BufNewFile *.toml set filetype=conf
 let g:indentLine_char = '¦'
 noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+
+augroup etcSettingsGroup
+    autocmd!
+    autocmd BufRead,BufNewFile *.toml set filetype=conf
+    autocmd QuickFixCmdPost *grep* cwindow
+augroup END
 
 "always search in very magic mode
 nnoremap / /\v
@@ -238,11 +243,6 @@ set statusline=%{anzu#search_status()}
 "hide highlight and anzu-status
 nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
-"gitgutter
-nmap <leader>gp <Plug>GitGutterPreviewHunk
-nmap <leader>gu <Plug>GitGutterUndoHunk
-nmap <leader>gs <Plug>GitGutterStageHunk
-
 "window
 nnoremap s <Nop>
 nnoremap sj <C-w>j
@@ -322,13 +322,17 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 "NERDTree
 nnoremap <silent><leader>t :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+augroup nerdTreeGroup
+    autocmd!
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup END
 
 "vim-easymotion
 let g:EasyMotion_smartcase = 1
@@ -337,7 +341,10 @@ let g:EasyMotion_smartcase = 1
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
 "vim-commentary
-autocmd FileType matlab setlocal commentstring=%\ %s
+augroup vimCommentaryGroup
+    autocmd!
+    autocmd FileType matlab setlocal commentstring=%\ %s
+augroup END
 
 "ale
 let g:ale_lint_on_enter = 1
@@ -372,30 +379,40 @@ nnoremap <silent>tjj :sp<CR> <C-w>j :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <silent>tjk :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 "markdown
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup markdownGroup
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
 
 "colorscheme
 " deopleteのポップアップ色の変更
-autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
-autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
+augroup colorSchemeGroup
+    autocmd!
+    autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
+    autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
 
-" カーソル行,列の色
-set cursorline
-autocmd ColorScheme * highlight CursorLine guibg=#28516f
-" set cursorcolumn
-" autocmd ColorScheme * highlight CursorColumn guibg=#28516f
+    " カーソル行,列の色
+    set cursorline
+    autocmd ColorScheme * highlight CursorLine guibg=#28516f
+    " set cursorcolumn
+    " autocmd ColorScheme * highlight CursorColumn guibg=#28516f
 
-"color scheme
-autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
-autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
-autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
-autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
-autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#1c47b2 guibg=#1c47b2
+    autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#646464
+    autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
+    autocmd ColorScheme * highlight Comment ctermfg=12 guifg=#34a4eb
+    autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
+    autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
+    autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#1c47b2 guibg=#1c47b2
+augroup END
+
 colorscheme cobalt2
 syntax on
 
 " Folding
-autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
+augroup foldingGroup
+    autocmd!
+    autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
+augroup END
 
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")

@@ -122,14 +122,18 @@ hook_source = '''
         :ClangFormat
     endfunction
     command! CCodeCleanup call CCodeCleanup()
-    autocmd BufWrite *.{c} :CCodeCleanup
-    autocmd BufWrite *.{h} :CCodeCleanup
-    autocmd BufWrite *.{cpp} :CCodeCleanup
-    autocmd BufWrite *.{hpp} :CCodeCleanup
-    "autocmd FileType c imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    "autocmd FileType cpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    "autocmd FileType h imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    "autocmd FileType hpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+
+    augroup vimClangGroup
+        autocmd!
+        autocmd BufWrite *.{c} :CCodeCleanup
+        autocmd BufWrite *.{h} :CCodeCleanup
+        autocmd BufWrite *.{cpp} :CCodeCleanup
+        autocmd BufWrite *.{hpp} :CCodeCleanup
+        "autocmd FileType c imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+        "autocmd FileType cpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+        "autocmd FileType h imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+        "autocmd FileType hpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
+    augroup END
 '''
 on_ft = ['c', 'cpp', 'cmake']
 
@@ -152,7 +156,10 @@ hook_source = '''
   " Prettierのパースエラーをquickfixに表示しない
   let g:prettier#quickfix_enabled = 0
 
-  autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
+  augroup vimPrettierGroup
+      autocmd!
+      autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
+  augroup END
 '''
 
 [[plugins]]
