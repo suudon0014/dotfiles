@@ -41,10 +41,6 @@ repo = 'bronson/vim-trailing-whitespace'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-# git(various commands)
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-
 # display match count
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
