@@ -414,6 +414,12 @@ augroup foldingGroup
     autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
 augroup END
 
+" restore vimsession
+augroup RestoreVimSession
+    autocmd!
+    autocmd VimLeave * mks! ~/session.vim
+augroup END
+
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
