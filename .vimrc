@@ -150,6 +150,7 @@ set belloff=all
 set noshowmode
 set conceallevel=0
 set ambiwidth=double
+set hidden
 let g:indentLine_char = '¦'
 noremap j gj
 noremap k gk
