@@ -23,12 +23,12 @@ endif
 
 "Plugin managed by dein.vim
 "installing directory
-let s:dein_dir = expand('~\vimfiles\dein')
+let s:dein_dir = expand('~/vimfiles/dein')
 " dir of dein.vim
-let s:dein_repo_dir = s:dein_dir . '\repos\github.com\Shougo\dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 "download dein.vim if there's no dein.vim
-if &runtimepath !~# '\dein.vim'
+if &runtimepath !~# '/dein.vim'
     if !isdirectory(s:dein_repo_dir)
         execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
     endif
@@ -40,9 +40,9 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     "create plugins list file using TOML format beforehand
-    let g:rc_dir = expand('~\dotfiles')
-    let s:toml = g:rc_dir . '\dein.toml'
-    let s:lazy_toml = g:rc_dir . '\dein_lazy.toml'
+    let g:rc_dir = expand('~/dotfiles')
+    let s:toml = g:rc_dir . '/dein.toml'
+    let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
     "read and cache the toml files
     call dein#load_toml(s:toml, {'lazy':0})
