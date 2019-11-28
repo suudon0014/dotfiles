@@ -168,7 +168,7 @@ nnoremap / /\v
 
 "lightline
 let g:lightline = {
-        \ 'colorscheme': 'one',
+        \ 'colorscheme': 'solarized light',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
@@ -373,7 +373,8 @@ set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
 
 "ctags
 set tags=./.tags;,.tags;
-nnoremap tjc g<C-]>
+nnoremap tjn <C-]>
+nnoremap tjN <C-t>
 nnoremap <silent>tjl :vsp<CR> <C-w>l :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <silent>tjh :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <silent>tjj :sp<CR> <C-w>j :exe("tjump ".expand('<cword>'))<CR>
