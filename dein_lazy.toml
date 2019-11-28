@@ -95,8 +95,14 @@ depends = ['vim-markdown', 'open-browser.vim']
 [[plugins]]
 repo = 'zchee/deoplete-clang'
 hook_source = '''
-    let g:deoplete#sources#clang#libclang_path = 'C:/Program Files/LLVM/bin/libclang.dll'
-    let g:deoplete#sources#clang#clang_header = 'C:/Program Files/LLVM/lib/clang'
+    if has('win64')
+        let g:deoplete#sources#clang#libclang_path = 'C:/Program Files/LLVM/bin/libclang.dll'
+        let g:deoplete#sources#clang#clang_header = 'C:/Program Files/LLVM/lib/clang'
+    elseif has('unix')
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/libclang-6.0.so.1'
+        let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+    endif
+
     set completeopt-=preview
 '''
 on_ft = ['c', 'cpp', 'cmake']
@@ -141,7 +147,7 @@ on_ft = ['c', 'cpp', 'cmake']
 repo = 'Shougo/neoinclude.vim'
 on_ft = ['c', 'cpp']
 hook_source = '''
-    let g:neoinclude#paths = {'c':'C:/MinGw/include', 'cpp':'C:\MinGW\lib\gcc\mingw32\8.2.0\include\c++'}
+    let g:neoinclude#paths = {'c':'C:/MinGw/include', 'cpp':'C:/MinGW/lib/gcc/mingw32/8.2.0/include/c++'}
 '''
 depends = ['deoplete.nvim']
 
