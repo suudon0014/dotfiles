@@ -111,15 +111,25 @@ on_ft = ['c', 'cpp', 'cmake']
 repo = 'rhysd/vim-clang-format'
 hook_source = '''
     let g:clang_format#style_options = {
+        \ "AccessModifierOffset" : -4,
+        \ "AlignAfterOpenBracket" : "true",
         \ "AlignConsecutiveAssignments" : "true",
         \ "AlignConsecutiveDeclarations" : "true",
+        \ "AlignEscapedNewlines" : "true",
         \ "AlignOperands" : "true",
         \ "AlignTrailingComments" : "true",
         \ "AllowShortBlocksOnASingleLine": "true",
         \ "AllowShortCaseLabelsOnASingleLine": "true",
+        \ "AllowShortFunctionsOnASingleLine" : "Empty",
         \ "AllowShortIfStatementsOnASingleLine": "true",
         \ "AllowShortLoopsOnASingleLine": "true",
-        \ "ColumnLimit" : 0
+        \ "BreakBeforeBraces" : "Allman",
+        \ "ColumnLimit" : 0,
+        \ "FixNamespaceComments" : "false",
+        \ "IndentWidth" : 4,
+        \ "NamespaceIndentation" : "All",
+        \ "SortIncludes" : "false",
+        \ "SortUsingDeclarations" : "false",
     \ }
 
     function! CCodeCleanup()
