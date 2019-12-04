@@ -422,6 +422,9 @@ augroup RestoreVimSession
     autocmd VimLeave * mks! ~/session.vim
 augroup END
 
+" show full path
+command! Path echo expand("%:p")
+
 "use only when delete plugins
 " call map(dein#check_clean(), "delete(v:val, 'rf')")
 "after above, execute :call dein#recache_runtimepath()
