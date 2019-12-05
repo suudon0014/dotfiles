@@ -10,7 +10,7 @@ hook_source = '''
 
     " 補完候補が出ていたら確定、なければ改行
     inoremap <expr><CR> pumvisible() ?
-    \   deoplete#mappings#close_popup() : "<CR>"
+    \   deoplete#close_popup() : "<CR>"
 
     let g:deoplete#auto_complete_delay = 0
     let g:deoplete#enable_camel_case = 0
