@@ -374,7 +374,7 @@ let g:ale_fixers = {
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
-set fileencodings+=utf-8,euc-jp,iso-2022-jp,ucs-2le,ucs-2,cp932
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 
 "ctags
 set tags=./.tags;,.tags;
