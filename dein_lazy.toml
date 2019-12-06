@@ -20,6 +20,7 @@ hook_source = '''
     let g:deoplete#file#enable_buffer_path = 1
     let g:deoplete#max_list = 10000
     let g:deoplete#auto_complete_start_length = 1
+    call g:deoplete#custom#option('check_stderr', v:false)
 
     " マルチカーソル使用時は補完機能をオフにする
     function! Multiple_cursors_before()

@@ -21,6 +21,10 @@ if has('kaoriya')
 	let plugin_verifyenc_disable = 1
 endif
 
+if has('nvim')
+    au VimEnter * GuiPopupmenu 0
+endif
+
 "Plugin managed by dein.vim
 "installing directory
 let s:dein_dir = expand('~/vimfiles/dein')
