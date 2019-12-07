@@ -7,6 +7,8 @@ endif
 "font
 if has('nvim')
     Guifont! Cica:h11
+    GuiPopupmenu 0
+    GuiTabline 0
 else
     set guifont=Cica:h11
     set guifontwide=Cica:h11
