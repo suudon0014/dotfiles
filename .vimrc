@@ -172,11 +172,11 @@ let g:lightline = {
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-        \   'right': [ ['lineinfo'], ['fileformat', 'fileencoding', 'filetype'] ]
+        \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
         \ },
         \ 'inactive': {
         \   'left': [['filename']],
-        \   'right': [['lineinfo'], ['filetype']]
+        \   'right': [['lineinfo', 'percent'], ['filetype']]
         \ },
         \ 'component_function': {
         \   'modified': 'LightlineModified',
