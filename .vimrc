@@ -232,6 +232,14 @@ function! LightlineMode()
 endfunction
 "end lightline
 
+"reload lightline settings
+command! LightlineReload call LightlineReload()
+function! LightlineReload()
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
+
 " nnoremap <C-p> :bnext<CR>
 " nnoremap <C-n> :bprevious<CR>
 
