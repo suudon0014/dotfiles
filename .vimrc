@@ -168,7 +168,7 @@ nnoremap / /\v
 
 "lightline
 let g:lightline = {
-        \ 'colorscheme': 'solarized light',
+        \ 'colorscheme': 'solarized',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
