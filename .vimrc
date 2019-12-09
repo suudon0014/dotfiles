@@ -187,8 +187,15 @@ let g:lightline = {
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
         \   'mode': 'LightlineMode'
-        \ }
+        \ },
 \ }
+
+let s:palette = g:lightline#colorscheme#solarized#palette
+let s:palette.tabline.tabsel = [['#545454', '#4fa7ff', 0, 27]]
+let s:palette.tabline.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']]
+let s:palette.tabline.middle = [['#93a1a1', '#002b36', '245', '234']]
+let s:palette.tabline.left = [['#002b36', '#93a1a1', '234', '245']]
+unlet s:palette
 
 function! LightlineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
