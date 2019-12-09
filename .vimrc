@@ -215,8 +215,8 @@ function! LightlineFilename()
 endfunction
 
 function! LightlineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-    return fugitive#head()
+  if fugitive#head() != ''
+    return "\ue0a0 " . fugitive#head()
   else
     return ''
   endif
