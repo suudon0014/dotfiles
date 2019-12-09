@@ -22,3 +22,6 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 set guioptions-=b
+
+" let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
+" let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
