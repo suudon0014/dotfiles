@@ -71,3 +71,6 @@ repo = 'kshenoy/vim-signature'
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'deoplete-plugins/deoplete-tag'
