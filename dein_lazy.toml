@@ -85,13 +85,16 @@ repo = 'tyru/open-browser.vim'
 on_ft = 'markdown'
 
 [[plugins]]
-repo = 'kannokanno/previm'
+repo = 'iamcco/markdown-preview.nvim'
 hook_source = '''
-    nnoremap <silent><C-p> :PrevimOpen<CR>
-    let g:previm_show_header = 0
+    nmap <C-p> <Plug>MarkdownPreview
+    let g:mkdp_auto_start = 0
+    let g:mkdp_auto_close = 0
 '''
-on_ft = 'markdown'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'cd app & yarn install'
 depends = ['vim-markdown', 'open-browser.vim']
+#end markdown
 
 [[plugins]]
 repo = 'zchee/deoplete-clang'
