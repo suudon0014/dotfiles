@@ -284,47 +284,48 @@ nnoremap s> <C-w>>
 nnoremap s< <C-w><
 nnoremap s+ <C-w>+
 nnoremap s- <C-w>-
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's.', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's,', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's;', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#enter_with('bufmove', 'n', '', 's=', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '.', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', ',', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', ';', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '=', '<C-w>-')
-call submode#leave_with('bufmove', 'n', '', 'e')
 
 " submode
-call submode#enter_with('changetab', 'n', '', 'sn', 'gt')
-call submode#enter_with('changetab', 'n', '', 'sp', 'gT')
-call submode#map('changetab', 'n', '', 'n', 'gt')
-call submode#map('changetab', 'n', '', 'p', 'gT')
-call submode#leave_with('changetab', 'n', '', 'e')
+let g:submode_always_show_submode = 1
+let g:submode_timeoutlen = 2000
+
+" submode : window_mode
+call submode#enter_with('window_mode', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('window_mode', 'n', '', 's.', '<C-w>>')
+call submode#enter_with('window_mode', 'n', '', 's<', '<C-w><')
+call submode#enter_with('window_mode', 'n', '', 's,', '<C-w><')
+call submode#enter_with('window_mode', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('window_mode', 'n', '', 's;', '<C-w>+')
+call submode#enter_with('window_mode', 'n', '', 's-', '<C-w>-')
+call submode#enter_with('window_mode', 'n', '', 's=', '<C-w>-')
+call submode#enter_with('window_mode', 'n', '', 'sn', 'gt')
+call submode#enter_with('window_mode', 'n', '', 'sp', 'gT')
+call submode#enter_with('window_mode', 'n', '', 'sl', '<C-w>l')
+call submode#enter_with('window_mode', 'n', '', 'sh', '<C-w>h')
+call submode#enter_with('window_mode', 'n', '', 'sj', '<C-w>j')
+call submode#enter_with('window_mode', 'n', '', 'sk', '<C-w>k')
+call submode#map('window_mode', 'n', '', '>', '<C-w>>')
+call submode#map('window_mode', 'n', '', '.', '<C-w>>')
+call submode#map('window_mode', 'n', '', '<', '<C-w><')
+call submode#map('window_mode', 'n', '', ',', '<C-w><')
+call submode#map('window_mode', 'n', '', '+', '<C-w>+')
+call submode#map('window_mode', 'n', '', ';', '<C-w>+')
+call submode#map('window_mode', 'n', '', '-', '<C-w>-')
+call submode#map('window_mode', 'n', '', '=', '<C-w>-')
+call submode#map('window_mode', 'n', '', 'n', 'gt')
+call submode#map('window_mode', 'n', '', 'p', 'gT')
+call submode#map('window_mode', 'n', '', 'l', '<C-w>l')
+call submode#map('window_mode', 'n', '', 'h', '<C-w>h')
+call submode#map('window_mode', 'n', '', 'j', '<C-w>j')
+call submode#map('window_mode', 'n', '', 'k', '<C-w>k')
+call submode#leave_with('window_mode', 'n', '', 'e')
+
+" submode : undo/redo_mode
 call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
 call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
 call submode#map('undo/redo', 'n', '', '-', 'g-')
 call submode#map('undo/redo', 'n', '', '+', 'g+')
 call submode#leave_with('undo/redo', 'n', '', 'e')
-call submode#enter_with('winmove', 'n', '', 'sl', '<C-w>l')
-call submode#enter_with('winmove', 'n', '', 'sh', '<C-w>h')
-call submode#enter_with('winmove', 'n', '', 'sj', '<C-w>j')
-call submode#enter_with('winmove', 'n', '', 'sk', '<C-w>k')
-call submode#map('winmove', 'n', '', 'l', '<C-w>l')
-call submode#map('winmove', 'n', '', 'h', '<C-w>h')
-call submode#map('winmove', 'n', '', 'j', '<C-w>j')
-call submode#map('winmove', 'n', '', 'k', '<C-w>k')
-call submode#leave_with('winmove', 'n', '', 'e')
-let g:submode_always_show_submode = 1
-let g:submode_timeoutlen = 2000
-
 
 "tab
 nnoremap st :<C-u>tabnew<CR>
