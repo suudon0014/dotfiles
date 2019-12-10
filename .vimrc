@@ -440,8 +440,17 @@ augroup END
 " show full path
 command! Path echo expand("%:p")
 
-"use only when delete plugins
-" call map(dein#check_clean(), "delete(v:val, 'rf')")
-"after above, execute :call dein#recache_runtimepath()
+"work only when delete plugins
+function! s:deinClean()
+    if len(dein#check_clean()) > 0
+        echo "Processing..."
+        call map(dein#check_clean(), "delete(v:val, 'rf')")
+        call dein#recache_runtimepath()
+        echo "DeinClean completed."
+    else
+        echo "There's no disabled plugins."
+    endif
+endfunction
+command! DeinClean :call s:deinClean()
 
 filetype plugin indent on
