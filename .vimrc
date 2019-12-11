@@ -167,8 +167,9 @@ augroup END
 nnoremap / /\v
 
 "lightline
+let s:lightline_colorscheme = 'wombat'
 let g:lightline = {
-        \ 'colorscheme': 'solarized',
+        \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
@@ -190,7 +191,7 @@ let g:lightline = {
         \ },
 \ }
 
-let s:palette = g:lightline#colorscheme#solarized#palette
+let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
 let s:palette.tabline.tabsel = [['#545454', '#4fa7ff', 0, 27]]
 let s:palette.tabline.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']]
 let s:palette.tabline.middle = [['#93a1a1', '#002b36', '245', '234']]
