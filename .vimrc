@@ -148,7 +148,7 @@ set matchpairs+=<:>
 set belloff=all
 set noshowmode
 set conceallevel=0
-set ambiwidth=double
+set ambiwidth=single
 set hidden
 set scrolloff=1
 let g:indentLine_char = '¦'
@@ -190,8 +190,10 @@ let g:lightline = {
         \   'fileformat': 'LightlineFileformat',
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
-        \   'mode': 'LightlineMode'
+        \   'mode': 'LightlineMode',
         \ },
+        \ 'separator': {'left': "\ue0b0 ", 'right': "\ue0b2 "},
+        \ 'subseparator': {'left': "\ue0b1 ", 'right': "\ue0b3 "},
 \ }
 
 let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
