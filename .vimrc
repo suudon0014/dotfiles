@@ -179,6 +179,9 @@ let g:lightline = {
         \   'left': [['filename']],
         \   'right': [['lineinfo', 'percent'], ['filetype']]
         \ },
+        \ 'component': {
+        \   'lineinfo': "\ue0a1 " . '%3l:%-2v',
+        \ },
         \ 'component_function': {
         \   'modified': 'LightlineModified',
         \   'readonly': 'LightlineReadonly',
@@ -203,7 +206,7 @@ function! LightlineModified()
 endfunction
 
 function! LightlineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    return &readonly ? "\ue0a2 " : ''
 endfunction
 
 function! LightlineFilename()
