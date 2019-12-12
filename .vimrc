@@ -197,7 +197,7 @@ let g:lightline = {
 \ }
 
 let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
-let s:palette.tabline.tabsel = [['#545454', '#42aaf5', '0', '39']]
+let s:palette.tabline.tabsel = [['#444444', '#8ac6f2', '0', '39']]
 let s:palette.tabline.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']]
 let s:palette.tabline.middle = [['#93a1a1', '#002b36', '245', '234']]
 let s:palette.tabline.left = [['#002b36', '#93a1a1', '234', '245']]
