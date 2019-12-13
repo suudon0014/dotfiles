@@ -208,7 +208,7 @@ function! LightlineModified()
 endfunction
 
 function! LightlineReadonly()
-    return &readonly ? "\ue0a2 " : ''
+    return &readonly ? "\uf023 " : ''
 endfunction
 
 function! LightlineFilename()
@@ -222,7 +222,7 @@ endfunction
 
 function! LightlineFugitive()
   if fugitive#head() != ''
-    return "\ue0a0 " . fugitive#head()
+    return "\ue725 " . fugitive#head()
   else
     return ''
   endif
