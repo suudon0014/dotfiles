@@ -212,38 +212,55 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFilename()
-  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    if &ft ==? 'nerdtree'
+        return ''
+    else
+        return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+            \  &ft == 'unite' ? unite#get_status_string() :
+            \  &ft == 'vimshell' ? vimshell#get_status_string() :
+            \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endif
 endfunction
 
 function! LightlineFugitive()
-  if fugitive#head() != ''
-    return "\ue725 " . fugitive#head()
-  else
-    return ''
-  endif
+    if &ft ==? 'nerdtree'
+        return ''
+    elseif fugitive#head() != ''
+        return "\ue725 " . fugitive#head()
+    else
+        return ''
+    endif
 endfunction
 
 function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+    if &ft ==? 'nerdtree'
+        return ''
+    else
+        return winwidth(0) > 70 ? &fileformat : ''
+    endif
 endfunction
 
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    if &ft ==? 'nerdtree'
+        return ''
+    else
+        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endif
 endfunction
 
 function! LightlineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    if &ft ==? 'nerdtree'
+        return ''
+    else
+        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endif
 endfunction
 
 function! LightlineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
+  return winwidth(0) > 30 ? lightline#mode() : ''
 endfunction
-"end lightline
 
 "reload lightline settings
 command! LightlineReload call LightlineReload()
@@ -252,6 +269,7 @@ function! LightlineReload()
     call lightline#colorscheme()
     call lightline#update()
 endfunction
+"end lightline
 
 " nnoremap <C-p> :bnext<CR>
 " nnoremap <C-n> :bprevious<CR>
