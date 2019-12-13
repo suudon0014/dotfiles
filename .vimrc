@@ -348,8 +348,8 @@ nnoremap <silent><leader>t :NERDTreeToggle<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = "\uf07b "
+let g:NERDTreeDirArrowCollapsible = "\uf07c "
 
 augroup nerdTreeGroup
     autocmd!
