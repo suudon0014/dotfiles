@@ -74,3 +74,6 @@ repo = 'majutsushi/tagbar'
 
 [[plugins]]
 repo = 'deoplete-plugins/deoplete-tag'
+
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
