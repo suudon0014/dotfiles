@@ -77,3 +77,10 @@ repo = 'deoplete-plugins/deoplete-tag'
 
 [[plugins]]
 repo = 'haya14busa/vim-asterisk'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = 'bash ./install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
