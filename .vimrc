@@ -393,6 +393,7 @@ call submode#enter_with('window_mode', 'n', '', 'sv', ':<C-u>vs<CR>')
 call submode#enter_with('window_mode', 'n', '', 'sc', ':<C-u>only<CR>')
 call submode#enter_with('window_mode', 'n', '', 'sq', ':<C-u>q<CR>')
 call submode#enter_with('window_mode', 'n', '', 'sQ', ':<C-u>bd<CR>')
+call submode#enter_with('window_mode', 'n', '', 'st', ':<C-u>tabnew<CR>')
 
 call submode#map('window_mode', 'n', '', '>', '<C-w>>')
 call submode#map('window_mode', 'n', '', '.', '<C-w>>')
@@ -422,6 +423,7 @@ call submode#map('window_mode', 'n', '', 'v', ':<C-u>vs<CR>')
 call submode#map('window_mode', 'n', '', 'c', ':<C-u>only<CR>')
 call submode#map('window_mode', 'n', '', 'q', ':<C-u>q<CR>')
 call submode#map('window_mode', 'n', '', 'Q', ':<C-u>bd<CR>')
+call submode#map('window_mode', 'n', '', 't', ':<C-u>tabnew<CR>')
 
 call submode#leave_with('window_mode', 'n', '', 'e')
 
