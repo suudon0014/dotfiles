@@ -151,12 +151,26 @@ cnoremap <C-Space><C-l> <End>
 cnoremap <C-d> <Del>
 
 "fzf
-nnoremap <silent> ,f :GFiles<CR>
-nnoremap <silent> ,F :GFiles?<CR>
+
+"include dotfiles for ag searching via fzf
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'ag --hidden --ignore .git -g ""'}), <bang>0)
+
+command! -bang -nargs=* Ag
+    \ call fzf#vim#grep(
+    \ 'ag --column --color --hidden --ignore .git '.shellescape(<q-args>), 0,
+    \ <bang>0 ? fzf#vim#with_preview('up:60%')
+    \         : fzf#vim#with_preview('right:50%', '?'),
+    \ <bang>0)
+
+nnoremap <silent> ,f :Files<CR>
+nnoremap <silent> ,g :GFiles<CR>
+nnoremap <silent> ,G :GFiles?<CR>
 nnoremap <silent> ,b :Buffers<CR>
 nnoremap <silent> ,l :BLines<CR>
 nnoremap <silent> ,h :History<CR>
 nnoremap <silent> ,c :History:<CR>
+nnoremap <silent> ,a :Ag<Space>
 
 " Using floating windows of Neovim to start fzf
 if has('nvim')
@@ -172,7 +186,7 @@ if has('nvim')
                \ 'height': height }
 
     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    call setwinvar(win, '&winhighlight', 'Pmenu')
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
     call nvim_win_set_option(win, 'winblend', 30)
   endfunction
 

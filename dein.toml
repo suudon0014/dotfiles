@@ -61,9 +61,6 @@ repo = 'easymotion/vim-easymotion'
 repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
-repo = 'rking/ag.vim'
-
-[[plugins]]
 repo = 'mechatroner/rainbow_csv'
 
 [[plugins]]
