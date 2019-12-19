@@ -79,7 +79,7 @@ augroup colorSchemeGroup
     autocmd ColorScheme * highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
     autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
     autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
-    autocmd ColorScheme * highlight VertSplit ctermfg=2 ctermbg=2 guifg=#1c47b2 guibg=#1c47b2
+    autocmd ColorScheme * highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
 augroup END
 
 colorscheme cobalt2
