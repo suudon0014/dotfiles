@@ -1,0 +1,67 @@
+source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
+
+set guifont=ＭＳ_ゴシック:h10:cSHIFTJIS:qDRAFT
+
+"set backup folders
+set undodir=C:/vimtmp/undo
+set backupdir=C:/vimtmp/bk
+set directory=C:/vimtmp/swap
+
+"about search
+set hlsearch
+set ignorecase
+set smartcase
+nmap <esc><esc> :nohlsearch<CR><esc>
+
+"completion of parentheses
+"imap [ []<left>
+"imap ( ()<left>
+"imap { {}<left>
+"imap < <><left>
+
+"map jj to Esc
+inoremap jj <Esc>
+cnoremap jj <Esc>
+inoremap ｊｊ <Esc>
+cnoremap ｊｊ <Esc>
+
+imap <C-j> <esc>
+
+"key bindings of Space + another
+let mapleader = "\<Space>"
+noremap <Leader>v 0v$h
+noremap <Leader>d 0v$hx
+noremap <Leader>y 0v$hy
+
+"space + h/l : move to beginning/end of the line
+noremap <Leader>h ^
+noremap <Leader>l $
+vnoremap <Leader>l $h
+
+"move to the bracket counterpart
+noremap <Leader>b %
+
+"tab
+set tabstop=4 "set indent to four spaces
+set autoindent
+set expandtab
+set shiftwidth=4
+
+"etc.
+set ruler
+set number
+set wildmenu
+set showcmd
+set clipboard=unnamed
+set mouse=a
+set iminsert=0
+set imsearch=-1
+set incsearch
+set t_Co=256
+syntax on
+set nowrap
+set matchpairs+=<:>,＜:＞,（:）,「:」,『:』,［:］,【:】
+
+nnoremap * *N
