@@ -85,6 +85,6 @@ repo = 'junegunn/fzf.vim'
 [[plugins]]
 repo = 'lilydjwg/colorizer'
 hook_add = '''
-    let g:colorizer_maxlines = 1000
+    let g:colorizer_maxlines = 500
 	let g:colorizer_nomap = 1
 '''
