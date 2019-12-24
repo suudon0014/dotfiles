@@ -83,7 +83,7 @@ augroup colorSchemeGroup
     autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#b0c4de
     autocmd ColorScheme * highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
     autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
-    autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=42 guifg=#000000 guibg=#66cdaa
+    autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
     autocmd ColorScheme * highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
 augroup END
 
