@@ -1,4 +1,6 @@
 ﻿filetype off
+filetype plugin indent off
+
 
 if has('kaoriya')
     let g:no_vimrc_example=0
