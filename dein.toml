@@ -88,3 +88,6 @@ hook_add = '''
     let g:colorizer_maxlines = 500
 	let g:colorizer_nomap = 1
 '''
+
+[[plugins]]
+repo = 'markonm/traces.vim'
