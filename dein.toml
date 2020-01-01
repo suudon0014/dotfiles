@@ -111,31 +111,22 @@ hook_add = '''
     nnoremap <Space>lf :LspDocumentFormat<CR>
     nnoremap <Space>lh :LspHover<CR>
     nnoremap <Space>lr :LspReferences<CR>
-    augroup lsp_etc
-        autocmd!
-        autocmd FileType 
-    augroup end
+
     if executable('clangd')
-        augroup lsp_clangd
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'clangd',
-                \ 'cmd': {server_info->['clangd', '-background-index']},
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
-            \ })
-            autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
-        augroup end
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info->['clangd', '-background-index']},
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
+        \ })
+        autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
     endif
     if executable('pyls')
-        augroup lsp_pyls
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->['pyls']},
-                \ 'whitelist': ['python'],
-            \ })
-            autocmd FileType python setlocal omnifunc=lsp#complete
-        augroup end
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'pyls',
+            \ 'cmd': {server_info->['pyls']},
+            \ 'whitelist': ['python'],
+        \ })
+        autocmd FileType python setlocal omnifunc=lsp#complete
     endif
 '''
 
