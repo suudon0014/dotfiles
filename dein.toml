@@ -118,7 +118,11 @@ hook_add = '''
             \ 'cmd': {server_info->['clangd', '-background-index']},
             \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
         \ })
-        autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
+        augroup lspCppGroup
+            autocmd!
+            autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
+            autocmd FileType c,cpp,objc,objcpp,cmake call deoplete#custom#buffer_option('auto_complete', v:false)
+        augroup END
     endif
     if executable('pyls')
         autocmd User lsp_setup call lsp#register_server({
@@ -126,7 +130,11 @@ hook_add = '''
             \ 'cmd': {server_info->['pyls']},
             \ 'whitelist': ['python'],
         \ })
-        autocmd FileType python setlocal omnifunc=lsp#complete
+        augroup lspPythonGroup
+            autocmd!
+            autocmd FileType python setlocal omnifunc=lsp#complete
+            autocmd FileType python call deoplete#custom#buffer_option('auto_complete', v:false)
+        augroup END
     endif
 '''
 
