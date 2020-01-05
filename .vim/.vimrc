@@ -90,7 +90,6 @@ augroup colorSchemeGroup
 augroup END
 
 colorscheme cobalt2
-syntax on
 
 "about search
 set hlsearch
@@ -455,3 +454,4 @@ endfunction
 command! DeinClean :call s:deinClean()
 
 filetype plugin indent on
+syntax on
