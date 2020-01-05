@@ -156,3 +156,9 @@ hook_add = '''
     smap <C-k> <Plug>(neosnippet_expand_or_jump)
     xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'

@@ -231,7 +231,7 @@ noremap gk k
 
 augroup etcSettingsGroup
     autocmd!
-    autocmd BufRead,BufNewFile *.toml set filetype=conf
+    autocmd BufRead,BufNewFile *.toml set filetype=toml
     autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
