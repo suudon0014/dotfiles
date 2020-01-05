@@ -51,17 +51,6 @@ repo = 'Shougo/neosnippet-snippets'
 on_i = 1
 
 [[plugins]]
-repo = 'davidhalter/jedi'
-on_ft = 'python'
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-hook_source = '''
-    let g:deoplete#sources#jedi#server_timeout = 20
-'''
-on_ft = 'python'
-
-[[plugins]]
 repo = 'Townk/vim-autoclose'
 on_i = 1
 
@@ -98,75 +87,6 @@ depends = ['vim-markdown', 'open-browser.vim']
 #end markdown
 
 [[plugins]]
-repo = 'zchee/deoplete-clang'
-hook_source = '''
-    if has('win64')
-        let g:deoplete#sources#clang#libclang_path = 'C:/Program Files/LLVM/bin/libclang.dll'
-        let g:deoplete#sources#clang#clang_header = 'C:/Program Files/LLVM/lib/clang'
-    elseif has('unix')
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/libclang-6.0.so.1'
-        let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-    endif
-
-    set completeopt-=preview
-'''
-on_ft = ['c', 'cpp', 'cmake']
-
-[[plugins]]
-repo = 'rhysd/vim-clang-format'
-hook_source = '''
-    let g:clang_format#style_options = {
-        \ "AccessModifierOffset" : -4,
-        \ "AlignAfterOpenBracket" : "true",
-        \ "AlignConsecutiveAssignments" : "true",
-        \ "AlignConsecutiveDeclarations" : "true",
-        \ "AlignEscapedNewlines" : "true",
-        \ "AlignOperands" : "true",
-        \ "AlignTrailingComments" : "true",
-        \ "AllowShortBlocksOnASingleLine": "true",
-        \ "AllowShortCaseLabelsOnASingleLine": "true",
-        \ "AllowShortFunctionsOnASingleLine" : "Empty",
-        \ "AllowShortIfStatementsOnASingleLine": "true",
-        \ "AllowShortLoopsOnASingleLine": "true",
-        \ "BreakBeforeBraces" : "Allman",
-        \ "ColumnLimit" : 0,
-        \ "FixNamespaceComments" : "false",
-        \ "IndentWidth" : 4,
-        \ "NamespaceIndentation" : "All",
-        \ "SortIncludes" : "false",
-        \ "SortUsingDeclarations" : "false",
-    \ }
-
-    function! CCodeCleanup()
-        let l:lines="all"
-        let g:clang_format_fallback_style = 'Google'
-        :ClangFormat
-    endfunction
-    command! CCodeCleanup call CCodeCleanup()
-
-    augroup vimClangGroup
-        autocmd!
-        autocmd BufWrite *.{c} :CCodeCleanup
-        autocmd BufWrite *.{h} :CCodeCleanup
-        autocmd BufWrite *.{cpp} :CCodeCleanup
-        autocmd BufWrite *.{hpp} :CCodeCleanup
-        "autocmd FileType c imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-        "autocmd FileType cpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-        "autocmd FileType h imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-        "autocmd FileType hpp imap <buffer> ; ;<Esc>:CCodeCleanup<CR>la
-    augroup END
-'''
-on_ft = ['c', 'cpp', 'cmake']
-
-[[plugins]]
-repo = 'Shougo/neoinclude.vim'
-on_ft = ['c', 'cpp']
-hook_source = '''
-    let g:neoinclude#paths = {'c':'C:/MinGw/include', 'cpp':'C:/MinGW/lib/gcc/mingw32/8.2.0/include/c++'}
-'''
-depends = ['deoplete.nvim']
-
-[[plugins]]
 repo = 'prettier/vim-prettier'
 build = 'npm install'
 on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']
@@ -186,3 +106,10 @@ hook_source = '''
 [[plugins]]
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'css', 'xml']
+
+[[plugins]]
+repo = 'jmcantrell/vim-virtualenv'
+on_ft = 'python'
+hook_source = '''
+    let g:virtualenv_directory = '.'
+'''
