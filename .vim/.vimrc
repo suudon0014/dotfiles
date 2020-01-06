@@ -128,7 +128,7 @@ noremap <Leader>gy 0v$hy
 "space + h/l : move to beginning/end of the line
 noremap <Leader>h g^
 noremap <Leader>ll g$
-vnoremap <Leader>l g$h
+vnoremap <Leader>ll g$h
 
 noremap <Leader>gh ^
 noremap <Leader>gl $
