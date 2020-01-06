@@ -297,7 +297,7 @@ function! LightlineFilename()
 endfunction
 
 function! LightlineFugitive()
-    if &ft ==? 'nerdtree'
+    if (&ft ==? 'nerdtree') || (winwidth(0) < 60)
         return ''
     elseif fugitive#head() != ''
         return "\ue725 " . fugitive#head()
@@ -331,7 +331,7 @@ function! LightlineFileencoding()
 endfunction
 
 function! LightlineMode()
-  return winwidth(0) > 30 ? lightline#mode() : ''
+  return winwidth(0) > 40 ? lightline#mode() : ''
 endfunction
 
 "reload lightline settings
