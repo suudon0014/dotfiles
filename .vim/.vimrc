@@ -361,20 +361,6 @@ nnoremap sP :<C-u>bp<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
-"NERDTree
-nnoremap <silent><leader>t :NERDTreeToggle<CR>
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeShowHidden=1
-let g:NERDTreeChDirMode=2
-let g:NERDTreeDirArrowExpandable = "\uf07b "
-let g:NERDTreeDirArrowCollapsible = "\uf07c "
-
-augroup nerdTreeGroup
-    autocmd!
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-augroup END
-
 "vim-easymotion
 let g:EasyMotion_smartcase = 1
 
