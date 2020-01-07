@@ -1,7 +1,6 @@
 ﻿filetype off
 filetype plugin indent off
 
-
 if has('kaoriya')
     let g:no_vimrc_example=0
     let g:vimrc_local_finish=1
@@ -22,6 +21,8 @@ if has('kaoriya')
 	"$VIM/plugins/kaoriya/verifyenc.vim
 	let plugin_verifyenc_disable = 1
 endif
+
+let mapleader = "\<Space>"
 
 "Plugin managed by dein.vim
 "installing directory
@@ -116,7 +117,6 @@ tnoremap <silent> jj <C-\><C-n>
 imap <C-j> <esc>
 
 "key bindings of Space + another
-let mapleader = "\<Space>"
 noremap <Leader>v g0vg$h
 noremap <Leader>d g0vg$hx
 noremap <Leader>y g0vg$hy
