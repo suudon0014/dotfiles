@@ -82,6 +82,9 @@ repo = 'kshenoy/vim-signature'
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
+hook_add = '''
+    nnoremap tjo :TagbarToggle<CR>
+'''
 
 [[plugins]]
 repo = 'deoplete-plugins/deoplete-tag'
