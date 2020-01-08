@@ -141,10 +141,12 @@ hook_add = '''
             autocmd FileType c,cpp,objc,objcpp,cmake call deoplete#custom#buffer_option('auto_complete', v:false)
         augroup END
     endif
-    if executable('pyls')
+
+    let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
+    if executable(s:pyls_path)
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'pyls',
-            \ 'cmd': {server_info->['pyls']},
+            \ 'cmd': {server_info->[s:pyls_path]},
             \ 'whitelist': ['python'],
         \ })
         augroup lspPythonGroup
