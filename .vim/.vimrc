@@ -22,6 +22,18 @@ if has('kaoriya')
 	let plugin_verifyenc_disable = 1
 endif
 
+if has('nvim')
+    let s:python_path = fnamemodify('~/.venv/neovim2/Scripts/python.exe', ':p')
+    let s:python3_path = fnamemodify('~/.venv/neovim3/Scripts/python.exe', ':p')
+
+    if executable(s:python_path)
+      let g:python_host_prog = s:python_path
+    endif
+    if executable(s:python3_path)
+      let g:python3_host_prog = s:python3_path
+    endif
+endif
+
 let mapleader = "\<Space>"
 
 "Plugin managed by dein.vim
@@ -197,16 +209,6 @@ if has('nvim')
   endfunction
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-  let s:python_path = fnamemodify('~/.venv/neovim2/Scripts/python.exe', ':p')
-  let s:python3_path = fnamemodify('~/.venv/neovim3/Scripts/python.exe', ':p')
-
-  if executable(s:python_path)
-      let g:python_host_prog = s:python_path
-  endif
-  if executable(s:python3_path)
-      let g:python3_host_prog = s:python3_path
-  endif
 endif
 
 "etc.
