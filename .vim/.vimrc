@@ -240,6 +240,7 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+tnoremap <S-Space> <Space>
 
 augroup etcSettingsGroup
     autocmd!
