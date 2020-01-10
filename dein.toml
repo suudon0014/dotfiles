@@ -124,10 +124,6 @@ hook_add = '''
     let g:lsp_textprop_enabled = 1
     let g:lsp_signs_error = {'text': 'x'}
     let g:lsp_signs_warning = {'text': '!'}
-    nnoremap Ld :LspDefinition<CR>
-    nnoremap Lf :LspDocumentFormat<CR>
-    nnoremap Lh :LspHover<CR>
-    nnoremap Lr :LspReferences<CR>
 
     if executable('clangd')
         autocmd User lsp_setup call lsp#register_server({
@@ -141,6 +137,10 @@ hook_add = '''
             autocmd FileType c,cpp,objc,objcpp,cmake call deoplete#custom#buffer_option('auto_complete', v:false)
         augroup END
     endif
+    nnoremap <C-l>d :LspDefinition<CR>
+    nnoremap <C-l>f :LspDocumentFormat<CR>
+    nnoremap <C-l>h :LspHover<CR>
+    nnoremap <C-l>r :LspReferences<CR>
 
     let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
     if executable(s:pyls_path)
