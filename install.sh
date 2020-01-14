@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 XDG_CONFIG_HOME=${HOME}/.config
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
@@ -33,3 +35,17 @@ ln -sfv ${DOTFILES}/.vim/.vimrc ${HOME}/.vimrc
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${HOME}/.gvimrc
 
 ln -sfv ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
+
+echo -e "\n[Install commands using npm]"
+if !(type "npm" > /dev/null 2>&1); then
+    echo "npm is not installed."
+else
+    echo "npm is installed."
+
+    if !(type "bash-language-server" > /dev/null 2>&1); then
+        echo "bash-language-server is not installed. Start installing..."
+        npm install --global bash-language-server bash-language-server
+    else
+        echo "bash-language-server is installed."
+    fi
+fi
