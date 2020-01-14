@@ -13,6 +13,8 @@ mkdir -p ${XDG_CONFIG_HOME}/nvim
 if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
      -o "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
      setx XDG_CONFIG_HOME ${XDG_CONFIG_HOME}
+     setx MSYS winsymlinks:nativestrict
+     setx MSYS2_PATH_TYPE inherit
 
     # Neovim
     NeovimRoot=C:/Neovim
