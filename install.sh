@@ -2,6 +2,9 @@
 
 set -e
 
+DOTFILES=${HOME}/dotfiles
+source ${DOTFILES}/install_func.sh
+
 XDG_CONFIG_HOME=${HOME}/.config
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
@@ -28,7 +31,6 @@ else
     echo OS CHECK ERROR!
 fi
 
-DOTFILES=${HOME}/dotfiles
 ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${XDG_CONFIG_HOME}/nvim/ginit.vim
 ln -sfv ${DOTFILES}/.vim/.vimrc ${HOME}/.vimrc
@@ -42,17 +44,6 @@ if !(type "npm" > /dev/null 2>&1); then
 else
     echo "npm is installed."
 
-    if !(type "bash-language-server" > /dev/null 2>&1); then
-        echo "bash-language-server is not installed. Start installing..."
-        npm install --global bash-language-server bash-language-server
-    else
-        echo "bash-language-server is installed."
-    fi
-
-    if !(type "vim-language-server" > /dev/null 2>&1); then
-        echo "vim-language-server is not installed. Start installing..."
-        npm install --global vim-language-server vim-language-server
-    else
-        echo "vim-language-server is installed."
-    fi
+    install_by_npm "bash-language-server"
+    install_by_npm "vim-language-server"
 fi
