@@ -158,7 +158,7 @@ hook_add = '''
         augroup lspBashGroup
             autocmd!
             autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'bash-language-server',
+                \ 'name': 'bash-lang-server',
                 \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                 \ 'whitelist': ['sh'],
                 \ })
