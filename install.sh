@@ -5,8 +5,9 @@ mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
 
 # for Windows
-if [ "$(expr substr $(uname -s) 1 4)" == "MSYS" ]; then
-    setx XDG_CONFIG_HOME ${XDG_CONFIG_HOME}
+if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
+     -o "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+     setx XDG_CONFIG_HOME ${XDG_CONFIG_HOME}
 
     # Neovim
     NeovimRoot=C:/Neovim
