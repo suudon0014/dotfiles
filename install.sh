@@ -48,4 +48,11 @@ else
     else
         echo "bash-language-server is installed."
     fi
+
+    if !(type "vim-language-server" > /dev/null 2>&1); then
+        echo "vim-language-server is not installed. Start installing..."
+        npm install --global vim-language-server vim-language-server
+    else
+        echo "vim-language-server is installed."
+    fi
 fi

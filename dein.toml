@@ -164,6 +164,17 @@ hook_add = '''
                 \ })
         augroup END
     endif
+
+    if executable('vim-language-server')
+        augroup lspVimGroup
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                \ 'name': 'vim-lang-server',
+                \ 'cmd': {server_info->['vim-language-server', '--stdio']},
+                \ 'whitelist': ['vim'],
+                \ })
+        augroup END
+    endif
 '''
 
 [[plugins]]
