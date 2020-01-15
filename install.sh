@@ -2,10 +2,10 @@
 
 set -e
 
-DOTFILES=${HOME}/dotfiles
+DOTFILES=~/dotfiles
 source ${DOTFILES}/install_func.sh
 
-XDG_CONFIG_HOME=${HOME}/.config
+XDG_CONFIG_HOME=~/.config
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
 
@@ -35,10 +35,10 @@ fi
 
 ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${XDG_CONFIG_HOME}/nvim/ginit.vim
-ln -sfv ${DOTFILES}/.vim/.vimrc ${HOME}/.vimrc
-ln -sfv ${DOTFILES}/.vim/.gvimrc ${HOME}/.gvimrc
+ln -sfv ${DOTFILES}/.vim/.vimrc ~/.vimrc
+ln -sfv ${DOTFILES}/.vim/.gvimrc ~/.gvimrc
 
-ln -sfv ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
+ln -sfv ${DOTFILES}/.gitconfig ~/.gitconfig
 
 echo -e "\n[Install commands using npm]"
 if !(type "npm" > /dev/null 2>&1); then
