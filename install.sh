@@ -26,6 +26,30 @@ if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
     # setx VIM ${VimRoot}
     # setx VIMRUNTIME ${VimRoot}/vim82
 
+    # Create python venvs for neovim
+    if [ ! -d ~/.venv ]; then
+        echo -e "\nPython venvs for neovim is not found.\nStart creating..."
+        mkdir ~/.venv && cd ~/.venv
+
+        # python2 venv for neovim
+        python -m virtualenv neovim2
+        source neovim2/Scripts/activate
+        pip install -U neovim
+        deactivate
+
+        # python3 venv for neovim
+        python3 -m venv neovim3 --without-pip
+        curl -kL https://bootstrap.pypa.io/get-pip.py > get-pip.py
+        source neovim3/Scripts/activate
+        python get-pip.py
+        pip install -U neovim python-language-server
+        deactivate
+
+        cd ~
+    else
+        echo -e "\nPython venvs for neovim is found."
+    fi
+
 # for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     export XDG_CONFIG_HOME=${XDG_CONFIG_HOME}
