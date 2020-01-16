@@ -42,6 +42,7 @@ hook_source = '''
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
+    let g:neosnippet#snippets_directory='~/dotfiles/.vim/neosnippet/'
 '''
 on_i = 1
 depends = ['neosnippet-snippets']
