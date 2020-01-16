@@ -175,6 +175,16 @@ hook_add = '''
                 \ })
         augroup END
     endif
+
+    if executable('typescript-language-server')
+        augroup lspTsGroup
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                \ 'name': 'typescript-lang-server',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+                \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx'],
+                \ })
+        augroup END
 '''
 
 [[plugins]]

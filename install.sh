@@ -72,4 +72,5 @@ else
 
     install_by_npm "bash-language-server"
     install_by_npm "vim-language-server"
+    install_by_npm "typescript-language-server"
 fi
