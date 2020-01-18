@@ -185,6 +185,7 @@ hook_add = '''
                 \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx'],
                 \ })
         augroup END
+    endif
 '''
 
 [[plugins]]
