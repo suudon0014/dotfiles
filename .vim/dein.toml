@@ -219,6 +219,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['deoplete.nvim']
+
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
