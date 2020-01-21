@@ -3,7 +3,7 @@
 
 [alias]
     st = status
-    graph = log --graph --oneline --all -10 --date=short --decorate=short --format='%C(yellow)%h%Creset %Cblue%cn%Creset%C(magenta reverse)%d%Creset %s'
+    graph = log --graph --oneline --all -10 --date=short --decorate=short --format='%C(yellow)%h%Creset %C(cyan)%cn%Creset%C(magenta reverse)%d%Creset %s'
     cm = commit -m
     acm = !git add . && git commit -m
     setup = !git init && touch .gitignore && git add .gitignore && git commit -m 'First commit'
