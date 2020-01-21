@@ -9,3 +9,5 @@
     setup = !git init && touch .gitignore && git add .gitignore && git commit -m 'First commit'
     today = log --after='`date "+%Y-%m-%d"` 0:0' --oneline --branches *
 
+[color]
+    ui = auto
