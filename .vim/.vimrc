@@ -235,6 +235,7 @@ set ambiwidth=single
 set hidden
 set scrolloff=1
 set updatetime=150
+set noequalalways
 let g:indentLine_char = '¦'
 noremap j gj
 noremap k gk
