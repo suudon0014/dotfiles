@@ -42,6 +42,10 @@ hook_source = '''
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
+    let g:neosnippet#disable_runtime_snippets = {
+        \ 'text': 1,
+        \ 'markdown': 1,
+    \ }
     let g:neosnippet#snippets_directory='~/dotfiles/.vim/neosnippet/'
 '''
 on_i = 1
