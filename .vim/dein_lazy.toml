@@ -94,7 +94,7 @@ depends = ['vim-markdown', 'open-browser.vim']
 [[plugins]]
 repo = 'prettier/vim-prettier'
 build = 'npm install'
-on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown']
+on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json']
 hook_source = '''
   " @formatアノテーションを持ったファイルの自動フォーマットを無効にする
   let g:prettier#autoformat = 0
@@ -104,7 +104,7 @@ hook_source = '''
 
   augroup vimPrettierGroup
       autocmd!
-      autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.scss,*.json,*.md PrettierAsync
+      autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.scss,*.json PrettierAsync
   augroup END
 '''
 
