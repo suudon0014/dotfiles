@@ -2,7 +2,9 @@
 
 install_by_npm () {
     if [ $# -eq 1 ]; then
-        if !(type $1 > /dev/null 2>&1); then
+        # if !(type $1 > /dev/null 2>&1); then
+        npm ls -g --depth=0 | grep $1 > /dev/null 2>&1 && :
+        if [ $? -eq 1 ]; then
             echo "$1 is not installed. Start installing..."
             npm install --global $1
             echo
