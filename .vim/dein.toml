@@ -196,6 +196,7 @@ hook_add = '''
     inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
     imap <C-Space> <Plug>(asyncomplete_force_refresh)
     let g:asyncomplete_auto_popup = 1
+    let g:asyncomplete_preprocessor = []
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 
@@ -269,6 +270,25 @@ hook_add = '''
 [[plugins]]
 repo = 'machakann/asyncomplete-ezfilter.vim'
 hook_add = '''
+    " remove duplicates
+    " function! s:asyncomplete_remove_duplicates_preprocessor(options, matches)
+    "     let l:visited = {}
+    "     let l:items = []
+    "     for [l:source_name, l:matches] in items(a:matches)
+    "       for l:item in l:matches['items']
+    "         if stridx(l:item['word'], a:options['base']) == 0
+    "           if !has_key(l:visited, l:item['word'])
+    "             call add(l:items, l:item)
+    "             let l:visited[l:item['word']] = 1
+    "           endif
+    "         endif
+    "       endfor
+    "     endfor
+    "     call asyncomplete#preprocess_complete(a:options, l:items)
+    " endfunction
+    " let g:asyncomplete_preprocessor = [function('s:asyncomplete_remove_duplicates_preprocessor')]
+
+    " ignore case
     let g:asyncomplete_preprocessor = [function('asyncomplete#preprocessor#ezfilter#filter')]
     let g:asyncomplete#preprocessor#ezfilter#filter#config = {}
     let g:asyncomplete#preprocessor#ezfilter#filter#config['*'] =
