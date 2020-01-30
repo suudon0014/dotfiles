@@ -205,6 +205,8 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-buffer.vim'
 hook_add = '''
+    let g:asyncomplete_buffer_clear_cache = 0
+
     augroup asynCompBufferGroup
         autocmd!
         autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -213,7 +215,7 @@ hook_add = '''
         \ 'priority': 3,
         \ 'completor': function('asyncomplete#sources#buffer#completor'),
         \ 'config': {
-        \ 	'max_buffer_size': 5000000,
+        \ 	'max_buffer_size': 100000000,
         \ },
         \ }))
     augroup END
