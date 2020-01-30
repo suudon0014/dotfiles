@@ -250,6 +250,23 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete-tags.vim'
+hook_add = '''
+    augroup asynCompTagsGroup
+        autocmd!
+        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+        \ 'name': 'tags',
+        \ 'whitelist': ['*'],
+        \ 'priority': 4,
+        \ 'completor': function('asyncomplete#sources#tags#completor'),
+        \ 'config': {
+        \ 	'max_buffer_size': -1,
+        \ },
+        \ }))
+    augroup END
+'''
+
+[[plugins]]
 repo = 'machakann/asyncomplete-ezfilter.vim'
 hook_add = '''
     let g:asyncomplete_preprocessor = [function('asyncomplete#preprocessor#ezfilter#filter')]
