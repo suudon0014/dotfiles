@@ -87,9 +87,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'deoplete-plugins/deoplete-tag'
-
-[[plugins]]
 repo = 'haya14busa/vim-asterisk'
 
 [[plugins]]
@@ -206,6 +203,23 @@ hook_add = '''
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+hook_add = '''
+    augroup asynCompBufferGroup
+        autocmd!
+        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+        \ 'name': 'buffer',
+        \ 'whitelist': ['*'],
+        \ 'priority': 3,
+        \ 'completor': function('asyncomplete#sources#buffer#completor'),
+        \ 'config': {
+        \ 	'max_buffer_size': 5000000,
+        \ },
+        \ }))
+    augroup END
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/asyncomplete-neosnippet.vim'
 hook_add = '''
     augroup asynCompNeosnipGroup
@@ -213,14 +227,34 @@ hook_add = '''
         autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
             \ 'name': 'neosnippet',
             \ 'whitelist': ['*'],
+            \ 'priority': 2,
             \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
         \ }))
     augroup END
 '''
 
 [[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-depends = ['deoplete.nvim']
+repo = 'prabirshrestha/asyncomplete-file.vim'
+hook_add = '''
+    augroup asynCompFileGroup
+        autocmd!
+        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+        \ 'name': 'file',
+        \ 'whitelist': ['*'],
+        \ 'priority': 1,
+        \ 'completor': function('asyncomplete#sources#file#completor'),
+        \ }))
+    augroup END
+'''
+
+[[plugins]]
+repo = 'machakann/asyncomplete-ezfilter.vim'
+hook_add = '''
+    let g:asyncomplete_preprocessor = [function('asyncomplete#preprocessor#ezfilter#filter')]
+    let g:asyncomplete#preprocessor#ezfilter#filter#config = {}
+    let g:asyncomplete#preprocessor#ezfilter#filter#config['*'] =
+                \ {ctx, items -> filter(items, 'ctx.match(v:val.word)')}
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'

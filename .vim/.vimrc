@@ -86,7 +86,7 @@ runtime! settings/*.vim
 augroup colorSchemeGroup
     autocmd!
 
-    " deopleteのポップアップ色の変更
+    " ポップアップ色の変更
     autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
     autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
 
