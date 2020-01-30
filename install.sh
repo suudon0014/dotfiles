@@ -42,7 +42,7 @@ if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
         curl -kL https://bootstrap.pypa.io/get-pip.py > get-pip.py
         source neovim3/Scripts/activate
         python get-pip.py
-        pip install -U neovim python-language-server
+        pip install -U neovim python-language-server compiledb
         deactivate
 
         cd ~
