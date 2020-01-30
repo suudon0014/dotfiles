@@ -196,7 +196,6 @@ hook_add = '''
     inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
     imap <C-Space> <Plug>(asyncomplete_force_refresh)
     let g:asyncomplete_auto_popup = 1
-    let g:asyncomplete_preprocessor = []
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 
