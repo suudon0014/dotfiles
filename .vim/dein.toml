@@ -215,7 +215,7 @@ hook_add = '''
         \ 'priority': 3,
         \ 'completor': function('asyncomplete#sources#buffer#completor'),
         \ 'config': {
-        \ 	'max_buffer_size': 100000000,
+        \ 	'max_buffer_size': 5000000,
         \ },
         \ }))
     augroup END
