@@ -41,6 +41,7 @@ if has('nvim')
             return ''
         endif
     endfunction
+    LightlineReload
     " lightline end
 
     let g:NERDTreeDirArrowExpandable = "\uf07b "
