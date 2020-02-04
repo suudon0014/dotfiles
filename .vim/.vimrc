@@ -267,20 +267,16 @@ let g:lightline = {
         \   'right': [['lineinfo', 'percent'], ['filetype']]
         \ },
         \ 'component': {
-        \   'lineinfo': "\ue0a1 " . '%3l:%-2v',
+        \   'lineinfo': '%3l:%-2v',
         \ },
         \ 'component_function': {
         \   'modified': 'LightlineModified',
-        \   'readonly': 'LightlineReadonly',
         \   'fugitive': 'LightlineFugitive',
-        \   'filename': 'LightlineFilename',
         \   'fileformat': 'LightlineFileformat',
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
         \   'mode': 'LightlineMode',
         \ },
-        \ 'separator': {'left': "\ue0b0 ", 'right': "\ue0b2 "},
-        \ 'subseparator': {'left': "\ue0b1 ", 'right': "\ue0b3 "},
 \ }
 
 let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
@@ -294,28 +290,11 @@ function! LightlineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
-function! LightlineReadonly()
-    return &readonly ? "\uf023 " : ''
-endfunction
-
-function! LightlineFilename()
-    if &ft ==? 'nerdtree'
-        return ''
-    else
-        return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-            \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-            \  &ft == 'unite' ? unite#get_status_string() :
-            \  &ft == 'vimshell' ? vimshell#get_status_string() :
-            \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-    endif
-endfunction
-
 function! LightlineFugitive()
     if (&ft ==? 'nerdtree') || (winwidth(0) < 60)
         return ''
     elseif fugitive#head() != ''
-        return "\ue725 " . fugitive#head()
+        return fugitive#head()
     else
         return ''
     endif
