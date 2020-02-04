@@ -59,3 +59,24 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 set guioptions-=b
+
+"colorscheme
+augroup colorSchemeGroup
+    autocmd!
+
+    " ポップアップ色の変更
+    autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
+    autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
+
+    " カーソル行,列の色
+    set cursorline
+    autocmd ColorScheme * highlight CursorLine guibg=#28516f
+
+    autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#737373
+    autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#8ac6f2
+    autocmd ColorScheme * highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
+    autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
+    autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
+    autocmd ColorScheme * highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
+augroup END
+colorscheme cobalt2
