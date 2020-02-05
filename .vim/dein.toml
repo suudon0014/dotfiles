@@ -21,9 +21,6 @@ repo = 'ayu-theme/ayu-vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-
 #linting and formatting
 [[plugins]]
 repo = 'w0rp/ale'
