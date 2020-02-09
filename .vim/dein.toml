@@ -34,10 +34,6 @@ repo = 'Yggdroot/indentLine'
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
-# git(display changes)
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
 # display match count
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
@@ -295,3 +291,6 @@ hook_add = '''
     map <C-j> <Plug>(edgemotion-j)
     map <C-k> <Plug>(edgemotion-k)
 '''
+
+[[plugins]]
+repo = 'lambdalisue/gina.vim'

@@ -237,7 +237,7 @@ let g:lightline = {
         \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+        \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
         \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
         \ },
         \ 'inactive': {
@@ -249,7 +249,7 @@ let g:lightline = {
         \ },
         \ 'component_function': {
         \   'modified': 'LightlineModified',
-        \   'fugitive': 'LightlineFugitive',
+        \   'gitbranch': 'LightlineGitbranch',
         \   'fileformat': 'LightlineFileformat',
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
@@ -268,11 +268,11 @@ function! LightlineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
-function! LightlineFugitive()
+function! LightlineGitbranch()
     if (&ft ==? 'nerdtree') || (winwidth(0) < 60)
         return ''
-    elseif fugitive#head() != ''
-        return fugitive#head()
+    elseif gina#component#repo#branch() != ''
+        return gina#component#repo#branch()
     else
         return ''
     endif

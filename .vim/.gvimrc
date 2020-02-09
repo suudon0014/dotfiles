@@ -32,11 +32,11 @@ if has('nvim')
                 \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
         endif
     endfunction
-    function! LightlineFugitive()
+    function! LightlineGitbranch()
         if (&ft ==? 'nerdtree') || (winwidth(0) < 60)
             return ''
-        elseif fugitive#head() != ''
-            return "\ue725 " . fugitive#head()
+        elseif gina#component#repo#branch() != ''
+            return "\ue725 " . gina#component#repo#branch()
         else
             return ''
         endif
