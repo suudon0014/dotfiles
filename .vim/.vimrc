@@ -22,8 +22,13 @@ if has('kaoriya')
 	let plugin_verifyenc_disable = 1
 endif
 
-let s:python_path = fnamemodify('~/.venv/neovim2/Scripts/python.exe', ':p')
-let s:python3_path = fnamemodify('~/.venv/neovim3/Scripts/python.exe', ':p')
+if has('win64')
+    let s:python_path = fnamemodify('~/.venv/neovim2/Scripts/python.exe', ':p')
+    let s:python3_path = fnamemodify('~/.venv/neovim3/Scripts/python.exe', ':p')
+elseif has('unix')
+    let s:python_path = fnamemodify('~/.venv/neovim2/bin/python', ':p')
+    let s:python3_path = fnamemodify('~/.venv/neovim3/bin/python', ':p')
+endif
 
 if executable(s:python_path)
   let g:python_host_prog = s:python_path
