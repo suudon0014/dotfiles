@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 install_by_npm () {
     if [ $# -eq 1 ]; then
