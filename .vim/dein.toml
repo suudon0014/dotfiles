@@ -82,6 +82,9 @@ build = 'bash ./install --all'
 repo = 'junegunn/fzf.vim'
 
 [[plugins]]
+repo = 'yuki-ycino/fzf-preview.vim'
+
+[[plugins]]
 repo = 'lilydjwg/colorizer'
 hook_add = '''
     let g:colorizer_maxlines = 500
