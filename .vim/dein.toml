@@ -293,10 +293,13 @@ repo = 'lambdalisue/gina.vim'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
     let g:fern#default_hidden = 1
+    nmap <silent><leader>t :Fern . -drawer -toggle<CR>
 
     function! s:init_fern() abort
         nmap <buffer> s <Nop>
         nmap <buffer> fs <Plug>(fern-action-open:select)
+        nmap <silent><buffer> fb :Fern bookmark:///<CR>
+        nmap <buffer> fc <Plug>(fern-action-cd)
     endfunction
 
     augroup fern-custom
@@ -304,3 +307,15 @@ hook_add = '''
         autocmd FileType fern call s:init_fern()
     augroup END
 '''
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-devicons.vim'
+hook_add = '''
+    let g:fern#renderer = "devicons"
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'lambdalisue/fern-bookmark.vim'
