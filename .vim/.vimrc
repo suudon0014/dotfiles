@@ -274,7 +274,7 @@ function! LightlineModified()
 endfunction
 
 function! LightlineGitbranch()
-    if (&ft ==? 'nerdtree') || (winwidth(0) < 60)
+    if winwidth(0) < 60
         return ''
     elseif gina#component#repo#branch() != ''
         return gina#component#repo#branch()
@@ -284,27 +284,15 @@ function! LightlineGitbranch()
 endfunction
 
 function! LightlineFileformat()
-    if &ft ==? 'nerdtree'
-        return ''
-    else
-        return winwidth(0) > 70 ? &fileformat : ''
-    endif
+    return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
 function! LightlineFiletype()
-    if &ft ==? 'nerdtree'
-        return ''
-    else
-        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-    endif
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineFileencoding()
-    if &ft ==? 'nerdtree'
-        return ''
-    else
-        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-    endif
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
 function! LightlineMode()

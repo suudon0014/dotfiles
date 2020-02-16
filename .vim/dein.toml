@@ -45,15 +45,6 @@ repo = 'tpope/vim-commentary'
 repo = 'kana/vim-submode'
 
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-    nnoremap <silent><leader>t :NERDTreeToggle<CR>
-    let g:NERDTreeShowBookmarks=1
-    let g:NERDTreeShowHidden=1
-    let g:NERDTreeChDirMode=2
-'''
-
-[[plugins]]
 repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
