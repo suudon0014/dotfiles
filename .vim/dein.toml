@@ -299,7 +299,7 @@ hook_add = '''
         nmap <buffer> s <Nop>
         nmap <buffer> fs <Plug>(fern-action-open:select)
         nmap <silent><buffer> fb :Fern bookmark:///<CR>
-        nmap <buffer> fc <Plug>(fern-action-cd)
+        nmap <buffer> fc <Plug>(fern-action-cd) :echo "cd to " . getcwd()<CR>
     endfunction
 
     augroup fern-custom
