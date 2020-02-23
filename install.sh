@@ -12,6 +12,7 @@ mkdir -p ${XDG_CONFIG_HOME}/nvim
 # for Windows
 if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
      -o "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+     setx LANG "ja_JP.UTF-8"
      setx XDG_CONFIG_HOME ${XDG_CONFIG_HOME}
      setx MSYS winsymlinks:nativestrict
      setx MSYS2_PATH_TYPE inherit
