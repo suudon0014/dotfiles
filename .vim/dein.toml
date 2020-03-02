@@ -112,6 +112,7 @@ hook_add = '''
                 \ 'name': 'clangd',
                 \ 'cmd': {server_info->['clangd', '-background-index']},
                 \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
+                \ 'priority': 20,
             \ })
             autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
         augroup END
@@ -125,6 +126,7 @@ hook_add = '''
                 \ 'name': 'pyls',
                 \ 'cmd': {server_info->[s:pyls_path]},
                 \ 'whitelist': ['python'],
+                \ 'priority': 20,
             \ })
             autocmd FileType python setlocal omnifunc=lsp#complete
         augroup END
@@ -137,6 +139,7 @@ hook_add = '''
                 \ 'name': 'bash-lang-server',
                 \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                 \ 'whitelist': ['sh'],
+                \ 'priority': 20,
                 \ })
             autocmd FileType sh setlocal omnifunc=lsp#complete
         augroup END
@@ -149,6 +152,7 @@ hook_add = '''
                 \ 'name': 'vim-lang-server',
                 \ 'cmd': {server_info->['vim-language-server', '--stdio']},
                 \ 'whitelist': ['vim'],
+                \ 'priority': 20,
                 \ })
             autocmd FileType vim setlocal omnifunc=lsp#complete
         augroup END
@@ -161,6 +165,7 @@ hook_add = '''
                 \ 'name': 'typescript-lang-server',
                 \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
                 \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx'],
+                \ 'priority': 20,
                 \ })
             autocmd FileType typescript setlocal omnifunc=lsp#complete
         augroup END
@@ -192,7 +197,7 @@ hook_add = '''
         \ 'name': 'buffer',
         \ 'whitelist': ['*'],
         \ 'blacklist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ 'priority': 3,
+        \ 'priority': 8,
         \ 'completor': function('asyncomplete#sources#buffer#completor'),
         \ 'config': {
         \ 	'max_buffer_size': 5000000,
@@ -209,7 +214,7 @@ hook_add = '''
         autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
             \ 'name': 'neosnippet',
             \ 'whitelist': ['*'],
-            \ 'priority': 2,
+            \ 'priority': 9,
             \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
         \ }))
     augroup END
@@ -223,7 +228,7 @@ hook_add = '''
         autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
         \ 'name': 'file',
         \ 'whitelist': ['*'],
-        \ 'priority': 1,
+        \ 'priority': 10,
         \ 'completor': function('asyncomplete#sources#file#completor'),
         \ }))
     augroup END
