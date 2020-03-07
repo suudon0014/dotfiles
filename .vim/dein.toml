@@ -276,6 +276,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'tsufeki/asyncomplete-fuzzy-match'
+build = 'cargo build --release'
+
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
