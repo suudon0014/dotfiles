@@ -65,6 +65,8 @@ ln -sfv ${DOTFILES}/.vim/.gvimrc ~/.gvimrc
 
 ln -sfv ${DOTFILES}/.gitconfig ~/.gitconfig
 
+ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fish_prompt.fish
+
 echo -e "\n[Install commands using npm]"
 if !(type "npm" > /dev/null 2>&1); then
     echo "npm is not installed."
