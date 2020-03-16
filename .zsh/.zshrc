@@ -9,7 +9,7 @@ function get-prompt {
     BRANCH=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
 
     if [[ -n ${BRANCH} ]]; then
-        RESULT=${RESULT}"%F{green}%K{cyan}"`echo $SEP`"%f%k%K{cyan}"${BRANCH}"%k%F{cyan}"`echo $SEP`"%f"
+        RESULT=${RESULT}"%F{green}%K{cyan}"`echo $SEP`"%f%k%K{cyan}\ue725"${BRANCH}"%k%F{cyan}"`echo $SEP`"%f"
     else
         RESULT=${RESULT}"%F{green}"`echo $SEP`"%f"
     fi
