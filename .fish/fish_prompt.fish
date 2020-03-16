@@ -4,7 +4,7 @@ function fish_prompt --description 'Write out the prompt'
     set pwd (set_color white)(set_color -b brgreen)(prompt_pwd)
     set sep_pwd (set_color brgreen)(echo \ue0b0)
 
-    set branch (__fish_git_prompt)
+    set branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if string length -q -- $branch
         set sep_pwd (set_color -b brcyan)$sep_pwd
         set branch (string trim -l $branch)
