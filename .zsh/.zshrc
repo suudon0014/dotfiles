@@ -2,6 +2,7 @@
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Prompt Start
 function get-prompt {
     SEP='\ue0b0'
     RESULT="%K{magenta}%n%k%F{magenta}%K{green}"`echo $SEP`"%f%k%K{green}%~%k"
@@ -19,3 +20,9 @@ function get-prompt {
 
 setopt prompt_subst
 PROMPT='`get-prompt`'
+# Prompt End
+
+# Completion Start
+autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+# Completion End
