@@ -52,22 +52,29 @@ set guioptions-=L
 set guioptions-=b
 
 "colorscheme
+function! ModifyCobalt2ColorScheme()
+    if g:colors_name == "cobalt2"
+        " Popup Colors
+        highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
+        highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
+
+        " CursorLine Colors
+        set cursorline
+        highlight CursorLine guibg=#28516f
+
+        " Etc.
+        highlight Visual ctermbg=244 guibg=#737373
+        highlight LineNr ctermbg=12 guifg=#8ac6f2
+        highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
+        highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
+        highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
+        highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
+    endif
+endfunction
+
 augroup colorSchemeGroup
     autocmd!
-
-    " ポップアップ色の変更
-    autocmd ColorScheme * highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
-    autocmd ColorScheme * highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
-
-    " カーソル行,列の色
-    set cursorline
-    autocmd ColorScheme * highlight CursorLine guibg=#28516f
-
-    autocmd ColorScheme * highlight Visual ctermbg=244 guibg=#737373
-    autocmd ColorScheme * highlight LineNr ctermbg=12 guifg=#8ac6f2
-    autocmd ColorScheme * highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
-    autocmd ColorScheme * highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
-    autocmd ColorScheme * highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
-    autocmd ColorScheme * highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
+    autocmd ColorScheme * :call ModifyCobalt2ColorScheme()
 augroup END
+
 colorscheme cobalt2
