@@ -52,8 +52,10 @@ set guioptions-=L
 set guioptions-=b
 
 "colorscheme
-function! ModifyCobalt2ColorScheme()
+function! ModifyCobalt2()
     if g:colors_name == "cobalt2"
+        set background=dark
+
         " Popup Colors
         highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
         highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
@@ -74,7 +76,7 @@ endfunction
 
 augroup colorSchemeGroup
     autocmd!
-    autocmd ColorScheme * :call ModifyCobalt2ColorScheme()
+    autocmd ColorScheme * :call ModifyCobalt2()
 augroup END
 
 colorscheme cobalt2
