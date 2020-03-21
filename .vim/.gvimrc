@@ -74,9 +74,19 @@ function! ModifyCobalt2()
     endif
 endfunction
 
+function! ModifyPaperColor()
+    if g:colors_name == "PaperColor"
+        set background=light
+
+        let g:lightline["colorscheme"] = "PaperColor"
+        LightlineReload
+    endif
+endfunction
+
 augroup colorSchemeGroup
     autocmd!
     autocmd ColorScheme * :call ModifyCobalt2()
+    autocmd ColorScheme * :call ModifyPaperColor()
 augroup END
 
-colorscheme cobalt2
+colorscheme PaperColor

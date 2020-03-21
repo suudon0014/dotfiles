@@ -85,7 +85,7 @@ set directory=$HOME/vimtmp/swap
 set runtimepath+=~/dotfiles/.vim/
 runtime! settings/*.vim
 
-colorscheme ayu
+colorscheme PaperColor
 
 "about search
 set hlsearch
@@ -195,6 +195,7 @@ if has('nvim')
 endif
 
 "etc.
+set background=light
 set ruler
 set number "display line number
 set title "display file name

@@ -16,6 +16,9 @@ repo = 'nightsense/nemo'
 
 [[plugins]]
 repo = 'ayu-theme/ayu-vim'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
 # colorscheme end
 
 [[plugins]]
