@@ -48,3 +48,16 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
+
+# Plugins
+zinit load zsh-users/zsh-completions
+zinit load zsh-users/zsh-autosuggestions
+# zinit load zsh-users/zsh-syntax-highlighting
+# End of Plugins
+
+# Configs for Plugin
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=1000
+SAVEHIST=100000
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+# End of Configs for Plugin
