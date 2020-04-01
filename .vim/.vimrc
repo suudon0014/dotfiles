@@ -194,6 +194,15 @@ if has('nvim')
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
 
+"folding
+set foldmethod=manual
+set foldcolumn=1
+augroup foldingGroup
+    autocmd!
+    autocmd BufWinLeave * mkview
+    autocmd BufWinEnter * silent loadview
+augroup END
+
 "etc.
 set background=light
 set ruler
