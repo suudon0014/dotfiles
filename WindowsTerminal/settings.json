@@ -28,7 +28,8 @@
             // "fontFace": "Cica",
             "fontFace": "Delugia Nerd Font",
             "fontSize": 10,
-            "foreground": "#FFFFFF"
+            "foreground": "#FFFFFF",
+            "startingDirectory": "%USERPROFILE%"
         },
         "list": [
             {
