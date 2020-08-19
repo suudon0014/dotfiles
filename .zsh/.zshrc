@@ -50,9 +50,10 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Plugins
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
+zinit light "zsh-users/zsh-completions"
+zinit light "zsh-users/zsh-autosuggestions"
+zinit light "zdharma/fast-syntax-highlighting"
+zinit light "b4b4r07/enhancd"
 # zinit load zsh-users/zsh-syntax-highlighting
 # End of Plugins
 
