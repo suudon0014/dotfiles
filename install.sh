@@ -70,6 +70,8 @@ ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 ln -sfv ${DOTFILES}/.fish/config.fish ${XDG_CONFIG_HOME}/fish/config.fish
 ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fish_prompt.fish
 
+ln -sfv ${DOTFILES}/WindowsTerminal/settings.json ${LOCALAPPDATA}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+
 echo -e "\n[Install commands using npm]"
 if !(type "npm" > /dev/null 2>&1); then
     echo "npm is not installed."
