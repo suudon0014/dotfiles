@@ -59,8 +59,7 @@
         { "command": "find", "keys": "ctrl+shift+f" },
 
         { "command": "newTab", "keys": ["Ctrl+t"] },
-        { "command": "nextTab", "keys": ["Ctrl+n"] },
-        { "command": "prevTab", "keys": ["Ctrl+p"] },
+        { "command": "nextTab", "keys": ["Ctrl+g"] },
         {
             "command": { "action": "splitPane", "split": "vertical" },
             "keys": ["Ctrl+v"]
