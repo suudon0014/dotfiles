@@ -15,11 +15,14 @@ function get-prompt {
         RESULT=${RESULT}"%F{green}"`echo $SEP`"%f"
     fi
 
-    echo "${RESULT}"
+    DATETIME="%F{cyan}(%D{%Y/%m/%d} %*)"
+
+    echo "${RESULT} ${DATETIME}"
 }
 
 setopt prompt_subst
-PROMPT='`get-prompt`'
+PROMPT='`get-prompt`
+'
 # Prompt End
 
 # Completion Start
