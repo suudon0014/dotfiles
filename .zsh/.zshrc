@@ -15,7 +15,7 @@ function get-prompt {
         RESULT=${RESULT}"%F{green}"`echo $SEP`"%f"
     fi
 
-    DATETIME="%F{cyan}(%D{%Y/%m/%d} %*)"
+    DATETIME="%F{cyan}(%D{%Y/%m/%d} %*)%f"
 
     echo "${RESULT} ${DATETIME}"
 }
