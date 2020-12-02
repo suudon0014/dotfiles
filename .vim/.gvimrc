@@ -9,6 +9,7 @@ if has('nvim')
     GuiPopupmenu 0
     GuiTabline 0
     set pumblend=30
+    set winblend=30
 
     " lightline
     let g:lightline.component.lineinfo = "\ue0a1 " . '%3l:%-2v'
@@ -90,3 +91,4 @@ augroup colorSchemeGroup
 augroup END
 
 colorscheme PaperColor
+colorscheme cobalt2
