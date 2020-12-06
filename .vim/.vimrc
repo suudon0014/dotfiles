@@ -321,6 +321,8 @@ endfunction
 " nnoremap <C-p> :bnext<CR>
 " nnoremap <C-n> :bprevious<CR>
 
+cnoremap <C-p> <Up>
+
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
