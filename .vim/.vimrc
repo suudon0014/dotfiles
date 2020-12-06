@@ -87,7 +87,10 @@ runtime! settings/*.vim
 
 " colorscheme PaperColor
 set termguicolors
-colorscheme elly
+if $TERM != ""
+    " colorscheme ayu
+    colorscheme elly
+endif
 
 "about search
 set hlsearch
@@ -190,7 +193,6 @@ if has('nvim')
 
     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-    call nvim_win_set_option(win, 'winblend', 30)
   endfunction
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
@@ -206,7 +208,7 @@ augroup foldingGroup
 augroup END
 
 "etc.
-set background=light
+set background=dark
 set ruler
 set number "display line number
 set title "display file name

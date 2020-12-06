@@ -73,4 +73,6 @@ function select-history() {
 }
 zle -N select-history
 bindkey '^r' select-history
+setopt +o nomatch
 bindkey -v
+bindkey "jj" vi-cmd-mode
