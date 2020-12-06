@@ -85,7 +85,9 @@ set directory=$HOME/vimtmp/swap
 set runtimepath+=~/dotfiles/.vim/
 runtime! settings/*.vim
 
-colorscheme PaperColor
+" colorscheme PaperColor
+set termguicolors
+colorscheme elly
 
 "about search
 set hlsearch
@@ -247,7 +249,8 @@ augroup END
 nnoremap / /\v
 
 "lightline
-let s:lightline_colorscheme = 'wombat'
+" let s:lightline_colorscheme = 'wombat'
+let s:lightline_colorscheme = 'elly'
 let g:lightline = {
         \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},

@@ -89,4 +89,4 @@ augroup colorSchemeGroup
     autocmd ColorScheme * :call ModifyPaperColor()
 augroup END
 
-colorscheme PaperColor
+colorscheme elly

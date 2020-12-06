@@ -19,6 +19,9 @@ repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
 repo = 'NLKNguyen/papercolor-theme'
+
+[[plugins]]
+repo = 'ulwlu/elly.vim'
 # colorscheme end
 
 [[plugins]]
