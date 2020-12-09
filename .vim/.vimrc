@@ -88,8 +88,7 @@ runtime! settings/*.vim
 " colorscheme PaperColor
 set termguicolors
 if $TERM != ""
-    " colorscheme ayu
-    colorscheme elly
+    colorscheme ayu
 endif
 
 "about search
@@ -251,8 +250,7 @@ augroup END
 nnoremap / /\v
 
 "lightline
-" let s:lightline_colorscheme = 'wombat'
-let s:lightline_colorscheme = 'elly'
+let s:lightline_colorscheme = 'wombat'
 let g:lightline = {
         \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},

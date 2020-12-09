@@ -90,6 +90,5 @@ augroup colorSchemeGroup
     autocmd ColorScheme * :call ModifyPaperColor()
 augroup END
 
-colorscheme elly
-" colorscheme PaperColor
-" colorscheme cobalt2
+colorscheme PaperColor
+colorscheme cobalt2
