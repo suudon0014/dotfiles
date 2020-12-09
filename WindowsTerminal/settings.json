@@ -17,7 +17,8 @@
             "fontFace": "Delugia Nerd Font",
             "fontSize": 10,
             "foreground": "#FFFFFF",
-            "startingDirectory": "%USERPROFILE%"
+            "startingDirectory": "%USERPROFILE%",
+            "cursorShape": "filledBox"
         },
         "list": [
             {
