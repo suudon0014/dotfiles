@@ -52,43 +52,5 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
-"colorscheme
-function! ModifyCobalt2()
-    if g:colors_name == "cobalt2"
-        set background=dark
-
-        " Popup Colors
-        highlight Pmenu ctermfg=255 ctermbg=55 guifg=#ffffff guibg=#3c2ba0
-        highlight PmenuSel ctermfg=255 ctermbg=27 guifg=#ffffff guibg=#4174f4
-
-        " CursorLine Colors
-        set cursorline
-        highlight CursorLine guibg=#28516f
-
-        " Etc.
-        highlight Visual ctermbg=244 guibg=#737373
-        highlight LineNr ctermbg=12 guifg=#8ac6f2
-        highlight Comment ctermfg=12 guifg=#34a4eb cterm=NONE gui=NONE
-        highlight IncSearch ctermfg=0 ctermbg=226 guifg=#000000 guibg=#ffff00
-        highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
-        highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
-    endif
-endfunction
-
-function! ModifyPaperColor()
-    if g:colors_name == "PaperColor"
-        set background=light
-
-        let g:lightline["colorscheme"] = "PaperColor"
-        LightlineReload
-    endif
-endfunction
-
-augroup colorSchemeGroup
-    autocmd!
-    autocmd ColorScheme * :call ModifyCobalt2()
-    autocmd ColorScheme * :call ModifyPaperColor()
-augroup END
-
 colorscheme PaperColor
 colorscheme cobalt2
