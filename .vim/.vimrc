@@ -88,7 +88,7 @@ runtime! settings/*.vim
 " colorscheme PaperColor
 set termguicolors
 if $TERM != ""
-    colorscheme ayu
+    colorscheme cobalt2
 endif
 
 "about search
