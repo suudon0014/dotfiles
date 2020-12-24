@@ -15,7 +15,7 @@
         "defaults": {
             "fontFace": "Cica",
             "fontFace": "Delugia Nerd Font",
-            "fontSize": 10,
+            "fontSize": 9,
             "foreground": "#FFFFFF",
             "startingDirectory": "%USERPROFILE%",
             "cursorShape": "filledBox"
