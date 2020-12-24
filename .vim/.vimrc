@@ -276,7 +276,7 @@ noremap gj j
 noremap gk k
 tnoremap <S-Space> <Space>
 imap <C-f> <C-x><C-o>
-cabbrev w] w
+cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
 augroup etcSettingsGroup
     autocmd!
