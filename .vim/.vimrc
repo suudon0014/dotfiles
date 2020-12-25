@@ -124,9 +124,7 @@ augroup colorSchemeGroup
 augroup END
 
 set termguicolors
-if $TERM != ""
-    colorscheme cobalt2
-endif
+colorscheme cobalt2
 
 "about search
 set hlsearch
