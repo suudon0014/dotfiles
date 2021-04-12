@@ -76,3 +76,5 @@ bindkey '^r' select-history
 setopt +o nomatch
 bindkey -v
 bindkey "jj" vi-cmd-mode
+
+. ~/z/z.sh
