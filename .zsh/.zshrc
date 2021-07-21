@@ -77,4 +77,23 @@ setopt +o nomatch
 bindkey -v
 bindkey "jj" vi-cmd-mode
 
+fd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | fzf +m) &&
+    cd "$dir"
+}
+
+fv() {
+    local dir
+    dir=$(find ${1:-.} -mindepth 1 \
+        -not -iwholename *.git/objects* \
+        -not -iwholename *.git/logs* \
+        -not -iwholename *.git/refs* \
+        -not -iwholename *.git/*HEAD* \
+        -not -iwholename *.git/in* \
+        2> /dev/null | fzf +m) &&
+    vim "$dir"
+}
+
 . ~/z/z.sh
