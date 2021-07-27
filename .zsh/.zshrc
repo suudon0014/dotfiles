@@ -97,3 +97,20 @@ fv() {
 }
 
 . ~/z/z.sh
+
+function isWinDir {
+    case $PWD/ in
+        /mnt/*) return $(true);;
+        *) return $(false);;
+    esac
+}
+
+function git {
+    if isWinDir
+    then
+        git.exe "$@"
+    else
+        /usr/bin/git "@"
+    fi
+}
+
