@@ -6,13 +6,13 @@ repo = 'Shougo/dein.vim'
 repo = 'tomasr/molokai'
 
 [[plugins]]
-repo = 'herrbischoff/cobalt2.vim'
+repo = 'GertjanReynaert/cobalt2-vim-theme'
 
 [[plugins]]
-repo = 'nightsense/stellarized'
+repo = 'haystackandroid/stellarized'
 
 [[plugins]]
-repo = 'nightsense/nemo'
+repo = 'haystackandroid/nemo'
 
 [[plugins]]
 repo = 'ayu-theme/ayu-vim'
