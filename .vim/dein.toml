@@ -336,3 +336,17 @@ repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
+
+[[plugins]]
+repo = 'wfxr/minimap.vim'
+hook_add = '''
+    if !executable('code-minimap')
+        !cargo install --locked code-minimap
+    endif
+
+    let g:minimap_highlight_range = 1
+    let g:minimap_highlight_search = 1
+    let g:minimap_git_colors = 1
+    noremap <Leader>mt :MinimapToggle<CR>
+    noremap <Leader>mr :MinimapRefresh<CR>
+'''
