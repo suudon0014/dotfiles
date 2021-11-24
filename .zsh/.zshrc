@@ -106,11 +106,11 @@ function isWinDir {
 }
 
 function git {
-    if isWinDir
+    if [ "$(uname)" == 'Linux' -a !isWinDir ]
     then
-        git.exe "$@"
+        /usr/bin/git "$@"
     else
-        /usr/bin/git "@"
+        git.exe "$@"
     fi
 }
 
