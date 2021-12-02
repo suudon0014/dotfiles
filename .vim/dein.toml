@@ -349,6 +349,8 @@ hook_add = '''
     let g:minimap_git_colors = 1
     noremap <Leader>mt :MinimapToggle<CR>
     noremap <Leader>mr :MinimapRefresh<CR>
-    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo):call minimap#vim#UpdateColorSearch(1)<CR>
-    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo):call minimap#vim#UpdateColorSearch(1)<CR>
+'''
+hook_post_source = '''
+    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
+    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
 '''
