@@ -133,12 +133,6 @@ set hlsearch
 set ignorecase "search both upper/lower case
 set smartcase "distinguish upper/lower if search word include upper
 
-"completion of parentheses
-imap [ []<left>
-imap ( ()<left>
-imap { {}<left>
-" imap < <><left>
-
 "map jj to Esc
 " inoremap <silent> jj <Esc>:<C-u>w<CR>
 " cnoremap <silent> jj <Esc>:<C-u>w<CR>
