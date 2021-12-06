@@ -128,6 +128,39 @@ augroup END
 set termguicolors
 colorscheme cobalt2
 
+" ddc.vim
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('sources', [
+    \ 'around',
+    \ 'vim-lsp',
+    \ 'file',
+\ ])
+call ddc#custom#patch_global('sourceOptions', {
+    \ '_': {
+    \ 'matchers': ['matcher_head'],
+    \ 'sorters': ['sorter_rank'],
+    \ 'converters': ['converter_remove_overlap'],
+    \ },
+    \ 'around': {'mark': 'Around'},
+    \ 'vim-lsp': {
+    \ 'mark': 'LSP',
+    \ 'matchers': ['mathcer_head'],
+    \ 'forceCompletionPattern': '\.|:|->|"\w+/*'
+    \ },
+    \ 'file': {
+    \ 'mark': 'File',
+    \ 'isVolatile': v:true,
+    \ 'forceCompletionPattern': '\S/\S*'
+    \ },
+\ })
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+    \ 'clangd': {'mark': 'clang'},
+\ })
+call ddc#enable()
+inoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+
 "about search
 set hlsearch
 set ignorecase "search both upper/lower case
@@ -370,8 +403,6 @@ nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 "buffer
 nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
-nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
-nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 "vim-easymotion
 let g:EasyMotion_smartcase = 1
@@ -385,38 +416,11 @@ augroup vimCommentaryGroup
     autocmd FileType matlab setlocal commentstring=%\ %s
 augroup END
 
-"ale
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 1
-let g:ale_fix_on_save = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_linters = {
-\   'python': ['pylint'],
-\   'matlab': ['mlint'],
-\}
-let g:ale_fixers = {
-\   'python': ['autopep8'],
-\}
-
 "encoding
 set encoding=utf-8
 set fileencodings=utf-8,sjis
 set termencoding=utf-8
 set fileformats=unix,dos
-
-"ctags
-set tags=./.tags;,.tags;
-nnoremap tjn <C-]>
-nnoremap tjN <C-t>
-nnoremap <silent>tjl :vsp<CR> <C-w>l :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <silent>tjh :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <silent>tjj :sp<CR> <C-w>j :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <silent>tjk :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 "markdown
 augroup markdownGroup

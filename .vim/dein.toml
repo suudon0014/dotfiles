@@ -1,6 +1,32 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# ddc.vim start
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+# ddc.vim end
+
 #colorscheme start
 [[plugins]]
 repo = 'tomasr/molokai'
@@ -26,10 +52,6 @@ repo = 'ulwlu/elly.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-
-#linting and formatting
-[[plugins]]
-repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -63,12 +85,6 @@ repo = 'mechatroner/rainbow_csv'
 repo = 'kshenoy/vim-signature'
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-hook_add = '''
-    nnoremap tjo :TagbarToggle<CR>
-'''
-
-[[plugins]]
 repo = 'haya14busa/vim-asterisk'
 
 [[plugins]]
@@ -92,9 +108,6 @@ hook_add = '''
 repo = 'markonm/traces.vim'
 
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
     let g:lsp_async_completion = 1
@@ -110,72 +123,6 @@ hook_add = '''
     nnoremap <C-l>f :LspDocumentFormat<CR>
     nnoremap <C-l>h :LspHover<CR>
     nnoremap <C-l>r :LspReferences<CR>
-
-    if executable('clangd')
-        augroup lspCppGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'clangd',
-                \ 'cmd': {server_info->['clangd', '-background-index']},
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
-                \ 'priority': 20,
-            \ })
-            autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
-    if executable(s:pyls_path)
-        augroup lspPythonGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->[s:pyls_path]},
-                \ 'whitelist': ['python'],
-                \ 'priority': 20,
-            \ })
-            autocmd FileType python setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('bash-language-server')
-        augroup lspBashGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'bash-lang-server',
-                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                \ 'whitelist': ['sh'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType sh setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('vim-language-server')
-        augroup lspVimGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'vim-lang-server',
-                \ 'cmd': {server_info->['vim-language-server', '--stdio']},
-                \ 'whitelist': ['vim'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType vim setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('typescript-language-server')
-        augroup lspTsGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'typescript-lang-server',
-                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-                \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType typescript setlocal omnifunc=lsp#complete
-        augroup END
-    endif
 '''
 
 [[plugins]]
@@ -193,102 +140,7 @@ hook_add = '''
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-buffer.vim'
-hook_add = '''
-    let g:asyncomplete_buffer_clear_cache = 0
-
-    augroup asynCompBufferGroup
-        autocmd!
-        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-        \ 'name': 'buffer',
-        \ 'whitelist': ['*'],
-        \ 'blacklist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ 'priority': 8,
-        \ 'completor': function('asyncomplete#sources#buffer#completor'),
-        \ 'config': {
-        \ 	'max_buffer_size': 5000000,
-        \ },
-        \ }))
-    augroup END
-'''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-neosnippet.vim'
-hook_add = '''
-    augroup asynCompNeosnipGroup
-        autocmd!
-        autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-            \ 'name': 'neosnippet',
-            \ 'whitelist': ['*'],
-            \ 'priority': 9,
-            \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-        \ }))
-    augroup END
-'''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-file.vim'
-hook_add = '''
-    augroup asynCompFileGroup
-        autocmd!
-        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-        \ 'name': 'file',
-        \ 'whitelist': ['*'],
-        \ 'priority': 10,
-        \ 'completor': function('asyncomplete#sources#file#completor'),
-        \ }))
-    augroup END
-'''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-tags.vim'
-hook_add = '''
-    augroup asynCompTagsGroup
-        autocmd!
-        autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-        \ 'name': 'tags',
-        \ 'whitelist': ['*'],
-        \ 'blacklist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#tags#completor'),
-        \ 'config': {
-        \ 	'max_buffer_size': -1,
-        \ },
-        \ }))
-    augroup END
-'''
-
-[[plugins]]
-repo = 'machakann/asyncomplete-ezfilter.vim'
-hook_add = '''
-    " remove duplicates
-    " function! s:asyncomplete_remove_duplicates_preprocessor(options, matches)
-    "     let l:visited = {}
-    "     let l:items = []
-    "     for [l:source_name, l:matches] in items(a:matches)
-    "       for l:item in l:matches['items']
-    "         if stridx(l:item['word'], a:options['base']) == 0
-    "           if !has_key(l:visited, l:item['word'])
-    "             call add(l:items, l:item)
-    "             let l:visited[l:item['word']] = 1
-    "           endif
-    "         endif
-    "       endfor
-    "     endfor
-    "     call asyncomplete#preprocess_complete(a:options, l:items)
-    " endfunction
-    " let g:asyncomplete_preprocessor = [function('s:asyncomplete_remove_duplicates_preprocessor')]
-
-    " ignore case
-    let g:asyncomplete_preprocessor = [function('asyncomplete#preprocessor#ezfilter#filter')]
-    let g:asyncomplete#preprocessor#ezfilter#filter#config = {}
-    let g:asyncomplete#preprocessor#ezfilter#filter#config['*'] =
-                \ {ctx, items -> filter(items, 'ctx.match(v:val.word)')}
-'''
-
-[[plugins]]
-repo = 'tsufeki/asyncomplete-fuzzy-match'
-build = 'cargo build --release'
+repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -306,6 +158,7 @@ hook_add = '''
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
 
+# fern
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
