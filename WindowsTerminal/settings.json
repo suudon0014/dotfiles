@@ -63,23 +63,17 @@
     "schemes": [],
 
     "keybindings": [
-        {
-            "command": { "action": "copy", "singleLine": false },
-            "keys": "ctrl+c"
-        },
-        { "command": "paste", "keys": "ctrl+v" },
-
         { "command": "find", "keys": "ctrl+shift+f" },
 
         { "command": "newTab", "keys": ["Ctrl+t"] },
         { "command": "nextTab", "keys": ["Ctrl+g"] },
         {
             "command": { "action": "splitPane", "split": "vertical" },
-            "keys": ["Ctrl+v"]
+            "keys": ["Ctrl+Shift+v"]
         },
         {
             "command": { "action": "splitPane", "split": "horizontal" },
-            "keys": ["Ctrl+s"]
+            "keys": ["Ctrl+Shift+s"]
         },
         {
             "command": { "action": "moveFocus", "direction": "up" },
