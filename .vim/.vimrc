@@ -132,7 +132,7 @@ colorscheme cobalt2
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
     \ 'around',
-    \ 'vim-lsp',
+    \ 'nvim-lsp',
     \ 'file',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
@@ -142,10 +142,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'converters': ['converter_remove_overlap'],
     \ },
     \ 'around': {'mark': 'Around'},
-    \ 'vim-lsp': {
+    \ 'nvim-lsp': {
     \ 'mark': 'LSP',
-    \ 'matchers': ['mathcer_head'],
-    \ 'forceCompletionPattern': '\.|:|->|"\w+/*'
+    \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*'
     \ },
     \ 'file': {
     \ 'mark': 'File',
