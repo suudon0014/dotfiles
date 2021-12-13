@@ -41,7 +41,8 @@ let mapleader = "\<Space>"
 
 "Plugin managed by dein.vim
 "installing directory
-let s:dein_dir = expand('~/vimfiles/dein')
+" let s:dein_dir = expand('~/vimfiles/dein')
+let s:dein_dir = expand('~/.cache/dein')
 " dir of dein.vim
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -58,9 +59,9 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     "create plugins list file using TOML format beforehand
-    let g:rc_dir = expand('~/dotfiles/.vim')
-    let s:toml = g:rc_dir . '/dein.toml'
-    let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+    let s:rc_dir = expand('~/dotfiles/.vim')
+    let s:toml = s:rc_dir . '/dein.toml'
+    let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
 
     "read and cache the toml files
     call dein#load_toml(s:toml, {'lazy':0})
@@ -132,30 +133,33 @@ colorscheme cobalt2
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
     \ 'around',
-    \ 'nvim-lsp',
+    \ 'vim-lsp',
     \ 'file',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
-    \ 'matchers': ['matcher_head'],
-    \ 'sorters': ['sorter_rank'],
-    \ 'converters': ['converter_remove_overlap'],
+    \     'matchers': ['matcher_head'],
+    \     'sorters': ['sorter_rank'],
+    \     'converters': ['converter_remove_overlap'],
+    \     'minAutoCompleteLength': 1,
     \ },
     \ 'around': {'mark': 'Around'},
-    \ 'nvim-lsp': {
-    \ 'mark': 'LSP',
-    \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+    \ 'vim-lsp': {
+    \     'mark': 'LSP',
+    \     'forceCompletionPattern': '\.|:|->|"\w*/*'
     \ },
     \ 'file': {
-    \ 'mark': 'File',
-    \ 'isVolatile': v:true,
-    \ 'forceCompletionPattern': '\S/\S*'
+    \     'mark': 'File',
+    \     'isVolatile': v:true,
+    \     'forceCompletionPattern': '\S/\S*'
     \ },
 \ })
-call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
-call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
-    \ 'clangd': {'mark': 'clang'},
-\ })
+" \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+"
+" call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+" call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+"     \ 'clangd': {'mark': 'clang'},
+" \ })
 call ddc#enable()
 inoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
