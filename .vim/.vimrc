@@ -82,6 +82,7 @@ autocmd VimEnter * call dein#call_hook('post_source')
 set undodir=$HOME/vimtmp/undo
 set backupdir=$HOME/vimtmp/bk
 set directory=$HOME/vimtmp/swap
+set noswapfile
 
 "load separated setting files
 set runtimepath+=~/dotfiles/.vim/
@@ -107,6 +108,9 @@ function! ModifyCobalt2()
         highlight IncSearch ctermfg=255 ctermbg=11 guifg=#000000 guibg=#ffff00
         highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
         highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
+
+        highlight link LspErrorHighlight NeomakeErrorMsg
+        highlight link LspWarningHighlight NeomakeWarningMsg
     endif
 endfunction
 
@@ -385,24 +389,6 @@ augroup vimCommentaryGroup
     autocmd!
     autocmd FileType matlab setlocal commentstring=%\ %s
 augroup END
-
-"ale
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 1
-let g:ale_fix_on_save = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_linters = {
-\   'python': ['pylint'],
-\   'matlab': ['mlint'],
-\}
-let g:ale_fixers = {
-\   'python': ['autopep8'],
-\}
 
 "encoding
 set encoding=utf-8

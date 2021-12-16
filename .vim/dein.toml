@@ -27,9 +27,7 @@ repo = 'ulwlu/elly.vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
-#linting and formatting
 [[plugins]]
-repo = 'w0rp/ale'
 repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
@@ -102,81 +100,17 @@ hook_add = '''
     let g:lsp_diagnostics_enabled = 1
     let g:lsp_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_virtual_text_enabled = 0
-    let g:lsp_highlights_enabled = 0
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+    let g:lsp_highlights_enabled = 1
     let g:lsp_textprop_enabled = 1
     let g:lsp_signs_error = {'text': 'x'}
     let g:lsp_signs_warning = {'text': '!'}
     nnoremap <C-l>d :LspDefinition<CR>
+    nnoremap <C-l>e :LspNextError<CR>
     nnoremap <C-l>f :LspDocumentFormat<CR>
     nnoremap <C-l>h :LspHover<CR>
     nnoremap <C-l>r :LspReferences<CR>
-
-    if executable('clangd')
-        augroup lspCppGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'clangd',
-                \ 'cmd': {server_info->['clangd', '-background-index']},
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cmake'],
-                \ 'priority': 20,
-            \ })
-            autocmd FileType c,cpp,objc,objcpp,cmake setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    let s:pyls_path = fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
-    if executable(s:pyls_path)
-        augroup lspPythonGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->[s:pyls_path]},
-                \ 'whitelist': ['python'],
-                \ 'priority': 20,
-            \ })
-            autocmd FileType python setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('bash-language-server')
-        augroup lspBashGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'bash-lang-server',
-                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                \ 'whitelist': ['sh'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType sh setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('vim-language-server')
-        augroup lspVimGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'vim-lang-server',
-                \ 'cmd': {server_info->['vim-language-server', '--stdio']},
-                \ 'whitelist': ['vim'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType vim setlocal omnifunc=lsp#complete
-        augroup END
-    endif
-
-    if executable('typescript-language-server')
-        augroup lspTsGroup
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                \ 'name': 'typescript-lang-server',
-                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-                \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx'],
-                \ 'priority': 20,
-                \ })
-            autocmd FileType typescript setlocal omnifunc=lsp#complete
-        augroup END
-    endif
+    nnoremap <C-l>w :LspNextWarning<CR>
 '''
 
 [[plugins]]
