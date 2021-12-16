@@ -30,6 +30,7 @@ repo = 'itchyny/lightline.vim'
 #linting and formatting
 [[plugins]]
 repo = 'w0rp/ale'
+repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
 repo = 'tpope/vim-surround'

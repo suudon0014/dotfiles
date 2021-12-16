@@ -319,10 +319,11 @@ function! LightlineModified()
 endfunction
 
 function! LightlineGitbranch()
+    let l:branch_name = gitbranch#name()
     if winwidth(0) < 60
         return ''
-    elseif gina#component#repo#branch() != ''
-        return gina#component#repo#branch()
+    elseif l:branch_name != ''
+        return l:branch_name
     else
         return ''
     endif
