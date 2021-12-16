@@ -136,9 +136,9 @@ hook_add = '''
         autocmd!
         autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
         \ 'name': 'buffer',
-        \ 'whitelist': ['*'],
         \ 'blacklist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ 'priority': 8,
+        \ 'whitelist': ['*'],
+        \ 'priority': 10,
         \ 'completor': function('asyncomplete#sources#buffer#completor'),
         \ 'config': {
         \ 	'max_buffer_size': 5000000,
@@ -155,7 +155,7 @@ hook_add = '''
         autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
             \ 'name': 'neosnippet',
             \ 'whitelist': ['*'],
-            \ 'priority': 9,
+            \ 'priority': 5,
             \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
         \ }))
     augroup END
@@ -169,7 +169,7 @@ hook_add = '''
         autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
         \ 'name': 'file',
         \ 'whitelist': ['*'],
-        \ 'priority': 10,
+        \ 'priority': 8,
         \ 'completor': function('asyncomplete#sources#file#completor'),
         \ }))
     augroup END
@@ -184,7 +184,7 @@ hook_add = '''
         \ 'name': 'tags',
         \ 'whitelist': ['*'],
         \ 'blacklist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ 'priority': 4,
+        \ 'priority': 3,
         \ 'completor': function('asyncomplete#sources#tags#completor'),
         \ 'config': {
         \ 	'max_buffer_size': -1,
@@ -196,6 +196,44 @@ hook_add = '''
 [[plugins]]
 repo = 'tsufeki/asyncomplete-fuzzy-match'
 build = 'cargo build --release'
+hook_post_source = '''
+    function! s:sort_by_priority_preprocessor(options, matches) abort
+      let l:items = []
+      for [l:source_name, l:matches] in items(a:matches)
+        for l:item in l:matches['items']
+          if stridx(l:item['word'], a:options['base']) == 0
+            let l:item['priority'] =
+                \ get(asyncomplete#get_source_info(l:source_name),'priority',0)
+            call add(l:items, l:item)
+          endif
+        endfor
+      endfor
+      let l:items = sort(l:items, {a, b -> b['priority'] - a['priority']})
+    endfunction
+
+    function! s:remove_duplicates_preprocessor(options, matches) abort
+        let l:visited = {}
+        let l:items = []
+        for [l:source_name, l:matches] in items(a:matches)
+          for l:item in l:matches['items']
+            if stridx(l:item['word'], a:options['base']) == 0
+              if !has_key(l:visited, l:item['word'])
+                call add(l:items, l:item)
+                let l:visited[l:item['word']] = 1
+              endif
+            endif
+          endfor
+        endfor
+    endfunction
+
+    function! s:my_asyncomplete_preprocessor(options, matches) abort
+        call s:sort_by_priority_preprocessor(a:options, a:matches)
+        call s:remove_duplicates_preprocessor(a:options, a:matches)
+        call asyncomplete_fuzzy_match#preprocessor(a:options, a:matches)
+    endfunction
+
+    let g:asyncomplete_preprocessor = [function('s:my_asyncomplete_preprocessor')]
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
