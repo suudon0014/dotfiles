@@ -210,7 +210,8 @@ nnoremap <silent> ,b :Buffers<CR>
 nnoremap <silent> ,l :BLines<CR>
 nnoremap <silent> ,h :History<CR>
 nnoremap <silent> ,c :History:<CR>
-nnoremap <silent> ,a :Ag<Space>
+nnoremap ,a :Ag<Space>
+nnoremap ,r :Rg<Space>
 
 " Using floating windows of Neovim to start fzf
 if has('nvim')
