@@ -148,8 +148,6 @@ inoremap <silent> ｊｊ <Esc>
 cnoremap <silent> ｊｊ <Esc>
 tnoremap <silent> jj <C-\><C-n>
 
-imap <C-j> <esc>
-
 "key bindings of Space + another
 noremap <Leader>v g0vg$h
 noremap <Leader>d g0vg$hx

@@ -245,7 +245,7 @@ hook_post_source = '''
     function! s:my_asyncomplete_preprocessor(options, matches) abort
         call s:sort_by_priority_preprocessor(a:options, a:matches)
         call s:remove_duplicates_preprocessor(a:options, a:matches)
-        call asyncomplete_fuzzy_match#preprocessor(a:options, a:matches)
+        " call asyncomplete_fuzzy_match#preprocessor(a:options, a:matches)
     endfunction
 
     let g:asyncomplete_preprocessor = [function('s:my_asyncomplete_preprocessor')]
@@ -317,4 +317,28 @@ hook_add = '''
 hook_post_source = '''
     nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
     nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
+'''
+
+[[plugins]]
+repo = 'tyru/eskk.vim'
+hook_add = '''
+    let g:eskk#directory = "~/.config/eskk"
+    let g:eskk#dictionary = {
+        \ 'path': "~/.config/eskk/my_jisyo",
+        \ 'sorted': 0,
+        \ 'encoding': 'utf-8',
+    \ }
+    let g:eskk#large_dictionary = {
+        \ 'path': "~/.config/eskk/SKK-JISYO.L",
+        \ 'sorted': 1,
+        \ 'encoding': 'euc-jp',
+    \ }
+
+    let g:eskk#enable_completion = 0
+    let g:eskk#kakutei_when_unique_candidate = 1
+    let g:eskk#keep_state = 0
+    let g:eskk#egg_like_newline = 1
+
+    imap jk <Plug>(eskk:toggle)
+    cmap jk <Plug>(eskk:toggle)
 '''
