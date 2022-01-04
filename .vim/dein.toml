@@ -271,6 +271,7 @@ repo = 'lambdalisue/gina.vim'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
     let g:fern#default_hidden = 1
+    let g:fern#scheme#bookmark#store#file = "~/.fern/bookmark.json"
     nmap <silent><leader>t :Fern . -drawer -toggle<CR>
 
     function! s:init_fern() abort
