@@ -131,6 +131,9 @@ colorscheme cobalt2
 
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('autoCompleteEvents',
+    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged']
+\)
 call ddc#custom#patch_global('sources', [
     \ 'around',
     \ 'vim-lsp',
@@ -161,8 +164,11 @@ call ddc#custom#patch_global('sourceOptions', {
 "     \ 'clangd': {'mark': 'clang'},
 " \ })
 call ddc#enable()
+
 inoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
 
 "about search
 set hlsearch
