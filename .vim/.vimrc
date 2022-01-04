@@ -83,6 +83,7 @@ autocmd VimEnter * call dein#call_hook('post_source')
 set undodir=$HOME/vimtmp/undo
 set backupdir=$HOME/vimtmp/bk
 set directory=$HOME/vimtmp/swap
+set noswapfile
 
 "load separated setting files
 set runtimepath+=~/dotfiles/.vim/
@@ -108,6 +109,9 @@ function! ModifyCobalt2()
         highlight IncSearch ctermfg=255 ctermbg=11 guifg=#000000 guibg=#ffff00
         highlight Search ctermfg=0 ctermbg=45 guifg=#444444 guibg=#8ac6f2
         highlight VertSplit ctermfg=8 ctermbg=8 guifg=#777777 guibg=#777777
+
+        highlight link LspErrorHighlight NeomakeErrorMsg
+        highlight link LspWarningHighlight NeomakeWarningMsg
     endif
 endfunction
 
@@ -186,8 +190,6 @@ inoremap <silent> ｊｊ <Esc>
 cnoremap <silent> ｊｊ <Esc>
 tnoremap <silent> jj <C-\><C-n>
 
-imap <C-j> <esc>
-
 "key bindings of Space + another
 noremap <Leader>v g0vg$h
 noremap <Leader>d g0vg$hx
@@ -248,7 +250,8 @@ nnoremap <silent> ,b :Buffers<CR>
 nnoremap <silent> ,l :BLines<CR>
 nnoremap <silent> ,h :History<CR>
 nnoremap <silent> ,c :History:<CR>
-nnoremap <silent> ,a :Ag<Space>
+nnoremap ,a :Ag<Space>
+nnoremap ,r :Rg<Space>
 
 " Using floating windows of Neovim to start fzf
 if has('nvim')
@@ -361,10 +364,11 @@ function! LightlineModified()
 endfunction
 
 function! LightlineGitbranch()
+    let l:branch_name = gitbranch#name()
     if winwidth(0) < 60
         return ''
-    elseif gina#component#repo#branch() != ''
-        return gina#component#repo#branch()
+    elseif l:branch_name != ''
+        return l:branch_name
     else
         return ''
     endif

@@ -1,6 +1,28 @@
 [[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_source = '''
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+    if has('conceal')
+        set conceallevel=2 concealcursor=niv
+    endif
+    let g:neosnippet#disable_runtime_snippets = {
+        \ 'text': 1,
+        \ 'markdown': 1,
+    \ }
+    let g:neosnippet#snippets_directory='~/dotfiles/.vim/neosnippet/'
+'''
+on_event = 'InsertEnter'
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_event = 'InsertEnter'
+
+[[plugins]]
 repo = 'Townk/vim-autoclose'
-on_i = 1
+on_event = 'InsertEnter'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -28,3 +50,14 @@ hook_source = '''
 [[plugins]]
 repo = 'rhysd/reply.vim'
 on_cmd = ['Repl', 'ReplAuto']
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+on_event = 'VimEnter'
+hook_source = '''
+let g:lsp_settings = {
+\   'clangd': {
+\       'args': ['--all-scopes-completion', '--background-index', '--clang-tidy', '--limit-references=0', '--limit-results=0'],
+\   },
+\ }
+'''

@@ -54,6 +54,9 @@ repo = 'ulwlu/elly.vim'
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
+repo = 'itchyny/vim-gitbranch'
+
+[[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
@@ -114,15 +117,18 @@ hook_add = '''
     let g:lsp_diagnostics_enabled = 1
     let g:lsp_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_virtual_text_enabled = 0
-    let g:lsp_highlights_enabled = 0
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+    let g:lsp_highlights_enabled = 1
+    let g:lsp_log_verbose = 0
     let g:lsp_textprop_enabled = 1
     let g:lsp_signs_error = {'text': 'x'}
     let g:lsp_signs_warning = {'text': '!'}
     nnoremap <C-l>d :LspDefinition<CR>
+    nnoremap <C-l>e :LspNextError<CR>
     nnoremap <C-l>f :LspDocumentFormat<CR>
     nnoremap <C-l>h :LspHover<CR>
     nnoremap <C-l>r :LspReferences<CR>
+    nnoremap <C-l>w :LspNextWarning<CR>
 '''
 
 # [[plugins]]
@@ -130,9 +136,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
-
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -155,6 +158,7 @@ repo = 'lambdalisue/gina.vim'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
     let g:fern#default_hidden = 1
+    let g:fern#scheme#bookmark#store#file = "~/.fern/bookmark.json"
     nmap <silent><leader>t :Fern . -drawer -toggle<CR>
 
     function! s:init_fern() abort
@@ -171,9 +175,12 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lambdalisue/fern-renderer-devicons.vim'
+repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 hook_add = '''
-    let g:fern#renderer = "devicons"
+    let g:fern#renderer = "nerdfont"
 '''
 
 [[plugins]]
@@ -198,4 +205,28 @@ hook_add = '''
 hook_post_source = '''
     nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
     nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
+'''
+
+[[plugins]]
+repo = 'tyru/eskk.vim'
+hook_add = '''
+    let g:eskk#directory = "~/.config/eskk"
+    let g:eskk#dictionary = {
+        \ 'path': "~/.config/eskk/my_jisyo",
+        \ 'sorted': 0,
+        \ 'encoding': 'utf-8',
+    \ }
+    let g:eskk#large_dictionary = {
+        \ 'path': "~/.config/eskk/SKK-JISYO.L",
+        \ 'sorted': 1,
+        \ 'encoding': 'euc-jp',
+    \ }
+
+    let g:eskk#enable_completion = 0
+    let g:eskk#kakutei_when_unique_candidate = 1
+    let g:eskk#keep_state = 0
+    let g:eskk#egg_like_newline = 1
+
+    imap jk <Plug>(eskk:toggle)
+    cmap jk <Plug>(eskk:toggle)
 '''
