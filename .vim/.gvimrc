@@ -30,11 +30,8 @@ if has('nvim')
             \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
     endfunction
     function! LightlineGitbranch()
-        let l:branch_name = gitbranch#name()
-        if winwidth(0) < 60
-            return ''
-        elseif l:branch_name != ''
-            return "\ue725 " . l:branch_name
+        if gina#component#repo#branch() != ''
+            return "\ue725 " . gina#component#repo#branch()
         else
             return ''
         endif
