@@ -226,3 +226,14 @@ hook_add = '''
         \ 'jj': 'escape',
     \ })
 '''
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+hook_add = '''
+    highlight SkkeletonIndicatorEiji guifg=#70dcfa guibg=#2e3440 gui=bold
+    highlight SkkeletonIndicatorHira guifg=#95fa3e guibg=#2e3440 gui=bold
+    highlight SkkeletonIndicatorKata guifg=#fdff91 guibg=#2e3440 gui=bold
+    highlight SkkeletonIndicatorHankata guifg=#f279dc guibg=#2e3440 gui=bold
+    highlight SkkeletonIndicatorZenkaku guifg=#4daffa guibg=#2e3440 gui=bold
+    lua require'skkeleton_indicator'.setup{}
+'''
