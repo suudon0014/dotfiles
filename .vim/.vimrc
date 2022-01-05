@@ -145,9 +145,10 @@ call ddc#custom#patch_global('sources', [
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
-    \     'matchers': ['matcher_head'],
-    \     'sorters': ['sorter_rank'],
-    \     'converters': ['converter_remove_overlap'],
+    \     'matchers': ['matcher_fuzzy'],
+    \     'sorters': ['sorter_fuzzy'],
+    \     'converters': ['converter_fuzzy'],
+    \     'ignoreCase' : v:true,
     \     'minAutoCompleteLength': 1,
     \ },
     \ 'around': {'mark': 'Around'},
@@ -161,18 +162,24 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'forceCompletionPattern': '\S/\S*'
     \ },
 \ })
-" \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-"
 " call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
 " call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
 "     \ 'clangd': {'mark': 'clang'},
 " \ })
 call ddc#enable()
 
-inoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <expr><Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<Tab>'
+inoremap <expr><S-Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<S-Tab>'
+" inoremap <silent><expr> <Tab>
+"     \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+"     \ (col('.') <= <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+"     \ '<Tab>' : ddc#manual_complete()
+" inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
+inoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
 "about search
 set hlsearch

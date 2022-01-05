@@ -25,6 +25,9 @@ repo = 'Shougo/ddc-converter_remove_overlap'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
 # ddc.vim end
 
 #colorscheme start
