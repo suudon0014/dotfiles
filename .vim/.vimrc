@@ -139,9 +139,10 @@ call ddc#custom#patch_global('autoCompleteEvents',
     \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
-    \ 'around',
     \ 'vim-lsp',
+    \ 'around',
     \ 'file',
+    \ 'skkeleton',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
@@ -151,16 +152,21 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'ignoreCase' : v:true,
     \     'minAutoCompleteLength': 1,
     \ },
-    \ 'around': {'mark': 'Around'},
     \ 'vim-lsp': {
     \     'mark': 'LSP',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*'
     \ },
+    \ 'around': {'mark': 'Around'},
     \ 'file': {
     \     'mark': 'File',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
+    \ 'skkeleton': {
+    \   'mark': 'skk',
+    \   'matchers': ['skkeleton'],
+    \   'sorters': []
+    \ }
 \ })
 " call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
 " call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {

@@ -211,25 +211,18 @@ hook_post_source = '''
 '''
 
 [[plugins]]
-repo = 'tyru/eskk.vim'
+repo = 'vim-skk/denops-skkeleton.vim'
 hook_add = '''
-    let g:eskk#directory = "~/.config/eskk"
-    let g:eskk#dictionary = {
-        \ 'path': "~/.config/eskk/my_jisyo",
-        \ 'sorted': 0,
-        \ 'encoding': 'utf-8',
-    \ }
-    let g:eskk#large_dictionary = {
-        \ 'path': "~/.config/eskk/SKK-JISYO.L",
-        \ 'sorted': 1,
-        \ 'encoding': 'euc-jp',
-    \ }
-
-    let g:eskk#enable_completion = 0
-    let g:eskk#kakutei_when_unique_candidate = 1
-    let g:eskk#keep_state = 0
-    let g:eskk#egg_like_newline = 1
-
-    imap jk <Plug>(eskk:toggle)
-    cmap jk <Plug>(eskk:toggle)
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+    \ })
 '''
