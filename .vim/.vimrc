@@ -140,6 +140,7 @@ call ddc#custom#patch_global('autoCompleteEvents',
 \)
 call ddc#custom#patch_global('sources', [
     \ 'vim-lsp',
+    \ 'vsnip',
     \ 'around',
     \ 'file',
     \ 'skkeleton',
@@ -327,7 +328,6 @@ noremap k gk
 noremap gj j
 noremap gk k
 tnoremap <S-Space> <Space>
-imap <C-f> <C-x><C-o>
 cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
 augroup etcSettingsGroup

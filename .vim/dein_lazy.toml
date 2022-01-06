@@ -1,24 +1,22 @@
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
-hook_source = '''
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k> <Plug>(neosnippet_expand_target)
-    if has('conceal')
-        set conceallevel=2 concealcursor=niv
-    endif
-    let g:neosnippet#disable_runtime_snippets = {
-        \ 'text': 1,
-        \ 'markdown': 1,
-    \ }
-    let g:neosnippet#snippets_directory='~/dotfiles/.vim/neosnippet/'
-'''
+repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
-depends = ['neosnippet-snippets']
+depends = ['vim-vsnip-integ', 'friendly-snippets']
+hook_add = '''
+    imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+    smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+    imap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    let g:vsnip_filetypes = {}
+'''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_event = 'InsertEnter'
+repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
