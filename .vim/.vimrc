@@ -185,7 +185,7 @@ function! CommandlinePre() abort
     cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR><CR>' : '<CR>'
 
     let s:prev_buffer_config = ddc#custom#get_buffer()
-    call ddc#custom#patch_buffer('sources', ['cmdline', 'cmdline-history', 'around'])
+    call ddc#custom#patch_buffer('sources', ['cmdline', 'cmdline-history', 'around', 'file'])
 
     autocmd User DDCCmdlineLeave ++once call CommandlinePost()
 
