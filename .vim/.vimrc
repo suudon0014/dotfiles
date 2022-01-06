@@ -154,12 +154,13 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'minAutoCompleteLength': 1,
     \ },
     \ 'vim-lsp': {
-    \     'mark': 'LSP',
+    \     'mark': 'lsp',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*'
     \ },
-    \ 'around': {'mark': 'Around'},
+    \ 'vsnip': {'mark': 'vsnip'},
+    \ 'around': {'mark': 'around'},
     \ 'file': {
-    \     'mark': 'File',
+    \     'mark': 'file',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
@@ -169,10 +170,6 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'sorters': []
     \ }
 \ })
-" call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
-" call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
-"     \ 'clangd': {'mark': 'clang'},
-" \ })
 call ddc#enable()
 
 inoremap <expr><Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<Tab>'
