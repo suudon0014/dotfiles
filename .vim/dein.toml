@@ -28,6 +28,12 @@ repo = 'LumaKernel/ddc-file'
 
 [[plugins]]
 repo = 'tani/ddc-fuzzy'
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline'
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline-history'
 # ddc.vim end
 
 #colorscheme start

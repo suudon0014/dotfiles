@@ -136,7 +136,7 @@ colorscheme cobalt2
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('autoCompleteEvents',
-    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged']
+    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
     \ 'vim-lsp',
@@ -170,6 +170,34 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'sorters': []
     \ }
 \ })
+
+nnoremap : <Cmd>call CommandlinePre()<CR>:
+
+function! CommandlinePre() abort
+    cnoremap <expr> <Tab>
+        \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+        \ ddc#manual_complete()
+    cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+    cnoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
+    cnoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+    cnoremap <C-y> <Cmd>call pum#map#confirm()<CR>
+    cnoremap <C-e> <Cmd>call pum#map#cancel()<CR>
+    cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR><CR>' : '<CR>'
+
+    let s:prev_buffer_config = ddc#custom#get_buffer()
+    call ddc#custom#patch_buffer('sources', ['cmdline', 'cmdline-history', 'around'])
+
+    autocmd User DDCCmdlineLeave ++once call CommandlinePost()
+
+    call ddc#enable_cmdline_completion()
+    call ddc#enable()
+endfunction
+
+function! CommandlinePost() abort
+    call ddc#custom#set_buffer(s:prev_buffer_config)
+    cunmap <Tab>
+endfunction
+
 call ddc#enable()
 
 inoremap <expr><Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<Tab>'
@@ -412,7 +440,7 @@ endfunction
 " nnoremap <C-p> :bnext<CR>
 " nnoremap <C-n> :bprevious<CR>
 
-cnoremap <C-p> <Up>
+" cnoremap <C-p> <Up>
 
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
