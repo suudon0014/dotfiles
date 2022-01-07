@@ -425,7 +425,30 @@ function! LightlineFileencoding()
 endfunction
 
 function! LightlineMode()
-  return winwidth(0) > 40 ? lightline#mode() : ''
+    if winwidth(0) <= 40
+        let l:mode = ''
+    else
+        let l:mode = lightline#mode()
+
+        if mode()[0] ==# 'i'
+            let l:skk_mode = skkeleton#mode()
+            if l:skk_mode ==# ''
+                let l:skk_label = 'A'
+            elseif l:skk_mode ==# "hira"
+                let l:skk_label = 'あ'
+            elseif l:skk_mode ==# "kata"
+                let l:skk_label = 'ア'
+            elseif l:skk_mode ==# "hankata"
+                let l:skk_label = 'ｱ'
+            elseif l:skk_mode ==# "zenkaku"
+                let l:skk_label = 'Ａ'
+            endif
+
+            let l:mode = l:mode . '[' . l:skk_label . ']'
+        endif
+    endif
+
+    return l:mode
 endfunction
 
 "reload lightline settings
