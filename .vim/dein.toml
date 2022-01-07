@@ -1,41 +1,6 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-# ddc.vim start
-[[plugins]]
-repo = 'Shougo/ddc.vim'
-
-[[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
-
-[[plugins]]
-repo = 'LumaKernel/ddc-file'
-
-[[plugins]]
-repo = 'tani/ddc-fuzzy'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
-# ddc.vim end
-
 #colorscheme start
 [[plugins]]
 repo = 'tomasr/molokai'
@@ -118,33 +83,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'markonm/traces.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-    let g:lsp_async_completion = 1
-    let g:lsp_diagnostics_enabled = 1
-    let g:lsp_signs_enabled = 1
-    let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_diagnostics_virtual_text_enabled = 0
-    let g:lsp_highlights_enabled = 1
-    let g:lsp_log_verbose = 0
-    let g:lsp_textprop_enabled = 1
-    let g:lsp_signs_error = {'text': 'x'}
-    let g:lsp_signs_warning = {'text': '!'}
-    nnoremap <C-l>d :LspDefinition<CR>
-    nnoremap <C-l>e :LspNextError<CR>
-    nnoremap <C-l>f :LspDocumentFormat<CR>
-    nnoremap <C-l>h :LspHover<CR>
-    nnoremap <C-l>r :LspReferences<CR>
-    nnoremap <C-l>w :LspNextWarning<CR>
-'''
-
-# [[plugins]]
-# repo = 'Shougo/ddc-nvim-lsp'
-
-[[plugins]]
-repo = 'shun/ddc-vim-lsp'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
