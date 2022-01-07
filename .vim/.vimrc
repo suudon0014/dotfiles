@@ -1,6 +1,10 @@
 ﻿filetype off
 filetype plugin indent off
 
+augroup vimrc
+    autocmd!
+augroup END
+
 if has('kaoriya')
     let g:no_vimrc_example=0
     let g:vimrc_local_finish=1
@@ -77,7 +81,7 @@ if dein#check_install()
     call dein#install()
 endif
 
-autocmd VimEnter * call dein#call_hook('post_source')
+autocmd vimrc VimEnter * call dein#call_hook('post_source')
 
 "set backup folders
 set undodir=$HOME/vimtmp/undo
@@ -124,11 +128,8 @@ function! ModifyPaperColor()
     endif
 endfunction
 
-augroup colorSchemeGroup
-    autocmd!
-    autocmd ColorScheme * :call ModifyCobalt2()
-    autocmd ColorScheme * :call ModifyPaperColor()
-augroup END
+autocmd vimrc ColorScheme * :call ModifyCobalt2()
+autocmd vimrc ColorScheme * :call ModifyPaperColor()
 
 set termguicolors
 colorscheme cobalt2
@@ -315,11 +316,9 @@ endif
 "folding
 set foldmethod=manual
 set foldcolumn=1
-augroup foldingGroup
-    autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
-augroup END
+set viewdir=~/.cache/vim/view
+autocmd vimrc BufWinLeave ?* silent mkview
+autocmd vimrc BufWinEnter ?* silent loadview
 
 "etc.
 set background=dark
@@ -355,11 +354,8 @@ noremap gk k
 tnoremap <S-Space> <Space>
 cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
-augroup etcSettingsGroup
-    autocmd!
-    autocmd BufRead,BufNewFile *.toml set filetype=toml
-    autocmd QuickFixCmdPost *grep* cwindow
-augroup END
+autocmd vimrc BufRead,BufNewFile *.toml set filetype=toml
+autocmd vimrc QuickFixCmdPost *grep* cwindow
 
 "always search in very magic mode
 nnoremap / /\v
@@ -485,10 +481,7 @@ let g:EasyMotion_smartcase = 1
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
 "vim-commentary
-augroup vimCommentaryGroup
-    autocmd!
-    autocmd FileType matlab setlocal commentstring=%\ %s
-augroup END
+autocmd vimrc FileType matlab setlocal commentstring=%\ %s
 
 "encoding
 set encoding=utf-8
@@ -497,22 +490,13 @@ set termencoding=utf-8
 set fileformats=unix,dos
 
 "markdown
-augroup markdownGroup
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
+autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 " Folding
-augroup foldingGroup
-    autocmd!
-    autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
-augroup END
+autocmd vimrc ColorScheme * highlight Folded gui=bold guifg=LightGreen
 
 " restore vimsession
-augroup RestoreVimSession
-    autocmd!
-    autocmd VimLeave * mks! ~/session.vim
-augroup END
+autocmd vimrc VimLeave * mks! ~/session.vim
 
 " show full path
 command! Path echo expand("%:p")
