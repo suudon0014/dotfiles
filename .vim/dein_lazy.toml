@@ -82,7 +82,7 @@ hook_source = '''
 '''
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'cd app & yarn install'
-depends = ['vim-markdown', 'open-browser.vim']
+depends = ['open-browser.vim']
 #end markdown
 
 [[plugins]]
