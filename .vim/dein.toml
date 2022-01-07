@@ -177,7 +177,10 @@ hook_add = '''
         nmap <buffer> fc <Plug>(fern-action-cd) :echo "cd to " . getcwd()<CR>
     endfunction
 
-    autocmd vimrc FileType fern call s:init_fern()
+    augroup fern-custom
+        autocmd! *
+        autocmd FileType fern call s:init_fern()
+    augroup END
 '''
 
 [[plugins]]
