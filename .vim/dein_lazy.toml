@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
-on_event = 'InsertEnter'
+on_event = 'VimEnter'
 depends = ['vim-vsnip-integ', 'friendly-snippets']
 hook_add = '''
     imap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
