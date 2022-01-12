@@ -317,8 +317,8 @@ set foldmethod=manual
 set foldcolumn=1
 augroup foldingGroup
     autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
+    autocmd BufWinLeave, BufLeave, BufWritePost, BufHidden, QuitPre ?* nested silent! mkview!
+    autocmd BufWinEnter ?* silent! loadview
 augroup END
 
 "etc.
