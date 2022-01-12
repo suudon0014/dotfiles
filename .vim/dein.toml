@@ -57,6 +57,15 @@ repo = 'NLKNguyen/papercolor-theme'
 
 [[plugins]]
 repo = 'ulwlu/elly.vim'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'savq/melange'
 # colorscheme end
 
 [[plugins]]
