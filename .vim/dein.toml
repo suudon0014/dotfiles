@@ -66,6 +66,9 @@ repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'savq/melange'
+
+[[plugins]]
+repo = 'sainnhe/edge'
 # colorscheme end
 
 [[plugins]]

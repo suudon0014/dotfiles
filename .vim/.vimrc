@@ -95,7 +95,7 @@ set cursorline
 highlight link LspErrorHighlight NeomakeErrorMsg
 highlight link LspWarningHighlight NeomakeWarningMsg
 set termguicolors
-colorscheme PaperColor
+colorscheme edge
 
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
