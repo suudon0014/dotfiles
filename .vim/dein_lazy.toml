@@ -34,7 +34,7 @@ hook_source = '''
     let g:mkdp_auto_close = 0
 '''
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-build = 'cd app & yarn install'
+build = 'sh -c "cd app && yarn install"'
 depends = ['open-browser.vim']
 #end markdown
 
