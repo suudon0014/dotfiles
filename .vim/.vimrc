@@ -209,11 +209,22 @@ inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
 inoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
 " ddu.vim
-command! DduStart :call ddu#start({})
-
 call ddu#custom#patch_global({
     \ 'ui': 'ff',
-    \ 'sources': [{'name': 'file_rec', 'params': {}}],
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'split': 'floating',
+            \ 'startFilter': v:true,
+            \ 'previewFloating': v:true,
+            \ 'previewWidth': &columns / 2,
+            \ 'reversed': v:true,
+        \ },
+    \ },
+    \ 'sourceParams': {
+        \ 'rg': {
+            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never'],
+        \ },
+    \ },
     \ 'sourceOptions': {
         \ '_': {
             \ 'matchers': ['matcher_fzf'],
@@ -224,12 +235,26 @@ call ddu#custom#patch_global({
             \ 'defaultAction': 'open',
         \ },
     \ },
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'split': 'floating',
-            \ 'startFilter': v:true,
+\ })
+
+command! Ddufile :call ddu#start({'name': 'files'})
+call ddu#custom#patch_local('files', {
+    \ 'sources': [{'name': 'file_rec'}],
+    \ 'sourceParams': {
+        \ 'file_rec': {
+            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs'],
         \ },
     \ },
+\ })
+
+command! Dduline :call ddu#start({'name': 'lines'})
+call ddu#custom#patch_local('lines', {
+    \ 'sources': [{'name': 'line'}],
+\ })
+
+command! Ddubuffer :call ddu#start({'name': 'buffers'})
+call ddu#custom#patch_local('buffers', {
+    \ 'sources': [{'name': 'buffer'}],
 \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
@@ -238,6 +263,8 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
     nnoremap <buffer><silent> <Space>
         \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> p
+        \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
     nnoremap <buffer><silent> i
         \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
     nnoremap <buffer><silent> q
