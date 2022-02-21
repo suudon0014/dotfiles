@@ -208,6 +208,52 @@ inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
 inoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
+" ddu.vim
+command! DduStart :call ddu#start({})
+
+call ddu#custom#patch_global({
+    \ 'ui': 'ff',
+    \ 'sources': [{'name': 'file_rec', 'params': {}}],
+    \ 'sourceOptions': {
+        \ '_': {
+            \ 'matchers': ['matcher_fzf'],
+        \ },
+    \ },
+    \ 'kindOptions': {
+        \ 'file': {
+            \ 'defaultAction': 'open',
+        \ },
+    \ },
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'split': 'floating',
+            \ 'startFilter': v:true,
+        \ },
+    \ },
+\ })
+
+autocmd FileType ddu-ff call s:ddu_my_settings()
+function! s:ddu_my_settings() abort
+    nnoremap <buffer><silent> <CR>
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+    nnoremap <buffer><silent> <Space>
+        \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i
+        \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q
+        \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+endfunction
+
+autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+function! s:ddu_filter_my_settings() abort
+    inoremap <buffer><silent> <CR>
+        \ <Esc><Cmd>close<CR>
+    nnoremap <buffer><silent> <CR>
+        \ <Cmd>close<CR>
+    nnoremap <buffer><silent> q
+        \ <Cmd>close<CR>
+endfunction
+
 "about search
 set hlsearch
 set ignorecase "search both upper/lower case

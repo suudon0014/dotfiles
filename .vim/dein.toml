@@ -36,6 +36,26 @@ repo = 'Shougo/ddc-cmdline'
 repo = 'Shougo/ddc-cmdline-history'
 # ddc.vim end
 
+# ddu.vim start
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'yuki-yano/ddu-filter-fzf'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+# ddu.vim end
+
 #colorscheme start
 [[plugins]]
 repo = 'tomasr/molokai'
