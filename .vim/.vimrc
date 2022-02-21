@@ -73,9 +73,40 @@ if dein#load_state(s:dein_dir)
 endif
 
 "install if there are plugins not installed
-if dein#check_install()
-    call dein#install()
-endif
+function! s:deinInstall()
+    if dein#check_install()
+        call dein#install()
+    else
+        echo "All plugins have already installed."
+    endif
+endfunction
+command! DeinInstall :call s:deinInstall()
+DeinInstall
+
+"work only when delete plugins
+function! s:deinClean()
+    if len(dein#check_clean()) > 0
+        echo "Processing..."
+        call map(dein#check_clean(), "delete(v:val, 'rf')")
+        call dein#recache_runtimepath()
+        echo "DeinClean completed."
+    else
+        echo "There's no disabled plugins."
+    endif
+endfunction
+command! DeinClean :call s:deinClean()
+
+"update plugins using Github GraphQL API
+let g:dein#install_github_api_token = $GITHUB_API_TOKEN
+function! s:deinUpdate()
+    if !empty(g:dein#install_github_api_token)
+        call dein#check_update(v:true)
+        echo "DeinUpdate completed."
+    else
+        echo "[Error] Set $GITHUB_API_TOKEN and restart vim for DeinUpdate to work."
+    endif
+endfunction
+command! DeinUpdate :call s:deinUpdate()
 
 autocmd VimEnter * call dein#call_hook('post_source')
 
@@ -306,6 +337,7 @@ set matchpairs+=<:>
 set belloff=all
 set noshowmode
 set conceallevel=0
+let g:vim_json_syntax_conceal = 0
 set ambiwidth=single
 set hidden
 set scrolloff=1
@@ -484,19 +516,6 @@ augroup END
 
 " show full path
 command! Path echo expand("%:p")
-
-"work only when delete plugins
-function! s:deinClean()
-    if len(dein#check_clean()) > 0
-        echo "Processing..."
-        call map(dein#check_clean(), "delete(v:val, 'rf')")
-        call dein#recache_runtimepath()
-        echo "DeinClean completed."
-    else
-        echo "There's no disabled plugins."
-    endif
-endfunction
-command! DeinClean :call s:deinClean()
 
 filetype plugin indent on
 syntax on
