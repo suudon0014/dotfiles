@@ -18,7 +18,9 @@
             "fontSize": 9,
             "foreground": "#FFFFFF",
             "startingDirectory": "%USERPROFILE%",
-            "cursorShape": "filledBox"
+            "cursorShape": "filledBox",
+            "useAcrylic": true,
+            "acrylicOpacity": 0.7
         },
         "list": [
             {
