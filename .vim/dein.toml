@@ -283,3 +283,20 @@ hook_add = '''
 
 [[plugins]]
 repo = 'elzr/vim-json'
+
+[[plugins]]
+repo = 'goerz/jupytext.vim'
+hook_add = '''
+    let g:jupytext_fmt = 'py:percent'
+    let g:jupytext_filetype_map = {'py': 'python'}
+'''
+
+[[plugins]]
+repo = 'jupyter-vim/jupyter-vim'
+hook_add = '''
+    nnoremap <buffer> <silent> <leader>jc :JupyterConnect<CR>
+    nnoremap <buffer> <silent> <leader>jd :JupyterDiconnect<CR>
+    nnoremap <buffer> <silent> <leader>js :JupyterSendCell<CR>
+    nnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+    vnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+'''
