@@ -59,3 +59,53 @@ let g:lsp_settings = {
 \   },
 \ }
 '''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_event = 'BufEnter'
+hook_add = '''
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+    \ })
+'''
+
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+on_event = 'BufEnter'
+hook_add = '''
+    let g:linediff_first_buffer_command = 'leftabove new'
+    let g:linediff_second_buffer_command = 'rightbelow vertical new'
+'''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+[[plugins]]
+repo = 'goerz/jupytext.vim'
+on_ft = 'ipynb'
+hook_add = '''
+    let g:jupytext_fmt = 'py:percent'
+    let g:jupytext_filetype_map = {'py': 'python'}
+'''
+
+[[plugins]]
+repo = 'jupyter-vim/jupyter-vim'
+on_ft = 'ipynb'
+hook_add = '''
+    nnoremap <buffer> <silent> <leader>jc :JupyterConnect<CR>
+    nnoremap <buffer> <silent> <leader>jd :JupyterDiconnect<CR>
+    nnoremap <buffer> <silent> <leader>js :JupyterSendCell<CR>
+    nnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+    vnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+'''
