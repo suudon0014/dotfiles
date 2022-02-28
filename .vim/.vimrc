@@ -217,7 +217,7 @@ call ddu#custom#patch_global({
             \ 'startFilter': v:true,
             \ 'previewFloating': v:true,
             \ 'previewWidth': &columns / 2,
-            \ 'reversed': v:true,
+            \ 'reversed': v:false,
         \ },
     \ },
     \ 'sourceParams': {
