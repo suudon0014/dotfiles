@@ -251,3 +251,41 @@ repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+# on_event = 'VimEnter'
+# depends = ['vim-vsnip-integ', 'friendly-snippets']
+hook_add = '''
+    imap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
+    smap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
+    imap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    let g:vsnip_filetypes = {}
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+# on_event = 'BufEnter'
+hook_add = '''
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+    \ })
+'''
