@@ -222,7 +222,7 @@ call ddu#custom#patch_global({
     \ },
     \ 'sourceParams': {
         \ 'rg': {
-            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never'],
+            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case'],
         \ },
     \ },
     \ 'sourceOptions': {
