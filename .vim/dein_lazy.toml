@@ -53,16 +53,8 @@ repo = 'elzr/vim-json'
 on_ft = 'json'
 
 [[plugins]]
-repo = 'goerz/jupytext.vim'
-on_ft = 'ipynb'
-hook_add = '''
-    let g:jupytext_fmt = 'py:percent'
-    let g:jupytext_filetype_map = {'py': 'python'}
-'''
-
-[[plugins]]
 repo = 'jupyter-vim/jupyter-vim'
-on_ft = 'ipynb'
+on_event = 'BufEnter'
 hook_add = '''
     nnoremap <buffer> <silent> <leader>jc :JupyterConnect<CR>
     nnoremap <buffer> <silent> <leader>jd :JupyterDiconnect<CR>
