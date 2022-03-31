@@ -218,6 +218,7 @@ call ddu#custom#patch_global({
             \ 'previewFloating': v:true,
             \ 'previewWidth': &columns / 2,
             \ 'reversed': v:false,
+            \ 'prompt': '> ',
         \ },
     \ },
     \ 'sourceParams': {
