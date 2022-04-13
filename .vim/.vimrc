@@ -512,6 +512,8 @@ function! LightlineMode()
                 let l:skk_label = 'ｱ'
             elseif l:skk_mode ==# "zenkaku"
                 let l:skk_label = 'Ａ'
+            elseif l:skk_mode ==# "abbrev"
+                let l:skk_label = 'Abr'
             endif
 
             let l:mode = l:mode . '[' . l:skk_label . ']'
