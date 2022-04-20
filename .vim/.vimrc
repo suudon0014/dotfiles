@@ -261,6 +261,25 @@ call ddu#custom#patch_local('buffers', {
     \ 'sources': [{'name': 'buffer'}],
 \ })
 
+command! Ddufiler :call ddu#start({'name': 'filer'})
+call ddu#custom#patch_local('filer', {
+    \ 'ui': 'filer',
+    \ 'uiParams': {
+        \ 'filer': {
+            \ 'split': 'floating',
+        \ },
+    \},
+    \ 'sources': [{
+        \ 'name': 'file',
+    \ }],
+    \ 'actionOptions': {
+        \ 'narrow': {
+            \ 'quit': v:false,
+        \ },
+    \ },
+\ })
+
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR>
@@ -281,6 +300,18 @@ function! s:ddu_filter_my_settings() abort
         \ <Esc><Cmd>close<CR>
     nnoremap <buffer><silent> <CR>
         \ <Cmd>close<CR>
+    nnoremap <buffer><silent> q
+        \ <Cmd>close<CR>
+endfunction
+
+autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+function! s:ddu_filer_my_settings() abort
+    nnoremap <buffer> <CR>
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction')<CR>
+    nnoremap <buffer> l
+        \ <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
+    nnoremap <buffer> h
+        \ <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
     nnoremap <buffer><silent> q
         \ <Cmd>close<CR>
 endfunction
