@@ -82,6 +82,13 @@ setopt +o nomatch
 bindkey -v
 bindkey "jj" vi-cmd-mode
 
+ccd() {
+    dir=$(find * -type d | fzf --preview 'tree -C {} | head -100')
+    if [ ${#dir} -gt 0 ]; then
+        cd $dir
+    fi
+}
+
 fd() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune \
