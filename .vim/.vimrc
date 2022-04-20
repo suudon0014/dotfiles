@@ -235,6 +235,9 @@ call ddu#custom#patch_global({
         \ 'file': {
             \ 'defaultAction': 'open',
         \ },
+        \ 'action': {
+            \ 'defaultAction': 'do',
+        \ },
     \ },
 \ })
 
