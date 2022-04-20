@@ -10,6 +10,10 @@ repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
+depends = ['hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ']
+hook_add = '''
+autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+'''
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -264,7 +268,7 @@ hook_add = '''
     smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
     imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
     smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-    let g:vsnip_filetypes = {}
+    "let g:vsnip_filetypes = {}
 '''
 
 [[plugins]]
