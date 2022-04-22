@@ -82,7 +82,7 @@ setopt +o nomatch
 bindkey -v
 bindkey "jj" vi-cmd-mode
 
-ccd() {
+function ccd() {
     dir=$(find * -type d | fzf --preview 'tree -C {} | head -100')
     if [ ${#dir} -gt 0 ]; then
         cd $dir
@@ -96,14 +96,14 @@ function fzfnvim() {
     fi
 }
 
-fd() {
+function fd() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune \
         -o -type d -print 2> /dev/null | fzf +m) &&
     cd "$dir"
 }
 
-fv() {
+function fv() {
     local dir
     dir=$(find ${1:-.} -mindepth 1 \
         -not -iwholename *.git/objects* \
