@@ -89,6 +89,13 @@ ccd() {
     fi
 }
 
+function fzfnvim() {
+    file=$(find * -type f | fzf)
+    if [ ${#file} -gt 0 ]; then
+        nvim $file
+    fi
+}
+
 fd() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune \
