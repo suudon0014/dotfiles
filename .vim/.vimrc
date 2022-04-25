@@ -139,6 +139,7 @@ call ddc#custom#patch_global('sources', [
     \ 'around',
     \ 'file',
     \ 'skkeleton',
+    \ 'cmdline-history',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
@@ -163,7 +164,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': 'skk',
     \   'matchers': ['skkeleton'],
     \   'sorters': []
-    \ }
+    \ },
+    \ 'cmdline-history': {
+    \   'mark': 'cmdhist',
+    \ },
 \ })
 
 nnoremap : <Cmd>call CommandlinePre()<CR>:
@@ -364,8 +368,8 @@ set wildmenu
 set wildmode=longest:full,full
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
+" cnoremap <C-p> <Up>
+" cnoremap <C-n> <Down>
 cnoremap <C-Space>h <Home>
 cnoremap <C-Space><C-h> <Home>
 cnoremap <C-Space>l <End>
@@ -567,13 +571,7 @@ endfunction
 
 let g:lightline["colorscheme"] = "PaperColor"
 LightlineReload
-
 "end lightline
-
-" nnoremap <C-p> :bnext<CR>
-" nnoremap <C-n> :bprevious<CR>
-
-" cnoremap <C-p> <Up>
 
 "vim-anzu
 nmap n <Plug>(anzu-n-with-echo)
