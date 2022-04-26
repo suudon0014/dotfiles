@@ -225,6 +225,8 @@ repo = 'haya14busa/vim-edgemotion'
 hook_add = '''
     nmap <C-j> <Plug>(edgemotion-j)
     nmap <C-k> <Plug>(edgemotion-k)
+    vmap <C-j> <Plug>(edgemotion-j)
+    vmap <C-k> <Plug>(edgemotion-k)
 '''
 
 [[plugins]]
