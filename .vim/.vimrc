@@ -170,6 +170,11 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
 \ })
 
+function! CommandlinePost() abort
+    call ddc#custom#set_buffer(s:prev_buffer_config)
+    cunmap <Tab>
+endfunction
+
 nnoremap : <Cmd>call CommandlinePre()<CR>:
 
 function! CommandlinePre() abort
@@ -190,11 +195,6 @@ function! CommandlinePre() abort
 
     call ddc#enable_cmdline_completion()
     call ddc#enable()
-endfunction
-
-function! CommandlinePost() abort
-    call ddc#custom#set_buffer(s:prev_buffer_config)
-    cunmap <Tab>
 endfunction
 
 call ddc#enable()
