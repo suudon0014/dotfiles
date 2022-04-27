@@ -422,10 +422,10 @@ endif
 "folding
 set foldmethod=manual
 set foldcolumn=1
-augroup foldingGroup
+augroup viewGroup
     autocmd!
-    autocmd BufWinLeave, BufLeave, BufWritePost, BufHidden, QuitPre ?* nested silent! mkview!
-    autocmd BufWinEnter ?* silent! loadview
+    autocmd BufWritePost ?* if expand('%') != '' && &buftype !~ 'nofile' | silent! mkview! | endif
+    autocmd BufRead ?* if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
 augroup END
 
 "etc.
