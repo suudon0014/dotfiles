@@ -170,17 +170,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
 \ })
 
-function! CommandlinePost() abort
-    call ddc#custom#set_buffer(s:prev_buffer_config)
-    cunmap <Tab>
-endfunction
-
 nnoremap : <Cmd>call CommandlinePre()<CR>:
-
 function! CommandlinePre() abort
-    cnoremap <expr> <Tab>
-        \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-        \ ddc#manual_complete()
+    cnoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
     cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
     cnoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
     cnoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
@@ -188,13 +180,31 @@ function! CommandlinePre() abort
     cnoremap <C-e> <Cmd>call pum#map#cancel()<CR>
     cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR><CR>' : '<CR>'
 
-    let s:prev_buffer_config = ddc#custom#get_buffer()
-    call ddc#custom#patch_buffer('sources', ['cmdline', 'cmdline-history', 'around', 'file'])
+    if !exists('b:prev_buffer_config')
+        let b:prev_buffer_config = ddc#custom#get_buffer()
+    endif
+    call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'cmdline-history', 'around', 'file'])
 
     autocmd User DDCCmdlineLeave ++once call CommandlinePost()
+    autocmd InsertEnter <buffer> ++once call CommandlinePost()
 
     call ddc#enable_cmdline_completion()
-    call ddc#enable()
+endfunction
+
+function! CommandlinePost() abort
+    cunmap <Tab>
+    cunmap <S-Tab>
+    cunmap <C-n>
+    cunmap <C-p>
+    cunmap <C-y>
+    cunmap <C-e>
+
+    if exists('b:prev_buffer_config')
+      call ddc#custom#set_buffer(b:prev_buffer_config)
+      unlet b:prev_buffer_config
+    else
+      call ddc#custom#set_buffer({})
+    endif
 endfunction
 
 call ddc#enable()
