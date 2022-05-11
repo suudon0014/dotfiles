@@ -192,12 +192,12 @@ function! CommandlinePre() abort
 endfunction
 
 function! CommandlinePost() abort
-    cunmap <Tab>
-    cunmap <S-Tab>
-    cunmap <C-n>
-    cunmap <C-p>
-    cunmap <C-y>
-    cunmap <C-e>
+    silent! cunmap <Tab>
+    silent! cunmap <S-Tab>
+    silent! cunmap <C-n>
+    silent! cunmap <C-p>
+    silent! cunmap <C-y>
+    silent! cunmap <C-e>
 
     if exists('b:prev_buffer_config')
       call ddc#custom#set_buffer(b:prev_buffer_config)
