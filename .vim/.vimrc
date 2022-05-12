@@ -237,7 +237,7 @@ call ddu#custom#patch_global({
     \ },
     \ 'sourceParams': {
         \ 'rg': {
-            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case'],
+            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
         \ },
     \ },
     \ 'sourceOptions': {
@@ -273,6 +273,25 @@ call ddu#custom#patch_local('lines', {
 command! Ddubuffer :call ddu#start({'name': 'buffers'})
 call ddu#custom#patch_local('buffers', {
     \ 'sources': [{'name': 'buffer'}],
+\ })
+
+command! Ddugrep :call ddu#start({'name': 'grep'})
+call ddu#custom#patch_local('grep', {
+    \ 'volatile': v:true,
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'ignoreEmpty': v:false,
+            \ 'autoResize': v:false,
+        \ },
+    \ },
+    \ 'sources': [{
+        \ 'name': 'rg',
+    \ }],
+    \ 'sourceOptions': {
+        \ '_': {
+            \ 'matchers': [],
+        \ },
+    \ },
 \ })
 
 command! Ddufiler :call ddu#start({'name': 'filer'})
