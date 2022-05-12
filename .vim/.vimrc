@@ -327,8 +327,20 @@ autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR>
         \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+    nnoremap <buffer><silent> s
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer><silent> v
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer><silent> <Space>
         \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> x
+        \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> c
+        \ <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
+    nnoremap <buffer><silent> d
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
+    nnoremap <buffer><silent> e
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
     nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
     nnoremap <buffer><silent> i
