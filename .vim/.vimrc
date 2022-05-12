@@ -253,6 +253,11 @@ call ddu#custom#patch_global({
             \ 'defaultAction': 'do',
         \ },
     \ },
+    \ 'filterParams': {
+        \ 'matcher_fzf': {
+            \ 'highlightMatched': 'Search',
+        \ },
+    \ },
 \ })
 
 command! Ddufile :call ddu#start({'name': 'files'})
