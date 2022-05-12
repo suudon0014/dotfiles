@@ -277,6 +277,11 @@ call ddu#custom#patch_local('lines', {
 
 command! Ddubuffer :call ddu#start({'name': 'buffers'})
 call ddu#custom#patch_local('buffers', {
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'startFilter': v:false,
+        \ },
+    \ },
     \ 'sources': [{'name': 'buffer'}],
 \ })
 
