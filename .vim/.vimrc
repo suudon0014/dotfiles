@@ -228,6 +228,7 @@ call ddu#custom#patch_global({
     \ 'uiParams': {
         \ 'ff': {
             \ 'split': 'floating',
+            \ 'floatingBorder': 'single',
             \ 'startFilter': v:true,
             \ 'previewFloating': v:true,
             \ 'previewWidth': &columns / 2,
