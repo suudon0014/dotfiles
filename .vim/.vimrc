@@ -286,6 +286,7 @@ call ddu#custom#patch_local('buffers', {
     \ 'uiParams': {
         \ 'ff': {
             \ 'startFilter': v:false,
+            \ 'reversed': v:true,
         \ },
     \ },
     \ 'sources': [{'name': 'buffer'}],
