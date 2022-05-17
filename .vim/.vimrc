@@ -263,6 +263,9 @@ call ddu#custom#patch_global({
         \ 'action': {
             \ 'defaultAction': 'do',
         \ },
+        \ 'command_history': {
+            \ 'defaultAction': 'execute',
+        \ },
     \ },
     \ 'filterParams': {
         \ 'matcher_fzf': {
@@ -322,6 +325,15 @@ function! Ddugrep(word)
     \ })
 endfunction
 
+command! Dducmdhist :call ddu#start({'name': 'cmdhist',
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+\ }}})
+call ddu#custom#patch_local('cmdhist', {
+    \ 'sources': [{'name': 'command_history'}],
+\ })
+
 command! Ddufiler :call ddu#start({'name': 'filer'})
 call ddu#custom#patch_local('filer', {
     \ 'ui': 'filer',
@@ -339,7 +351,6 @@ call ddu#custom#patch_local('filer', {
         \ },
     \ },
 \ })
-
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
@@ -463,11 +474,11 @@ nnoremap <silent> ,l :Dduline<CR>
 nnoremap <silent> ,b :Ddubuffer<CR>
 nnoremap ,a :Ddugrep<Space>
 nnoremap ,r :Ddugrep<Space>
+nnoremap <silent> ,c :Dducmdhist<CR>
 
 nnoremap <silent> ,g :GFiles<CR>
 nnoremap <silent> ,G :GFiles?<CR>
 nnoremap <silent> ,h :History<CR>
-nnoremap <silent> ,c :History:<CR>
 
 " Using floating windows of Neovim to start fzf
 if has('nvim')
