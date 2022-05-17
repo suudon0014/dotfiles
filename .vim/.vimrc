@@ -277,6 +277,15 @@ call ddu#custom#patch_global({
     \ },
 \ })
 
+
+nnoremap <silent> ,f :Ddufile<CR>
+nnoremap <silent> ,l :Dduline<CR>
+nnoremap <silent> ,b :Ddubuffer<CR>
+nnoremap ,a :Ddugrep<Space>
+nnoremap ,r :Ddugrep<Space>
+nnoremap <silent> ,c :Dducmdhist<CR>
+nnoremap <silent> ,C :Dducolorscheme<CR>
+
 command! Ddufile :call ddu#start({'name': 'files',
     \ 'uiParams': {
         \ 'ff': {
@@ -474,14 +483,6 @@ command! -bang -nargs=* Ag
     \ <bang>0 ? fzf#vim#with_preview('up:60%')
     \         : fzf#vim#with_preview('right:50%', '?'),
     \ <bang>0)
-
-nnoremap <silent> ,f :Ddufile<CR>
-nnoremap <silent> ,l :Dduline<CR>
-nnoremap <silent> ,b :Ddubuffer<CR>
-nnoremap ,a :Ddugrep<Space>
-nnoremap ,r :Ddugrep<Space>
-nnoremap <silent> ,c :Dducmdhist<CR>
-nnoremap <silent> ,C :Dducolorscheme<CR>
 
 nnoremap <silent> ,g :GFiles<CR>
 nnoremap <silent> ,G :GFiles?<CR>
