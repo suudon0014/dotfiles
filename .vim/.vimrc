@@ -271,7 +271,12 @@ call ddu#custom#patch_global({
     \ },
 \ })
 
-command! Ddufile :call ddu#start({'name': 'files'})
+command! Ddufile :call ddu#start({'name': 'files',
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+            \ 'previewWidth': &columns / 2,
+\ }}})
 call ddu#custom#patch_local('files', {
     \ 'sources': [{'name': 'file_rec'}],
     \ 'sourceParams': {
@@ -281,12 +286,21 @@ call ddu#custom#patch_local('files', {
     \ },
 \ })
 
-command! Dduline :call ddu#start({'name': 'lines'})
+command! Dduline :call ddu#start({'name': 'lines',
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+\ }}})
 call ddu#custom#patch_local('lines', {
     \ 'sources': [{'name': 'line'}],
 \ })
 
-command! Ddubuffer :call ddu#start({'name': 'buffers'})
+command! Ddubuffer :call ddu#start({'name': 'buffers',
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+            \ 'previewWidth': &columns / 2,
+\ }}})
 call ddu#custom#patch_local('buffers', {
     \ 'uiParams': {
         \ 'ff': {
@@ -297,24 +311,16 @@ call ddu#custom#patch_local('buffers', {
     \ 'sources': [{'name': 'buffer'}],
 \ })
 
-command! Ddugrep :call ddu#start({'name': 'grep'})
-call ddu#custom#patch_local('grep', {
-    \ 'volatile': v:true,
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'ignoreEmpty': v:false,
-            \ 'autoResize': v:false,
-        \ },
-    \ },
-    \ 'sources': [{
-        \ 'name': 'rg',
-    \ }],
-    \ 'sourceOptions': {
-        \ '_': {
-            \ 'matchers': [],
-        \ },
-    \ },
-\ })
+command! -nargs=1 Ddugrep :call Ddugrep(<f-args>)
+function! Ddugrep(word)
+    call ddu#start({
+        \ 'uiParams': {
+            \ 'ff': {
+                \ 'winWidth': &columns / 2,
+        \ }},
+        \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
+    \ })
+endfunction
 
 command! Ddufiler :call ddu#start({'name': 'filer'})
 call ddu#custom#patch_local('filer', {
@@ -452,15 +458,16 @@ command! -bang -nargs=* Ag
     \         : fzf#vim#with_preview('right:50%', '?'),
     \ <bang>0)
 
-nnoremap <silent> ,f :Files<CR>
+nnoremap <silent> ,f :Ddufile<CR>
+nnoremap <silent> ,l :Dduline<CR>
+nnoremap <silent> ,b :Ddubuffer<CR>
+nnoremap ,a :Ddugrep<Space>
+nnoremap ,r :Ddugrep<Space>
+
 nnoremap <silent> ,g :GFiles<CR>
 nnoremap <silent> ,G :GFiles?<CR>
-nnoremap <silent> ,b :Buffers<CR>
-nnoremap <silent> ,l :BLines<CR>
 nnoremap <silent> ,h :History<CR>
 nnoremap <silent> ,c :History:<CR>
-nnoremap ,a :Ag<Space>
-nnoremap ,r :Rg<Space>
 
 " Using floating windows of Neovim to start fzf
 if has('nvim')
