@@ -269,6 +269,9 @@ call ddu#custom#patch_global({
         \ 'colorscheme': {
             \ 'defaultAction': 'set',
         \ },
+        \ 'help': {
+            \ 'defaultAction': 'split',
+        \ },
     \ },
     \ 'filterParams': {
         \ 'matcher_fzf': {
@@ -285,6 +288,7 @@ nnoremap ,a :Ddugrep<Space>
 nnoremap ,r :Ddugrep<Space>
 nnoremap <silent> ,c :Dducmdhist<CR>
 nnoremap <silent> ,C :Dducolorscheme<CR>
+nnoremap <silent> ,H :Dduhelp<CR>
 
 command! Ddufile :call ddu#start({'name': 'files',
     \ 'uiParams': {
@@ -349,6 +353,12 @@ command! Dducolorscheme :call ddu#start({'sources': [{'name': 'colorscheme'}],
             \ 'winWidth': &columns / 2,
 \ }}})
 
+command! Dduhelp :call ddu#start({'sources': [{'name': 'help'}],
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+\ }}})
+
 command! Ddufiler :call ddu#start({'name': 'filer'})
 call ddu#custom#patch_local('filer', {
     \ 'ui': 'filer',
@@ -385,6 +395,8 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
     nnoremap <buffer><silent> e
         \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
+    nnoremap <buffer><silent> t
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'tabopen'})<CR>
     nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
     nnoremap <buffer><silent> i

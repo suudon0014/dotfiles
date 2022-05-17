@@ -75,6 +75,9 @@ repo = 'matsui54/ddu-source-command_history'
 repo = '4513ECHO/ddu-source-colorscheme'
 
 [[plugins]]
+repo = 'matsui54/ddu-source-help'
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 
 [[plugins]]
