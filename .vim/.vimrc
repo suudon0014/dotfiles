@@ -325,14 +325,11 @@ function! Ddugrep(word)
     \ })
 endfunction
 
-command! Dducmdhist :call ddu#start({'name': 'cmdhist',
+command! Dducmdhist :call ddu#start({'sources': [{'name': 'command_history'}],
     \ 'uiParams': {
         \ 'ff': {
             \ 'winWidth': &columns / 2,
 \ }}})
-call ddu#custom#patch_local('cmdhist', {
-    \ 'sources': [{'name': 'command_history'}],
-\ })
 
 command! Ddufiler :call ddu#start({'name': 'filer'})
 call ddu#custom#patch_local('filer', {
