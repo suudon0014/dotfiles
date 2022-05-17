@@ -266,6 +266,9 @@ call ddu#custom#patch_global({
         \ 'command_history': {
             \ 'defaultAction': 'execute',
         \ },
+        \ 'colorscheme': {
+            \ 'defaultAction': 'set',
+        \ },
     \ },
     \ 'filterParams': {
         \ 'matcher_fzf': {
@@ -326,6 +329,12 @@ function! Ddugrep(word)
 endfunction
 
 command! Dducmdhist :call ddu#start({'sources': [{'name': 'command_history'}],
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'winWidth': &columns / 2,
+\ }}})
+
+command! Dducolorscheme :call ddu#start({'sources': [{'name': 'colorscheme'}],
     \ 'uiParams': {
         \ 'ff': {
             \ 'winWidth': &columns / 2,
@@ -472,6 +481,7 @@ nnoremap <silent> ,b :Ddubuffer<CR>
 nnoremap ,a :Ddugrep<Space>
 nnoremap ,r :Ddugrep<Space>
 nnoremap <silent> ,c :Dducmdhist<CR>
+nnoremap <silent> ,C :Dducolorscheme<CR>
 
 nnoremap <silent> ,g :GFiles<CR>
 nnoremap <silent> ,G :GFiles?<CR>
