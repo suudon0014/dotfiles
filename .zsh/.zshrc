@@ -133,6 +133,11 @@ function git {
     fi
 }
 
+# for WSL2
+if [ -e /etc/init.d/docker ]; then
+    sudo /etc/init.d/docker start
+fi
+
 # for WSL2 GUI
 if type ip > /dev/null; then
     export DISPLAY=`ip route | grep 'default via' | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`:0
