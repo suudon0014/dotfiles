@@ -407,6 +407,7 @@ endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
+    AutoCloseOff
     inoremap <buffer><silent> <CR>
         \ <Esc><Cmd>close<CR>
     nnoremap <buffer><silent> <CR>
