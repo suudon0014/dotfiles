@@ -126,7 +126,7 @@ set cursorline
 highlight link LspErrorHighlight NeomakeErrorMsg
 highlight link LspWarningHighlight NeomakeWarningMsg
 set termguicolors
-colorscheme PaperColor
+colorscheme molokai
 
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -651,7 +651,7 @@ function! LightlineReload()
     call lightline#update()
 endfunction
 
-let g:lightline["colorscheme"] = "PaperColor"
+let g:lightline["colorscheme"] = "molokai"
 LightlineReload
 "end lightline
 
