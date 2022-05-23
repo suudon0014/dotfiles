@@ -286,7 +286,7 @@ call ddu#custom#patch_global({
 
 nnoremap <silent> ,f :call <SID>DduStart('file_rec', v:true, v:false)<CR>
 nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
-nnoremap <silent> ,b :call <SID>DduStart('buffer_custom', v:true, v:true)<CR>
+nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false)<CR>
 nnoremap ,a :DduGrep<Space>
 nnoremap ,r :DduGrep<Space>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
@@ -329,16 +329,6 @@ function! s:DduStart(source, preview_enable, custom_enable) abort
         \ })
     endif
 endfunction
-
-call ddu#custom#patch_local('buffer_custom', {
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'startFilter': v:false,
-            \ 'reversed': v:true,
-        \ },
-    \ },
-    \ 'sources': [{'name': 'buffer'}],
-\ })
 
 command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
 function! s:DduGrep(word)
