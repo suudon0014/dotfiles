@@ -235,6 +235,7 @@ call ddu#custom#patch_global({
             \ 'previewHeight': 20,
             \ 'previewWidth': &columns / 2,
             \ 'previewFloating': v:true,
+            \ 'previewFloatingBorder': 'single',
             \ 'previewVertical': v:true,
             \ 'filterSplitDirection': 'floating',
             \ 'reversed': v:false,
@@ -242,6 +243,9 @@ call ddu#custom#patch_global({
         \ },
     \ },
     \ 'sourceParams': {
+        \ 'file_rec': {
+            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs'],
+        \ },
         \ 'rg': {
             \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
             \ 'highlights': {
@@ -280,47 +284,53 @@ call ddu#custom#patch_global({
     \ },
 \ })
 
+nnoremap <silent> ,f :call <SID>DduStart('file_rec', v:true, v:false)<CR>
+nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
+nnoremap <silent> ,b :call <SID>DduStart('buffer_custom', v:true, v:true)<CR>
+nnoremap ,a :DduGrep<Space>
+nnoremap ,r :DduGrep<Space>
+nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
+nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
+nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
 
-nnoremap <silent> ,f :Ddufile<CR>
-nnoremap <silent> ,l :Dduline<CR>
-nnoremap <silent> ,b :Ddubuffer<CR>
-nnoremap ,a :Ddugrep<Space>
-nnoremap ,r :Ddugrep<Space>
-nnoremap <silent> ,c :Dducmdhist<CR>
-nnoremap <silent> ,C :Dducolorscheme<CR>
-nnoremap <silent> ,H :Dduhelp<CR>
+function! s:get_ddu_win_and_preview_pos() abort
+    return {
+        \ 'winWidth': &columns / 3,
+        \ 'winCol': &columns / 6,
+        \ 'winRow': &lines / 2 - 10,
+        \ 'previewWidth': &columns / 3,
+        \ 'previewCol': &columns / 2,
+        \ 'previewRow': &lines / 2 - 10,
+        \ }
+endfunction
 
-command! Ddufile :call ddu#start({'name': 'files',
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-            \ 'previewWidth': &columns / 2,
-\ }}})
-call ddu#custom#patch_local('files', {
-    \ 'sources': [{'name': 'file_rec'}],
-    \ 'sourceParams': {
-        \ 'file_rec': {
-            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs'],
-        \ },
-    \ },
-\ })
+function! s:get_ddu_win_pos() abort
+    return {
+        \ 'winWidth': &columns / 2,
+        \ 'winCol': &columns / 4,
+        \ 'winRow': &lines / 2 - 10,
+    \ }
+endfunction
 
-command! Dduline :call ddu#start({'name': 'lines',
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-\ }}})
-call ddu#custom#patch_local('lines', {
-    \ 'sources': [{'name': 'line'}],
-\ })
+function! s:DduStart(source, preview_enable, custom_enable) abort
+    if a:preview_enable
+        let s:win_pos = <SID>get_ddu_win_and_preview_pos()
+    else
+        let s:win_pos = <SID>get_ddu_win_pos()
+    endif
 
-command! Ddubuffer :call ddu#start({'name': 'buffers',
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-            \ 'previewWidth': &columns / 2,
-\ }}})
-call ddu#custom#patch_local('buffers', {
+    if a:custom_enable
+        call ddu#start({'name': a:source,
+            \ 'uiParams': {'ff': s:win_pos},
+        \ })
+    else
+        call ddu#start({'sources': [{'name': a:source}],
+            \ 'uiParams': {'ff': s:win_pos},
+        \ })
+    endif
+endfunction
+
+call ddu#custom#patch_local('buffer_custom', {
     \ 'uiParams': {
         \ 'ff': {
             \ 'startFilter': v:false,
@@ -330,34 +340,14 @@ call ddu#custom#patch_local('buffers', {
     \ 'sources': [{'name': 'buffer'}],
 \ })
 
-command! -nargs=1 Ddugrep :call Ddugrep(<f-args>)
-function! Ddugrep(word)
+command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
+function! s:DduGrep(word)
+    let s:win_pos = <SID>get_ddu_win_and_preview_pos()
     call ddu#start({
-        \ 'uiParams': {
-            \ 'ff': {
-                \ 'winWidth': &columns / 2,
-        \ }},
+        \ 'uiParams': {'ff': s:win_pos},
         \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
     \ })
 endfunction
-
-command! Dducmdhist :call ddu#start({'sources': [{'name': 'command_history'}],
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-\ }}})
-
-command! Dducolorscheme :call ddu#start({'sources': [{'name': 'colorscheme'}],
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-\ }}})
-
-command! Dduhelp :call ddu#start({'sources': [{'name': 'help'}],
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'winWidth': &columns / 2,
-\ }}})
 
 command! Ddufiler :call ddu#start({'name': 'filer'})
 call ddu#custom#patch_local('filer', {
