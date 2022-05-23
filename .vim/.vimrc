@@ -287,8 +287,8 @@ call ddu#custom#patch_global({
 nnoremap <silent> ,f :call <SID>DduStart('file_rec', v:true, v:false)<CR>
 nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false)<CR>
-nnoremap ,a :DduGrep<Space>
 nnoremap ,r :DduGrep<Space>
+nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
@@ -339,6 +339,10 @@ function! s:DduGrep(word) abort
         \ 'uiParams': {'ff': s:win_pos},
         \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
     \ })
+endfunction
+
+function! s:DduGrepCWord() abort
+    call <SID>DduGrep(expand('<cword>'))
 endfunction
 
 command! Ddufiler :call ddu#start({'name': 'filer'})
