@@ -332,7 +332,7 @@ function! s:DduStart(source, preview_enable, custom_enable) abort
 endfunction
 
 command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
-function! s:DduGrep(word)
+function! s:DduGrep(word) abort
     let s:win_pos = <SID>get_ddu_win_and_preview_pos()
     let s:win_pos['autoAction'] = {'name': 'preview'}
     call ddu#start({
