@@ -407,10 +407,11 @@ function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><expr> <CR> ddu#ui#filer#is_directory() ?
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
-    nnoremap <buffer> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
-    nnoremap <buffer> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
-    nnoremap <buffer><silent> q
-        \ <Cmd>close<CR>
+    nnoremap <buffer><silent> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
+    nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
+    nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
+    nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
+    nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
 "about search
