@@ -411,6 +411,8 @@ function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
+    nnoremap <buffer><silent> <S-n> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newFile'})<CR>
+    nnoremap <buffer><silent> <S-d> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
     nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
