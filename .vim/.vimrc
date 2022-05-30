@@ -362,6 +362,7 @@ function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <leader>l <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'loclist'})<CR>
     nnoremap <buffer><silent> <leader>q <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<CR>
     nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    nnoremap <buffer> <Esc><Esc> <Nop>
 endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
@@ -408,6 +409,7 @@ function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><silent> <leader>l <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'loclist'})<CR>
     nnoremap <buffer><silent> <leader>q <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'quickfix'})<CR>
     nnoremap <buffer><silent> q <Cmd>close<CR>
+    nnoremap <buffer> <Esc><Esc> <Nop>
 endfunction
 
 "about search
