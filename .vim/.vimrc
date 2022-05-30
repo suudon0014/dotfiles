@@ -284,7 +284,7 @@ call ddu#custom#patch_global({
     \ },
 \ })
 
-nnoremap <silent> ,f :call <SID>DduStart('file_rec', v:true, v:false)<CR>
+nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false)<CR>
 nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false)<CR>
 nnoremap ,r :DduGrep<Space>
@@ -384,7 +384,7 @@ function! s:ddu_filter_my_settings() abort
         \ <Cmd>close<CR>
 endfunction
 
-command! Ddufiler :call ddu#start({'name': 'filer'})
+nnoremap <silent> ,fi :call ddu#start({'name': 'filer'})<CR>
 call ddu#custom#patch_local('filer', {
     \ 'ui': 'filer',
     \ 'uiParams': {
