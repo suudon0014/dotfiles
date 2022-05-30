@@ -150,23 +150,23 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'minAutoCompleteLength': 1,
     \ },
     \ 'vim-lsp': {
-    \     'mark': 'lsp',
+    \     'mark': '[lsp]',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*'
     \ },
-    \ 'vsnip': {'mark': 'vsnip'},
-    \ 'around': {'mark': 'around'},
+    \ 'vsnip': {'mark': '[vsnip]'},
+    \ 'around': {'mark': '[around]'},
     \ 'file': {
-    \     'mark': 'file',
+    \     'mark': '[file]',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
     \ 'skkeleton': {
-    \   'mark': 'skk',
+    \   'mark': '[skk]',
     \   'matchers': ['skkeleton'],
     \   'sorters': []
     \ },
     \ 'cmdline-history': {
-    \   'mark': 'cmdhist',
+    \   'mark': '[cmdhist]',
     \ },
 \ })
 
