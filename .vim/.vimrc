@@ -555,6 +555,16 @@ augroup etcSettingsGroup
     autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
+
+autocmd FileType qf call s:qf_my_settings()
+function! s:qf_my_settings() abort
+    nnoremap <buffer><silent> q :q<CR>
+    nnoremap <buffer><silent> + <C-w>+
+    nnoremap <buffer><silent> ; <C-w>+
+    nnoremap <buffer><silent> - <C-w>-
+    nnoremap <buffer><silent> p <CR><C-w>j
+endfunction
+
 "always search in very magic mode
 nnoremap / /\v
 
