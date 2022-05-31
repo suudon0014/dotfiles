@@ -558,7 +558,6 @@ augroup etcSettingsGroup
     autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
-
 autocmd FileType qf call s:qf_my_settings()
 function! s:qf_my_settings() abort
     nnoremap <buffer><silent> q :q<CR>
@@ -566,6 +565,10 @@ function! s:qf_my_settings() abort
     nnoremap <buffer><silent> ; <C-w>+
     nnoremap <buffer><silent> - <C-w>-
     nnoremap <buffer><silent> p <CR><C-w>j
+    nnoremap <buffer> j j
+    nnoremap <buffer> k k
+    nnoremap <buffer> gj gj
+    nnoremap <buffer> gk gk
 endfunction
 
 "always search in very magic mode
