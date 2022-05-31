@@ -541,6 +541,7 @@ set hidden
 set scrolloff=1
 set updatetime=150
 set noequalalways
+set lazyredraw
 let g:indentLine_char = '¦'
 noremap j gj
 noremap k gk
