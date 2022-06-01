@@ -78,6 +78,9 @@ repo = '4513ECHO/ddu-source-colorscheme'
 repo = 'matsui54/ddu-source-help'
 
 [[plugins]]
+repo = 'Bakudankun/ddu-source-dirmark'
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 
 [[plugins]]
@@ -324,3 +327,6 @@ hook_add = '''
     let g:jupytext_fmt = 'py:percent'
     let g:jupytext_filetype_map = {'py': 'python'}
 '''
+
+[[plugins]]
+repo = 'kmnk/denite-dirmark'

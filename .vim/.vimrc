@@ -259,6 +259,9 @@ call ddu#custom#patch_global({
         \ '_': {
             \ 'matchers': ['matcher_fzf'],
         \ },
+        \ 'dirmark': {
+            \ 'defaultAction': 'cd',
+        \ },
     \ },
     \ 'kindOptions': {
         \ 'file': {
@@ -292,6 +295,7 @@ nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
+nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
 
 function! s:get_ddu_win_and_preview_pos() abort
     return {
@@ -345,6 +349,15 @@ function! s:DduGrepCWord() abort
     call <SID>DduGrep(expand('<cword>'))
 endfunction
 
+call ddu#custom#patch_local('dirmark_custom', {
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'startFilter': v:false,
+        \ },
+    \ },
+    \ 'sources': [{'name': 'dirmark'}],
+\ })
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
@@ -390,6 +403,9 @@ call ddu#custom#patch_local('filer', {
         \ 'narrow': {
             \ 'quit': v:false,
         \ },
+        \ 'dirmark': {
+            \ 'quit': v:false,
+        \ },
     \ },
 \ })
 
@@ -402,6 +418,7 @@ function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
     nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
     nnoremap <buffer><silent> <S-n> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newFile'})<CR>
