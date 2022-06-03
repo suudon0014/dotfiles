@@ -566,6 +566,10 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+noremap <MiddleMouse> <Nop>
+noremap <2-MiddleMouse> <Nop>
+noremap <3-MiddleMouse> <Nop>
+noremap <4-MiddleMouse> <Nop>
 tnoremap <S-Space> <Space>
 cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
