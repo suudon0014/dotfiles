@@ -363,7 +363,6 @@ function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
     nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
     nnoremap <buffer><silent> v <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> a <Cmd>call ddu#ui#ff#do_action('toggleAllItems')<CR>
     nnoremap <buffer><silent> r <Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>
@@ -416,7 +415,6 @@ function! s:ddu_filer_my_settings() abort
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
     nnoremap <buffer><silent> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
     nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
-    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
