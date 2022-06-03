@@ -402,6 +402,9 @@ call ddu#custom#patch_local('filer', {
         \ 'narrow': {
             \ 'quit': v:false,
         \ },
+        \ 'cd': {
+            \ 'quit': v:false,
+        \ },
         \ 'dirmark': {
             \ 'quit': v:false,
         \ },
@@ -415,16 +418,21 @@ function! s:ddu_filer_my_settings() abort
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
     nnoremap <buffer><silent> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
     nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
-    nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
-    nnoremap <buffer><silent> <S-n> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newFile'})<CR>
-    nnoremap <buffer><silent> <S-m> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newDirectory'})<CR>
-    nnoremap <buffer><silent> <S-d> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
-    nnoremap <buffer><silent> <leader>y <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'yank'})<CR>
+    nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR>
+    nnoremap <buffer><silent> <leader>b <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
+    nnoremap <buffer><silent> <leader>c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'copy'})<CR>
+    nnoremap <buffer><silent> <leader>d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
+    nnoremap <buffer><silent> <leader>k <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newDirectory'})<CR>
     nnoremap <buffer><silent> <leader>l <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'loclist'})<CR>
+    nnoremap <buffer><silent> <leader>m <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'move'})<CR>
+    nnoremap <buffer><silent> <leader>n <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newFile'})<CR>
+    nnoremap <buffer><silent> <leader>p <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'paste'})<CR>
     nnoremap <buffer><silent> <leader>q <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'quickfix'})<CR>
+    nnoremap <buffer><silent> <leader>r <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'rename'})<CR>
+    nnoremap <buffer><silent> <leader>y <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'yank'})<CR>
     nnoremap <buffer><silent> q <Cmd>close<CR>
     nnoremap <buffer> <Esc><Esc> <Nop>
 endfunction
