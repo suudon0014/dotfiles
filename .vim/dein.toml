@@ -211,7 +211,8 @@ hook_add = '''
     nnoremap <C-l>e :LspNextError<CR>
     nnoremap <C-l>f :LspDocumentFormat<CR>
     nnoremap <C-l>h :LspHover<CR>
-    nnoremap <C-l>r :LspReferences<CR>
+    nnoremap <C-l>rf :LspReferences<CR>
+    nnoremap <C-l>rn :LspRename<CR>
     nnoremap <C-l>w :LspNextWarning<CR>
 '''
 
