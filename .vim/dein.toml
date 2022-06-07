@@ -123,6 +123,12 @@ repo = 'savq/melange'
 
 [[plugins]]
 repo = 'sainnhe/edge'
+
+[[plugins]]
+repo = 'christianchiarulli/nvcode-color-schemes.vim'
+hook_add = '''
+    let g:nvcode_termcolors = 256
+'''
 # colorscheme end
 
 [[plugins]]

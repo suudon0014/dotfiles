@@ -126,7 +126,7 @@ set cursorline
 highlight link LspErrorHighlight NeomakeErrorMsg
 highlight link LspWarningHighlight NeomakeWarningMsg
 set termguicolors
-colorscheme molokai
+colorscheme snazzy
 
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -605,7 +605,7 @@ endfunction
 nnoremap / /\v
 
 "lightline
-let s:lightline_colorscheme = 'wombat'
+let s:lightline_colorscheme = 'nord'
 let g:lightline = {
         \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},
@@ -701,8 +701,6 @@ function! LightlineReload()
     call lightline#update()
 endfunction
 
-let g:lightline["colorscheme"] = "molokai"
-LightlineReload
 "end lightline
 
 "vim-anzu
