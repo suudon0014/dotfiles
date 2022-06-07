@@ -254,6 +254,9 @@ call ddu#custom#patch_global({
                 \ 'word': 'Constant',
             \ },
         \ },
+        \ 'help': {
+            \ 'helpLang': 'ja,en',
+        \ },
     \ },
     \ 'sourceOptions': {
         \ '_': {
@@ -277,7 +280,7 @@ call ddu#custom#patch_global({
             \ 'defaultAction': 'set',
         \ },
         \ 'help': {
-            \ 'defaultAction': 'split',
+            \ 'defaultAction': 'vsplit',
         \ },
     \ },
     \ 'filterParams': {
