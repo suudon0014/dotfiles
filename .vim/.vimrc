@@ -580,6 +580,7 @@ noremap <2-MiddleMouse> <Nop>
 noremap <3-MiddleMouse> <Nop>
 noremap <4-MiddleMouse> <Nop>
 tnoremap <S-Space> <Space>
+nnoremap <S-k> <Nop>
 cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
 augroup etcSettingsGroup
