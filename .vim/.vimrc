@@ -368,7 +368,8 @@ function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> v <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> a <Cmd>call ddu#ui#ff#do_action('toggleAllItems')<CR>
-    nnoremap <buffer><silent> r <Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>
+    nnoremap <buffer><silent> r <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'rename'})<CR>
+    nnoremap <buffer><silent> f <Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> c <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
     nnoremap <buffer><silent> d <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
     nnoremap <buffer><silent> e <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
