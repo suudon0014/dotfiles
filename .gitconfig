@@ -9,6 +9,17 @@
     setup = !git init && touch .gitignore && git add .gitignore && git commit -m 'First commit'
     today = log --after='`date "+%Y-%m-%d"` 0:0' --oneline --branches *
     ai = add -i
+    fi = flow init
+    fid = flow init -d
+    ffs = flow feature start
+    fff = flow feature finish
+    ffp = flow feature publish
+    frs = flow release start
+    frf = flow release finish
+    frp = flow release publish
+    fhs = flow hotfix start
+    fhf = flow hotfix finish
+    fhp = flow hotfix publish
 
 [color]
     ui = auto
