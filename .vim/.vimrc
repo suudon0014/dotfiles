@@ -603,6 +603,11 @@ function! s:qf_my_settings() abort
     nnoremap <buffer> gk gk
 endfunction
 
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
+
 "always search in very magic mode
 nnoremap / /\v
 
