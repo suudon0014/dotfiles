@@ -302,20 +302,23 @@ nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
 
 function! s:get_ddu_win_and_preview_pos() abort
     return {
-        \ 'winWidth': &columns / 3,
-        \ 'winCol': &columns / 6,
-        \ 'winRow': &lines / 2 - 10,
-        \ 'previewWidth': &columns / 3,
-        \ 'previewCol': &columns / 2,
-        \ 'previewRow': &lines / 2 - 10,
+        \ 'winWidth': float2nr(&columns * 0.45),
+        \ 'winCol': float2nr(&columns * 0.05),
+        \ 'winHeight': float2nr(&lines * 0.6),
+        \ 'winRow': float2nr(&lines * 0.2),
+        \ 'previewWidth': float2nr(&columns * 0.45),
+        \ 'previewCol': float2nr(&columns * 0.5),
+        \ 'previewHeight': float2nr(&lines * 0.6),
+        \ 'previewRow': float2nr(&lines * 0.2),
         \ }
 endfunction
 
 function! s:get_ddu_win_pos() abort
     return {
-        \ 'winWidth': &columns / 2,
-        \ 'winCol': &columns / 4,
-        \ 'winRow': &lines / 2 - 10,
+        \ 'winWidth': float2nr(&columns * 0.9),
+        \ 'winCol': float2nr(&columns * 0.05),
+        \ 'winHeight': float2nr(&lines * 0.6),
+        \ 'winRow': float2nr(&lines * 0.2),
     \ }
 endfunction
 
@@ -391,7 +394,14 @@ function! s:ddu_filter_my_settings() abort
     nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
-nnoremap <silent> ,fi :call ddu#start({'name': 'filer'})<CR>
+nnoremap <silent> ,fi :call <SID>DduFilerStart()<CR>
+
+function! s:DduFilerStart() abort
+    let s:win_pos = <SID>get_ddu_win_and_preview_pos()
+    let s:win_pos['autoAction'] = {'name': 'preview'}
+    call ddu#start({'name': 'filer', 'uiParams': {'filer': s:win_pos}, })
+endfunction
+
 call ddu#custom#patch_local('filer', {
     \ 'ui': 'filer',
     \ 'uiParams': {
