@@ -26,6 +26,7 @@
 
 [pull]
     rebase = false
+    ff = only
 
 [diff]
     tool = nvimdiff
@@ -37,6 +38,7 @@
 
 [merge]
     tool = nvimdiff
+    ff = false
 
 [mergetool "nvimdiff"]
     cmd = "nvim -d -c \"4wincmd w | wincmd J | wincmd =\" -d \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\""
