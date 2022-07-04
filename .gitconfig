@@ -1,5 +1,5 @@
 [core]
-    editor = nvim-qt
+    editor = nvim
 
 [alias]
     st = status
