@@ -8,8 +8,6 @@ if has('nvim')
     Guifont! Cica:h11
     GuiPopupmenu 0
     GuiTabline 0
-    set pumblend=30
-    set winblend=30
 
     " lightline
     let g:lightline.component.lineinfo = "\ue0a1 " . '%3l:%-2v'

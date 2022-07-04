@@ -594,6 +594,11 @@ tnoremap <S-Space> <Space>
 nnoremap <S-k> <Nop>
 cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"
 
+if has('nvim')
+    set pumblend=30
+    set winblend=30
+endif
+
 augroup etcSettingsGroup
     autocmd!
     autocmd BufRead,BufNewFile *.toml set filetype=toml
