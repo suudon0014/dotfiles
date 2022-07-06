@@ -91,6 +91,9 @@ repo = 'yuki-yano/ddu-filter-fzf'
 
 [[plugins]]
 repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
 # ddu.vim end
 
 #colorscheme start
