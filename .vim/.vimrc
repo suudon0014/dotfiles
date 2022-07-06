@@ -261,7 +261,6 @@ call ddu#custom#patch_global({
     \ 'sourceOptions': {
         \ '_': {
             \ 'matchers': ['matcher_fzf'],
-            \ 'columns': ['filename'],
         \ },
         \ 'dirmark': {
             \ 'defaultAction': 'cd',
@@ -411,6 +410,9 @@ call ddu#custom#patch_local('filer', {
         \ },
     \},
     \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['filename']}
+    \ },
     \ 'actionOptions': {
         \ 'narrow': {
             \ 'quit': v:false,
