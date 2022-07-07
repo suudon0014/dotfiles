@@ -288,6 +288,12 @@ call ddu#custom#patch_global({
             \ 'highlightMatched': 'Search',
         \ },
     \ },
+    \ 'columnParams': {
+        \ 'filename': {
+            \ 'collapsedIcon': "\ue5ff",
+            \ 'expandedIcon': "\ue5fe",
+        \ },
+    \ },
 \ })
 
 nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false)<CR>
