@@ -401,10 +401,8 @@ function! s:ddu_filter_my_settings() abort
 endfunction
 
 nnoremap <silent> ,fi :call <SID>DduFilerStart()<CR>
-
 function! s:DduFilerStart() abort
-    let s:win_pos = <SID>get_ddu_win_and_preview_pos()
-    let s:win_pos['autoAction'] = {'name': 'preview'}
+    let s:win_pos = <SID>get_ddu_win_pos()
     call ddu#start({'name': 'filer', 'uiParams': {'filer': s:win_pos}, })
 endfunction
 
