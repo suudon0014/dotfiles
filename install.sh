@@ -72,6 +72,8 @@ ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fis
 
 ln -sfv ${DOTFILES}/WindowsTerminal/settings.json ${LOCALAPPDATA}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
 
+ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
+
 echo -e "\n[Install commands using npm]"
 if !(type "npm" > /dev/null 2>&1); then
     echo "npm is not installed."
