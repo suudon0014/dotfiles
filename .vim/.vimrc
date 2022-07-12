@@ -134,7 +134,7 @@ call ddc#custom#patch_global('autoCompleteEvents',
     \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
-    \ 'vim-lsp',
+    \ 'nvim-lsp',
     \ 'vsnip',
     \ 'around',
     \ 'file',
@@ -149,11 +149,11 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'ignoreCase' : v:true,
     \     'minAutoCompleteLength': 1,
     \ },
-    \ 'vim-lsp': {
+    \ 'nvim-lsp': {
     \     'mark': '[lsp]',
-    \     'forceCompletionPattern': '\.|:|->|"\w*/*'
+    \     'forceCompletionPattern': '\.|:|->|"\w*/*',
     \ },
-    \ 'vsnip': {'mark': '[vsnip]'},
+    \ 'vsnip': {'mark': '[vsnip]', 'dup': v:true,},
     \ 'around': {'mark': '[around]'},
     \ 'file': {
     \     'mark': '[file]',
