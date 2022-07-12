@@ -271,6 +271,9 @@ hook_add = '''
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
 
 [[plugins]]

@@ -42,4 +42,3 @@ lsp_installer.on_server_ready(function(server)
     opts.on_attach = on_attach
     server:setup(opts)
 end)
-
