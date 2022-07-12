@@ -17,19 +17,10 @@ local opts = {noremap=true, silent=true}
     buf_set_keymap('n', '<C-l>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 end
 
-
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-    opts.on_attach = on_attach
-    server:setup(opts)
-end)
-
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.clangd.setup{
+lsp_config.clangd.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {
@@ -39,3 +30,16 @@ require'lspconfig'.clangd.setup{
         "--clang-tidy",
     },
 }
+lsp_config.marksman.setup{}
+lsp_config.taplo.setup{}
+lsp_config.jsonls.setup{}
+lsp_config.vimls.setup{}
+lsp_config.sumneko_lua.setup{}
+
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    opts.on_attach = on_attach
+    server:setup(opts)
+end)
+
