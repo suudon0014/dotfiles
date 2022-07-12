@@ -108,3 +108,18 @@ on_event = 'BufEnter'
 hook_source = '''
     call popup_preview#enable()
 '''
+
+[[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'kkharji/lspsaga.nvim'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'folke/trouble.nvim'
+on_event = 'BufEnter'
+hook_add = '''
+    nnoremap <C-l>t :TroubleToggle<CR>
+'''
