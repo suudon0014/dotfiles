@@ -30,18 +30,6 @@ repo = 'rhysd/reply.vim'
 on_cmd = ['Repl', 'ReplAuto']
 
 [[plugins]]
-repo = 'mattn/vim-lsp-settings'
-on_event = 'VimEnter'
-hook_source = '''
-let g:lsp_settings = {
-\   'clangd': {
-\       'args': ['--all-scopes-completion', '--background-index', '--clang-tidy'],
-\       'initialization_options': { 'usePlaceholders': v:true, },
-\   },
-\ }
-'''
-
-[[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_event = 'BufEnter'
 hook_add = '''
@@ -89,4 +77,34 @@ hook_add = '''
         \   '-interaction=nonstopmode',
         \ ],
         \}
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'williamboman/nvim-lsp-installer'
+on_event = 'BufEnter'
+on_source = 'nvim-lspconfig'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+on_event = 'BufEnter'
+hook_source = '''
+source ~/dotfiles/.vim/nvim-lsp.lua
+'''
+
+[[plugins]]
+repo = 'matsui54/denops-signature_help'
+on_event = 'BufEnter'
+hook_source = '''
+    call signature_help#enable()
+'''
+
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_event = 'BufEnter'
+hook_source = '''
+    call popup_preview#enable()
 '''
