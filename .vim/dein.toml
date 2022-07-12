@@ -135,6 +135,9 @@ repo = 'christianchiarulli/nvcode-color-schemes.vim'
 hook_add = '''
     let g:nvcode_termcolors = 256
 '''
+
+[[plugins]]
+repo = 'sainnhe/sonokai'
 # colorscheme end
 
 [[plugins]]

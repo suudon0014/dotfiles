@@ -126,7 +126,7 @@ set cursorline
 highlight link LspErrorHighlight NeomakeErrorMsg
 highlight link LspWarningHighlight NeomakeWarningMsg
 set termguicolors
-colorscheme snazzy
+colorscheme sonokai
 
 " ddc.vim
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -632,7 +632,7 @@ nnoremap ]l :lnext<CR>
 nnoremap / /\v
 
 "lightline
-let s:lightline_colorscheme = 'nord'
+let s:lightline_colorscheme = 'sonokai'
 let g:lightline = {
         \ 'colorscheme': s:lightline_colorscheme,
         \ 'mode_map': {'c': 'NORMAL'},
