@@ -164,6 +164,12 @@ repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
+hook_add = '''
+    augroup commentary
+        autocmd!
+        autocmd FileType cpp let b:commentary_format = '// %s'
+    augroup END
+'''
 
 [[plugins]]
 repo = 'kana/vim-submode'
