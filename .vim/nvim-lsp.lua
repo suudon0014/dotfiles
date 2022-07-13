@@ -25,7 +25,13 @@ lsp_installer.on_server_ready(function(server)
     local opts = {}
 
     if server.name == 'clangd' then
-        local cmd = {"clangd", "--all-scopes-completion", "--background-index", "--clang-tidy"}
+        local cmd = {
+            "clangd",
+            "--all-scopes-completion",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=never"
+        }
         opts.cmd = cmd
     end
 
