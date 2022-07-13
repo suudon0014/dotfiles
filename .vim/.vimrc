@@ -134,8 +134,8 @@ call ddc#custom#patch_global('autoCompleteEvents',
     \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
-    \ 'nvim-lsp',
     \ 'vsnip',
+    \ 'nvim-lsp',
     \ 'around',
     \ 'file',
     \ 'skkeleton',

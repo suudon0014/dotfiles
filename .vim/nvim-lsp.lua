@@ -1,4 +1,3 @@
-local lsp_config = require("lspconfig")
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -21,33 +20,17 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-lsp_config.bashls.setup{}
-lsp_config.clangd.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-        "clangd",
-        "--all-scopes-completion",
-        "--background-index",
-        "--clang-tidy",
-    },
-}
-lsp_config.cmake.setup{}
-lsp_config.dockerls.setup{}
-lsp_config.eslint.setup{}
-lsp_config.jsonls.setup{}
-lsp_config.marksman.setup{}
-lsp_config.pylsp.setup{}
-lsp_config.sumneko_lua.setup{}
-lsp_config.taplo.setup{}
-lsp_config.texlab.setup{}
-lsp_config.tsserver.setup{}
-lsp_config.vimls.setup{}
-lsp_config.yamlls.setup{}
-
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
     local opts = {}
+
+    if server.name == 'clangd' then
+        local cmd = {"clangd", "--all-scopes-completion", "--background-index", "--clang-tidy"}
+        opts.cmd = cmd
+    end
+
     opts.on_attach = on_attach
+    opts.capabilities = capabilities
+
     server:setup(opts)
 end)
