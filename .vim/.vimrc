@@ -305,6 +305,7 @@ nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
 nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
+nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false)<CR>
 
 function! s:get_ddu_win_and_preview_pos() abort
     return {

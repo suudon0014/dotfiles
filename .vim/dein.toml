@@ -84,6 +84,9 @@ repo = 'matsui54/ddu-source-help'
 repo = 'Bakudankun/ddu-source-dirmark'
 
 [[plugins]]
+repo = 'k-ota106/ddu-source-marks'
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 
 [[plugins]]
