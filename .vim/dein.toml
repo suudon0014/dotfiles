@@ -99,7 +99,7 @@ repo = 'Shougo/ddu-kind-file'
 repo = 'Shougo/ddu-column-filename'
 
 [[plugins]]
-repo = 'ryota2357/ddu-column-icons'
+repo = 'ryota2357/ddu-column-icon_filename'
 # ddu.vim end
 
 #colorscheme start

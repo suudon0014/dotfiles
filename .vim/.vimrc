@@ -416,7 +416,7 @@ call ddu#custom#patch_local('filer', {
     \},
     \ 'sources': [{'name': 'file',}],
     \ 'sourceOptions': {
-        \ 'file': {'columns': ['icons']}
+        \ 'file': {'columns': ['icon_filename']}
     \ },
     \ 'actionOptions': {
         \ 'narrow': {
