@@ -89,6 +89,11 @@ on_event = 'BufEnter'
 on_source = 'nvim-lspconfig'
 
 [[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_event = 'BufEnter'
+on_source = 'nvim-lspconfig'
+
+[[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_event = 'BufEnter'
 hook_source = '''
@@ -108,10 +113,6 @@ on_event = 'BufEnter'
 hook_source = '''
     call popup_preview#enable()
 '''
-
-[[plugins]]
-repo = 'onsails/lspkind.nvim'
-on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'kkharji/lspsaga.nvim'
