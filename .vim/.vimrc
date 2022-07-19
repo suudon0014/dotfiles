@@ -438,15 +438,11 @@ call ddu#custom#patch_local('filer', {
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
-    nnoremap <buffer><expr> <CR> ddu#ui#filer#is_directory() ?
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
     nnoremap <buffer><silent> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
     nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>cd..<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR>
     nnoremap <buffer><silent> <leader>b <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <leader>c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'copy'})<CR>
     nnoremap <buffer><silent> <leader>d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
