@@ -87,6 +87,9 @@ on_event = 'BufEnter'
 repo = 'williamboman/nvim-lsp-installer'
 on_event = 'BufEnter'
 on_source = 'nvim-lspconfig'
+hook_source = '''
+autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
+'''
 
 [[plugins]]
 repo = 'onsails/lspkind.nvim'
