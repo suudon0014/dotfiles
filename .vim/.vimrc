@@ -443,6 +443,9 @@ function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>cd..<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent><expr> o ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
+    nnoremap <buffer><silent><expr> s ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>"
+    nnoremap <buffer><silent><expr> v ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>"
     nnoremap <buffer><silent> <leader>b <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <leader>c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'copy'})<CR>
     nnoremap <buffer><silent> <leader>d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
