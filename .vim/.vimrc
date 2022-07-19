@@ -293,6 +293,11 @@ call ddu#custom#patch_global({
             \ 'collapsedIcon': "\ue5ff",
             \ 'expandedIcon': "\ue5fe",
         \ },
+        \ 'icon_filename': {
+            \ 'defaultIcon': {
+                \ 'icon': "\ue612",
+            \ },
+        \ },
     \ },
 \ })
 
