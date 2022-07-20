@@ -241,6 +241,9 @@ call ddu#custom#patch_global({
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
+        \ 'filer': {
+            \ 'split': 'floating',
+        \ },
     \ },
     \ 'sourceParams': {
         \ 'file_rec': {
@@ -281,6 +284,17 @@ call ddu#custom#patch_global({
         \ },
         \ 'help': {
             \ 'defaultAction': 'vsplit',
+        \ },
+    \ },
+    \ 'actionOptions': {
+        \ 'narrow': {
+            \ 'quit': v:false,
+        \ },
+        \ 'cd': {
+            \ 'quit': v:false,
+        \ },
+        \ 'dirmark': {
+            \ 'quit': v:false,
         \ },
     \ },
     \ 'filterParams': {
@@ -374,6 +388,11 @@ call ddu#custom#patch_local('dirmark_custom', {
         \ },
     \ },
     \ 'sources': [{'name': 'dirmark'}],
+    \ 'actionOptions': {
+        \ 'cd': {
+            \ 'quit': v:true,
+        \ },
+    \ },
 \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
@@ -414,25 +433,10 @@ endfunction
 
 call ddu#custom#patch_local('filer', {
     \ 'ui': 'filer',
-    \ 'uiParams': {
-        \ 'filer': {
-            \ 'split': 'floating',
-        \ },
-    \},
     \ 'sources': [{'name': 'file',}],
     \ 'sourceOptions': {
         \ 'file': {'columns': ['icon_filename']}
     \ },
-    \ 'actionOptions': {
-        \ 'narrow': {
-            \ 'quit': v:false,
-        \ },
-        \ 'cd': {
-            \ 'quit': v:false,
-        \ },
-        \ 'dirmark': {
-            \ 'quit': v:false,
-        \ },
     \ },
 \ })
 
