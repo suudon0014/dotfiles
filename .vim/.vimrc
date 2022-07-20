@@ -309,7 +309,7 @@ call ddu#custom#patch_global({
         \ },
         \ 'icon_filename': {
             \ 'defaultIcon': {
-                \ 'icon': "\ue612",
+                \ 'icon': "\uf016",
             \ },
         \ },
     \ },
