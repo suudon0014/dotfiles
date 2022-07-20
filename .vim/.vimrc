@@ -441,6 +441,51 @@ call ddu#custom#patch_local('filer_single', {
     \ 'sourceOptions': {
         \ 'file': {'columns': ['icon_filename']}
     \ },
+\ })
+
+nnoremap <silent> ,fid :call <SID>DduFilerDualStart()<CR>
+function! s:DduFilerDualStart() abort
+    let s:win_and_preview_pos = <SID>get_ddu_win_and_preview_pos()
+
+    let s:ui_params_left = {
+        \ 'winWidth': s:win_and_preview_pos['winWidth'],
+        \ 'winCol': s:win_and_preview_pos['winCol'],
+        \ 'winHeight': s:win_and_preview_pos['winHeight'],
+        \ 'winRow': s:win_and_preview_pos['winRow'],
+    \ }
+    let s:ui_params_right = {
+        \ 'winWidth': s:win_and_preview_pos['previewWidth'],
+        \ 'winCol': s:win_and_preview_pos['previewCol'],
+        \ 'winHeight': s:win_and_preview_pos['previewHeight'],
+        \ 'winRow': s:win_and_preview_pos['previewRow'],
+    \ }
+
+    call ddu#start({
+        \ 'name': 'filer_dual_right',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params_right,
+    \ }})
+    call ddu#start({
+        \ 'name': 'filer_dual_left',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params_left,
+    \ }})
+
+endfunction
+
+call ddu#custom#patch_local('filer_dual_left', {
+    \ 'ui': 'filer',
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
+    \ },
+\ })
+
+call ddu#custom#patch_local('filer_dual_right', {
+    \ 'ui': 'filer',
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
     \ },
 \ })
 
