@@ -57,6 +57,20 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Aliases
+alias ll='ls -laht'
+alias la='ls -a'
+alias dc='docker compose'
+alias gst='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gap='git add -p'
+alias gcm='(){git commit $1}'
+alias gp='git push'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gsw='git switch'
+
 # Plugins
 zinit light "zsh-users/zsh-completions"
 zinit light "zsh-users/zsh-autosuggestions"
