@@ -425,7 +425,7 @@ function! s:ddu_filter_my_settings() abort
     nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
-nnoremap <silent> ,fis :call <SID>DduFilerSingleStart()<CR>
+nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 function! s:DduFilerSingleStart() abort
     let s:ui_params = <SID>get_ddu_win_pos()
     call ddu#start({
@@ -443,7 +443,7 @@ call ddu#custom#patch_local('filer_single', {
     \ },
 \ })
 
-nnoremap <silent> ,fid :call <SID>DduFilerDualStart()<CR>
+nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
 function! s:DduFilerDualStart() abort
     let s:win_and_preview_pos = <SID>get_ddu_win_and_preview_pos()
 
@@ -489,7 +489,7 @@ call ddu#custom#patch_local('filer_dual_right', {
     \ },
 \ })
 
-nnoremap <silent> ,fib :call ddu#start({'name': 'filer_side_bar'})<CR>
+nnoremap <silent> ,t :call ddu#start({'name': 'filer_side_bar'})<CR>
 call ddu#custom#patch_local('filer_side_bar', {
     \ 'ui': 'filer',
     \ 'uiParams': {
