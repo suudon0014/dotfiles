@@ -425,13 +425,17 @@ function! s:ddu_filter_my_settings() abort
     nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
-nnoremap <silent> ,fi :call <SID>DduFilerStart()<CR>
-function! s:DduFilerStart() abort
-    let s:win_pos = <SID>get_ddu_win_pos()
-    call ddu#start({'name': 'filer', 'uiParams': {'filer': s:win_pos}, })
+nnoremap <silent> ,fis :call <SID>DduFilerSingleStart()<CR>
+function! s:DduFilerSingleStart() abort
+    let s:ui_params = <SID>get_ddu_win_pos()
+    call ddu#start({
+        \ 'name': 'filer_single',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params,
+    \ }})
 endfunction
 
-call ddu#custom#patch_local('filer', {
+call ddu#custom#patch_local('filer_single', {
     \ 'ui': 'filer',
     \ 'sources': [{'name': 'file',}],
     \ 'sourceOptions': {
