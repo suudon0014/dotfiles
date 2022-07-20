@@ -510,12 +510,16 @@ call ddu#custom#patch_local('filer_side_bar', {
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
-    nnoremap <buffer><silent><expr> l ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" : ""
+    nnoremap <buffer><silent><expr> l ddu#ui#filer#is_directory() ?
+        \ "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
     nnoremap <buffer><silent><expr> h ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" : ""
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>cd..<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent><expr> <CR> ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
+    nnoremap <buffer><silent><expr> <CR> ddu#ui#filer#is_directory() ?
+        \ "<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
     nnoremap <buffer><silent> r <Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent><expr> o ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
     nnoremap <buffer><silent><expr> s ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'split'}})<CR>"
