@@ -489,6 +489,25 @@ call ddu#custom#patch_local('filer_dual_right', {
     \ },
 \ })
 
+nnoremap <silent> ,fib :call ddu#start({'name': 'filer_side_bar'})<CR>
+call ddu#custom#patch_local('filer_side_bar', {
+    \ 'ui': 'filer',
+    \ 'uiParams': {
+        \ 'filer': {
+            \ 'split': 'vertical',
+            \ 'splitDirection': 'topleft',
+            \ 'winWidth': 30,
+    \ }},
+    \ 'uiOptions': {
+        \ 'filer': {
+            \ 'toggle': v:true,
+    \ }},
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
+    \ },
+\ })
+
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
     nnoremap <buffer><silent><expr> l ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" : ""
