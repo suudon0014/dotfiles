@@ -31,7 +31,9 @@ lsp_installer.on_server_ready(function(server)
             "--all-scopes-completion",
             "--background-index",
             "--clang-tidy",
-            "--header-insertion=never"
+            "--completion-style=detailed",
+            "--header-insertion=never",
+            "--limit-results=0",
         }
         opts.cmd = cmd
     end
