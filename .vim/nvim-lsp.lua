@@ -26,7 +26,7 @@ lsp_installer.on_server_ready(function(server)
     local opts = {}
 
     if server.name == 'clangd' then
-        local cmd = {
+        opts.cmd = {
             "clangd",
             "--all-scopes-completion",
             "--background-index",
@@ -35,7 +35,6 @@ lsp_installer.on_server_ready(function(server)
             "--header-insertion=never",
             "--limit-results=0",
         }
-        opts.cmd = cmd
     end
 
     opts.on_attach = on_attach
