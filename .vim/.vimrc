@@ -72,6 +72,10 @@ if dein#load_state(s:dein_dir)
     call dein#save_state()
 endif
 
+let g:dein#install_max_processes = 8
+let g:dein#install_process_timeout = 1800
+let g:dein#install_progress_type = 'floating'
+
 "install if there are plugins not installed
 function! s:deinInstall()
     if dein#check_install()
