@@ -245,6 +245,9 @@ call ddu#custom#patch_global({
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
+        \ 'filer': {
+            \ 'split': 'floating',
+        \ },
     \ },
     \ 'sourceParams': {
         \ 'file_rec': {
@@ -287,6 +290,17 @@ call ddu#custom#patch_global({
             \ 'defaultAction': 'vsplit',
         \ },
     \ },
+    \ 'actionOptions': {
+        \ 'narrow': {
+            \ 'quit': v:false,
+        \ },
+        \ 'cd': {
+            \ 'quit': v:false,
+        \ },
+        \ 'dirmark': {
+            \ 'quit': v:false,
+        \ },
+    \ },
     \ 'filterParams': {
         \ 'matcher_fzf': {
             \ 'highlightMatched': 'Search',
@@ -296,6 +310,11 @@ call ddu#custom#patch_global({
         \ 'filename': {
             \ 'collapsedIcon': "\ue5ff",
             \ 'expandedIcon': "\ue5fe",
+        \ },
+        \ 'icon_filename': {
+            \ 'defaultIcon': {
+                \ 'icon': "\uf016",
+            \ },
         \ },
     \ },
 \ })
@@ -373,6 +392,11 @@ call ddu#custom#patch_local('dirmark_custom', {
         \ },
     \ },
     \ 'sources': [{'name': 'dirmark'}],
+    \ 'actionOptions': {
+        \ 'cd': {
+            \ 'quit': v:true,
+        \ },
+    \ },
 \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
@@ -405,47 +429,105 @@ function! s:ddu_filter_my_settings() abort
     nnoremap <buffer><silent> q <Cmd>close<CR>
 endfunction
 
-nnoremap <silent> ,fi :call <SID>DduFilerStart()<CR>
-function! s:DduFilerStart() abort
-    let s:win_pos = <SID>get_ddu_win_pos()
-    call ddu#start({'name': 'filer', 'uiParams': {'filer': s:win_pos}, })
+nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
+function! s:DduFilerSingleStart() abort
+    let s:ui_params = <SID>get_ddu_win_pos()
+    call ddu#start({
+        \ 'name': 'filer_single',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params,
+    \ }})
 endfunction
 
-call ddu#custom#patch_local('filer', {
+call ddu#custom#patch_local('filer_single', {
     \ 'ui': 'filer',
-    \ 'uiParams': {
-        \ 'filer': {
-            \ 'split': 'floating',
-        \ },
-    \},
     \ 'sources': [{'name': 'file',}],
     \ 'sourceOptions': {
         \ 'file': {'columns': ['icon_filename']}
     \ },
-    \ 'actionOptions': {
-        \ 'narrow': {
-            \ 'quit': v:false,
-        \ },
-        \ 'cd': {
-            \ 'quit': v:false,
-        \ },
-        \ 'dirmark': {
-            \ 'quit': v:false,
-        \ },
+\ })
+
+nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
+function! s:DduFilerDualStart() abort
+    let s:win_and_preview_pos = <SID>get_ddu_win_and_preview_pos()
+
+    let s:ui_params_left = {
+        \ 'winWidth': s:win_and_preview_pos['winWidth'],
+        \ 'winCol': s:win_and_preview_pos['winCol'],
+        \ 'winHeight': s:win_and_preview_pos['winHeight'],
+        \ 'winRow': s:win_and_preview_pos['winRow'],
+    \ }
+    let s:ui_params_right = {
+        \ 'winWidth': s:win_and_preview_pos['previewWidth'],
+        \ 'winCol': s:win_and_preview_pos['previewCol'],
+        \ 'winHeight': s:win_and_preview_pos['previewHeight'],
+        \ 'winRow': s:win_and_preview_pos['previewRow'],
+    \ }
+
+    call ddu#start({
+        \ 'name': 'filer_dual_right',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params_right,
+    \ }})
+    call ddu#start({
+        \ 'name': 'filer_dual_left',
+        \ 'uiParams': {
+            \ 'filer': s:ui_params_left,
+    \ }})
+
+endfunction
+
+call ddu#custom#patch_local('filer_dual_left', {
+    \ 'ui': 'filer',
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
+    \ },
+\ })
+
+call ddu#custom#patch_local('filer_dual_right', {
+    \ 'ui': 'filer',
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
+    \ },
+\ })
+
+nnoremap <silent> ,t :call ddu#start({'name': 'filer_side_bar'})<CR>
+call ddu#custom#patch_local('filer_side_bar', {
+    \ 'ui': 'filer',
+    \ 'uiParams': {
+        \ 'filer': {
+            \ 'split': 'vertical',
+            \ 'splitDirection': 'topleft',
+            \ 'winWidth': 30,
+    \ }},
+    \ 'uiOptions': {
+        \ 'filer': {
+            \ 'toggle': v:true,
+    \ }},
+    \ 'sources': [{'name': 'file',}],
+    \ 'sourceOptions': {
+        \ 'file': {'columns': ['icon_filename']}
     \ },
 \ })
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
-    nnoremap <buffer><expr> <CR> ddu#ui#filer#is_directory() ?
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
-    nnoremap <buffer><silent> l <Cmd>call ddu#ui#filer#do_action('expandItem')<CR>
-    nnoremap <buffer><silent> h <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
-    nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
-    nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
+    nnoremap <buffer><silent><expr> l ddu#ui#filer#is_directory() ?
+        \ "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
+    nnoremap <buffer><silent><expr> h ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" : ""
+    nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
+    nnoremap <buffer><silent> <S-h> <Cmd>cd..<CR><Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR>
+    nnoremap <buffer><silent><expr> <CR> ddu#ui#filer#is_directory() ?
+        \ "<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
+    nnoremap <buffer><silent> r <Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
+    nnoremap <buffer><silent><expr> o ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
+    nnoremap <buffer><silent><expr> s ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'split'}})<CR>"
+    nnoremap <buffer><silent><expr> v ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'vsplit'}})<CR>"
     nnoremap <buffer><silent> <leader>b <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
     nnoremap <buffer><silent> <leader>c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'copy'})<CR>
     nnoremap <buffer><silent> <leader>d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
