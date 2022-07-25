@@ -159,6 +159,7 @@ repo = 'tpope/vim-surround'
 repo = 'Yggdroot/indentLine'
 hook_add = '''
     let g:indentLine_setConceal = 0
+    let g:indentLine_char = '¦'
 '''
 
 [[plugins]]
@@ -167,6 +168,15 @@ repo = 'bronson/vim-trailing-whitespace'
 # display match count
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
+hook_add = '''
+    nmap n <Plug>(anzu-n-with-echo)
+    nmap N <Plug>(anzu-N-with-echo)
+    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
+    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
+    set statusline=%{anzu#search_status()}
+    "hide highlight and anzu-status
+    nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
+'''
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -174,6 +184,7 @@ hook_add = '''
     augroup commentary
         autocmd!
         autocmd FileType cpp let b:commentary_format = '// %s'
+        autocmd FileType matlab let b:commentary_format = '% %s'
     augroup END
 '''
 
@@ -182,6 +193,9 @@ repo = 'kana/vim-submode'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+hook_add = '''
+    let g:EasyMotion_smartcase = 1
+'''
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
@@ -201,6 +215,42 @@ build = 'bash ./install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+hook_add = '''
+    nnoremap <silent> ,g :GFiles<CR>
+    nnoremap <silent> ,G :GFiles?<CR>
+    nnoremap <silent> ,h :History<CR>
+
+    "include dotfiles for ag searching via fzf
+    command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'ag --hidden --ignore .git -g ""'}), <bang>0)
+
+    command! -bang -nargs=* Ag
+        \ call fzf#vim#grep(
+        \ 'ag --column --color --hidden --ignore .git '.shellescape(<q-args>), 0,
+        \ <bang>0 ? fzf#vim#with_preview('up:60%')
+        \         : fzf#vim#with_preview('right:50%', '?'),
+        \ <bang>0)
+
+    " Using floating windows of Neovim to start fzf
+    if has('nvim')
+      let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+
+      function! FloatingFZF()
+        let width = float2nr(&columns * 0.9)
+        let height = float2nr(&lines * 0.6)
+        let opts = { 'relative': 'editor',
+                   \ 'row': (&lines - height) / 2,
+                   \ 'col': (&columns - width) / 2,
+                   \ 'width': width,
+                   \ 'height': height }
+
+        let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+        call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+      endfunction
+
+      let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
+'''
 
 [[plugins]]
 repo = 'yuki-yano/fzf-preview.vim'
