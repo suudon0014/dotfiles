@@ -24,11 +24,23 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
+local mason = require("mason")
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+local lspconfig = require("lspconfig")
+local mason_lspconfig = require("mason-lspconfig")
+mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
 
-    if server.name == 'clangd' then
+    if server_name == 'clangd' then
         opts.cmd = {
             "clangd",
             "--all-scopes-completion",
@@ -43,8 +55,8 @@ lsp_installer.on_server_ready(function(server)
     opts.on_attach = on_attach
     opts.capabilities = capabilities
 
-    server:setup(opts)
-end)
+    lspconfig[server_name].setup(opts)
+end })
 
 -- Etc.
 require("lspkind").init({})
