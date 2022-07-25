@@ -16,6 +16,19 @@ hook_source = '''
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'sh -c "cd app && yarn install"'
 depends = ['open-browser.vim']
+
+[[plugins]]
+repo = 'tani/glance-vim'
+hook_source = '''
+    let g:glance#markdown_breaks = v:true
+    let g:glance#markdown_html = v:true
+    let g:glance#markdown_linkify = v:true
+    let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
+    let g:glance#markdown_plugins = [
+        \ 'https://esm.sh/markdown-it-emoji',
+        \ 'https://esm.sh/markdown-it-mathjax3?bundle',
+    \ ]
+'''
 #end markdown
 
 [[plugins]]
@@ -40,6 +53,9 @@ hook_add = '''
 [[plugins]]
 repo = 'elzr/vim-json'
 on_ft = 'json'
+hook_add = '''
+    let g:vim_json_syntax_conceal = 0
+'''
 
 [[plugins]]
 repo = 'jupyter-vim/jupyter-vim'
@@ -87,6 +103,14 @@ on_event = 'BufEnter'
 repo = 'williamboman/nvim-lsp-installer'
 on_event = 'BufEnter'
 on_source = 'nvim-lspconfig'
+hook_source = '''
+autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
+'''
+
+[[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_event = 'BufEnter'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
@@ -108,10 +132,6 @@ on_event = 'BufEnter'
 hook_source = '''
     call popup_preview#enable()
 '''
-
-[[plugins]]
-repo = 'onsails/lspkind.nvim'
-on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'kkharji/lspsaga.nvim'
