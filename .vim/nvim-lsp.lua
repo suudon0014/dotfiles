@@ -37,6 +37,7 @@ mason.setup({
 
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
+
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
 
@@ -49,6 +50,14 @@ mason_lspconfig.setup_handlers({ function(server_name)
             "--completion-style=detailed",
             "--header-insertion=never",
             "--limit-results=0",
+        }
+    end
+
+    if server_name == 'sumneko_lua' then
+        opts.settings = {
+            Lua = {
+                diagnostics = { globals = {'vim'} },
+            }
         }
     end
 
