@@ -69,11 +69,19 @@ function! s:deinUpdate()
     if !empty(g:dein#install_github_api_token)
         call dein#check_update(v:true)
         echo "DeinUpdate completed."
+        echo dein#get_updates_log()
     else
         echo "[Error] Set $GITHUB_API_TOKEN and restart vim for DeinUpdate to work."
     endif
 endfunction
 
+" update all plugins strictly but slower than :DeinUpdate
+command! DeinStrictUpdate :call s:deinStrictUpdate()
+function! s:deinStrictUpdate()
+    call dein#update()
+    call dein#recache_runtimepath()
+    echo dein#get_updates_log()
+endfunction
 
 DeinInstall
 autocmd VimEnter * call dein#call_hook('post_source')
