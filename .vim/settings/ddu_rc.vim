@@ -99,7 +99,7 @@ function! s:set_ddu_win_and_preview_pos() abort
     \ }
 endfunction
 
-augroup AutoResizeWinPos
+augroup AutoResizeDduWinPos
     autocmd!
     autocmd VimEnter,VimResized * call s:set_ddu_win_pos()
     autocmd VimEnter,VimResized * call s:set_ddu_win_and_preview_pos()
