@@ -97,6 +97,3 @@ call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
 call submode#map('undo/redo', 'n', '', '-', 'g-')
 call submode#map('undo/redo', 'n', '', '+', 'g+')
 call submode#leave_with('undo/redo', 'n', '', 'e')
-
-"tab
-nnoremap sT :<C-u>Unite tab<CR>
