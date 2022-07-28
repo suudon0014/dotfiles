@@ -175,3 +175,11 @@ hook_add = '''
                 \ ' -winrow=' . s:deol_win_pos['winRow']
     endfunction
 '''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_event = 'BufEnter'
+hook_add = '''
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+'''
