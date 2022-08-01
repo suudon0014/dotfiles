@@ -100,24 +100,30 @@ repo = 'Shougo/ddc-nvim-lsp'
 on_event = 'BufEnter'
 
 [[plugins]]
-repo = 'williamboman/nvim-lsp-installer'
-on_event = 'BufEnter'
-on_source = 'nvim-lspconfig'
+repo = 'williamboman/mason.nvim'
+on_event = 'VimEnter'
 hook_source = '''
-autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
+    source ~/dotfiles/.vim/nvim-lsp.lua
 '''
 
 [[plugins]]
-repo = 'onsails/lspkind.nvim'
-on_event = 'BufEnter'
-on_source = 'nvim-lspconfig'
+repo = 'williamboman/mason-lspconfig.nvim'
+on_source = ['mason.nvim']
+hook_source = '''
+    autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
+'''
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_event = 'BufEnter'
-hook_source = '''
-source ~/dotfiles/.vim/nvim-lsp.lua
-'''
+on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'kkharji/lspsaga.nvim'
+on_source = ['mason.nvim']
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
@@ -132,10 +138,6 @@ on_event = 'BufEnter'
 hook_source = '''
     call popup_preview#enable()
 '''
-
-[[plugins]]
-repo = 'kkharji/lspsaga.nvim'
-on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'folke/trouble.nvim'

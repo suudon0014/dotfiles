@@ -10,6 +10,12 @@
    }
  )
 
+vim.cmd [[
+highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
+highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
+highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
+]]
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -30,17 +36,38 @@ local on_attach = function(client, bufnr)
         if client.resolved_capabilities.document_range_formatting then
             buf_set_keymap('v', '<C-l>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
         end
+        vim.cmd[[
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]]
 end
 
 -- Set up of LSP servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
+local mason = require("mason")
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+local lspconfig = require("lspconfig")
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup()
+mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
 
-    if server.name == 'clangd' then
+    if server_name == 'clangd' then
         opts.cmd = {
             "clangd",
             "--all-scopes-completion",
@@ -52,11 +79,20 @@ lsp_installer.on_server_ready(function(server)
         }
     end
 
+    if server_name == 'sumneko_lua' then
+        opts.settings = {
+            Lua = {
+                diagnostics = { globals = {'vim'} },
+            }
+        }
+    end
+
     opts.on_attach = on_attach
     opts.capabilities = capabilities
 
-    server:setup(opts)
-end)
+    lspconfig[server_name].setup(opts)
+end })
 
 -- Etc.
-require("lspkind").init({})
+require("lspkind").init()
+require("lspsaga").init_lsp_saga()
