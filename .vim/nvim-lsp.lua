@@ -1,3 +1,15 @@
+ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+   vim.lsp.handlers.hover, {
+     border = "single"
+   }
+ )
+
+ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+   vim.lsp.handlers.signature_help, {
+     border = "single"
+   }
+ )
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

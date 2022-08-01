@@ -145,3 +145,43 @@ on_event = 'BufEnter'
 hook_add = '''
     nnoremap <C-l>t :TroubleToggle<CR>
 '''
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_event = 'VimEnter'
+hook_add = '''
+    let g:deol#enable_ddc_completion = v:true
+    let g:deol#floating_border = 'single'
+    tnoremap <Esc> <C-\><C-n>
+
+    function! s:set_deol_win_pos() abort
+        let s:deol_win_pos = {
+            \ 'winWidth': float2nr(&columns * 0.9),
+            \ 'winCol': float2nr(&columns * 0.05),
+            \ 'winHeight': float2nr(&lines * 0.6),
+            \ 'winRow': float2nr(&lines * 0.2),
+        \ }
+    endfunction
+
+    augroup AutoResizeDeolWinPos
+        autocmd!
+        autocmd VimEnter,VimResized * call s:set_deol_win_pos()
+    augroup END
+
+    nnoremap <silent>,z :<C-u>call <SID>deol_zsh()<CR>
+    function! s:deol_zsh() abort
+        execute 'Deol zsh -split=floating -start-insert=v:false -edit=v:true' .
+                \ ' -winwidth=' . s:deol_win_pos['winWidth']
+                \ ' -wincol=' . s:deol_win_pos['winCol']
+                \ ' -winheight=' . s:deol_win_pos['winHeight']
+                \ ' -winrow=' . s:deol_win_pos['winRow']
+    endfunction
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_event = 'BufEnter'
+hook_add = '''
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+'''

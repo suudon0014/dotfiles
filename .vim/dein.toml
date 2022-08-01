@@ -110,12 +110,6 @@ repo = 'tomasr/molokai'
 repo = 'GertjanReynaert/cobalt2-vim-theme'
 
 [[plugins]]
-repo = 'haystackandroid/stellarized'
-
-[[plugins]]
-repo = 'haystackandroid/nemo'
-
-[[plugins]]
 repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]

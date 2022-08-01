@@ -76,10 +76,18 @@ function! s:ddu_filer_mappings() abort
     nnoremap <buffer> <Esc><Esc> <Nop>
 endfunction
 
-
 " functions and commands
-function! s:get_ddu_win_and_preview_pos() abort
-    return {
+function! s:set_ddu_win_pos() abort
+    let s:ddu_win_pos = {
+        \ 'winWidth': float2nr(&columns * 0.9),
+        \ 'winCol': float2nr(&columns * 0.05),
+        \ 'winHeight': float2nr(&lines * 0.6),
+        \ 'winRow': float2nr(&lines * 0.2),
+    \ }
+endfunction
+
+function! s:set_ddu_win_and_preview_pos() abort
+    let s:ddu_win_and_preview_pos = {
         \ 'winWidth': float2nr(&columns * 0.45),
         \ 'winCol': float2nr(&columns * 0.05),
         \ 'winHeight': float2nr(&lines * 0.6),
@@ -88,43 +96,40 @@ function! s:get_ddu_win_and_preview_pos() abort
         \ 'previewCol': float2nr(&columns * 0.5),
         \ 'previewHeight': float2nr(&lines * 0.6),
         \ 'previewRow': float2nr(&lines * 0.2),
-        \ }
-endfunction
-
-function! s:get_ddu_win_pos() abort
-    return {
-        \ 'winWidth': float2nr(&columns * 0.9),
-        \ 'winCol': float2nr(&columns * 0.05),
-        \ 'winHeight': float2nr(&lines * 0.6),
-        \ 'winRow': float2nr(&lines * 0.2),
     \ }
 endfunction
 
+augroup AutoResizeDduWinPos
+    autocmd!
+    autocmd VimEnter,VimResized * call s:set_ddu_win_pos()
+    autocmd VimEnter,VimResized * call s:set_ddu_win_and_preview_pos()
+augroup END
+
 function! s:DduStart(source, preview_enable, custom_enable) abort
     if a:preview_enable
-        let s:win_pos = <SID>get_ddu_win_and_preview_pos()
-        let s:win_pos['autoAction'] = {'name': 'preview'}
+        let s:ui_params = s:ddu_win_and_preview_pos
+        let s:ui_params['autoAction'] = {'name': 'preview'}
     else
-        let s:win_pos = <SID>get_ddu_win_pos()
+        let s:ui_params = s:ddu_win_pos
     endif
 
     if a:custom_enable
         call ddu#start({'name': a:source,
-            \ 'uiParams': {'ff': s:win_pos},
+            \ 'uiParams': {'ff': s:ui_params},
         \ })
     else
         call ddu#start({'sources': [{'name': a:source}],
-            \ 'uiParams': {'ff': s:win_pos},
+            \ 'uiParams': {'ff': s:ui_params},
         \ })
     endif
 endfunction
 
 command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
 function! s:DduGrep(word) abort
-    let s:win_pos = <SID>get_ddu_win_and_preview_pos()
-    let s:win_pos['autoAction'] = {'name': 'preview'}
+    let s:ui_params = s:ddu_win_and_preview_pos
+    let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
-        \ 'uiParams': {'ff': s:win_pos},
+        \ 'uiParams': {'ff': s:ui_params},
         \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
     \ })
 endfunction
@@ -134,7 +139,7 @@ function! s:DduGrepCWord() abort
 endfunction
 
 function! s:DduFilerSingleStart() abort
-    let s:ui_params = <SID>get_ddu_win_pos()
+    let s:ui_params = s:ddu_win_pos
     call ddu#start({
         \ 'name': 'filer_single',
         \ 'uiParams': {
@@ -143,7 +148,7 @@ function! s:DduFilerSingleStart() abort
 endfunction
 
 function! s:DduFilerDualStart() abort
-    let s:win_and_preview_pos = <SID>get_ddu_win_and_preview_pos()
+    let s:win_and_preview_pos = s:ddu_win_and_preview_pos
 
     let s:ui_params_left = {
         \ 'winWidth': s:win_and_preview_pos['winWidth'],
@@ -169,7 +174,6 @@ function! s:DduFilerDualStart() abort
             \ 'filer': s:ui_params_left,
     \ }})
 endfunction
-
 
 " patches
 call ddu#custom#patch_global({
@@ -319,4 +323,3 @@ call ddu#custom#patch_local('filer_side_bar', {
         \ 'file': {'columns': ['icon_filename']}
     \ },
 \ })
-
