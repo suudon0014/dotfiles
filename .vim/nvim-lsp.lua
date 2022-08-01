@@ -50,6 +50,7 @@ mason.setup({
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 
+mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
 
@@ -80,4 +81,5 @@ mason_lspconfig.setup_handlers({ function(server_name)
 end })
 
 -- Etc.
-require("lspkind").init({})
+require("lspkind").init()
+require("lspsaga").init_lsp_saga()
