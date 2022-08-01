@@ -10,6 +10,12 @@
    }
  )
 
+vim.cmd [[
+highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
+highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
+highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
+]]
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -30,6 +36,13 @@ local on_attach = function(client, bufnr)
         if client.resolved_capabilities.document_range_formatting then
             buf_set_keymap('v', '<C-l>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
         end
+        vim.cmd[[
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]]
 end
 
 -- Set up of LSP servers
