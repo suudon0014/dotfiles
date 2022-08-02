@@ -285,26 +285,32 @@ call ddu#custom#patch_local('dirmark_custom', {
 
 call ddu#custom#patch_local('filer_single', {
     \ 'ui': 'filer',
-    \ 'sources': [{'name': 'file',}],
-    \ 'sourceOptions': {
-        \ 'file': {'columns': ['icon_filename']}
-    \ },
+    \ 'sources': [{
+        \ 'name': 'file',
+        \ 'options': {
+            \ 'columns': ['icon_filename']
+        \ },
+    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_dual_left', {
     \ 'ui': 'filer',
-    \ 'sources': [{'name': 'file',}],
-    \ 'sourceOptions': {
-        \ 'file': {'columns': ['icon_filename']}
-    \ },
+    \ 'sources': [{
+        \ 'name': 'file',
+        \ 'options': {
+            \ 'columns': ['icon_filename']
+        \ },
+    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_dual_right', {
     \ 'ui': 'filer',
-    \ 'sources': [{'name': 'file',}],
-    \ 'sourceOptions': {
-        \ 'file': {'columns': ['icon_filename']}
-    \ },
+    \ 'sources': [{
+        \ 'name': 'file',
+        \ 'options': {
+            \ 'columns': ['icon_filename']
+        \ },
+    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_side_bar', {
@@ -319,8 +325,10 @@ call ddu#custom#patch_local('filer_side_bar', {
         \ 'filer': {
             \ 'toggle': v:true,
     \ }},
-    \ 'sources': [{'name': 'file',}],
-    \ 'sourceOptions': {
-        \ 'file': {'columns': ['icon_filename']}
-    \ },
+    \ 'sources': [{
+        \ 'name': 'file',
+        \ 'options': {
+            \ 'columns': ['icon_filename']
+        \ },
+    \ }],
 \ })
