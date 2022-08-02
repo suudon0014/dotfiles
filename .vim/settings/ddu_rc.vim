@@ -11,7 +11,7 @@ nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
 nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
 nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false)<CR>
-nnoremap <silent> ,t :call ddu#start({'name': 'filer_side_bar'})<CR>
+nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
 
@@ -146,7 +146,15 @@ function! s:DduFilerSingleStart() abort
         \ 'name': 'filer_single',
         \ 'uiParams': {
             \ 'filer': s:ui_params,
-    \ }})
+        \ },
+        \ 'sources': [{
+            \ 'name': 'file',
+            \ 'options': {
+                \ 'columns': ['icon_filename'],
+                \ 'path': getcwd(),
+            \ },
+        \ }],
+    \ })
 endfunction
 
 function! s:DduFilerDualStart() abort
@@ -169,12 +177,41 @@ function! s:DduFilerDualStart() abort
         \ 'name': 'filer_dual_right',
         \ 'uiParams': {
             \ 'filer': s:ui_params_right,
-    \ }})
+        \ },
+        \ 'sources': [{
+            \ 'name': 'file',
+            \ 'options': {
+                \ 'columns': ['icon_filename'],
+                \ 'path': getcwd(),
+            \ },
+        \ }],
+    \ })
     call ddu#start({
         \ 'name': 'filer_dual_left',
         \ 'uiParams': {
             \ 'filer': s:ui_params_left,
-    \ }})
+        \ },
+        \ 'sources': [{
+            \ 'name': 'file',
+            \ 'options': {
+                \ 'columns': ['icon_filename'],
+                \ 'path': getcwd(),
+            \ },
+        \ }],
+    \ })
+endfunction
+
+function! s:DduFilerSideBarStart() abort
+    call ddu#start({
+        \ 'name': 'filer_side_bar',
+        \ 'sources': [{
+            \ 'name': 'file',
+            \ 'options': {
+                \ 'columns': ['icon_filename'],
+                \ 'path': getcwd(),
+            \ },
+        \ }],
+    \ })
 endfunction
 
 " patches
@@ -286,32 +323,14 @@ call ddu#custom#patch_local('dirmark_custom', {
 
 call ddu#custom#patch_local('filer_single', {
     \ 'ui': 'filer',
-    \ 'sources': [{
-        \ 'name': 'file',
-        \ 'options': {
-            \ 'columns': ['icon_filename']
-        \ },
-    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_dual_left', {
     \ 'ui': 'filer',
-    \ 'sources': [{
-        \ 'name': 'file',
-        \ 'options': {
-            \ 'columns': ['icon_filename']
-        \ },
-    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_dual_right', {
     \ 'ui': 'filer',
-    \ 'sources': [{
-        \ 'name': 'file',
-        \ 'options': {
-            \ 'columns': ['icon_filename']
-        \ },
-    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_side_bar', {
@@ -326,10 +345,4 @@ call ddu#custom#patch_local('filer_side_bar', {
         \ 'filer': {
             \ 'toggle': v:true,
     \ }},
-    \ 'sources': [{
-        \ 'name': 'file',
-        \ 'options': {
-            \ 'columns': ['icon_filename']
-        \ },
-    \ }],
 \ })
