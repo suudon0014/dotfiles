@@ -90,7 +90,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': '[cmdhist]',
     \ },
 \ })
-
+call ddc#custom#patch_global('backspaceCompletion', v:true)
 
 call ddc#enable()
 
