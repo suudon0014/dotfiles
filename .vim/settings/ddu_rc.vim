@@ -53,6 +53,7 @@ function! s:ddu_filer_mappings() abort
     nnoremap <buffer><silent><expr> h ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" : ""
     nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
     nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
+    nnoremap <buffer><silent> c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR>
     nnoremap <buffer><silent> a <Cmd>call ddu#ui#filer#do_action('toggleAllItems')<CR>
     nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent><expr> <CR> ddu#ui#filer#is_directory() ?
