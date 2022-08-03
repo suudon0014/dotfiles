@@ -187,6 +187,24 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'vim-skk/skkeleton'
+on_event = 'BufEnter'
+hook_add = '''
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+    \ })
+'''
+
+[[plugins]]
 repo = 'Shougo/pum.vim'
 # depends = ['vim-vsnip', 'vim-vsnip-integ']
 on_event = 'VimEnter'
