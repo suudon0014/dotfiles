@@ -83,8 +83,11 @@ mason_lspconfig.setup_handlers({ function(server_name)
     if server_name == 'sumneko_lua' then
         opts.settings = {
             Lua = {
-                diagnostics = { globals = {'vim'} },
-            }
+              runtime = {version = 'LuaJIT'},
+              diagnostics = {globals = {'vim'}},
+              workspace = {library = vim.api.nvim_get_runtime_file("", true)},
+              telemetry = {enable = false},
+            },
         }
     end
 
