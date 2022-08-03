@@ -99,3 +99,7 @@ hook_source = '''
         call lightline#update()
     endfunction
 '''
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+on_source = ['lightline.vim']

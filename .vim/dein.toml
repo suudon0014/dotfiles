@@ -96,9 +96,6 @@ repo = 'ryota2357/ddu-column-icon_filename'
 # ddu.vim end
 
 [[plugins]]
-repo = 'itchyny/vim-gitbranch'
-
-[[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
