@@ -176,9 +176,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'kana/vim-submode'
-
-[[plugins]]
 repo = 'easymotion/vim-easymotion'
 hook_add = '''
     let g:EasyMotion_smartcase = 1
