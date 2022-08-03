@@ -12,13 +12,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/pum.vim'
-depends = ['hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ']
-hook_add = '''
-autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
-'''
-
-[[plugins]]
 repo = 'Shougo/ddc-around'
 
 [[plugins]]
@@ -331,26 +324,6 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-# on_event = 'VimEnter'
-# depends = ['vim-vsnip-integ', 'friendly-snippets']
-hook_add = '''
-    imap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
-    smap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
-    imap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-    smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-    imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-    smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-    "let g:vsnip_filetypes = {}
-'''
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-
-[[plugins]]
-repo = 'rafamadriz/friendly-snippets'
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
