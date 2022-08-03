@@ -235,49 +235,13 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lambdalisue/gina.vim'
-
-[[plugins]]
 repo = 'lambdalisue/gin.vim'
-
-# fern
-[[plugins]]
-repo = 'lambdalisue/fern.vim'
-hook_add = '''
-    let g:fern#default_hidden = 1
-    let g:fern#scheme#bookmark#store#file = "~/.fern/bookmark.json"
-    nmap <silent><leader>t :Fern . -drawer -toggle<CR>
-
-    function! s:init_fern() abort
-        nmap <buffer> s <Nop>
-        nmap <buffer> fs <Plug>(fern-action-open:select)
-        nmap <silent><buffer> fb :Fern bookmark:///<CR>
-        nmap <buffer> fc <Plug>(fern-action-cd) :echo "cd to " . getcwd()<CR>
-    endfunction
-
-    augroup fern-custom
-        autocmd! *
-        autocmd FileType fern call s:init_fern()
-    augroup END
-'''
-
-[[plugins]]
-repo = 'lambdalisue/nerdfont.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-hook_add = '''
-    let g:fern#renderer = "nerdfont"
-'''
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
-
-[[plugins]]
-repo = 'lambdalisue/fern-bookmark.vim'
 
 [[plugins]]
 repo = 'goerz/jupytext.vim'
