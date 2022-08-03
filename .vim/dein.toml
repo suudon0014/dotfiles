@@ -95,44 +95,6 @@ repo = 'Shougo/ddu-column-filename'
 repo = 'ryota2357/ddu-column-icon_filename'
 # ddu.vim end
 
-#colorscheme start
-[[plugins]]
-repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'GertjanReynaert/cobalt2-vim-theme'
-
-[[plugins]]
-repo = 'ayu-theme/ayu-vim'
-
-[[plugins]]
-repo = 'NLKNguyen/papercolor-theme'
-
-[[plugins]]
-repo = 'ulwlu/elly.vim'
-
-[[plugins]]
-repo = 'morhetz/gruvbox'
-
-[[plugins]]
-repo = 'cocopon/iceberg.vim'
-
-[[plugins]]
-repo = 'savq/melange'
-
-[[plugins]]
-repo = 'sainnhe/edge'
-
-[[plugins]]
-repo = 'christianchiarulli/nvcode-color-schemes.vim'
-hook_add = '''
-    let g:nvcode_termcolors = 256
-'''
-
-[[plugins]]
-repo = 'sainnhe/sonokai'
-# colorscheme end
-
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
