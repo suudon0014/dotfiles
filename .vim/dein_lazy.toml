@@ -205,6 +205,14 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Matts966/skk-vconv.vim'
+on_source = ['skkeleton']
+hook_add = '''
+    let g:skk_vconv#no_default_mappings = v:true
+    vmap <C-s> <Plug>(skk-vconv:conv)
+'''
+
+[[plugins]]
 repo = 'Shougo/pum.vim'
 # depends = ['vim-vsnip', 'vim-vsnip-integ']
 on_event = 'VimEnter'
