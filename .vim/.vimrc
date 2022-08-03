@@ -7,14 +7,11 @@ source ~/dotfiles/.vim/dein_rc.vim
 set runtimepath+=~/dotfiles/.vim/
 runtime! settings/*.vim
 
-colorscheme sonokai
-
 augroup myAuGroup
     autocmd!
     autocmd BufWritePost ?* if expand('%') != '' && &buftype !~ 'nofile' | silent! mkview! | endif
     autocmd BufRead ?* if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
     autocmd QuickFixCmdPost *grep* cwindow
-    autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
     autocmd VimLeave * mks! ~/session.vim
 augroup END
 
