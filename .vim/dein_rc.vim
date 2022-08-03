@@ -25,7 +25,7 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     "create plugins list file using TOML format beforehand
-    let s:rc_dir = expand('~/dotfiles/.vim')
+    let s:rc_dir = expand('~/dotfiles/.vim/toml')
     let s:toml = s:rc_dir . '/dein.toml'
     let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
     let s:submode_lazy_toml = s:rc_dir . '/dein_submode_lazy.toml'
