@@ -238,12 +238,6 @@ hook_add = '''
 repo = 'lambdalisue/gin.vim'
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
-[[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
-
-[[plugins]]
 repo = 'goerz/jupytext.vim'
 hook_add = '''
     let g:jupytext_fmt = 'py:percent'
