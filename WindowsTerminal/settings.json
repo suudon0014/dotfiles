@@ -90,7 +90,8 @@
             "foreground": "#FFFFFF",
             "opacity": 70,
             "startingDirectory": "%USERPROFILE%",
-            "useAcrylic": true
+            "useAcrylic": true,
+            "padding": "0, 0, -20, 0"
         },
         "list": 
         [

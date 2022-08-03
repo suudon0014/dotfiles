@@ -1,0 +1,371 @@
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+on_event = 'InsertEnter'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+hook_source = '''
+    nmap <C-p> <Plug>MarkdownPreview
+    let g:mkdp_auto_start = 0
+    let g:mkdp_auto_close = 0
+'''
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && yarn install"'
+depends = ['open-browser.vim']
+
+[[plugins]]
+repo = 'tani/glance-vim'
+on_ft = 'markdown'
+hook_source = '''
+    let g:glance#markdown_breaks = v:true
+    let g:glance#markdown_html = v:true
+    let g:glance#markdown_linkify = v:true
+    let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
+    let g:glance#markdown_plugins = [
+        \ 'https://esm.sh/markdown-it-emoji',
+        \ 'https://esm.sh/markdown-it-mathjax3?bundle',
+    \ ]
+'''
+#end markdown
+
+[[plugins]]
+repo = 'jmcantrell/vim-virtualenv'
+on_ft = 'python'
+hook_source = '''
+    let g:virtualenv_directory = '.'
+'''
+
+[[plugins]]
+repo = 'rhysd/reply.vim'
+on_cmd = ['Repl', 'ReplAuto']
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+on_event = 'BufEnter'
+hook_add = '''
+    let g:linediff_first_buffer_command = 'leftabove new'
+    let g:linediff_second_buffer_command = 'rightbelow vertical new'
+'''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+hook_add = '''
+    let g:vim_json_syntax_conceal = 0
+'''
+
+[[plugins]]
+repo = 'jupyter-vim/jupyter-vim'
+on_ft = 'python'
+hook_add = '''
+    nnoremap <buffer> <silent> <leader>jc :JupyterConnect<CR>
+    nnoremap <buffer> <silent> <leader>jd :JupyterDiconnect<CR>
+    nnoremap <buffer> <silent> <leader>js :JupyterSendCell<CR>
+    nnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+    vnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+on_event = 'BufRead'
+hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
+# hook_post_update = 'TSUpdate'
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = 'tex'
+hook_add = '''
+    let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-pdfdvi',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+on_event = 'VimEnter'
+hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+on_source = ['mason.nvim']
+hook_source = '''
+    autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
+'''
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'kkharji/lspsaga.nvim'
+on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'matsui54/denops-signature_help'
+on_event = 'BufEnter'
+hook_source = '''
+    call signature_help#enable()
+'''
+
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_event = 'BufEnter'
+hook_source = '''
+    call popup_preview#enable()
+'''
+
+[[plugins]]
+repo = 'folke/trouble.nvim'
+on_event = 'BufEnter'
+hook_add = '''
+    nnoremap <C-l>t :TroubleToggle<CR>
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+on_source = ['trouble.nvim']
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+on_source = ['trouble.nvim']
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_event = 'VimEnter'
+hook_add = '''
+    let g:deol#enable_ddc_completion = v:true
+    let g:deol#floating_border = 'single'
+    tnoremap <Esc> <C-\><C-n>
+
+    function! s:set_deol_win_pos() abort
+        let s:deol_win_pos = {
+            \ 'winWidth': float2nr(&columns * 0.9),
+            \ 'winCol': float2nr(&columns * 0.05),
+            \ 'winHeight': float2nr(&lines * 0.6),
+            \ 'winRow': float2nr(&lines * 0.2),
+        \ }
+    endfunction
+
+    augroup AutoResizeDeolWinPos
+        autocmd!
+        autocmd VimEnter,VimResized * call s:set_deol_win_pos()
+    augroup END
+
+    nnoremap <silent>,z :<C-u>call <SID>deol_zsh()<CR>
+    function! s:deol_zsh() abort
+        execute 'Deol zsh -split=floating -start-insert=v:false -edit=v:true' .
+                \ ' -winwidth=' . s:deol_win_pos['winWidth']
+                \ ' -wincol=' . s:deol_win_pos['winCol']
+                \ ' -winheight=' . s:deol_win_pos['winHeight']
+                \ ' -winrow=' . s:deol_win_pos['winRow']
+    endfunction
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_event = 'BufEnter'
+hook_add = '''
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_event = 'BufEnter'
+hook_add = '''
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+    \ })
+'''
+
+[[plugins]]
+repo = 'Matts966/skk-vconv.vim'
+on_source = ['skkeleton']
+hook_add = '''
+    let g:skk_vconv#no_default_mappings = v:true
+    vmap <C-s> <Plug>(skk-vconv:conv)
+'''
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+# depends = ['vim-vsnip', 'vim-vsnip-integ']
+on_event = 'VimEnter'
+hook_add = '''
+autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_event = 'BufEnter'
+hook_add = '''
+    imap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
+    smap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
+    imap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+    imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+    "let g:vsnip_filetypes = {}
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+on_source = ['vim-vsnip']
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_source = ['vim-vsnip']
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+on_event = 'BufEnter'
+hook_add = '''
+    let g:precious_enable_switch_CursorMoved = {
+        \ "*": 0,
+        \ "help": 1,
+        \ "toml": 1,
+    \ }
+
+    augroup precious
+        autocmd! *
+        autocmd InsertEnter * :PreciousSwitch
+        autocmd InsertLeave * :PreciousReset
+    augroup END
+'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+on_event = 'BufEnter'
+hook_add = '''
+    nmap <C-j> <Plug>(edgemotion-j)
+    nmap <C-k> <Plug>(edgemotion-k)
+    vmap <C-j> <Plug>(edgemotion-j)
+    vmap <C-k> <Plug>(edgemotion-k)
+'''
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+on_event = 'BufEnter'
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+on_ft = 'csv'
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+on_event = ['BufEnter']
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_event = 'BufEnter'
+hook_add = '''
+    nmap n <Plug>(anzu-n-with-echo)
+    nmap N <Plug>(anzu-N-with-echo)
+    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
+    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
+    set statusline=%{anzu#search_status()}
+    "hide highlight and anzu-status
+    nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
+'''
+
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+on_source = ['vim-anzu']
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_event = ['BufEnter']
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+on_event = ['BufEnter']
+hook_add = '''
+    let g:indentLine_setConceal = 0
+    let g:indentLine_char = '¦'
+'''
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+on_event = ['BufEnter']
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_event = ['BufEnter']
+hook_add = '''
+    augroup commentary
+        autocmd!
+        autocmd FileType cpp let b:commentary_format = '// %s'
+        autocmd FileType matlab let b:commentary_format = '% %s'
+    augroup END
+'''
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_event = ['BufEnter']
+hook_add = '''
+    let g:EasyMotion_smartcase = 1
+'''
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+on_event = ['BufEnter']
+
+[[plugins]]
+repo = 'lilydjwg/colorizer'
+on_event = ['BufEnter']
+hook_add = '''
+    let g:colorizer_maxlines = 500
+	let g:colorizer_nomap = 1
+'''
+
+[[plugins]]
+repo = 'goerz/jupytext.vim'
+on_path = ['\.ipynb', '\.py']
+hook_add = '''
+    let g:jupytext_fmt = 'py:percent'
+    let g:jupytext_filetype_map = {'py': 'python'}
+'''
+
+[[plugins]]
+on_event = 'VimEnter'
+repo = 'kmnk/denite-dirmark'

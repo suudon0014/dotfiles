@@ -1,0 +1,56 @@
+[[plugins]]
+repo = 'tomasr/molokai'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'GertjanReynaert/cobalt2-vim-theme'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'ulwlu/elly.vim'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'savq/melange'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'sainnhe/edge'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'christianchiarulli/nvcode-color-schemes.vim'
+on_event = 'VimEnter'
+hook_source = '''
+    let g:nvcode_termcolors = 256
+'''
+
+[[plugins]]
+repo = 'sainnhe/sonokai'
+# on_event = 'VimEnter'
+on_source = ['lightline.vim']
+hook_add = '''
+    augroup colorschemeGroup
+        autocmd!
+        autocmd ColorScheme * highlight Folded cterm=bold ctermfg=10 gui=bold guifg=LightGreen
+    augroup END
+'''
+hook_source = '''
+    colorscheme sonokai
+'''

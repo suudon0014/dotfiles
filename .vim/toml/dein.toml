@@ -1,0 +1,96 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# ddc.vim start
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+hook_add = '''
+    let g:denops_server_addr = '127.0.0.1:32123'
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline'
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline-history'
+# ddc.vim end
+
+# ddu.vim start
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-action'
+
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+
+[[plugins]]
+repo = '4513ECHO/ddu-source-colorscheme'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+
+[[plugins]]
+repo = 'Bakudankun/ddu-source-dirmark'
+
+[[plugins]]
+repo = 'k-ota106/ddu-source-marks'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'yuki-yano/ddu-filter-fzf'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
+# ddu.vim end
