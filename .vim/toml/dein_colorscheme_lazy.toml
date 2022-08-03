@@ -45,10 +45,12 @@ hook_source = '''
 repo = 'sainnhe/sonokai'
 # on_event = 'VimEnter'
 on_source = ['lightline.vim']
-hook_source = '''
+hook_add = '''
     augroup colorschemeGroup
         autocmd!
-        autocmd ColorScheme * highlight Folded gui=bold guifg=LightGreen
+        autocmd ColorScheme * highlight Folded cterm=bold ctermfg=10 gui=bold guifg=LightGreen
     augroup END
+'''
+hook_source = '''
     colorscheme sonokai
 '''
