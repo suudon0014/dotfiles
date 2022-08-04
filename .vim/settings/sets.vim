@@ -58,6 +58,7 @@ set scrolloff=1
 set updatetime=150
 set noequalalways
 set lazyredraw
+set signcolumn=yes
 
 if has('nvim')
     set pumblend=30
