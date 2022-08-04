@@ -7,6 +7,7 @@ source ~/dotfiles/.vim/dein_rc.vim
 set runtimepath+=~/dotfiles/.vim/
 runtime! settings/*.vim
 runtime! lua/mappings.lua
+runtime! lua/sets.lua
 
 augroup myAuGroup
     autocmd!
