@@ -62,6 +62,6 @@ vim.keymap.set({'n', 'v'}, '<3-MiddleMouse>', '<Nop>')
 vim.keymap.set({'n', 'v'}, '<4-MiddleMouse>', '<Nop>')
 vim.keymap.set('t', '<S-Space>', '<Space>')
 vim.keymap.set('n', '<S-k>', '<Nop>')
-vim.keymap.set('n', '/', '/\v')
+vim.keymap.set('n', '/', '/\\v')
 
 vim.cmd('cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"')
