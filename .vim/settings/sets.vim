@@ -60,6 +60,12 @@ set noequalalways
 set lazyredraw
 set signcolumn=yes
 
+"disable default plugins
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
 if has('nvim')
     set pumblend=30
     set winblend=30
