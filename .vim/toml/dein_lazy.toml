@@ -367,5 +367,10 @@ hook_add = '''
 '''
 
 [[plugins]]
-on_event = 'VimEnter'
 repo = 'kmnk/denite-dirmark'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+on_event = 'BufEnter'
+hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'

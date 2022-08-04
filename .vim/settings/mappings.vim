@@ -12,18 +12,10 @@ noremap <Leader>v g0vg$h
 noremap <Leader>d g0vg$hx
 noremap <Leader>y g0vg$hy
 
-noremap <Leader>gv 0v$h
-noremap <Leader>gd 0v$hx
-noremap <Leader>gy 0v$hy
-
 "space + h/l : move to beginning/end of the line
 noremap <Leader>h g^
 noremap <Leader>l g$
 vnoremap <Leader>l g$h
-
-noremap <Leader>gh ^
-noremap <Leader>gl $
-vnoremap <Leader>gl $h
 
 "move to the bracket counterpart
 noremap <Leader>b %
