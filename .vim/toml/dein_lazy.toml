@@ -116,10 +116,6 @@ repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
 
 [[plugins]]
-repo = 'onsails/lspkind.nvim'
-on_source = ['mason.nvim']
-
-[[plugins]]
 repo = 'kkharji/lspsaga.nvim'
 on_source = ['mason.nvim']
 

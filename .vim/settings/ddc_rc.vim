@@ -90,6 +90,39 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': '[cmdhist]',
     \ },
 \ })
+
+call ddc#custom#patch_global('sourceParams', {
+    \ 'nvim-lsp': {
+        \ 'kindLabels': {
+            \ 'Text': " Text",
+            \ 'Method': " Method",
+            \ 'Function': " Function",
+            \ 'Constructor': " Constructor",
+            \ 'Field': " Field",
+            \ 'Variable': " Variable",
+            \ 'Class': "󿴯 Class",
+            \ 'Interface': " Interface",
+            \ 'Module': " Module",
+            \ 'Property': " Property",
+            \ 'Unit': " Unit",
+            \ 'Value': " Value",
+            \ 'Enum': " Enum",
+            \ 'Keyword': " Keyword",
+            \ 'Snippet': " Snippet",
+            \ 'Color': " Color",
+            \ 'File': "󿜘 File",
+            \ 'Reference': "󿜆 Reference",
+            \ 'Folder': " Folder",
+            \ 'EnumMember': " EnumMember",
+            \ 'Constant': "󿣾 Constant",
+            \ 'Struct': "󿳼 Struct",
+            \ 'Event': " Event",
+            \ 'Operator': " Operator",
+            \ 'TypeParameter': "󿞃 TypeParameter"
+        \ }
+    \ }
+\ })
+
 call ddc#custom#patch_global('backspaceCompletion', v:true)
 
 call ddc#enable()
