@@ -76,6 +76,10 @@ on_event = 'BufRead'
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
 
 [[plugins]]
+repo = 'p00f/nvim-ts-rainbow'
+on_source = ['nvim-treesitter']
+
+[[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 hook_source = '''
