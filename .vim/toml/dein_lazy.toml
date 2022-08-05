@@ -71,12 +71,27 @@ hook_source = '''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-merged = 0
 on_event = 'BufRead'
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
 
 [[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter-textobjects'
+on_source = ['nvim-treesitter']
+
+[[plugins]]
 repo = 'p00f/nvim-ts-rainbow'
+on_source = ['nvim-treesitter']
+
+[[plugins]]
+repo = 'haringsrob/nvim_context_vt'
+on_source = ['nvim-treesitter']
+
+[[plugins]]
+repo = 'm-demare/hlargs.nvim'
+on_source = ['nvim-treesitter']
+
+[[plugins]]
+repo = 'RRethy/nvim-treesitter-textsubjects'
 on_source = ['nvim-treesitter']
 
 [[plugins]]
