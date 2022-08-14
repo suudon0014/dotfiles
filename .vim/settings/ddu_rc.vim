@@ -15,69 +15,6 @@ nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
 
-autocmd FileType ddu-ff call s:ddu_ff_mappings()
-function! s:ddu_ff_mappings() abort
-    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-    nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
-    nnoremap <buffer><silent> v <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer><silent> x <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> a <Cmd>call ddu#ui#ff#do_action('toggleAllItems')<CR>
-    nnoremap <buffer><silent> r <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'rename'})<CR>
-    nnoremap <buffer><silent> f <Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>
-    nnoremap <buffer><silent> c <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
-    nnoremap <buffer><silent> d <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
-    nnoremap <buffer><silent> e <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
-    nnoremap <buffer><silent> t <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'tabopen'})<CR>
-    nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
-    nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-    nnoremap <buffer><silent> <leader>y <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'yank'})<CR>
-    nnoremap <buffer><silent> <leader>l <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'loclist'})<CR>
-    nnoremap <buffer><silent> <leader>q <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<CR>
-    nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-    nnoremap <buffer> <Esc><Esc> <Nop>
-endfunction
-
-autocmd FileType ddu-ff-filter call s:ddu_ff_filter_mappings()
-function! s:ddu_ff_filter_mappings() abort
-    AutoCloseOff
-    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
-    nnoremap <buffer><silent> <CR> <Cmd>close<CR>
-    nnoremap <buffer><silent> q <Cmd>close<CR>
-endfunction
-
-autocmd FileType ddu-filer call s:ddu_filer_mappings()
-function! s:ddu_filer_mappings() abort
-    nnoremap <buffer><silent><expr> l ddu#ui#filer#is_directory() ?
-        \ "<Cmd>call ddu#ui#filer#do_action('expandItem')<CR>" :
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
-    nnoremap <buffer><silent><expr> h ddu#ui#filer#is_directory() ? "<Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>" : ""
-    nnoremap <buffer><silent> <S-l> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>
-    nnoremap <buffer><silent> <S-h> <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
-    nnoremap <buffer><silent> c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'cd'})<CR>
-    nnoremap <buffer><silent> a <Cmd>call ddu#ui#filer#do_action('toggleAllItems')<CR>
-    nnoremap <buffer><silent> x <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent><expr> <CR> ddu#ui#filer#is_directory() ?
-        \ "<Cmd>call ddu#ui#filer#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'drop'}})<CR>"
-    nnoremap <buffer><silent> r <Cmd>call ddu#ui#filer#do_action('refreshItems')<CR>
-    nnoremap <buffer><silent><expr> o ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction')<CR>"
-    nnoremap <buffer><silent><expr> s ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'split'}})<CR>"
-    nnoremap <buffer><silent><expr> v ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'params': {'command': 'vsplit'}})<CR>"
-    nnoremap <buffer><silent> <leader>b <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'dirmark'})<CR>
-    nnoremap <buffer><silent> <leader>c <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'copy'})<CR>
-    nnoremap <buffer><silent> <leader>d <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'delete'})<CR>
-    nnoremap <buffer><silent> <leader>k <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newDirectory'})<CR>
-    nnoremap <buffer><silent> <leader>l <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'loclist'})<CR>
-    nnoremap <buffer><silent> <leader>m <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'move'})<CR>
-    nnoremap <buffer><silent> <leader>n <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'newFile'})<CR>
-    nnoremap <buffer><silent> <leader>p <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'paste'})<CR>
-    nnoremap <buffer><silent> <leader>q <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'quickfix'})<CR>
-    nnoremap <buffer><silent> <leader>r <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'rename'})<CR>
-    nnoremap <buffer><silent> <leader>y <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'yank'})<CR>
-    nnoremap <buffer><silent> q <Cmd>close<CR>
-    nnoremap <buffer> <Esc><Esc> <Nop>
-endfunction
-
 " functions and commands
 function! s:set_ddu_win_pos() abort
     let s:ddu_win_pos = {
