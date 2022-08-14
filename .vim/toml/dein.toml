@@ -66,9 +66,9 @@ ddu-ff = '''
 
 ddu-ff-filter = '''
     AutoCloseOff
-    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
-    nnoremap <buffer><silent> <CR> <Cmd>close<CR>
-    nnoremap <buffer><silent> q <Cmd>close<CR>
+    inoremap <buffer> <CR> <Esc><Cmd>call ddu#ui#ff#close()<CR>
+    nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#close()<CR>
+    nnoremap <buffer> q <Cmd>call ddu#ui#ff#close()<CR>
 '''
 
 [[plugins]]
