@@ -135,7 +135,7 @@ repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
 
 [[plugins]]
-repo = 'kkharji/lspsaga.nvim'
+repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
 
 [[plugins]]
@@ -387,3 +387,20 @@ on_event = 'BufEnter'
 repo = 'lewis6991/gitsigns.nvim'
 on_event = 'VimEnter'
 hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_event = 'BufEnter'
+hook_source = '''
+    nmap <leader>tr <Plug>(Translate)
+    vmap <leader>tr <Plug>(Translate)
+'''
+
+[[plugins]]
+repo = 'dinhhuy258/git.nvim'
+on_event = 'VimEnter'
+hook_source = '''
+lua << EOF
+require('git').setup()
+EOF
+'''
