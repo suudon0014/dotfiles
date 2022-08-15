@@ -10,25 +10,35 @@
    }
  )
 
+require("lspsaga").init_lsp_saga()
+local action = require('lspsaga.action')
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = {noremap=true, silent=true}
-        buf_set_keymap('n', '<C-l>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-        buf_set_keymap('n', '<C-l>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        buf_set_keymap('n', '<C-l>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        buf_set_keymap('n', '<C-l>rf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        buf_set_keymap('n', '<C-l>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-        buf_set_keymap('n', '<C-l>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-        buf_set_keymap('n', '<C-l>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        buf_set_keymap('n', '<C-l>l', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+        buf_set_keymap('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
+        buf_set_keymap('v', '<C-l>a', '<Cmd><C-u>Lspsaga range_code_action<CR>', opts)
+        buf_set_keymap('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
+        buf_set_keymap('n', '<C-l>s', '<Cmd>Lspsaga signature_help<CR>', opts)
+        buf_set_keymap('n', '<C-l>rf', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+        buf_set_keymap('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)
+        buf_set_keymap('n', '<C-l>fo', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+        buf_set_keymap('n', '<C-l>fi', '<Cmd>Lspsaga lsp_finder<CR>', opts)
+        buf_set_keymap('n', '<C-l>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
+        buf_set_keymap('n', '<C-l>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
+        buf_set_keymap('n', '<C-l>cd', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
         buf_set_keymap('n', '<C-l>gc', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', '<C-l>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        buf_set_keymap('n', '<C-l>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        buf_set_keymap('n', '<C-l>gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-        buf_set_keymap('n', '<C-l>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', '<C-l>pd', '<Cmd>Lspsaga preview_definition<CR>', opts)
+        buf_set_keymap('n', '<C-l>gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        buf_set_keymap('n', '<C-l>gp', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+        buf_set_keymap('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+        vim.keymap.set('n', '<C-f>', function() action.smart_scroll_with_saga(1) end, {silent=true, buffer=true})
+        vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, {silent=true, buffer=true})
+
         if client.resolved_capabilities.document_range_formatting then
-            buf_set_keymap('v', '<C-l>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
+            buf_set_keymap('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
         end
         if client.resolved_capabilities.document_highlight then
             vim.api.nvim_exec([[
@@ -114,6 +124,3 @@ mason_lspconfig.setup_handlers({ function(server_name)
 
     lspconfig[server_name].setup(opts)
 end })
-
--- Etc.
-require("lspsaga").init_lsp_saga()
