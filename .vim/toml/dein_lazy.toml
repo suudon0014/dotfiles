@@ -135,7 +135,7 @@ repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
 
 [[plugins]]
-repo = 'kkharji/lspsaga.nvim'
+repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
 
 [[plugins]]
