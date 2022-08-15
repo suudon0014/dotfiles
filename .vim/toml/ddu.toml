@@ -1,47 +1,10 @@
 [[plugins]]
-repo = 'Shougo/dein.vim'
-
-# ddc.vim start
-[[plugins]]
-repo = 'Shougo/ddc.vim'
-
-[[plugins]]
-repo = 'vim-denops/denops.vim'
-hook_add = '''
-    let g:denops_server_addr = '127.0.0.1:32123'
-'''
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
-
-[[plugins]]
-repo = 'LumaKernel/ddc-file'
-
-[[plugins]]
-repo = 'tani/ddc-fuzzy'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
-# ddc.vim end
-
-# ddu.vim start
-[[plugins]]
 repo = 'Shougo/ddu.vim'
+on_source = ['denops.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
+on_source = ['ddu.vim']
 [plugins.ftplugin]
 ddu-ff = '''
     nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
@@ -78,6 +41,7 @@ ddu-ff-filter = '''
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
+on_source = ['ddu.vim']
 [plugins.ftplugin]
 ddu-filer = '''
     nnoremap <buffer> * <Cmd>call ddu#ui#filer#do_action('toggleAllItems')<CR>
@@ -129,52 +93,68 @@ ddu-filer = '''
 
 [[plugins]]
 repo = 'Shougo/ddu-source-file'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-source-file_rec'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-source-line'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-source-action'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'shun/ddu-source-buffer'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'shun/ddu-source-rg'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'matsui54/ddu-source-command_history'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = '4513ECHO/ddu-source-colorscheme'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'matsui54/ddu-source-help'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Bakudankun/ddu-source-dirmark'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'k-ota106/ddu-source-marks'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_hidden'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-kind-file'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'Shougo/ddu-column-filename'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'ryota2357/ddu-column-icon_filename'
-# ddu.vim end
+on_source = ['ddu.vim']
