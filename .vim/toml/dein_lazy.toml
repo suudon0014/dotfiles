@@ -1,4 +1,8 @@
 [[plugins]]
+repo = 'Shougo/dein.vim'
+on_event = 'VimEnter'
+
+[[plugins]]
 repo = 'Townk/vim-autoclose'
 on_event = 'InsertEnter'
 
@@ -139,17 +143,32 @@ repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
 
 [[plugins]]
+repo = 'vim-denops/denops.vim'
+on_event = 'CursorHold'
+hook_source = '''
+    let g:denops_server_addr = '127.0.0.1:32123'
+'''
+
+[[plugins]]
 repo = 'matsui54/denops-signature_help'
-on_event = 'InsertEnter'
+on_source = ['denops.vim']
 hook_source = '''
     call signature_help#enable()
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-on_event = 'InsertEnter'
+on_source = ['denops.vim']
 hook_source = '''
     call popup_preview#enable()
+'''
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_source = ['denops.vim']
+hook_source = '''
+    nmap <leader>tr <Plug>(Translate)
+    vmap <leader>tr <Plug>(Translate)
 '''
 
 [[plugins]]
@@ -387,14 +406,6 @@ on_event = 'BufEnter'
 repo = 'lewis6991/gitsigns.nvim'
 on_event = 'VimEnter'
 hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
-
-[[plugins]]
-repo = 'skanehira/denops-translate.vim'
-on_event = 'BufEnter'
-hook_source = '''
-    nmap <leader>tr <Plug>(Translate)
-    vmap <leader>tr <Plug>(Translate)
-'''
 
 [[plugins]]
 repo = 'dinhhuy258/git.nvim'
