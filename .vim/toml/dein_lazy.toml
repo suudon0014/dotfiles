@@ -387,3 +387,11 @@ on_event = 'BufEnter'
 repo = 'lewis6991/gitsigns.nvim'
 on_event = 'VimEnter'
 hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_event = 'BufEnter'
+hook_source = '''
+    nmap <leader>tr <Plug>(Translate)
+    vmap <leader>tr <Plug>(Translate)
+'''
