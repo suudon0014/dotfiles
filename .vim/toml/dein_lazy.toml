@@ -76,6 +76,7 @@ hook_source = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = 'BufRead'
+on_cmd = ['TSUpdate', 'TSUpdateSync']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
 
 [[plugins]]
@@ -124,7 +125,8 @@ on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
-on_event = 'VimEnter'
+on_event = 'BufEnter'
+on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
@@ -418,7 +420,7 @@ EOF
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
-on_event = 'VimEnter'
+on_cmd = ['StartupTime']
 hook_source = '''
     let g:startuptime_tries = 10
 '''
