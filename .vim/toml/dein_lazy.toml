@@ -166,9 +166,9 @@ hook_source = '''
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_source = ['denops.vim']
-hook_source = '''
-    nmap <leader>tr <Plug>(Translate)
-    vmap <leader>tr <Plug>(Translate)
+hook_post_source = '''
+    nmap <Leader>tr <Plug>(Translate)
+    vmap <Leader>tr <Plug>(Translate)
 '''
 
 [[plugins]]
