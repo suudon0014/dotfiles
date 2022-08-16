@@ -76,6 +76,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local mason = require("mason")
 mason.setup({
     ui = {
+        check_outdated_packages_on_open = false,
         border = "single",
         icons = {
             package_installed = "✓",
