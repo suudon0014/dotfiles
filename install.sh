@@ -2,9 +2,6 @@
 
 set -e
 
-DOTFILES=~/dotfiles
-source ${DOTFILES}/install_func.sh
-
 XDG_CONFIG_HOME=~/.config
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
@@ -58,6 +55,7 @@ else
     echo OS CHECK ERROR!
 fi
 
+DOTFILES=~/dotfiles
 ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${XDG_CONFIG_HOME}/nvim/ginit.vim
 ln -sfv ${DOTFILES}/.vim/.vimrc ~/.vimrc
@@ -78,14 +76,3 @@ scoop import ${SCOOP_DIR}/scoopfile.json
 ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json "${LOCALAPPDATA}/Microsoft/Windows Terminal/settings.json"
 mkdir -p ${APPDATA}/bat
 ln -sfv ${SCOOP_DIR}/bat_config ${APPDATA}/bat/config
-
-echo -e "\n[Install commands using npm]"
-if !(type "npm" > /dev/null 2>&1); then
-    echo "npm is not installed."
-else
-    echo "npm is installed."
-
-    install_by_npm "bash-language-server"
-    install_by_npm "vim-language-server"
-    install_by_npm "typescript-language-server"
-fi
