@@ -7,14 +7,6 @@
             "command": 
             {
                 "action": "moveFocus",
-                "direction": "right"
-            },
-            "keys": "ctrl+shift+l"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
                 "direction": "up"
             },
             "keys": "ctrl+shift+k"
@@ -25,6 +17,18 @@
                 "action": "nextTab"
             },
             "keys": "ctrl+shift+g"
+        },
+        {
+            "command": "closePane",
+            "keys": "ctrl+shift+q"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "right"
+            },
+            "keys": "ctrl+shift+l"
         },
         {
             "command": "find",
@@ -48,14 +52,6 @@
         {
             "command": 
             {
-                "action": "moveFocus",
-                "direction": "down"
-            },
-            "keys": "ctrl+shift+j"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "down"
             },
@@ -65,18 +61,24 @@
             "command": 
             {
                 "action": "moveFocus",
+                "direction": "down"
+            },
+            "keys": "ctrl+shift+j"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
                 "direction": "left"
             },
             "keys": "ctrl+shift+h"
-        },
-        {
-            "command": "closePane",
-            "keys": "ctrl+shift+q"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{0583e165-f13e-4000-80c8-e59338f79d40}",
+    "initialCols": 140,
+    "initialRows": 65,
     "profiles": 
     {
         "defaults": 
@@ -89,9 +91,9 @@
             },
             "foreground": "#FFFFFF",
             "opacity": 70,
+            "padding": "0, 0, -20, 0",
             "startingDirectory": "%USERPROFILE%",
-            "useAcrylic": true,
-            "padding": "0, 0, -20, 0"
+            "useAcrylic": true
         },
         "list": 
         [

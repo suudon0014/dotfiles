@@ -76,6 +76,7 @@ hook_source = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = 'BufRead'
+on_cmd = ['TSUpdate', 'TSUpdateSync']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
 
 [[plugins]]
@@ -124,7 +125,8 @@ on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
-on_event = 'VimEnter'
+on_event = 'BufEnter'
+on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
@@ -166,9 +168,9 @@ hook_source = '''
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_source = ['denops.vim']
-hook_source = '''
-    nmap <leader>tr <Plug>(Translate)
-    vmap <leader>tr <Plug>(Translate)
+hook_post_source = '''
+    nmap <Leader>tr <Plug>(Translate)
+    vmap <Leader>tr <Plug>(Translate)
 '''
 
 [[plugins]]
@@ -249,6 +251,8 @@ repo = 'Matts966/skk-vconv.vim'
 on_source = ['skkeleton']
 hook_source = '''
     let g:skk_vconv#no_default_mappings = v:true
+'''
+hook_post_source = '''
     vmap <C-s> <Plug>(skk-vconv:conv)
 '''
 
@@ -418,7 +422,7 @@ EOF
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
-on_event = 'VimEnter'
+on_cmd = ['StartupTime']
 hook_source = '''
     let g:startuptime_tries = 10
 '''
