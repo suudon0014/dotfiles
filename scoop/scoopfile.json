@@ -4,9 +4,9 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1660624439000)\/",
+                "value": "\/Date(1660696530000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月16日 13:33:59"
+                "DateTime": "2022年8月17日 9:35:30"
             },
             "Manifests": 1651
         },
@@ -14,9 +14,9 @@
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1660610213000)\/",
+                "value": "\/Date(1660696549000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月16日 9:36:53"
+                "DateTime": "2022年8月17日 9:35:49"
             },
             "Manifests": 1069
         },
@@ -24,9 +24,9 @@
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1660626029000)\/",
+                "value": "\/Date(1660705225000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月16日 14:00:29"
+                "DateTime": "2022年8月17日 12:00:25"
             },
             "Manifests": 349
         }
@@ -45,6 +45,13 @@
             "Name": "ag",
             "Version": "2.2.5",
             "Updated": "\/Date(1660610952289)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "aria2",
+            "Version": "1.36.0-1",
+            "Updated": "\/Date(1660711227354)\/"
         },
         {
             "Info": "",
