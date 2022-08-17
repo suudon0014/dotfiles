@@ -442,5 +442,5 @@ vsession-quickpick = '''
     nnoremap <buffer><silent> q :close<CR>
 '''
 vsession-quickpick-filter = '''
-    nnoremap <buffer><silent> q :close<CR>
+    nmap <buffer><silent> q <Plug>(vsession-quickpick-cancel)
 '''
