@@ -426,3 +426,20 @@ on_cmd = ['StartupTime']
 hook_source = '''
     let g:startuptime_tries = 10
 '''
+
+[[plugins]]
+repo = 'skanehira/vsession'
+on_event = 'CursorHold'
+hook_post_source = '''
+    let g:vsession_ui = 'popup'
+    nnoremap <silent> <Leader>ss :SaveSession<CR>
+    nnoremap <silent> <Leader>sl :LoadSession<CR>
+    nnoremap <silent> <Leader>sd :DeleteSession<CR>
+'''
+[plugins.ftplugin]
+vsession-quickpick = '''
+    nnoremap <buffer><silent> q :close<CR>
+'''
+vsession-quickpick-filter = '''
+    nnoremap <buffer><silent> q :close<CR>
+'''
