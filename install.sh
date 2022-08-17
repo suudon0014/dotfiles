@@ -15,9 +15,9 @@ if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
      setx MSYS2_PATH_TYPE inherit
 
     # Neovim
-    NeovimRoot=C:/Neovim
-    setx VIM ${NeovimRoot}/share/nvim
-    setx VIMRUNTIME ${NeovimRoot}/share/nvim/runtime
+    # NeovimRoot=C:/Neovim
+    # setx VIM ${NeovimRoot}/share/nvim
+    # setx VIMRUNTIME ${NeovimRoot}/share/nvim/runtime
 
     # Vim
     # VimRoot=C:/Vim
