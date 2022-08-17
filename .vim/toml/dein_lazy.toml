@@ -431,6 +431,7 @@ hook_source = '''
 repo = 'skanehira/vsession'
 on_event = 'CursorHold'
 hook_post_source = '''
+    let g:vsession_save_last_on_leave = 0
     let g:vsession_ui = 'popup'
     nnoremap <silent> <Leader>ss :SaveSession<CR>
     nnoremap <silent> <Leader>sl :LoadSession<CR>
