@@ -37,6 +37,15 @@ local on_attach = function(client, bufnr)
         vim.keymap.set('n', '<C-f>', function() action.smart_scroll_with_saga(1) end, {silent=true, buffer=true})
         vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, {silent=true, buffer=true})
 
+        local saga_rename_group_id = vim.api.nvim_create_augroup('sagaRenameGroup', {})
+        vim.api.nvim_create_autocmd({'FileType'}, {
+            pattern = {'sagarename'},
+            callback = function ()
+                vim.keymap.set('n', 'q', function() require('lspsaga.rename').close_rename_win() end, {silent=true, buffer=true})
+            end,
+            group = saga_rename_group_id,
+        })
+
         if client.resolved_capabilities.document_range_formatting then
             buf_set_keymap('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
         end
