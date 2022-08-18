@@ -10,32 +10,40 @@
    }
  )
 
-require("lspsaga").init_lsp_saga()
+local saga = require('lspsaga')
 local action = require('lspsaga.action')
+saga.init_lsp_saga()
 
 local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    local opts = {noremap=true, silent=true}
-        buf_set_keymap('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-        buf_set_keymap('v', '<C-l>a', '<Cmd><C-u>Lspsaga range_code_action<CR>', opts)
-        buf_set_keymap('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
-        buf_set_keymap('n', '<C-l>s', '<Cmd>Lspsaga signature_help<CR>', opts)
-        buf_set_keymap('n', '<C-l>rf', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
-        buf_set_keymap('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)
-        buf_set_keymap('n', '<C-l>fo', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-        buf_set_keymap('n', '<C-l>fi', '<Cmd>Lspsaga lsp_finder<CR>', opts)
-        buf_set_keymap('n', '<C-l>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        buf_set_keymap('n', '<C-l>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
-        buf_set_keymap('n', '<C-l>cd', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
-        buf_set_keymap('n', '<C-l>gc', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-        buf_set_keymap('n', '<C-l>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        buf_set_keymap('n', '<C-l>pd', '<Cmd>Lspsaga preview_definition<CR>', opts)
-        buf_set_keymap('n', '<C-l>gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        buf_set_keymap('n', '<C-l>gp', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-        buf_set_keymap('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-        vim.keymap.set('n', '<C-f>', function() action.smart_scroll_with_saga(1) end, {silent=true, buffer=true})
-        vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, {silent=true, buffer=true})
+    local opts = {noremap=true, silent=true, buffer=bufnr}
+    vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
+    vim.keymap.set('v', '<C-l>a', '<Cmd><C-u>Lspsaga range_code_action<CR>', opts)
+    vim.keymap.set('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
+    vim.keymap.set('n', '<C-l>s', '<Cmd>Lspsaga signature_help<CR>', opts)
+    vim.keymap.set('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)
+    vim.keymap.set('n', '<C-l>fi', '<Cmd>Lspsaga lsp_finder<CR>', opts)
+    vim.keymap.set('n', '<C-l>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
+    vim.keymap.set('n', '<C-l>cd', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
+    vim.keymap.set('n', '<C-l>pd', '<Cmd>Lspsaga preview_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>gp', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+    vim.keymap.set('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+    opts['desc'] = 'vim.lsp.buf.references()'
+    vim.keymap.set('n', '<C-l>rf', function() vim.lsp.buf.references() end, opts)
+    opts['desc'] = 'vim.lsp.buf.formatting()'
+    vim.keymap.set('n', '<C-l>fo', function() vim.lsp.buf.formatting() end, opts)
+    opts['desc'] = 'vim.diagnostic.open_float()'
+    vim.keymap.set('n', '<C-l>e', function() vim.diagnostic.open_float() end, opts)
+    opts['desc'] = 'vim.lsp.buf.declaration()'
+    vim.keymap.set('n', '<C-l>gc', function() vim.lsp.buf.declaration() end, opts)
+    opts['desc'] = 'vim.lsp.buf.definition()'
+    vim.keymap.set('n', '<C-l>gd', function() vim.lsp.buf.definition() end, opts)
+    opts['desc'] = 'vim.lsp.buf.implementation()'
+    vim.keymap.set('n', '<C-l>gi', function() vim.lsp.buf.implementation() end, opts)
+    opts['desc'] = 'action.smart_scroll_with_saga(1)'
+    vim.keymap.set('n', '<C-f>', function() action.smart_scroll_with_saga(1) end, opts)
+    opts['desc'] = 'action.smart_scroll_with_saga(-1)'
+    vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, opts)
 
         local saga_rename_group_id = vim.api.nvim_create_augroup('sagaRenameGroup', {})
         vim.api.nvim_create_autocmd({'FileType'}, {
@@ -45,23 +53,23 @@ local on_attach = function(client, bufnr)
             end,
             group = saga_rename_group_id,
         })
+    if client.resolved_capabilities.document_range_formatting then
+        opts['desc'] = nil
+        vim.keymap.set('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
+    end
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+            highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
+            highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
+            highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]], false)
 
-        if client.resolved_capabilities.document_range_formatting then
-            buf_set_keymap('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
-        end
-        if client.resolved_capabilities.document_highlight then
-            vim.api.nvim_exec([[
-                highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
-                highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
-                highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
-                augroup lsp_document_highlight
-                    autocmd! * <buffer>
-                    autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
-                augroup END
-            ]], false)
-
-        end
+    end
 end
 
 -- Set up of LSP servers
