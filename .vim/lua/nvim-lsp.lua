@@ -45,11 +45,11 @@ local on_attach = function(client, bufnr)
     opts['desc'] = 'action.smart_scroll_with_saga(-1)'
     vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, opts)
 
-    if client.resolved_capabilities.document_range_formatting then
+    if client.server_capabilities.documentRangeFormattingProvider then
         opts['desc'] = nil
         vim.keymap.set('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
     end
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec([[
             highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
             highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
