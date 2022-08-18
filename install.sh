@@ -2,9 +2,6 @@
 
 set -e
 
-DOTFILES=~/dotfiles
-source ${DOTFILES}/install_func.sh
-
 XDG_CONFIG_HOME=~/.config
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${XDG_CONFIG_HOME}/nvim
@@ -18,9 +15,9 @@ if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
      setx MSYS2_PATH_TYPE inherit
 
     # Neovim
-    NeovimRoot=C:/Neovim
-    setx VIM ${NeovimRoot}/share/nvim
-    setx VIMRUNTIME ${NeovimRoot}/share/nvim/runtime
+    # NeovimRoot=C:/Neovim
+    # setx VIM ${NeovimRoot}/share/nvim
+    # setx VIMRUNTIME ${NeovimRoot}/share/nvim/runtime
 
     # Vim
     # VimRoot=C:/Vim
@@ -58,6 +55,7 @@ else
     echo OS CHECK ERROR!
 fi
 
+DOTFILES=~/dotfiles
 ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${XDG_CONFIG_HOME}/nvim/ginit.vim
 ln -sfv ${DOTFILES}/.vim/.vimrc ~/.vimrc
@@ -74,18 +72,9 @@ ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 
 # scoop
 SCOOP_DIR=${DOTFILES}/scoop
+SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop
+ln -sfv ${SCOOP_DIR}/scoop_config.json ${SCOOP_CONFIG_DIR}/config.json
 scoop import ${SCOOP_DIR}/scoopfile.json
 ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json "${LOCALAPPDATA}/Microsoft/Windows Terminal/settings.json"
 mkdir -p ${APPDATA}/bat
 ln -sfv ${SCOOP_DIR}/bat_config ${APPDATA}/bat/config
-
-echo -e "\n[Install commands using npm]"
-if !(type "npm" > /dev/null 2>&1); then
-    echo "npm is not installed."
-else
-    echo "npm is installed."
-
-    install_by_npm "bash-language-server"
-    install_by_npm "vim-language-server"
-    install_by_npm "typescript-language-server"
-fi

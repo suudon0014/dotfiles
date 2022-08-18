@@ -11,6 +11,7 @@ nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
 nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
 nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false)<CR>
+nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false)<CR>
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
@@ -189,6 +190,9 @@ call ddu#custom#patch_global({
         \ 'help': {
             \ 'helpLang': 'ja,en',
         \ },
+        \ 'dein_update': {
+            \ 'maxProcess': 8,
+        \ },
     \ },
     \ 'sourceOptions': {
         \ '_': {
@@ -196,6 +200,9 @@ call ddu#custom#patch_global({
         \ },
         \ 'dirmark': {
             \ 'defaultAction': 'cd',
+        \ },
+        \ 'dein_update': {
+            \ 'matchers': ['matcher_dein_update', 'matcher_fzf'],
         \ },
     \ },
     \ 'kindOptions': {
@@ -214,6 +221,9 @@ call ddu#custom#patch_global({
         \ 'help': {
             \ 'defaultAction': 'vsplit',
         \ },
+        \ 'dein_update': {
+            \ 'defaultAction': 'viewDiff',
+        \ },
     \ },
     \ 'actionOptions': {
         \ 'narrow': {
@@ -223,6 +233,12 @@ call ddu#custom#patch_global({
             \ 'quit': v:false,
         \ },
         \ 'dirmark': {
+            \ 'quit': v:false,
+        \ },
+        \ 'echo': {
+            \ 'quit': v:false,
+        \ },
+        \ 'echoDiff': {
             \ 'quit': v:false,
         \ },
     \ },
