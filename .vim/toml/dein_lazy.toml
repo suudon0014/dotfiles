@@ -240,6 +240,8 @@ hook_source = '''
     \   'userJisyo': "~/.config/skk/my_jisyo",
     \   'usePopup': v:false,
     \   'keepState': v:true,
+    \   'markerHenkan': '>',
+    \   'markerHenkanSelect': 'v',
     \ })
     call skkeleton#register_kanatable('rom', {
         \ 'jj': 'escape',
