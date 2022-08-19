@@ -26,6 +26,7 @@ if dein#load_state(s:dein_dir)
 
     "create plugins list file using TOML format beforehand
     let s:rc_dir = expand('~/dotfiles/.vim/toml')
+    let s:dein_toml = s:rc_dir . '/dein.toml'
     let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
     let s:ddc_toml = s:rc_dir . '/ddc.toml'
     let s:ddu_toml = s:rc_dir . '/ddu.toml'
@@ -34,6 +35,7 @@ if dein#load_state(s:dein_dir)
     let s:lightline_lazy_toml = s:rc_dir . '/dein_lightline_lazy.toml'
 
     "read and cache the toml files
+    call dein#load_toml(s:dein_toml, {'lazy':0})
     call dein#load_toml(s:ddc_toml, {'lazy':1})
     call dein#load_toml(s:ddu_toml, {'lazy':1})
     call dein#load_toml(s:lazy_toml, {'lazy':1})

@@ -1,0 +1,5 @@
+[[plugins]]
+repo = 'rbtnn/vim-ambiwidth'
+hook_add = '''
+    let g:ambiwidth_cica_enabled = v:false
+'''
