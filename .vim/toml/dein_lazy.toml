@@ -456,3 +456,7 @@ vsession-quickpick = '''
 vsession-quickpick-filter = '''
     nmap <buffer><silent> q <Plug>(vsession-quickpick-cancel)
 '''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_cmd = 'help'
