@@ -191,7 +191,8 @@ on_source = ['trouble.nvim']
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
-on_event = 'BufEnter'
+on_map = '<Plug>(deol_'
+on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 hook_source = '''
     let g:deol#enable_ddc_completion = v:true
     let g:deol#floating_border = 'single'
@@ -295,7 +296,9 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
-on_event = 'BufEnter'
+on_map = '<Plug>(gin-'
+on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus']
+on_func = 'gin#'
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
@@ -303,11 +306,12 @@ on_ft = 'csv'
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
-on_event = 'BufEnter'
+on_cmd = ['SignatureToggleSigns', 'SignatureRefresh', 'SignatureListBufferMarks', 'SignatureListGlobalMarks', 'SignatureListMarkers']
+on_func = 'signature#'
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
-on_event = 'BufEnter'
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     nmap n <Plug>(anzu-n-with-echo)
     nmap N <Plug>(anzu-N-with-echo)
@@ -328,7 +332,7 @@ on_event = 'CursorMoved'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     let g:indentLine_setConceal = 0
     let g:indentLine_char = '¦'
@@ -336,11 +340,11 @@ hook_source = '''
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     augroup commentary
         autocmd!
@@ -351,18 +355,18 @@ hook_source = '''
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     let g:EasyMotion_smartcase = 1
 '''
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
-on_event = 'BufEnter'
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     lua require('colorizer').setup()
 '''
