@@ -131,6 +131,7 @@ hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
+depends = ['nvim-lspconfig']
 on_source = ['mason.nvim']
 hook_source = '''
     autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
