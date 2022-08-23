@@ -84,7 +84,8 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'skkeleton': {
     \   'mark': '[skk]',
     \   'matchers': ['skkeleton'],
-    \   'sorters': []
+    \   'sorters': [],
+    \   'isVolatile': v:true,
     \ },
     \ 'cmdline-history': {
     \   'mark': '[cmdhist]',
