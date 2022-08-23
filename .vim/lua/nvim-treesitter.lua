@@ -77,4 +77,6 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
-require('hlargs').setup()
+require('hlargs').setup({
+    excluded_filetypes = {'toml'},
+})
