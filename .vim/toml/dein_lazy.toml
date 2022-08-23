@@ -120,10 +120,6 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-on_event = 'BufEnter'
-
-[[plugins]]
 repo = 'williamboman/mason.nvim'
 on_event = ['CursorHold', 'InsertEnter', 'BufRead']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
