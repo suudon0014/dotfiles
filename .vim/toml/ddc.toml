@@ -74,7 +74,8 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Matts966/skk-vconv.vim'
-on_source = ['skkeleton']
+depends = ['skkeleton']
+on_source = ['ddc.vim']
 hook_source = '''
     let g:skk_vconv#no_default_mappings = v:true
 '''
