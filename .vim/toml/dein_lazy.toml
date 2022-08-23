@@ -133,13 +133,14 @@ hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 repo = 'williamboman/mason-lspconfig.nvim'
 depends = ['nvim-lspconfig']
 on_source = ['mason.nvim']
-hook_source = '''
-    autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
-'''
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
+[plugins.ftplugin]
+lspinfo = '''
+    nnoremap <buffer><silent> q :close<CR>
+'''
 
 [[plugins]]
 repo = 'glepnir/lspsaga.nvim'
