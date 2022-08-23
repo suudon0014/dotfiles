@@ -41,3 +41,43 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = ['ddc.vim']
+hook_source = '''
+    imap <C-j> <Plug>(skkeleton-toggle)
+    cmap <C-j> <Plug>(skkeleton-toggle)
+    call skkeleton#config({
+    \   'eggLikeNewline': v:true,
+    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
+    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'usePopup': v:false,
+    \   'keepState': v:true,
+    \   'markerHenkan': '>',
+    \   'markerHenkanSelect': 'v',
+    \ })
+    call skkeleton#register_kanatable('rom', {
+        \ 'jj': 'escape',
+        \ 'c1': ["\u2460"],
+        \ 'c2': ["\u2461"],
+        \ 'c3': ["\u2462"],
+        \ 'c4': ["\u2463"],
+        \ 'c5': ["\u2464"],
+        \ 'c6': ["\u2465"],
+        \ 'c7': ["\u2466"],
+        \ 'c8': ["\u2467"],
+        \ 'c9': ["\u2468"],
+        \ 'c0': ["\u2469"],
+    \ })
+'''
+
+[[plugins]]
+repo = 'Matts966/skk-vconv.vim'
+on_source = ['skkeleton']
+hook_source = '''
+    let g:skk_vconv#no_default_mappings = v:true
+'''
+hook_post_source = '''
+    vmap <C-s> <Plug>(skk-vconv:conv)
+'''
