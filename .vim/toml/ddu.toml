@@ -166,3 +166,7 @@ on_source = ['ddu.vim']
 [[plugins]]
 repo = 'ryota2357/ddu-column-icon_filename'
 on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kmnk/denite-dirmark'
+on_source = ['ddu.vim']
