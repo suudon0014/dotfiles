@@ -146,7 +146,7 @@ on_source = ['mason.nvim']
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-on_event = 'CursorHold'
+on_event = ['VimEnter']
 hook_source = '''
     let g:denops_server_addr = '127.0.0.1:32123'
 '''
@@ -154,7 +154,7 @@ hook_source = '''
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
 depends = ['denops.vim']
-on_event = 'BufRead'
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
     call signature_help#enable()
 '''
@@ -162,7 +162,7 @@ hook_source = '''
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
 depends = ['denops.vim']
-on_event = 'BufRead'
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
     call popup_preview#enable()
 '''
@@ -170,7 +170,7 @@ hook_source = '''
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 depends = ['denops.vim']
-on_event = 'BufRead'
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
     nmap <Leader>tr <Plug>(Translate)
     vmap <Leader>tr <Plug>(Translate)
