@@ -1,6 +1,10 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-on_source = ['denops.vim']
+depends = ['denops.vim']
+on_event = ['BufEnter']
+hook_source = '''
+    source ~/dotfiles/.vim/settings/ddu_rc.vim
+'''
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
@@ -161,4 +165,8 @@ on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'ryota2357/ddu-column-icon_filename'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kmnk/denite-dirmark'
 on_source = ['ddu.vim']

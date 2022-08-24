@@ -120,25 +120,23 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-on_event = 'BufEnter'
-
-[[plugins]]
 repo = 'williamboman/mason.nvim'
-on_event = 'BufEnter'
+on_event = ['CursorHold', 'InsertEnter', 'BufRead']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
+depends = ['nvim-lspconfig']
 on_source = ['mason.nvim']
-hook_source = '''
-    autocmd FileType lspinfo nnoremap <buffer><silent> q :close<CR>
-'''
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
+[plugins.ftplugin]
+lspinfo = '''
+    nnoremap <buffer><silent> q :close<CR>
+'''
 
 [[plugins]]
 repo = 'glepnir/lspsaga.nvim'
@@ -146,29 +144,32 @@ on_source = ['mason.nvim']
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-on_event = 'CursorHold'
+on_event = ['VimEnter']
 hook_source = '''
     let g:denops_server_addr = '127.0.0.1:32123'
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
-on_source = ['denops.vim']
+depends = ['denops.vim']
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
     call signature_help#enable()
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-on_source = ['denops.vim']
+depends = ['denops.vim']
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
     call popup_preview#enable()
 '''
 
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
-on_source = ['denops.vim']
-hook_post_source = '''
+depends = ['denops.vim']
+on_event = ['BufRead', 'InsertEnter']
+hook_source = '''
     nmap <Leader>tr <Plug>(Translate)
     vmap <Leader>tr <Plug>(Translate)
 '''
@@ -190,7 +191,8 @@ on_source = ['trouble.nvim']
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
-on_event = 'BufEnter'
+on_map = '<Plug>(deol_'
+on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 hook_source = '''
     let g:deol#enable_ddc_completion = v:true
     let g:deol#floating_border = 'single'
@@ -226,44 +228,6 @@ on_event = 'CursorMoved'
 hook_source = '''
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
-'''
-
-[[plugins]]
-repo = 'vim-skk/skkeleton'
-on_event = 'BufEnter'
-hook_source = '''
-    imap <C-j> <Plug>(skkeleton-toggle)
-    cmap <C-j> <Plug>(skkeleton-toggle)
-    call skkeleton#config({
-    \   'eggLikeNewline': v:true,
-    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
-    \   'userJisyo': "~/.config/skk/my_jisyo",
-    \   'usePopup': v:false,
-    \   'keepState': v:true,
-    \ })
-    call skkeleton#register_kanatable('rom', {
-        \ 'jj': 'escape',
-        \ 'c1': ["\u2460"],
-        \ 'c2': ["\u2461"],
-        \ 'c3': ["\u2462"],
-        \ 'c4': ["\u2463"],
-        \ 'c5': ["\u2464"],
-        \ 'c6': ["\u2465"],
-        \ 'c7': ["\u2466"],
-        \ 'c8': ["\u2467"],
-        \ 'c9': ["\u2468"],
-        \ 'c0': ["\u2469"],
-    \ })
-'''
-
-[[plugins]]
-repo = 'Matts966/skk-vconv.vim'
-on_source = ['skkeleton']
-hook_source = '''
-    let g:skk_vconv#no_default_mappings = v:true
-'''
-hook_post_source = '''
-    vmap <C-s> <Plug>(skk-vconv:conv)
 '''
 
 [[plugins]]
@@ -332,7 +296,9 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
-on_event = 'BufEnter'
+on_map = '<Plug>(gin-'
+on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus']
+on_func = 'gin#'
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
@@ -340,17 +306,17 @@ on_ft = 'csv'
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
-on_event = 'BufEnter'
+on_cmd = ['SignatureToggleSigns', 'SignatureRefresh', 'SignatureListBufferMarks', 'SignatureListGlobalMarks', 'SignatureListMarkers']
+on_func = 'signature#'
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
-on_event = 'BufEnter'
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     nmap n <Plug>(anzu-n-with-echo)
     nmap N <Plug>(anzu-N-with-echo)
     nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
     nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
-    set statusline=%{anzu#search_status()}
     "hide highlight and anzu-status
     nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 '''
@@ -365,7 +331,7 @@ on_event = 'CursorMoved'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     let g:indentLine_setConceal = 0
     let g:indentLine_char = '¦'
@@ -373,11 +339,11 @@ hook_source = '''
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     augroup commentary
         autocmd!
@@ -388,18 +354,18 @@ hook_source = '''
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     let g:EasyMotion_smartcase = 1
 '''
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
-on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
 
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
-on_event = 'BufEnter'
+on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     lua require('colorizer').setup()
 '''
@@ -411,10 +377,6 @@ hook_source = '''
     let g:jupytext_fmt = 'py:percent'
     let g:jupytext_filetype_map = {'py': 'python'}
 '''
-
-[[plugins]]
-repo = 'kmnk/denite-dirmark'
-on_event = 'BufEnter'
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
@@ -454,3 +416,7 @@ vsession-quickpick = '''
 vsession-quickpick-filter = '''
     nmap <buffer><silent> q <Plug>(vsession-quickpick-cancel)
 '''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_cmd = 'help'

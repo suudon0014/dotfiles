@@ -30,8 +30,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
     opts['desc'] = 'vim.lsp.buf.references()'
     vim.keymap.set('n', '<C-l>rf', function() vim.lsp.buf.references() end, opts)
-    opts['desc'] = 'vim.lsp.buf.formatting()'
-    vim.keymap.set('n', '<C-l>fo', function() vim.lsp.buf.formatting() end, opts)
+    opts['desc'] = 'vim.lsp.buf.format()'
+    vim.keymap.set('n', '<C-l>fo', function() vim.lsp.buf.format {async=true} end, opts)
     opts['desc'] = 'vim.diagnostic.open_float()'
     vim.keymap.set('n', '<C-l>e', function() vim.diagnostic.open_float() end, opts)
     opts['desc'] = 'vim.lsp.buf.declaration()'

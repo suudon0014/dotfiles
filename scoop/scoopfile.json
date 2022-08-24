@@ -4,19 +4,19 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1660696530000)\/",
+                "value": "\/Date(1661230488000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月17日 9:35:30"
+                "DateTime": "2022年8月23日 13:54:48"
             },
-            "Manifests": 1651
+            "Manifests": 1659
         },
         {
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1660696549000)\/",
+                "value": "\/Date(1661230476000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月17日 9:35:49"
+                "DateTime": "2022年8月23日 13:54:36"
             },
             "Manifests": 1069
         },
@@ -24,11 +24,11 @@
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1660705225000)\/",
+                "value": "\/Date(1661233077000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月17日 12:00:25"
+                "DateTime": "2022年8月23日 14:37:57"
             },
-            "Manifests": 349
+            "Manifests": 353
         }
     ],
     "apps": [
@@ -92,15 +92,15 @@
             "Info": "",
             "Source": "main",
             "Name": "graphviz",
-            "Version": "5.0.0",
-            "Updated": "\/Date(1660614182428)\/"
+            "Version": "5.0.1",
+            "Updated": "\/Date(1661125843478)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "imagemagick",
-            "Version": "7.1.0-45",
-            "Updated": "\/Date(1660614426013)\/"
+            "Version": "7.1.0-46",
+            "Updated": "\/Date(1660786443445)\/"
         },
         {
             "Info": "",
@@ -139,6 +139,13 @@
         },
         {
             "Info": "",
+            "Source": "versions",
+            "Name": "neovim-nightly",
+            "Version": "0.8.0-dev-914-gd4d27c41b",
+            "Updated": "\/Date(1661212189750)\/"
+        },
+        {
+            "Info": "",
             "Source": "main",
             "Name": "nodejs",
             "Version": "18.7.0",
@@ -148,15 +155,15 @@
             "Info": "",
             "Source": "main",
             "Name": "pandoc",
-            "Version": "2.19",
-            "Updated": "\/Date(1660614429531)\/"
+            "Version": "2.19.2",
+            "Updated": "\/Date(1661212197828)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pnpm",
-            "Version": "7.9.1",
-            "Updated": "\/Date(1660615592070)\/"
+            "Version": "7.9.3",
+            "Updated": "\/Date(1660786456844)\/"
         },
         {
             "Info": "",
@@ -183,8 +190,8 @@
             "Info": "",
             "Source": "extras",
             "Name": "windows-terminal",
-            "Version": "1.14.1962.0",
-            "Updated": "\/Date(1660611089602)\/"
+            "Version": "1.14.2281.0",
+            "Updated": "\/Date(1660867729489)\/"
         },
         {
             "Info": "",
