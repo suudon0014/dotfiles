@@ -1,13 +1,14 @@
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 on_event = 'BufEnter'
+depends = ['vim-anzu']
 hook_source = '''
     let s:lightline_colorscheme = 'sonokai'
     let g:lightline = {
             \ 'colorscheme': s:lightline_colorscheme,
             \ 'mode_map': {'c': 'NORMAL'},
             \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
+            \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename', 'anzu' ] ],
             \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
             \ },
             \ 'inactive': {
@@ -20,6 +21,7 @@ hook_source = '''
             \ 'component_function': {
             \   'modified': 'LightlineModified',
             \   'gitbranch': 'LightlineGitbranch',
+            \   'anzu': 'anzu#search_status',
             \   'fileformat': 'LightlineFileformat',
             \   'filetype': 'LightlineFiletype',
             \   'fileencoding': 'LightlineFileencoding',
