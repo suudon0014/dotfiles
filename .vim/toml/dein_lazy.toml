@@ -315,8 +315,8 @@ on_event = ['BufRead', 'CursorHold']
 hook_source = '''
     nmap n <Plug>(anzu-n)
     nmap N <Plug>(anzu-N)
-    nmap * <Plug>(asterisk-z*)<Plug>(anzu-star)
-    nmap # <Plug>(asterisk-z#)<Plug>(anzu-sharp)
+    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status)
+    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status)
     "hide highlight and anzu-status
     nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
 
