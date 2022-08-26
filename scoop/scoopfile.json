@@ -4,9 +4,9 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1661230488000)\/",
+                "value": "\/Date(1661459264000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月23日 13:54:48"
+                "DateTime": "2022年8月26日 5:27:44"
             },
             "Manifests": 1659
         },
@@ -14,19 +14,19 @@
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1661230476000)\/",
+                "value": "\/Date(1661459300000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月23日 13:54:36"
+                "DateTime": "2022年8月26日 5:28:20"
             },
-            "Manifests": 1069
+            "Manifests": 1072
         },
         {
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1661233077000)\/",
+                "value": "\/Date(1661459842000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月23日 14:37:57"
+                "DateTime": "2022年8月26日 5:37:22"
             },
             "Manifests": 353
         }
@@ -64,8 +64,8 @@
             "Info": "",
             "Source": "main",
             "Name": "deno",
-            "Version": "1.24.3",
-            "Updated": "\/Date(1660610958159)\/"
+            "Version": "1.25.0",
+            "Updated": "\/Date(1661473645875)\/"
         },
         {
             "Info": "",
@@ -148,15 +148,15 @@
             "Info": "",
             "Source": "versions",
             "Name": "neovim-nightly",
-            "Version": "0.8.0-dev-914-gd4d27c41b",
-            "Updated": "\/Date(1661212189750)\/"
+            "Version": "0.8.0-dev-945-ge4e0e8ce6",
+            "Updated": "\/Date(1661473659728)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "nodejs",
-            "Version": "18.7.0",
-            "Updated": "\/Date(1660615097585)\/"
+            "Version": "18.8.0",
+            "Updated": "\/Date(1661385535621)\/"
         },
         {
             "Info": "",
@@ -169,8 +169,8 @@
             "Info": "",
             "Source": "main",
             "Name": "pnpm",
-            "Version": "7.9.3",
-            "Updated": "\/Date(1660786456844)\/"
+            "Version": "7.9.5",
+            "Updated": "\/Date(1661385544791)\/"
         },
         {
             "Info": "",
