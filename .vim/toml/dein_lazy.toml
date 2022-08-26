@@ -4,7 +4,7 @@ on_event = 'VimEnter'
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
-on_event = 'InsertEnter'
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -75,7 +75,7 @@ hook_source = '''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = 'BufRead'
+on_event = 'CursorHold'
 on_cmd = ['TSUpdate', 'TSUpdateSync']
 hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
 
@@ -313,12 +313,17 @@ on_func = 'signature#'
 repo = 'osyo-manga/vim-anzu'
 on_event = ['BufRead', 'CursorHold']
 hook_source = '''
-    nmap n <Plug>(anzu-n-with-echo)
-    nmap N <Plug>(anzu-N-with-echo)
-    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status-with-echo)
-    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status-with-echo)
+    nmap n <Plug>(anzu-n)
+    nmap N <Plug>(anzu-N)
+    nmap * <Plug>(asterisk-z*)<Plug>(anzu-star)
+    nmap # <Plug>(asterisk-z#)<Plug>(anzu-sharp)
     "hide highlight and anzu-status
     nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
+
+    augroup vim-anzu
+        autocmd!
+        autocmd WinLeave,TabLeave * call anzu#clear_search_status()
+    augroup END
 '''
 
 [[plugins]]
