@@ -132,6 +132,13 @@
         },
         {
             "Info": "",
+            "Source": "extras",
+            "Name": "neovide",
+            "Version": "0.10.1",
+            "Updated": "\/Date(1661474824795)\/"
+        },
+        {
+            "Info": "",
             "Source": "main",
             "Name": "neovim",
             "Version": "0.7.2",

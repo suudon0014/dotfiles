@@ -100,6 +100,10 @@ hook_source = '''
         call lightline#colorscheme()
         call lightline#update()
     endfunction
+
+    if exists('g:neovide')
+        source ~/dotfiles/.vim/.gvimrc
+    endif
 '''
 
 [[plugins]]
