@@ -68,7 +68,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'sorters': ['sorter_fuzzy'],
     \     'converters': ['converter_fuzzy'],
     \     'ignoreCase' : v:true,
-    \     'minAutoCompleteLength': 1,
+    \     'minAutoCompleteLength': 2,
     \ },
     \ 'nvim-lsp': {
     \     'mark': '[lsp]',
