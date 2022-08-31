@@ -11,7 +11,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 )
 
 local saga = require('lspsaga')
-local action = require('lspsaga.action')
 saga.init_lsp_saga()
 
 local on_attach = function(client, bufnr)
@@ -40,10 +39,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>gd', function() vim.lsp.buf.definition() end, opts)
     opts['desc'] = 'vim.lsp.buf.implementation()'
     vim.keymap.set('n', '<C-l>gi', function() vim.lsp.buf.implementation() end, opts)
-    opts['desc'] = 'action.smart_scroll_with_saga(1)'
-    vim.keymap.set('n', '<C-f>', function() action.smart_scroll_with_saga(1) end, opts)
-    opts['desc'] = 'action.smart_scroll_with_saga(-1)'
-    vim.keymap.set('n', '<C-b>', function() action.smart_scroll_with_saga(-1) end, opts)
 
     if client.server_capabilities.documentRangeFormattingProvider then
         opts['desc'] = nil
