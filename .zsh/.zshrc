@@ -67,6 +67,7 @@ alias gp='git push'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gsw='git switch'
+alias gg='git graph'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
