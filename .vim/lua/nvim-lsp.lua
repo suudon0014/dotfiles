@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = {noremap=true, silent=true, buffer=bufnr}
     vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-    vim.keymap.set('v', '<C-l>a', '<Cmd><C-u>Lspsaga range_code_action<CR>', opts)
+    vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga range_code_action<CR>', opts)
     vim.keymap.set('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
     vim.keymap.set('n', '<C-l>s', '<Cmd>Lspsaga signature_help<CR>', opts)
     vim.keymap.set('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)

@@ -425,3 +425,10 @@ vsession-quickpick-filter = '''
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 on_cmd = 'help'
+
+[[plugins]]
+repo = 'j-hui/fidget.nvim'
+on_source = ['mason.nvim']
+hook_source = '''
+    lua require("fidget").setup{}
+'''
