@@ -310,25 +310,24 @@ on_cmd = ['SignatureToggleSigns', 'SignatureRefresh', 'SignatureListBufferMarks'
 on_func = 'signature#'
 
 [[plugins]]
-repo = 'osyo-manga/vim-anzu'
+repo = 'kevinhwang91/nvim-hlslens'
 on_event = ['BufRead', 'CursorHold']
 hook_source = '''
-    nmap n <Plug>(anzu-n)
-    nmap N <Plug>(anzu-N)
-    nmap * <Plug>(asterisk-z*)<Plug>(anzu-update-search-status)
-    nmap # <Plug>(asterisk-z#)<Plug>(anzu-update-search-status)
-    "hide highlight and anzu-status
-    nmap <silent><esc><esc> :nohlsearch<CR><esc> <Plug>(anzu-clear-search-status)
-
-    augroup vim-anzu
-        autocmd!
-        autocmd WinLeave,TabLeave * call anzu#clear_search_status()
-    augroup END
+lua << EOF
+local opts = {noremap = true, silent = true}
+vim.keymap.set('n', 'n', "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
+vim.keymap.set('n', 'N', "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
+vim.keymap.set({'n', 'x'}, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>")
+vim.keymap.set({'n', 'x'}, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
+vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
+vim.keymap.set({'n', 'x'}, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
+vim.keymap.set('n', '<Leader>c', ':noh<CR>', opts)
+EOF
 '''
 
 [[plugins]]
 repo = 'haya14busa/vim-asterisk'
-on_source = ['vim-anzu']
+on_source = ['nvim-hlslens']
 
 [[plugins]]
 repo = 'tpope/vim-surround'
