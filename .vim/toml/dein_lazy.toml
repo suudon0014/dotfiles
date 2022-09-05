@@ -321,7 +321,8 @@ vim.keymap.set({'n', 'x'}, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').
 vim.keymap.set({'n', 'x'}, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
 vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
 vim.keymap.set({'n', 'x'}, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
-vim.keymap.set('n', '<Leader>c', ':noh<CR>', opts)
+vim.keymap.set('n', '<Leader>c', ':nohlsearch<CR>', opts)
+vim.keymap.set('n', '<esc><esc>', ':nohlsearch<CR><esc>', opts)
 EOF
 '''
 
