@@ -74,7 +74,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'mark': '[lsp]',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*',
     \ },
-    \ 'vsnip': {'mark': '[vsnip]', 'dup': v:true,},
+    \ 'vsnip': {'mark': '[vsnip]', 'dup': 'keep',},
     \ 'around': {'mark': '[around]'},
     \ 'file': {
     \     'mark': '[file]',
