@@ -52,5 +52,8 @@ hook_add = '''
     augroup END
 '''
 hook_source = '''
-    colorscheme sonokai
+    augroup setColorschemeGroup
+        autocmd!
+        autocmd VimEnter * nested colorscheme sonokai
+    augroup END
 '''
