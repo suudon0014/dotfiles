@@ -4,31 +4,31 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1661459264000)\/",
+                "value": "\/Date(1662871572000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月26日 5:27:44"
+                "DateTime": "2022年9月11日 13:46:12"
             },
-            "Manifests": 1659
+            "Manifests": 1687
         },
         {
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1661459300000)\/",
+                "value": "\/Date(1662871617000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月26日 5:28:20"
+                "DateTime": "2022年9月11日 13:46:57"
             },
-            "Manifests": 1072
+            "Manifests": 1074
         },
         {
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1661459842000)\/",
+                "value": "\/Date(1662873455000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2022年8月26日 5:37:22"
+                "DateTime": "2022年9月11日 14:17:35"
             },
-            "Manifests": 353
+            "Manifests": 358
         }
     ],
     "apps": [
@@ -37,175 +37,182 @@
             "Source": "main",
             "Name": "7zip",
             "Version": "22.01",
-            "Updated": "\/Date(1660610967670)\/"
+            "Updated": "\/Date(1661057691885)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "ag",
             "Version": "2.2.5",
-            "Updated": "\/Date(1660610952289)\/"
+            "Updated": "\/Date(1661057694278)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "aria2",
             "Version": "1.36.0-1",
-            "Updated": "\/Date(1660711227354)\/"
+            "Updated": "\/Date(1661057700306)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "bat",
-            "Version": "0.21.0",
-            "Updated": "\/Date(1660611295054)\/"
+            "Version": "0.22.1",
+            "Updated": "\/Date(1662866029804)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "deno",
-            "Version": "1.25.0",
-            "Updated": "\/Date(1661473645875)\/"
+            "Version": "1.25.2",
+            "Updated": "\/Date(1662783193528)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "doxygen",
-            "Version": "1.9.4",
-            "Updated": "\/Date(1660614172554)\/"
+            "Version": "1.9.5",
+            "Updated": "\/Date(1661574090778)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "fzf",
-            "Version": "0.32.1",
-            "Updated": "\/Date(1660610962023)\/"
+            "Version": "0.33.0",
+            "Updated": "\/Date(1662173966377)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "git",
-            "Version": "2.37.2.windows.2",
-            "Updated": "\/Date(1660610995175)\/"
+            "Version": "2.37.3.windows.1",
+            "Updated": "\/Date(1662174229213)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "graphviz",
             "Version": "5.0.1",
-            "Updated": "\/Date(1661125843478)\/"
+            "Updated": "\/Date(1661058061777)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "imagemagick",
-            "Version": "7.1.0-46",
-            "Updated": "\/Date(1660786443445)\/"
+            "Version": "7.1.0-47",
+            "Updated": "\/Date(1661658559959)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "innounp",
             "Version": "0.50",
-            "Updated": "\/Date(1660614182896)\/"
+            "Updated": "\/Date(1661058064446)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "less",
-            "Version": "590",
-            "Updated": "\/Date(1660611355241)\/"
+            "Version": "608",
+            "Updated": "\/Date(1662783204079)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "llvm",
-            "Version": "14.0.6",
-            "Updated": "\/Date(1660611082429)\/"
+            "Version": "15.0.0",
+            "Updated": "\/Date(1662784851732)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "make",
             "Version": "4.3",
-            "Updated": "\/Date(1660611083788)\/"
+            "Updated": "\/Date(1661060310556)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "neovide",
             "Version": "0.10.1",
-            "Updated": "\/Date(1661474824795)\/"
+            "Updated": "\/Date(1661573721865)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "neovim",
             "Version": "0.7.2",
-            "Updated": "\/Date(1660616909047)\/"
+            "Updated": "\/Date(1661061245480)\/"
         },
         {
             "Info": "",
             "Source": "versions",
             "Name": "neovim-nightly",
-            "Version": "0.8.0-dev-945-ge4e0e8ce6",
-            "Updated": "\/Date(1661473659728)\/"
+            "Version": "0.8.0-dev-1025-gfb39bba5a",
+            "Updated": "\/Date(1662783360079)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "nodejs",
-            "Version": "18.8.0",
-            "Updated": "\/Date(1661385535621)\/"
+            "Version": "18.9.0",
+            "Updated": "\/Date(1662783499591)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pandoc",
             "Version": "2.19.2",
-            "Updated": "\/Date(1661212197828)\/"
+            "Updated": "\/Date(1661574333670)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pnpm",
-            "Version": "7.9.5",
-            "Updated": "\/Date(1661385544791)\/"
+            "Version": "7.11.0",
+            "Updated": "\/Date(1662783641638)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "ripgrep",
             "Version": "13.0.0",
-            "Updated": "\/Date(1660611433648)\/"
+            "Updated": "\/Date(1661061588317)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "rustup",
+            "Version": "1.25.1",
+            "Updated": "\/Date(1662875296052)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "sudo",
             "Version": "0.2020.01.26",
-            "Updated": "\/Date(1660611338658)\/"
+            "Updated": "\/Date(1661061593383)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "vcredist2022",
             "Version": "14.32.31332.0",
-            "Updated": "\/Date(1660611480892)\/"
+            "Updated": "\/Date(1661063134927)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "windows-terminal",
             "Version": "1.14.2281.0",
-            "Updated": "\/Date(1660867729489)\/"
+            "Updated": "\/Date(1661063198482)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "yarn",
             "Version": "1.22.19",
-            "Updated": "\/Date(1660615102641)\/"
+            "Updated": "\/Date(1661063228189)\/"
         }
     ]
 }
