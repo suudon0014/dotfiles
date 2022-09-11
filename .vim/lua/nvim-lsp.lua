@@ -124,8 +124,18 @@ mason_lspconfig.setup_handlers({ function(server_name)
         opts.cmd = {'marksman.cmd'}
     end
 
+    if server_name == 'bashls' then
+        opts.filetypes = {'sh', 'zsh'}
+    end
+
     opts.on_attach = on_attach
     opts.capabilities = capabilities
 
     lspconfig[server_name].setup(opts)
 end })
+
+require("fidget").setup{
+    text = {
+        spinner = 'moon',
+    },
+}
