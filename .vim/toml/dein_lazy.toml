@@ -429,3 +429,11 @@ on_cmd = 'help'
 [[plugins]]
 repo = 'j-hui/fidget.nvim'
 on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+on_func = 'quickrun#'
+hook_add = '''
+    nnoremap <silent> ,q :call quickrun#run()<CR>
+'''
