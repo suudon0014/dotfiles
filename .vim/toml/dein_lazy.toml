@@ -312,8 +312,7 @@ on_func = 'signature#'
 [[plugins]]
 repo = 'kevinhwang91/nvim-hlslens'
 on_event = ['BufRead', 'CursorHold']
-hook_source = '''
-lua << EOF
+lua_source = '''
 local opts = {noremap = true, silent = true}
 vim.keymap.set('n', 'n', "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
 vim.keymap.set('n', 'N', "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
@@ -323,7 +322,6 @@ vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens'
 vim.keymap.set({'n', 'x'}, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
 vim.keymap.set('n', '<Leader>c', ':nohlsearch<CR>', opts)
 vim.keymap.set('n', '<esc><esc>', ':nohlsearch<CR><esc>', opts)
-EOF
 '''
 
 [[plugins]]
@@ -371,8 +369,8 @@ on_event = ['BufRead', 'CursorHold']
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_event = ['BufRead', 'CursorHold']
-hook_source = '''
-    lua require('colorizer').setup()
+lua_source = '''
+    require('colorizer').setup()
 '''
 
 [[plugins]]
@@ -391,10 +389,8 @@ hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
 [[plugins]]
 repo = 'dinhhuy258/git.nvim'
 on_event = 'VimEnter'
-hook_source = '''
-lua << EOF
-require('git').setup()
-EOF
+lua_source = '''
+    require('git').setup()
 '''
 
 [[plugins]]
