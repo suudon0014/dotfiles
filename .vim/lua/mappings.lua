@@ -19,6 +19,8 @@ vim.keymap.set('v', '<Leader>l', 'g$h')
 vim.keymap.set('', '<Leader>b', '%')
 
 -- command line mode
+vim.keymap.set('c', '<C-b>', '<Up>')
+vim.keymap.set('c', '<C-f>', '<Down>')
 vim.keymap.set('c', '<C-h>', '<Left>')
 vim.keymap.set('c', '<C-l>', '<Right>')
 vim.keymap.set('c', '<C-Space>h', '<Home>')

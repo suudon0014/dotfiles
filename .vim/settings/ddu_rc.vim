@@ -48,7 +48,7 @@ augroup END
 function! s:DduStart(source, preview_enable, custom_enable) abort
     if a:preview_enable
         let s:ui_params = s:ddu_win_and_preview_pos
-        let s:ui_params['autoAction'] = {'name': 'preview'}
+        " let s:ui_params['autoAction'] = {'name': 'preview'}
     else
         let s:ui_params = s:ddu_win_pos
     endif
@@ -67,7 +67,7 @@ endfunction
 command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
 function! s:DduGrep(word) abort
     let s:ui_params = s:ddu_win_and_preview_pos
-    let s:ui_params['autoAction'] = {'name': 'preview'}
+    " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
         \ 'uiParams': {'ff': s:ui_params},
         \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
