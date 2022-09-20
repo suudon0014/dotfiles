@@ -436,7 +436,4 @@ hook_add = '''
 
 [[plugins]]
 repo = 'simrat39/rust-tools.nvim'
-on_ft = 'rust'
-lua_source = '''
-    require('rust-tools').setup()
-'''
+on_source = ['mason.nvim']

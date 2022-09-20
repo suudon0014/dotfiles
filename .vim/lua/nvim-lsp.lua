@@ -96,6 +96,8 @@ local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
+    opts.on_attach = on_attach
+    opts.capabilities = capabilities
 
     if server_name == 'clangd' then
         opts.cmd = {
@@ -128,10 +130,15 @@ mason_lspconfig.setup_handlers({ function(server_name)
         opts.filetypes = {'sh', 'zsh'}
     end
 
-    opts.on_attach = on_attach
-    opts.capabilities = capabilities
-
-    lspconfig[server_name].setup(opts)
+    if server_name == 'rust_analyzer' then
+        require('rust-tools').setup({
+            server = {
+                on_attach = on_attach,
+            }
+        })
+    else
+        lspconfig[server_name].setup(opts)
+    end
 end })
 
 require("fidget").setup{
