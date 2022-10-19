@@ -117,6 +117,7 @@ hook_source = '''
         \   '-interaction=nonstopmode',
         \ ],
         \}
+    nmap <leader>tc <Plug>(vimtex-compile)
 '''
 
 [[plugins]]
