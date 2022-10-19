@@ -1,12 +1,10 @@
 #!/usr/bin/env perl
-$pdf_mode         = 3;
-$latex            = 'uplatex %O -kanji=utf8 -no-guess-input-enc -interaction=nonstopmode -file-line-error %S';
-$bibtex           = 'upbibtex %O %B';
-$dvipdf           = 'dvipdfmx %O -o %D %S';
-$makeindex        = 'mendex %O -o %D %S';
-
-$biber = 'biber %O --bblencoding=utf8 -u -U --output_safechars %S';
-$makeindex = 'mendex %O -o %D %S';
-
+$lualatex                    = 'lualatex -synctex=1 -interaction=nonstopmode';
+$pdflualatex                 = $lualatex;
+$biber                       = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
+$bibtex                      = 'upbibtex %O %B';
+$makeindex                   = 'mendex %O -o %D %S';
+$max_repeat                  = 5;
+$pdf_mode                    = 4;
 $pvc_view_file_via_temporary = 0;
-$pdf_previewer = 'SumatraPDF -reuse-instance'
+$pdf_previewer               = 'SumatraPDF -reuse-instance'
