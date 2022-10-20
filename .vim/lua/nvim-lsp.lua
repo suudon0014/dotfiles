@@ -17,14 +17,14 @@ local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = {noremap=true, silent=true, buffer=bufnr}
     vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-    vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga range_code_action<CR>', opts)
+    vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
     vim.keymap.set('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
     vim.keymap.set('n', '<C-l>s', '<Cmd>Lspsaga signature_help<CR>', opts)
     vim.keymap.set('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)
     vim.keymap.set('n', '<C-l>fi', '<Cmd>Lspsaga lsp_finder<CR>', opts)
     vim.keymap.set('n', '<C-l>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>cd', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
-    vim.keymap.set('n', '<C-l>pd', '<Cmd>Lspsaga preview_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>pd', '<Cmd>Lspsaga peek_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>gp', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
     vim.keymap.set('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
     opts['desc'] = 'vim.lsp.buf.references()'
@@ -96,6 +96,8 @@ local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
+    opts.on_attach = on_attach
+    opts.capabilities = capabilities
 
     if server_name == 'clangd' then
         opts.cmd = {
@@ -128,10 +130,15 @@ mason_lspconfig.setup_handlers({ function(server_name)
         opts.filetypes = {'sh', 'zsh'}
     end
 
-    opts.on_attach = on_attach
-    opts.capabilities = capabilities
-
-    lspconfig[server_name].setup(opts)
+    if server_name == 'rust_analyzer' then
+        require('rust-tools').setup({
+            server = {
+                on_attach = on_attach,
+            }
+        })
+    else
+        lspconfig[server_name].setup(opts)
+    end
 end })
 
 require("fidget").setup{

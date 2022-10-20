@@ -117,6 +117,7 @@ hook_source = '''
         \   '-interaction=nonstopmode',
         \ ],
         \}
+    nmap <leader>tc <Plug>(vimtex-compile)
 '''
 
 [[plugins]]
@@ -433,3 +434,7 @@ on_func = 'quickrun#'
 hook_add = '''
     nnoremap <silent> ,q :call quickrun#run()<CR>
 '''
+
+[[plugins]]
+repo = 'simrat39/rust-tools.nvim'
+on_source = ['mason.nvim']
