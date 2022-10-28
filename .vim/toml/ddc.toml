@@ -11,7 +11,7 @@ repo = 'Shougo/ddc-ui-pum'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-source-around'
 on_source = ['ddc.vim']
 
 [[plugins]]
@@ -35,15 +35,15 @@ repo = 'tani/ddc-fuzzy'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline'
+repo = 'Shougo/ddc-source-cmdline'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
+repo = 'Shougo/ddc-source-cmdline-history'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
+repo = 'Shougo/ddc-source-nvim-lsp'
 on_source = ['ddc.vim']
 
 [[plugins]]
