@@ -314,6 +314,7 @@ on_func = 'signature#'
 repo = 'kevinhwang91/nvim-hlslens'
 on_event = ['BufRead', 'CursorHold']
 lua_source = '''
+require('hlslens').setup()
 local opts = {noremap = true, silent = true}
 vim.keymap.set('n', 'n', "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
 vim.keymap.set('n', 'N', "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
@@ -406,7 +407,7 @@ repo = 'skanehira/vsession'
 on_event = 'CursorHold'
 hook_post_source = '''
     let g:vsession_save_last_on_leave = 0
-    let g:vsession_ui = 'popup'
+    let g:vsession_ui = 'fzf'
     nnoremap <silent> <Leader>ss :SaveSession<CR>
     nnoremap <silent> <Leader>sl :LoadSession<CR>
     nnoremap <silent> <Leader>sd :DeleteSession<CR>
