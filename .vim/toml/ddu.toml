@@ -78,12 +78,12 @@ ddu-filer = '''
     nnoremap <buffer> <leader>l <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'loclist'})<CR>
     nnoremap <buffer> <leader>q <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'quickfix'})<CR>
     nnoremap <buffer> <C-l> <Cmd>call ddu#ui#filer#do_action('checkItems')<CR>
-    nnoremap <buffer><expr> s ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>"
-    nnoremap <buffer><expr> v ddu#ui#filer#is_directory() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>"
+    nnoremap <buffer><expr> s ddu#ui#filer#is_tree() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>"
+    nnoremap <buffer><expr> v ddu#ui#filer#is_tree() ? "" : "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>"
     nnoremap <buffer> ~ <Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow', 'params': {'path': expand('~')}})<CR>
     nnoremap <buffer> > <Cmd>call ddu#ui#filer#do_action('updateOptions',
         \ {'sourceOptions': {'file': {'matchers': ToggleHidden('file')}}})<CR>
-    nnoremap <buffer><expr> <CR> ddu#ui#filer#is_directory() ?
+    nnoremap <buffer><expr> <CR> ddu#ui#filer#is_tree() ?
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
     nnoremap <buffer> <Esc><Esc> <Nop>
