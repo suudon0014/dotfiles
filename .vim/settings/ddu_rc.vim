@@ -4,7 +4,8 @@
 nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false)<CR>
 nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false)<CR>
-nnoremap ,r :DduGrep<Space>
+nnoremap ,rw :DduGrep<Space>
+nnoremap <silent> ,rl :call <SID>DduGrep('', v:true)<CR>
 nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
@@ -64,13 +65,25 @@ function! s:DduStart(source, preview_enable, custom_enable) abort
     endif
 endfunction
 
-command! -nargs=1 DduGrep :call <SID>DduGrep(<f-args>)
-function! s:DduGrep(word) abort
+command! -nargs=* DduGrep :call <SID>DduGrep(<f-args>)
+function! s:DduGrep(...) abort
+    let volatile = v:false
+    let word = ''
+    if a:0 == 0
+        let volatile = v:true
+    elseif a:0 == 1
+        let word = a:1
+    elseif a:0 == 2
+        let word = a:1
+        let volatile = a:2
+    endif
+
     let s:ui_params = s:ddu_win_and_preview_pos
     " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
+        \ 'volatile': volatile,
         \ 'uiParams': {'ff': s:ui_params},
-        \ 'sources': [{'name': 'rg', 'params': {'input': a:word}}]
+        \ 'sources': [{'name': 'rg', 'params': {'input': word}}]
     \ })
 endfunction
 

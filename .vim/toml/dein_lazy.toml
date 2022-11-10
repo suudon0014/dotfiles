@@ -261,10 +261,6 @@ repo = 'rafamadriz/friendly-snippets'
 on_source = ['vim-vsnip']
 
 [[plugins]]
-repo = 'markonm/traces.vim'
-on_event = ['CursorMoved', 'CmdlineEnter']
-
-[[plugins]]
 repo = 'osyo-manga/vim-precious'
 on_event = 'CursorMoved'
 hook_source = '''
