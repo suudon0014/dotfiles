@@ -47,6 +47,10 @@ repo = 'Shougo/ddc-source-nvim-lsp'
 on_source = ['ddc.vim']
 
 [[plugins]]
+repo = 'Shougo/ddc-source-input'
+on_source = ['ddc.vim']
+
+[[plugins]]
 repo = 'vim-skk/skkeleton'
 on_source = ['ddc.vim']
 hook_source = '''

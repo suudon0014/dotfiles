@@ -61,6 +61,7 @@ call ddc#custom#patch_global('sources', [
     \ 'file',
     \ 'skkeleton',
     \ 'cmdline-history',
+    \ 'input',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
@@ -89,6 +90,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'cmdline-history': {
     \   'mark': '[cmdhist]',
+    \ },
+    \ 'input': {
+    \   'mark': 'input',
+    \   'isVolatile': v:true,
     \ },
 \ })
 
