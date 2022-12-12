@@ -435,3 +435,7 @@ hook_add = '''
 [[plugins]]
 repo = 'simrat39/rust-tools.nvim'
 on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'itchyny/vim-qfedit'
+on_ft = ['qf']
