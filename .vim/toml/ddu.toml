@@ -144,11 +144,15 @@ repo = 'k-ota106/ddu-source-marks'
 on_source = ['ddu.vim']
 
 [[plugins]]
-repo = 'Shougo/ddu-filter-matcher_substring'
+repo = 'matsui54/ddu-source-dein_update'
 on_source = ['ddu.vim']
 
 [[plugins]]
-repo = 'matsui54/ddu-source-dein_update'
+repo = 'kuuote/ddu-source-git_diff'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
 [[plugins]]
