@@ -327,8 +327,8 @@ repo = 'haya14busa/vim-asterisk'
 on_source = ['nvim-hlslens']
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-on_event = 'CursorMoved'
+repo = 'machakann/vim-sandwich'
+on_event = ['CursorMoved']
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
