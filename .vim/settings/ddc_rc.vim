@@ -80,30 +80,30 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'minAutoCompleteLength': 1,
     \ },
     \ 'nvim-lsp': {
-    \     'mark': '[lsp]',
+    \     'mark': '[LSP]',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*',
     \ },
-    \ 'vsnip': {'mark': '[vsnip]', 'dup': 'keep',},
-    \ 'around': {'mark': '[around]'},
+    \ 'vsnip': {'mark': '[VSNIP]', 'dup': 'keep',},
+    \ 'around': {'mark': '[AROUND]'},
     \ 'file': {
-    \     'mark': '[file]',
+    \     'mark': '[FILE]',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
     \ 'skkeleton': {
-    \   'mark': '[skk]',
+    \   'mark': '[SKK]',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \   'isVolatile': v:true,
     \ },
     \ 'cmdline': {
-    \   'mark': '[cmdline]',
+    \   'mark': '[C-LINE]',
     \ },
     \ 'cmdline-history': {
-    \   'mark': '[cmdhist]',
+    \   'mark': '[C-HIST]',
     \ },
     \ 'input': {
-    \   'mark': '[input]',
+    \   'mark': '[INP]',
     \   'isVolatile': v:true,
     \ },
 \ })
