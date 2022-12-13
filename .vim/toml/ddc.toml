@@ -11,10 +11,6 @@ repo = 'Shougo/ddc-ui-pum'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-source-around'
-on_source = ['ddc.vim']
-
-[[plugins]]
 repo = 'Shougo/ddc-matcher_head'
 on_source = ['ddc.vim']
 
@@ -27,27 +23,7 @@ repo = 'Shougo/ddc-converter_remove_overlap'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'LumaKernel/ddc-file'
-on_source = ['ddc.vim']
-
-[[plugins]]
 repo = 'tani/ddc-fuzzy'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'Shougo/ddc-source-cmdline'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'Shougo/ddc-source-cmdline-history'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'Shougo/ddc-source-nvim-lsp'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'Shougo/ddc-source-input'
 on_source = ['ddc.vim']
 
 [[plugins]]
@@ -90,3 +66,28 @@ hook_source = '''
 hook_post_source = '''
     vmap <C-s> <Plug>(skk-vconv:conv)
 '''
+
+# source
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline-history'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-nvim-lsp'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-input'
+on_source = ['ddc.vim']

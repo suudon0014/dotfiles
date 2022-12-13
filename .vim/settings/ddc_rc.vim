@@ -96,11 +96,14 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'sorters': [],
     \   'isVolatile': v:true,
     \ },
+    \ 'cmdline': {
+    \   'mark': '[cmdline]',
+    \ },
     \ 'cmdline-history': {
     \   'mark': '[cmdhist]',
     \ },
     \ 'input': {
-    \   'mark': 'input',
+    \   'mark': '[input]',
     \   'isVolatile': v:true,
     \ },
 \ })
