@@ -25,9 +25,9 @@ function! CommandlinePre() abort
         let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
     call ddc#custom#patch_buffer('cmdlineSources', {
-        \ ':': ['cmdline-history', 'cmdline', 'around', 'file'],
-        \ '@': ['cmdline-history', 'input', 'around', 'file'],
-        \ '>': ['cmdline-history', 'input', 'around', 'file'],
+        \ ':': ['cmdline', 'cmdline-history', 'around', 'file'],
+        \ '@': ['input', 'cmdline-history', 'around', 'file'],
+        \ '>': ['input', 'cmdline-history', 'around', 'file'],
         \ '/': ['around', 'line'],
         \ '?': ['around', 'line'],
         \ '-': ['around', 'line'],
