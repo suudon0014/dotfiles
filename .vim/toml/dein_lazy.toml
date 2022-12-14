@@ -440,5 +440,32 @@ repo = 'simrat39/rust-tools.nvim'
 on_source = ['mason.nvim']
 
 [[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_event = ['CursorHold', 'CmdlineEnter']
+
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+on_source = 'plenary.nvim'
+lua_source = '''
+    require('cmp').setup()
+'''
+
+[[plugins]]
+repo = 'epwalsh/obsidian.nvim'
+on_source = 'nvim-cmp'
+lua_source = '''
+    vim.cmd('cd ~')
+    require('obsidian').setup({
+        dir = 'obsidian_vault',
+        daily_notes = {
+            folder = 'daily_notes',
+        },
+        completion = {
+            nvim_cmp = false,
+        },
+    })
+'''
+
+[[plugins]]
 repo = 'itchyny/vim-qfedit'
 on_ft = ['qf']
