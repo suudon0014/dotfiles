@@ -16,6 +16,7 @@ nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false)<CR>
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
+nnoremap <silent> ,g :call <SID>DduStart('git_diff', v:true, v:false)<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -186,6 +187,8 @@ call ddu#custom#patch_global({
         \ },
         \ 'filer': {
             \ 'split': 'floating',
+            \ 'sort': 'filename',
+            \ 'sortTreesFirst': v:true,
         \ },
     \ },
     \ 'sourceParams': {

@@ -327,8 +327,8 @@ repo = 'haya14busa/vim-asterisk'
 on_source = ['nvim-hlslens']
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-on_event = 'CursorMoved'
+repo = 'machakann/vim-sandwich'
+on_event = ['CursorMoved']
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -341,6 +341,9 @@ hook_source = '''
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 on_event = ['BufRead', 'CursorHold']
+hook_source = '''
+    let g:extra_whitespace_ignored_filetypes = ['ddu-filer']
+'''
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -435,3 +438,34 @@ hook_add = '''
 [[plugins]]
 repo = 'simrat39/rust-tools.nvim'
 on_source = ['mason.nvim']
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_event = ['CursorHold', 'CmdlineEnter']
+
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+on_source = 'plenary.nvim'
+lua_source = '''
+    require('cmp').setup()
+'''
+
+[[plugins]]
+repo = 'epwalsh/obsidian.nvim'
+on_source = 'nvim-cmp'
+lua_source = '''
+    vim.cmd('cd ~')
+    require('obsidian').setup({
+        dir = 'obsidian_vault',
+        daily_notes = {
+            folder = 'daily_notes',
+        },
+        completion = {
+            nvim_cmp = false,
+        },
+    })
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-qfedit'
+on_ft = ['qf']

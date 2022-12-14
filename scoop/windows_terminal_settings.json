@@ -4,7 +4,14 @@
     "actions": 
     [
         {
-            "command": 
+            "command":
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "up"
@@ -12,18 +19,18 @@
             "keys": "ctrl+shift+k"
         },
         {
-            "command": 
+            "command": "closePane",
+            "keys": "ctrl+shift+q"
+        },
+        {
+            "command":
             {
                 "action": "nextTab"
             },
             "keys": "ctrl+shift+g"
         },
         {
-            "command": "closePane",
-            "keys": "ctrl+shift+q"
-        },
-        {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "right"
@@ -31,18 +38,7 @@
             "keys": "ctrl+shift+l"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": 
-            {
-                "action": "newTab"
-            },
-            "keys": "ctrl+shift+t"
-        },
-        {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "right"
@@ -50,7 +46,11 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command":
             {
                 "action": "splitPane",
                 "split": "down"
@@ -58,7 +58,7 @@
             "keys": "ctrl+shift+s"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "down"
@@ -66,7 +66,7 @@
             "keys": "ctrl+shift+j"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "left"
@@ -79,12 +79,12 @@
     "defaultProfile": "{0583e165-f13e-4000-80c8-e59338f79d40}",
     "initialCols": 140,
     "initialRows": 65,
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "cursorShape": "filledBox",
-            "font": 
+            "font":
             {
                 "face": "Delugia Nerd Font",
                 "size": 9
@@ -95,7 +95,7 @@
             "startingDirectory": "%USERPROFILE%",
             "useAcrylic": true
         },
-        "list": 
+        "list":
         [
             {
                 "commandline": "zsh.exe",
@@ -124,10 +124,16 @@
                 "hidden": false,
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+                "hidden": false,
+                "name": "Arch",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",

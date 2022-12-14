@@ -24,7 +24,15 @@ function! CommandlinePre() abort
     if !exists('b:prev_buffer_config')
         let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
-    call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'cmdline-history', 'around', 'file'])
+    call ddc#custom#patch_buffer('cmdlineSources', {
+        \ ':': ['cmdline', 'cmdline-history', 'around', 'file'],
+        \ '@': ['input', 'cmdline-history', 'around', 'file'],
+        \ '>': ['input', 'cmdline-history', 'around', 'file'],
+        \ '/': ['around', 'line'],
+        \ '?': ['around', 'line'],
+        \ '-': ['around', 'line'],
+        \ '=': ['input'],
+    \ })
 
     autocmd User DDCCmdlineLeave ++once call CommandlinePost()
     autocmd InsertEnter <buffer> ++once call CommandlinePost()
@@ -61,6 +69,7 @@ call ddc#custom#patch_global('sources', [
     \ 'file',
     \ 'skkeleton',
     \ 'cmdline-history',
+    \ 'input',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
@@ -71,24 +80,31 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'minAutoCompleteLength': 1,
     \ },
     \ 'nvim-lsp': {
-    \     'mark': '[lsp]',
+    \     'mark': '[LSP]',
     \     'forceCompletionPattern': '\.|:|->|"\w*/*',
     \ },
-    \ 'vsnip': {'mark': '[vsnip]', 'dup': 'keep',},
-    \ 'around': {'mark': '[around]'},
+    \ 'vsnip': {'mark': '[VSNIP]', 'dup': 'keep',},
+    \ 'around': {'mark': '[AROUND]'},
     \ 'file': {
-    \     'mark': '[file]',
+    \     'mark': '[FILE]',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
     \ 'skkeleton': {
-    \   'mark': '[skk]',
+    \   'mark': '[SKK]',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \   'isVolatile': v:true,
     \ },
+    \ 'cmdline': {
+    \   'mark': '[C-LINE]',
+    \ },
     \ 'cmdline-history': {
-    \   'mark': '[cmdhist]',
+    \   'mark': '[C-HIST]',
+    \ },
+    \ 'input': {
+    \   'mark': '[INP]',
+    \   'isVolatile': v:true,
     \ },
 \ })
 

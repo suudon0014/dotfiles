@@ -15,10 +15,6 @@ repo = 'NLKNguyen/papercolor-theme'
 on_event = 'VimEnter'
 
 [[plugins]]
-repo = 'ulwlu/elly.vim'
-on_event = 'VimEnter'
-
-[[plugins]]
 repo = 'morhetz/gruvbox'
 on_event = 'VimEnter'
 
