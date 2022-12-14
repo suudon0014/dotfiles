@@ -341,6 +341,9 @@ hook_source = '''
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 on_event = ['BufRead', 'CursorHold']
+hook_source = '''
+    let g:extra_whitespace_ignored_filetypes = ['ddu-filer']
+'''
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
