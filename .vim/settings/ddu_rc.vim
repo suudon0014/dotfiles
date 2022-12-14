@@ -187,6 +187,8 @@ call ddu#custom#patch_global({
         \ },
         \ 'filer': {
             \ 'split': 'floating',
+            \ 'sort': 'filename',
+            \ 'sortTreesFirst': v:true,
         \ },
     \ },
     \ 'sourceParams': {

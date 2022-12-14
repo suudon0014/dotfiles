@@ -88,6 +88,16 @@ ddu-filer = '''
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
     nnoremap <buffer> <Esc><Esc> <Nop>
 
+    nnoremap <buffer> se <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'extension'}}})<CR>
+    nnoremap <buffer> sf <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'filename'}}})<CR>
+    nnoremap <buffer> ss <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Size'}}})<CR>
+    nnoremap <buffer> st <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Time'}}})<CR>
+    nnoremap <buffer> sre <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Extension'}}})<CR>
+    nnoremap <buffer> srf <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Filename'}}})<CR>
+    nnoremap <buffer> srs <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'size'}}})<CR>
+    nnoremap <buffer> srt <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'time'}}})<CR>
+    nnoremap <buffer> sn <Cmd>call ddu#ui#filer#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'none'}}})<CR>
+
     function! ToggleHidden(name)
         let current = ddu#custom#get_current(b:ddu_ui_name)
         let source_options = get(current, 'sourceOptions', {})
