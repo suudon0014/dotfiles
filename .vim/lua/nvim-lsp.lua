@@ -99,6 +99,7 @@ mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
     opts.on_attach = on_attach
+    opts.detached = false
     opts.capabilities = capabilities
 
     if server_name == 'clangd' then
