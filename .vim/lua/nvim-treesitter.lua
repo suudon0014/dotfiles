@@ -2,7 +2,7 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     highlight = {
         enable = true,
-        disable = {"markdown",},
+        additional_vim_regex_highlighting = {"markdown"},
     },
     textobjects = {
         select = {
