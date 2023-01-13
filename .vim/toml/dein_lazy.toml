@@ -457,8 +457,9 @@ lua_source = '''
     vim.cmd('cd ~')
     require('obsidian').setup({
         dir = 'obsidian_vault',
+        notes_subdir = '01_Inbox',
         daily_notes = {
-            folder = 'daily_notes',
+            folder = '02_Daily',
         },
         completion = {
             nvim_cmp = false,
