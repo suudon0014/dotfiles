@@ -342,7 +342,7 @@ hook_source = '''
 repo = 'bronson/vim-trailing-whitespace'
 on_event = ['BufRead', 'CursorHold']
 hook_source = '''
-    let g:extra_whitespace_ignored_filetypes = ['ddu-filer', 'ddu-ff']
+    let g:extra_whitespace_ignored_filetypes = ['', 'ddu-filer', 'ddu-ff']
 '''
 
 [[plugins]]
@@ -457,8 +457,9 @@ lua_source = '''
     vim.cmd('cd ~')
     require('obsidian').setup({
         dir = 'obsidian_vault',
+        notes_subdir = '01_Inbox',
         daily_notes = {
-            folder = 'daily_notes',
+            folder = '02_Daily',
         },
         completion = {
             nvim_cmp = false,
