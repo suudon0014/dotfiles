@@ -68,6 +68,7 @@ call ddc#custom#patch_global('sources', [
     \ 'around',
     \ 'file',
     \ 'skkeleton',
+    \ 'buffer',
     \ 'cmdline-history',
     \ 'input',
 \ ])
@@ -95,6 +96,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \   'isVolatile': v:true,
+    \ },
+    \ 'buffer': {
+    \   'mark': '[BUF]',
     \ },
     \ 'cmdline': {
     \   'mark': '[C-LINE]',
@@ -137,7 +141,11 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
         \ }
-    \ }
+    \ },
+    \ 'buffer': {
+    \   'requireSameFiletype': v:false,
+    \   'bufNameStyle': "basename",
+    \ },
 \ })
 
 call ddc#custom#patch_global('backspaceCompletion', v:true)
