@@ -25,9 +25,9 @@ function! CommandlinePre() abort
         let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
     call ddc#custom#patch_buffer('cmdlineSources', {
-        \ ':': ['cmdline', 'cmdline-history', 'around', 'file'],
-        \ '@': ['input', 'cmdline-history', 'around', 'file'],
-        \ '>': ['input', 'cmdline-history', 'around', 'file'],
+        \ ':': ['cmdline', 'cmdline-history', 'around', 'file', 'path'],
+        \ '@': ['input', 'cmdline-history', 'around', 'file', 'path'],
+        \ '>': ['input', 'cmdline-history', 'around', 'file', 'path'],
         \ '/': ['around', 'line'],
         \ '?': ['around', 'line'],
         \ '-': ['around', 'line'],
@@ -67,6 +67,7 @@ call ddc#custom#patch_global('sources', [
     \ 'nvim-lsp',
     \ 'around',
     \ 'file',
+    \ 'path',
     \ 'skkeleton',
     \ 'buffer',
     \ 'cmdline-history',
@@ -90,6 +91,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'mark': '[FILE]',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
+    \ },
+    \ 'path': {
+    \     'mark': '[PATH]',
     \ },
     \ 'skkeleton': {
     \   'mark': '[SKK]',
@@ -141,6 +145,10 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
         \ }
+    \ },
+    \ 'path': {
+    \   'absolute': v:false,
+    \   'cmd': ['fd', '--max-depth', '5', '--hidden', '--exclude', '.git'],
     \ },
     \ 'buffer': {
     \   'requireSameFiletype': v:false,

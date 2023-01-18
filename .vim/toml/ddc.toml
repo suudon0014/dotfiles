@@ -95,3 +95,7 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
 on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'tani/ddc-path'
+on_source = ['ddc.vim']
