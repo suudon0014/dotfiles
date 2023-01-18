@@ -108,14 +108,16 @@ function fzfnvim() {
     fi
 }
 
-function fd() {
+# cd using fzf
+function fzd() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune \
         -o -type d -print 2> /dev/null | fzf +m) &&
     cd "$dir"
 }
 
-function fv() {
+# open file in vim using fzf
+function fzv() {
     local dir
     dir=$(find ${1:-.} -mindepth 1 \
         -not -iwholename *.git/objects* \
