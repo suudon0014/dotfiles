@@ -146,9 +146,13 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'TypeParameter': "󿞃 TypeParameter"
         \ }
     \ },
+    \ 'file': {
+    \   'mode': 'posix',
+    \ },
     \ 'path': {
     \   'absolute': v:false,
     \   'cmd': ['fd', '--max-depth', '5', '--hidden', '--exclude', '.git'],
+    \   'dirSeparator': 'slash',
     \ },
     \ 'buffer': {
     \   'requireSameFiletype': v:false,
