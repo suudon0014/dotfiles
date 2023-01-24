@@ -138,6 +138,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
 
     if server_name == 'marksman' then
         opts.cmd = {'marksman.cmd'}
+        opts.single_file_support = true
     end
 
     if server_name == 'bashls' then
