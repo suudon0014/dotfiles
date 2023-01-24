@@ -193,7 +193,7 @@ call ddu#custom#patch_global({
     \ },
     \ 'sourceParams': {
         \ 'file_rec': {
-            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs'],
+            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
         \ },
         \ 'rg': {
             \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
