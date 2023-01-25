@@ -342,7 +342,7 @@ hook_source = '''
 repo = 'bronson/vim-trailing-whitespace'
 on_event = ['BufRead', 'CursorHold']
 hook_source = '''
-    let g:extra_whitespace_ignored_filetypes = ['', 'ddu-filer', 'ddu-ff', 'mason']
+    let g:extra_whitespace_ignored_filetypes = ['', 'ddu-filer', 'ddu-ff', 'mason', 'lspsagafinder']
 '''
 
 [[plugins]]
