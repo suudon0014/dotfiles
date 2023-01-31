@@ -46,6 +46,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>rf', function() vim.lsp.buf.references() end, opts)
     opts['desc'] = 'vim.lsp.buf.format()'
     vim.keymap.set('n', '<C-l>fo', function() vim.lsp.buf.format {async=true} end, opts)
+    vim.keymap.set('v', '<C-l>fo', function() vim.lsp.buf.format {async=true} end, opts)
     opts['desc'] = 'vim.diagnostic.open_float()'
     vim.keymap.set('n', '<C-l>e', function() vim.diagnostic.open_float() end, opts)
     opts['desc'] = 'vim.lsp.buf.declaration()'
@@ -53,10 +54,6 @@ local on_attach = function(client, bufnr)
     opts['desc'] = 'vim.lsp.buf.implementation()'
     vim.keymap.set('n', '<C-l>gi', function() vim.lsp.buf.implementation() end, opts)
 
-    if client.server_capabilities.documentRangeFormattingProvider then
-        opts['desc'] = nil
-        vim.keymap.set('v', '<C-l>fo', '<Cmd>lua vim.lsp.buf.range_formatting()<CR><Esc>', opts)
-    end
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec([[
             highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
