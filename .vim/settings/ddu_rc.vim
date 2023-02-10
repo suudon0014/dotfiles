@@ -93,7 +93,7 @@ function! s:DduGrepCWord() abort
 endfunction
 
 function! s:DduFilerSingleStart() abort
-    let s:ui_params = s:ddu_win_pos
+    let s:ui_params = s:ddu_win_and_preview_pos
     call ddu#start({
         \ 'name': 'filer_single',
         \ 'uiParams': {
@@ -189,6 +189,12 @@ call ddu#custom#patch_global({
             \ 'split': 'floating',
             \ 'sort': 'filename',
             \ 'sortTreesFirst': v:true,
+            \ 'previewHeight': 20,
+            \ 'previewWidth': &columns / 2,
+            \ 'previewFloating': v:true,
+            \ 'previewFloatingBorder': 'single',
+            \ 'previewVertical': v:true,
+            \ 'previewFloatingZindex': 100,
         \ },
     \ },
     \ 'sourceParams': {
