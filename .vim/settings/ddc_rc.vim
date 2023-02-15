@@ -60,7 +60,7 @@ endfunction
 " patches
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents',
-    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
+    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'TextChangedT', 'CmdlineEnter', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
     \ 'vsnip',
