@@ -20,5 +20,12 @@ augroup END
 " show full path
 command! Path echo expand("%:p")
 
+command! Profile call s:command_profile()
+function! s:command_profile() abort
+    profile start ~/profile.txt
+    profile func *
+    profile file *
+endfunction
+
 filetype plugin indent on
 syntax on
