@@ -107,3 +107,11 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'ttak0422/ddc-source-nvim-obsidian'
 on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-zsh'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'delphinus/ddc-shell-history'
+on_source = ['ddc.vim']

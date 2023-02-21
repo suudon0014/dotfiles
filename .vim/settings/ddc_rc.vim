@@ -114,6 +114,14 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': '[INP]',
     \   'isVolatile': v:true,
     \ },
+    \ 'zsh': {
+    \   'mark': '[ZSH]',
+    \ },
+    \ 'shell-history': {
+    \   'mark': '[S-HIST]',
+    \   'minKeywordLength': 1,
+    \   'maxKeywordLength': 50,
+    \ },
 \ })
 
 call ddc#custom#patch_global('sourceParams', {
@@ -157,6 +165,9 @@ call ddc#custom#patch_global('sourceParams', {
     \ 'buffer': {
     \   'requireSameFiletype': v:false,
     \   'bufNameStyle': "basename",
+    \ },
+    \ 'shell-history': {
+    \   'command': ['zsh', '-c', 'history'],
     \ },
 \ })
 
