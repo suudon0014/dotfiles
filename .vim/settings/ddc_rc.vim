@@ -167,14 +167,13 @@ function! Obsidian() abort
     call ddc#custom#patch_buffer('sources', ['nvim-obsidian'])
     call ddc#custom#patch_buffer('sourceOptions', #{
     \   nvim-obsidian: #{
-    \       mark: '[Obs]',
+    \       mark: '[OBS]',
     \ }})
     call ddc#custom#patch_buffer('sourceParams', #{
     \   nvim-obsidian: #{
     \       dir: '~/obsidian_vault',
     \ }})
 endfunction
-
 autocmd BufRead,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
 
 call ddc#enable()
