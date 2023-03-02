@@ -470,3 +470,19 @@ lua_source = '''
 [[plugins]]
 repo = 'itchyny/vim-qfedit'
 on_ft = ['qf']
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+depends = ['skkeleton']
+on_source = ['ddc.vim']
+hook_source = '''
+    highlight SkkeletonIndicatorEiji guifg=#70dcfa guibg=#0d3a58 gui=bold
+    highlight SkkeletonIndicatorHira guifg=#95fa3e guibg=#0d3a58 gui=bold
+    highlight SkkeletonIndicatorKata guifg=#fdff91 guibg=#0d3a58 gui=bold
+    highlight SkkeletonIndicatorHankata guifg=#f279dc guibg=#0d3a58 gui=bold
+    highlight SkkeletonIndicatorZenkaku guifg=#4daffa guibg=#0d3a58 gui=bold
+    lua require'skkeleton_indicator'.setup{
+    \   alwaysShown = true,
+    \   fadeOutMs = 1000,
+    \ }
+'''
