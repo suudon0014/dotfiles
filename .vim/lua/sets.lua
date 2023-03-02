@@ -60,6 +60,7 @@ vim.opt.equalalways = false
 vim.opt.lazyredraw = true
 vim.opt.signcolumn = 'yes'
 vim.opt.helplang = {'ja', 'en'}
+vim.opt.laststatus = 3
 
 -- disable default plugins
 vim.g.loaded_netrw = 1
