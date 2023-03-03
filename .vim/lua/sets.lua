@@ -61,6 +61,15 @@ vim.opt.lazyredraw = true
 vim.opt.signcolumn = 'yes'
 vim.opt.helplang = {'ja', 'en'}
 vim.opt.laststatus = 3
+vim.opt.fillchars = {
+    horiz = '━',
+    horizup = '┻',
+    horizdown = '┳',
+    vert = '┃',
+    vertleft  = '┫',
+    vertright = '┣',
+    verthoriz = '╋',
+}
 
 -- disable default plugins
 vim.g.loaded_netrw = 1
