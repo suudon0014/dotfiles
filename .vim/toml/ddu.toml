@@ -104,10 +104,10 @@ ddu-filer = '''
     nnoremap <buffer> sn <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'none'}}})<CR>
 
     function! ToggleHidden(name)
-        let current = ddu#custom#get_current(b:ddu_ui_name)
-        let source_options = get(current, 'sourceOptions', {})
-        let source_options_name = get(source_options, a:name, {})
-        let matchers = get(source_options_name, 'matchers', [])
+        const current = ddu#custom#get_current(b:ddu_ui_name)
+        const source_options = get(current, 'sourceOptions', {})
+        const source_options_name = get(source_options, a:name, {})
+        const matchers = get(source_options_name, 'matchers', [])
         return empty(matchers) ? ['matcher_hidden'] : []
     endfunction
 
