@@ -89,9 +89,9 @@ function select-history() {
     CURSOR=$#BUFFER
 }
 zle -N select-history
-bindkey '^r' select-history
 setopt +o nomatch
 bindkey -v
+bindkey "^R" select-history
 bindkey "jj" vi-cmd-mode
 
 function ccd() {
