@@ -1,4 +1,6 @@
-﻿filetype off
+﻿lua if vim.loader then vim.loader.enable() end
+
+filetype off
 filetype plugin indent off
 
 source ~/dotfiles/.vim/dein_rc.vim
