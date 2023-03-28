@@ -25,9 +25,9 @@ function! CommandlinePre() abort
         let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
     call ddc#custom#patch_buffer('cmdlineSources', {
-        \ ':': ['cmdline', 'cmdline-history', 'around', 'file'],
-        \ '@': ['input', 'cmdline-history', 'around', 'file'],
-        \ '>': ['input', 'cmdline-history', 'around', 'file'],
+        \ ':': ['cmdline', 'cmdline-history', 'around', 'file', 'path'],
+        \ '@': ['input', 'cmdline-history', 'around', 'file', 'path'],
+        \ '>': ['input', 'cmdline-history', 'around', 'file', 'path'],
         \ '/': ['around', 'line'],
         \ '?': ['around', 'line'],
         \ '-': ['around', 'line'],
@@ -60,14 +60,16 @@ endfunction
 " patches
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents',
-    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
+    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'TextChangedT', 'CmdlineEnter', 'CmdlineChanged']
 \)
 call ddc#custom#patch_global('sources', [
     \ 'vsnip',
     \ 'nvim-lsp',
     \ 'around',
     \ 'file',
+    \ 'path',
     \ 'skkeleton',
+    \ 'buffer',
     \ 'cmdline-history',
     \ 'input',
 \ ])
@@ -90,11 +92,17 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*'
     \ },
+    \ 'path': {
+    \     'mark': '[PATH]',
+    \ },
     \ 'skkeleton': {
     \   'mark': '[SKK]',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \   'isVolatile': v:true,
+    \ },
+    \ 'buffer': {
+    \   'mark': '[BUF]',
     \ },
     \ 'cmdline': {
     \   'mark': '[C-LINE]',
@@ -105,6 +113,14 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'input': {
     \   'mark': '[INP]',
     \   'isVolatile': v:true,
+    \ },
+    \ 'zsh': {
+    \   'mark': '[ZSH]',
+    \ },
+    \ 'shell-history': {
+    \   'mark': '[S-HIST]',
+    \   'minKeywordLength': 1,
+    \   'maxKeywordLength': 50,
     \ },
 \ })
 
@@ -137,10 +153,48 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
         \ }
-    \ }
+    \ },
+    \ 'file': {
+    \   'mode': 'posix',
+    \ },
+    \ 'path': {
+    \   'absolute': v:false,
+    \   'cmd': ['fd', '--max-depth', '5', '--hidden', '--exclude', '.git'],
+    \   'dirSeparator': 'slash',
+    \ },
+    \ 'buffer': {
+    \   'requireSameFiletype': v:false,
+    \   'bufNameStyle': "basename",
+    \ },
+    \ 'shell-history': {
+    \   'command': ['zsh', '-c', 'history'],
+    \ },
 \ })
 
 call ddc#custom#patch_global('backspaceCompletion', v:true)
+
+" Obsidian
+function! Obsidian() abort
+    call ddc#custom#patch_buffer('sources', ['nvim-obsidian'])
+    call ddc#custom#patch_buffer('sourceOptions', #{
+    \   nvim-obsidian: #{
+    \       mark: '[OBS]',
+    \ }})
+    call ddc#custom#patch_buffer('sourceParams', #{
+    \   nvim-obsidian: #{
+    \       dir: '~/obsidian_vault',
+    \ }})
+endfunction
+autocmd BufRead,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
+
+" terminal
+call ddc#enable_terminal_completion()
+call ddc#custom#patch_filetype(['deol'], #{
+\   specialBufferCompletion: v:true,
+\   keywordPattern: '[0-9a-zA-Z_./#:-]*',
+\   sources: ['zsh', 'shell-history', 'around'],
+\ })
+
 
 call ddc#enable()
 

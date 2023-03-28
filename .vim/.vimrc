@@ -1,4 +1,6 @@
-﻿filetype off
+﻿lua if vim.loader then vim.loader.enable() end
+
+filetype off
 filetype plugin indent off
 
 source ~/dotfiles/.vim/dein_rc.vim
@@ -19,6 +21,13 @@ augroup END
 
 " show full path
 command! Path echo expand("%:p")
+
+command! Profile call s:command_profile()
+function! s:command_profile() abort
+    profile start ~/profile.txt
+    profile func *
+    profile file *
+endfunction
 
 filetype plugin indent on
 syntax on

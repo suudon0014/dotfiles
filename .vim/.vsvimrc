@@ -1,13 +1,3 @@
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
-
-set guifont=ＭＳ_ゴシック:h10:cSHIFTJIS:qDRAFT
-
-"set backup folders
-set undodir=C:/vimtmp/undo
-set backupdir=C:/vimtmp/bk
-set directory=C:/vimtmp/swap
 
 "about search
 set hlsearch
@@ -50,18 +40,12 @@ set expandtab
 set shiftwidth=4
 
 "etc.
-set ruler
 set number
-set wildmenu
 set showcmd
 set clipboard=unnamed
-set mouse=a
 set iminsert=0
 set imsearch=-1
 set incsearch
-set t_Co=256
-syntax on
 set nowrap
-set matchpairs+=<:>,＜:＞,（:）,「:」,『:』,［:］,【:】
 
 nnoremap * *N

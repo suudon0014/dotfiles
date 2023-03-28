@@ -13,6 +13,14 @@
         {
             "command":
             {
+                "action": "splitPane",
+                "split": "down"
+            },
+            "keys": "ctrl+shift+s"
+        },
+        {
+            "command": 
+            {
                 "action": "moveFocus",
                 "direction": "up"
             },
@@ -46,18 +54,6 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command":
-            {
-                "action": "splitPane",
-                "split": "down"
-            },
-            "keys": "ctrl+shift+s"
-        },
-        {
             "command":
             {
                 "action": "moveFocus",
@@ -66,7 +62,11 @@
             "keys": "ctrl+shift+j"
         },
         {
-            "command":
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
             {
                 "action": "moveFocus",
                 "direction": "left"
@@ -87,7 +87,7 @@
             "font":
             {
                 "face": "Delugia Nerd Font",
-                "size": 9
+                "size": 9.0
             },
             "foreground": "#FFFFFF",
             "opacity": 70,
@@ -342,5 +342,6 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "themes": []
 }

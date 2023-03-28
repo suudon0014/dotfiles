@@ -93,7 +93,7 @@ function! s:DduGrepCWord() abort
 endfunction
 
 function! s:DduFilerSingleStart() abort
-    let s:ui_params = s:ddu_win_pos
+    let s:ui_params = s:ddu_win_and_preview_pos
     call ddu#start({
         \ 'name': 'filer_single',
         \ 'uiParams': {
@@ -180,7 +180,7 @@ call ddu#custom#patch_global({
             \ 'previewWidth': &columns / 2,
             \ 'previewFloating': v:true,
             \ 'previewFloatingBorder': 'single',
-            \ 'previewVertical': v:true,
+            \ 'previewSplit': 'vertical',
             \ 'filterSplitDirection': 'floating',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
@@ -189,11 +189,17 @@ call ddu#custom#patch_global({
             \ 'split': 'floating',
             \ 'sort': 'filename',
             \ 'sortTreesFirst': v:true,
+            \ 'previewHeight': 20,
+            \ 'previewWidth': &columns / 2,
+            \ 'previewFloating': v:true,
+            \ 'previewFloatingBorder': 'single',
+            \ 'previewSplit': 'vertical',
+            \ 'previewFloatingZindex': 100,
         \ },
     \ },
     \ 'sourceParams': {
         \ 'file_rec': {
-            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs'],
+            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
         \ },
         \ 'rg': {
             \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
