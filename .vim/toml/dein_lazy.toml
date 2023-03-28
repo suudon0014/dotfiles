@@ -5,6 +5,12 @@ on_event = 'VimEnter'
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 on_event = ['BufEnter']
+hook_source = '''
+    augroup autoclose
+        autocmd! *
+        autocmd FileType ddu-ff-filter :AutoCloseOff
+    augroup END
+'''
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
