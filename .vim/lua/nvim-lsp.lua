@@ -40,6 +40,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>gd', '<Cmd>Lspsaga goto_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>pd', '<Cmd>Lspsaga peek_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>gt', '<Cmd>Lspsaga goto_type_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>pt', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>gp', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
     vim.keymap.set('n', '<C-l>gn', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
     opts['desc'] = 'vim.lsp.buf.references()'
