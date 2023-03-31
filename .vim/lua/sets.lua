@@ -77,6 +77,19 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 
+local clipboard = {}
+clipboard['name'] = 'win32yank'
+clipboard['copy'] = {
+    ['+'] = 'win32yank.exe -i --crlf',
+    ['*'] = 'win32yank.exe -i --crlf',
+}
+clipboard['paste'] = {
+    ['+'] = 'win32yank.exe -o --lf',
+    ['*'] = 'win32yank.exe -o --lf',
+}
+clipboard['cache_enabled'] = 0
+vim.g.clipboard = clipboard
+
 if vim.fn.has('nvim') == 1 then
     vim.opt.pumblend = 30
     vim.opt.winblend = 30
