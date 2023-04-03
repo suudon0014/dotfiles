@@ -25,6 +25,9 @@
 [color]
     ui = auto
 
+[commit]
+    template = ~/.git_commit_template
+
 [pull]
     rebase = false
     ff = only

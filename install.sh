@@ -62,6 +62,7 @@ ln -sfv ${DOTFILES}/.vim/.vimrc ~/.vimrc
 ln -sfv ${DOTFILES}/.vim/.gvimrc ~/.gvimrc
 
 ln -sfv ${DOTFILES}/.gitconfig ~/.gitconfig
+ln -sfv ${DOTFILES}/.git_commit_template ~/.git_commit_template
 
 ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 
