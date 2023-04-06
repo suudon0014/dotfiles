@@ -20,7 +20,8 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 
 -- folding
-vim.opt.foldmethod = 'manual'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldcolumn = '1'
 
 -- encoding
@@ -126,5 +127,10 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
     callback = function ()
         vim.opt.filetype = 'markdown'
     end,
+    group = sets_au_group_id,
+})
+vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
+    pattern = {'*'},
+    command = 'normal zR',
     group = sets_au_group_id,
 })
