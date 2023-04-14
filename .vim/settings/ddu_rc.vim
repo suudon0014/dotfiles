@@ -82,9 +82,12 @@ function! s:DduGrep(...) abort
     let s:ui_params = s:ddu_win_and_preview_pos
     " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
-        \ 'volatile': volatile,
         \ 'uiParams': {'ff': s:ui_params},
-        \ 'sources': [{'name': 'rg', 'params': {'input': word}}]
+        \ 'sources': [{
+        \   'name': 'rg',
+        \   'params': {'input': word},
+        \   'options': {'volatile': volatile},
+        \ }]
     \ })
 endfunction
 
