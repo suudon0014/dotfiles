@@ -189,6 +189,7 @@ call ddu#custom#patch_global({
             \ 'split': 'floating',
             \ 'sort': 'filename',
             \ 'sortTreesFirst': v:true,
+            \ 'floatingBorder': 'single',
             \ 'previewHeight': 20,
             \ 'previewWidth': &columns / 2,
             \ 'previewFloating': v:true,
