@@ -498,3 +498,19 @@ repo = 'gamoutatsumi/dps-ghosttext.vim'
 depends = ['denops.vim']
 on_cmd = ['GhostStart']
 on_func = 'ghosttext#'
+
+[[plugins]]
+repo = 'Shougo/dda.vim'
+depends = ['denops.vim']
+on_func = 'dda#'
+on_cmd = ['DdaCompletion']
+hook_source = '''
+    command! -range DdaCompletion <line1>,<line2>call s:DdaCompletion()
+    function! s:DdaCompletion() range
+        let s:prompt = ''
+        for line in range(a:firstline, a:lastline)
+            let s:prompt = s:prompt . getline(line) . ' '
+        endfor
+        call dda#completion(s:prompt)
+    endfunction
+'''
