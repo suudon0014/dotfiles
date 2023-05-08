@@ -1,22 +1,22 @@
 " configs about ddu.vim
 
 " mappings
-nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false)<CR>
-nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false)<CR>
-nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false)<CR>
+nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false, [['[FILE]', 'Blue']])<CR>
+nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, [['[LINE]', 'Blue']])<CR>
+nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, [['[BUFFER]', 'Blue']])<CR>
 nnoremap ,rw :DduGrep<Space>
 nnoremap <silent> ,rl :call <SID>DduGrep('', v:true)<CR>
 nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
-nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false)<CR>
-nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false)<CR>
-nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false)<CR>
-nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true)<CR>
-nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false)<CR>
-nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false)<CR>
+nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, [['[CMD_HIST]', 'Blue']])<CR>
+nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, [['[COLORSCHEME]', 'Blue']])<CR>
+nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, [['[HELP]', 'Blue']])<CR>
+nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true, [['[DIRMARK]', 'Blue']])<CR>
+nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false, [['[MARKS]', 'Blue']])<CR>
+nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false, [['[DEIN]', 'Blue']])<CR>
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
-nnoremap <silent> ,g :call <SID>DduStart('git_diff', v:true, v:false)<CR>
+nnoremap <silent> ,g :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -47,13 +47,15 @@ augroup AutoResizeDduWinPos
     autocmd VimEnter,VimResized * call s:set_ddu_win_and_preview_pos()
 augroup END
 
-function! s:DduStart(source, preview_enable, custom_enable) abort
+function! s:DduStart(source, preview_enable, custom_enable, floating_title) abort
     if a:preview_enable
         let s:ui_params = s:ddu_win_and_preview_pos
         " let s:ui_params['autoAction'] = {'name': 'preview'}
     else
         let s:ui_params = s:ddu_win_pos
     endif
+
+    let s:ui_params['floatingTitle'] = a:floating_title
 
     if a:custom_enable
         call ddu#start({'name': a:source,
@@ -80,6 +82,7 @@ function! s:DduGrep(...) abort
     endif
 
     let s:ui_params = s:ddu_win_and_preview_pos
+    let s:ui_params['floatingTitle'] = '[GREP]'
     " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
         \ 'uiParams': {'ff': s:ui_params},
