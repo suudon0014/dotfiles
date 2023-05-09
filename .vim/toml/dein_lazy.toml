@@ -305,6 +305,11 @@ on_func = 'gin#'
 hook_source = '''
     let g:gin_log_default_args = ['--graph', '--oneline', '--all', '--date=short', '--decorate=short']
 '''
+[plugins.ftplugin]
+gin-log = '''
+    nnoremap <buffer> sh <Plug>(gin-action-show)
+    nnoremap <buffer> sw <Plug>(gin-action-switch)
+'''
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
