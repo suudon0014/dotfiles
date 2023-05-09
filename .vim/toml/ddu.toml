@@ -41,10 +41,10 @@ ddu-ff = '''
 ddu-ff-filter = '''
     inoremap <buffer> <CR> <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
     nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
-    inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)<Bar>redraw")<CR>
-    inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)<Bar>redraw")<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)<Bar>redraw")<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)<Bar>redraw")<CR>
+    inoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+    inoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
 '''
 
