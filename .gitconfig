@@ -1,6 +1,7 @@
 [core]
     editor = nvim
     autocrlf = false
+    pager = "LESSCHARSET=utf-8 less"
 
 [alias]
     st = status
@@ -46,3 +47,5 @@
 
 [mergetool "nvimdiff"]
     cmd = "nvim -d -c \"4wincmd w | wincmd J | wincmd =\" -d \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\""
+[credential "helperselector"]
+	selected = manager
