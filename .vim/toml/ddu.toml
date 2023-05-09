@@ -168,6 +168,9 @@ on_source = ['ddu.vim']
 repo = 'kuuote/ddu-source-git_diff'
 on_source = ['ddu.vim']
 
+[[plugins]]
+repo = 'tennashi/ddu-source-git'
+on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'kamecha/ddu-source-window'

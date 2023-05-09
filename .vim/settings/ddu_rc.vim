@@ -16,7 +16,9 @@ nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false, [['[DE
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
-nnoremap <silent> ,g :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
+nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
+nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, [['[GIT_SHOW_REF]', 'Blue']])<CR>
+nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT_STATUS]', 'Blue']])<CR>
 nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
 
 " functions and commands
@@ -256,6 +258,12 @@ call ddu#custom#patch_global({
         \ },
         \ 'window': {
             \ 'defaultAction': 'open',
+        \ },
+        \ 'git_tag': {
+            \ 'defaultAction': 'switch',
+        \ },
+        \ 'git_branch': {
+            \ 'defaultAction': 'switch',
         \ },
     \ },
     \ 'actionOptions': {
