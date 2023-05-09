@@ -307,18 +307,22 @@ hook_source = '''
 '''
 [plugins.ftplugin]
 gin-branch = '''
-    nnoremap <buffer> q :q<CR>
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer><silent> q :q<CR>
 '''
 gin-diff = '''
-    nnoremap <buffer> q :q<CR>
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer><silent> q :q<CR>
 '''
 gin-log = '''
+    nnoremap <buffer><silent> r :e!<CR>
     nnoremap <buffer> sh <Plug>(gin-action-show)
     nnoremap <buffer> sw <Plug>(gin-action-switch)
-    nnoremap <buffer> q :q<CR>
+    nnoremap <buffer><silent> q :q<CR>
 '''
 gin-status = '''
-    nnoremap <buffer> q :q<CR>
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer><silent> q :q<CR>
 '''
 
 [[plugins]]
