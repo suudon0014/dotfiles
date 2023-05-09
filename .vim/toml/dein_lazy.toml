@@ -300,10 +300,19 @@ hook_source = '''
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 on_map = '<Plug>(gin-'
-on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus']
+on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
 on_func = 'gin#'
 hook_source = '''
     let g:gin_log_default_args = ['--graph', '--oneline', '--all', '--date=short', '--decorate=short']
+
+    command! ShowGitDashboard call s:show_git_dashboard()
+    function! s:show_git_dashboard()
+        tabnew
+        GinStatus ++opener=topleft\ split
+        wincmd j
+        GinBranch
+        GinLog ++opener=botright\ vsplit
+    endfunction
 '''
 [plugins.ftplugin]
 gin-branch = '''
