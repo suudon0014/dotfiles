@@ -177,6 +177,10 @@ repo = 'kamecha/ddu-source-window'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'kamecha/ddu-source-tab'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
