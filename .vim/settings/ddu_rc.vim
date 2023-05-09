@@ -17,6 +17,7 @@ nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
 nnoremap <silent> ,g :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
+nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -253,6 +254,9 @@ call ddu#custom#patch_global({
         \ 'dein_update': {
             \ 'defaultAction': 'viewDiff',
         \ },
+        \ 'window': {
+            \ 'defaultAction': 'open',
+        \ },
     \ },
     \ 'actionOptions': {
         \ 'narrow': {
@@ -301,6 +305,17 @@ call ddu#custom#patch_local('dirmark_custom', {
             \ 'quit': v:true,
         \ },
     \ },
+\ })
+
+call ddu#custom#patch_local('window_custom', {
+    \ 'uiParams': {
+        \ 'ff': {
+            \ 'autoAction': {'name': 'preview'},
+    \ }},
+    \ 'sources': [{
+        \ 'name': 'window',
+        \ 'params': {'ignoreBufNames': ["ddu-ff-filter-window_custom", "ddu-ff-window_custom"]},
+    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_single', {
