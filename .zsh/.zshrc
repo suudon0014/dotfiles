@@ -154,5 +154,8 @@ fi
 
 # for WSL2 GUI
 if type ip > /dev/null; then
-    export DISPLAY=`ip route | grep 'default via' | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`:0
+    # export DISPLAY=`ip route | grep 'default via' | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`:0
+    export DISPLAY=:0.0
 fi
+
+export LIBGL_ALWAYS_SOFTWARE=1

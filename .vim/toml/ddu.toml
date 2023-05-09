@@ -25,6 +25,7 @@ ddu-ff = '''
     nnoremap <buffer> e <Cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<CR>
     nnoremap <buffer> E <Cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<CR>
     nnoremap <buffer> s <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
     nnoremap <buffer> v <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer> N <Cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<CR>
     nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
@@ -40,10 +41,10 @@ ddu-ff = '''
 ddu-ff-filter = '''
     inoremap <buffer> <CR> <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
     nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
-    inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)<Bar>redraw")<CR>
-    inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)<Bar>redraw")<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)<Bar>redraw")<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)<Bar>redraw")<CR>
+    inoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+    inoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
 '''
 
@@ -74,6 +75,7 @@ ddu-filer = '''
     nnoremap <buffer> P <Cmd>call ddu#ui#do_action('preview')<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
     nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
+    nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
     nnoremap <buffer> x <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
     nnoremap <buffer> y <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
     nnoremap <buffer> <leader>l <Cmd>call ddu#ui#do_action('itemAction', {'name': 'loclist'})<CR>
@@ -164,6 +166,18 @@ on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'kuuote/ddu-source-git_diff'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'tennashi/ddu-source-git'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kamecha/ddu-source-window'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kamecha/ddu-source-tab'
 on_source = ['ddu.vim']
 
 [[plugins]]

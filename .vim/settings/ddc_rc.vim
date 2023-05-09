@@ -83,7 +83,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'nvim-lsp': {
     \     'mark': '[LSP]',
-    \     'forceCompletionPattern': '\.|:|->|"\w*/*',
+    \     'forceCompletionPattern': '\.\w*|:\w*|->\w*|"\w*/*',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]', 'dup': 'keep',},
     \ 'around': {'mark': '[AROUND]'},

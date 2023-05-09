@@ -20,7 +20,8 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 
 -- folding
-vim.opt.foldmethod = 'manual'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldcolumn = '1'
 
 -- encoding
@@ -72,10 +73,41 @@ vim.opt.fillchars = {
 }
 
 -- disable default plugins
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
-vim.g.loaded_netrwFileHandlers = 1
+vim.g.loaded_netrw              = 1
+vim.g.loaded_netrwPlugin        = 1
+vim.g.loaded_netrwSettings      = 1
+vim.g.loaded_netrwFileHandlers  = 1
+vim.g.loaded_gzip               = 1
+vim.g.loaded_tar                = 1
+vim.g.loaded_tarPlugin          = 1
+vim.g.loaded_zip                = 1
+vim.g.loaded_zipPlugin          = 1
+vim.g.loaded_rrhelper           = 1
+vim.g.loaded_2html_plugin       = 1
+vim.g.loaded_vimball            = 1
+vim.g.loaded_vimballPlugin      = 1
+vim.g.loaded_getscript          = 1
+vim.g.loaded_getscriptPlugin    = 1
+vim.g.did_install_default_menus = 1
+vim.g.did_install_syntax_menu   = 1
+vim.g.loaded_remote_plugins     = 1
+vim.g.loaded_shada_plugin       = 1
+vim.g.loaded_spellfile_plugin   = 1
+vim.g.loaded_tutor_mode_plugin  = 1
+vim.g.skip_loading_mswin        = 1
+
+local clipboard = {}
+clipboard['name'] = 'win32yank'
+clipboard['copy'] = {
+    ['+'] = 'win32yank.exe -i --crlf',
+    ['*'] = 'win32yank.exe -i --crlf',
+}
+clipboard['paste'] = {
+    ['+'] = 'win32yank.exe -o --lf',
+    ['*'] = 'win32yank.exe -o --lf',
+}
+clipboard['cache_enabled'] = 0
+vim.g.clipboard = clipboard
 
 if vim.fn.has('nvim') == 1 then
     vim.opt.pumblend = 30
@@ -95,5 +127,10 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
     callback = function ()
         vim.opt.filetype = 'markdown'
     end,
+    group = sets_au_group_id,
+})
+vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
+    pattern = {'*'},
+    command = 'normal zR',
     group = sets_au_group_id,
 })

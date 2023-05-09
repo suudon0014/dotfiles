@@ -5,6 +5,12 @@ on_event = 'VimEnter'
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 on_event = ['BufEnter']
+hook_source = '''
+    augroup autoclose
+        autocmd! *
+        autocmd FileType ddu-ff-filter :AutoCloseOff
+    augroup END
+'''
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -296,6 +302,14 @@ repo = 'lambdalisue/gin.vim'
 on_map = '<Plug>(gin-'
 on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus']
 on_func = 'gin#'
+hook_source = '''
+    let g:gin_log_default_args = ['--graph', '--oneline', '--all', '--date=short', '--decorate=short']
+'''
+[plugins.ftplugin]
+gin-log = '''
+    nnoremap <buffer> sh <Plug>(gin-action-show)
+    nnoremap <buffer> sw <Plug>(gin-action-switch)
+'''
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
@@ -485,4 +499,26 @@ hook_source = '''
     \   alwaysShown = true,
     \   fadeOutMs = 1000,
     \ }
+'''
+
+[[plugins]]
+repo = 'gamoutatsumi/dps-ghosttext.vim'
+depends = ['denops.vim']
+on_cmd = ['GhostStart']
+on_func = 'ghosttext#'
+
+[[plugins]]
+repo = 'Shougo/dda.vim'
+depends = ['denops.vim']
+on_func = 'dda#'
+on_cmd = ['DdaCompletion']
+hook_source = '''
+    command! -range DdaCompletion <line1>,<line2>call s:DdaCompletion()
+    function! s:DdaCompletion() range
+        let s:prompt = ''
+        for line in range(a:firstline, a:lastline)
+            let s:prompt = s:prompt . getline(line) . ' '
+        endfor
+        call dda#completion(s:prompt)
+    endfunction
 '''
