@@ -20,6 +20,7 @@ nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_D
 nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, [['[GIT_SHOW_REF]', 'Blue']])<CR>
 nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT_STATUS]', 'Blue']])<CR>
 nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
+nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, [['[ARG_LIST]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
