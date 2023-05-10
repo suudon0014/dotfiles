@@ -6,7 +6,7 @@ nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, [['[LINE]', 'B
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, [['[BUFFER]', 'Blue']])<CR>
 nnoremap ,rw :DduGrep<Space>
 nnoremap <silent> ,rl :call <SID>DduGrep('', v:true)<CR>
-nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
+nnoremap <silent> ,ra :call <SID>DduGrepCWord()<CR>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, [['[CMD_HIST]', 'Blue']])<CR>
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, [['[COLORSCHEME]', 'Blue']])<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, [['[HELP]', 'Blue']])<CR>
