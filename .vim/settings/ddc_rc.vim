@@ -196,5 +196,7 @@ call ddc#custom#patch_filetype(['deol'], #{
 \ })
 
 
-call ddc#enable()
+call ddc#enable( #{
+    \ context_filetype: "context_filetype",
+\ })
 
