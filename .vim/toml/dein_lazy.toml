@@ -325,12 +325,13 @@ gin-diff = '''
 '''
 gin-log = '''
     nnoremap <buffer><silent> r :e!<CR>
-    nnoremap <buffer> sh <Plug>(gin-action-show)
-    nnoremap <buffer> sw <Plug>(gin-action-switch)
+    nnoremap <buffer> gsh <Plug>(gin-action-show)
+    nnoremap <buffer> gsw <Plug>(gin-action-switch)
     nnoremap <buffer><silent> q :q<CR>
 '''
 gin-status = '''
     nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer> e <Plug>(gin-action-edit)
     nnoremap <buffer><silent> q :q<CR>
 '''
 
