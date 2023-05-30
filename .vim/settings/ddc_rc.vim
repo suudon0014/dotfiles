@@ -175,13 +175,19 @@ call ddc#custom#patch_global('backspaceCompletion', v:true)
 
 " Obsidian
 function! Obsidian() abort
-    call ddc#custom#patch_buffer('sources', ['nvim-obsidian'])
+    call ddc#custom#patch_buffer('sources', ['nvim-obsidian', 'nvim-obsidian-new'])
     call ddc#custom#patch_buffer('sourceOptions', #{
     \   nvim-obsidian: #{
     \       mark: '[OBS]',
+    \ },
+    \   nvim-obsidian-new: #{
+    \       mark: '[OBS+]',
     \ }})
     call ddc#custom#patch_buffer('sourceParams', #{
     \   nvim-obsidian: #{
+    \       dir: '~/obsidian_vault',
+    \   },
+    \   nvim-obsidian-new: #{
     \       dir: '~/obsidian_vault',
     \ }})
 endfunction
