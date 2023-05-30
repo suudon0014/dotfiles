@@ -230,6 +230,7 @@ call ddu#custom#patch_global({
     \ 'sourceOptions': {
         \ '_': {
             \ 'matchers': ['matcher_fzf'],
+            \ 'sorters': ['sorter_fzf'],
         \ },
         \ 'dirmark': {
             \ 'defaultAction': 'cd',
