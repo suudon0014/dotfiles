@@ -86,7 +86,7 @@ function! s:DduGrep(...) abort
     endif
 
     let s:ui_params = s:ddu_win_and_preview_pos
-    let s:ui_params['floatingTitle'] = '[GREP]'
+    let s:ui_params['floatingTitle'] = [['[GREP]', 'Blue']]
     " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
         \ 'uiParams': {'ff': s:ui_params},
