@@ -20,8 +20,7 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 
 -- folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = 'manual'
 vim.opt.foldcolumn = '1'
 
 -- encoding
