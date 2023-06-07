@@ -95,18 +95,20 @@ vim.g.loaded_spellfile_plugin   = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.skip_loading_mswin        = 1
 
-local clipboard = {}
-clipboard['name'] = 'win32yank'
-clipboard['copy'] = {
-    ['+'] = 'win32yank.exe -i --crlf',
-    ['*'] = 'win32yank.exe -i --crlf',
-}
-clipboard['paste'] = {
-    ['+'] = 'win32yank.exe -o --lf',
-    ['*'] = 'win32yank.exe -o --lf',
-}
-clipboard['cache_enabled'] = 0
-vim.g.clipboard = clipboard
+if vim.fn.has('win32') || vim.fn.has('win64')
+    local clipboard = {}
+    clipboard['name'] = 'win32yank'
+    clipboard['copy'] = {
+        ['+'] = 'win32yank.exe -i --crlf',
+        ['*'] = 'win32yank.exe -i --crlf',
+    }
+    clipboard['paste'] = {
+        ['+'] = 'win32yank.exe -o --lf',
+        ['*'] = 'win32yank.exe -o --lf',
+    }
+    clipboard['cache_enabled'] = 0
+    vim.g.clipboard = clipboard
+endif
 
 if vim.fn.has('nvim') == 1 then
     vim.opt.pumblend = 30
