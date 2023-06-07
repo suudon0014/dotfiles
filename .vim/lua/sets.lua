@@ -95,7 +95,7 @@ vim.g.loaded_spellfile_plugin   = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.skip_loading_mswin        = 1
 
-if vim.fn.has('win32') || vim.fn.has('win64')
+if vim.fn.has('win32') or vim.fn.has('win64') then
     local clipboard = {}
     clipboard['name'] = 'win32yank'
     clipboard['copy'] = {
@@ -108,7 +108,7 @@ if vim.fn.has('win32') || vim.fn.has('win64')
     }
     clipboard['cache_enabled'] = 0
     vim.g.clipboard = clipboard
-endif
+end
 
 if vim.fn.has('nvim') == 1 then
     vim.opt.pumblend = 30
