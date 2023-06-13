@@ -37,8 +37,8 @@
             "Info": "",
             "Source": "main",
             "Name": "deno",
-            "Version": "1.33.4",
-            "Updated": "\/Date(1684716584900)\/"
+            "Version": "1.34.2",
+            "Updated": "\/Date(1686618691785)\/"
         },
         {
             "Info": "",
@@ -58,22 +58,22 @@
             "Info": "",
             "Source": "main",
             "Name": "fzf",
-            "Version": "0.40.0",
-            "Updated": "\/Date(1683506651174)\/"
+            "Version": "0.41.1",
+            "Updated": "\/Date(1685322253314)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "git",
-            "Version": "2.40.1.windows.1",
-            "Updated": "\/Date(1682469187851)\/"
+            "Version": "2.41.0.windows.1",
+            "Updated": "\/Date(1685667461859)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "gpg",
-            "Version": "2.4.1",
-            "Updated": "\/Date(1683506659393)\/"
+            "Version": "2.4.2",
+            "Updated": "\/Date(1685579430521)\/"
         },
         {
             "Info": "",
@@ -86,8 +86,8 @@
             "Info": "",
             "Source": "main",
             "Name": "imagemagick",
-            "Version": "7.1.1-10",
-            "Updated": "\/Date(1684715664498)\/"
+            "Version": "7.1.1-11",
+            "Updated": "\/Date(1685406913651)\/"
         },
         {
             "Info": "",
@@ -107,8 +107,8 @@
             "Info": "",
             "Source": "main",
             "Name": "llvm",
-            "Version": "16.0.4",
-            "Updated": "\/Date(1684369933924)\/"
+            "Version": "16.0.5",
+            "Updated": "\/Date(1685925244396)\/"
         },
         {
             "Info": "",
@@ -121,29 +121,36 @@
             "Info": "",
             "Source": "versions",
             "Name": "neovim-nightly",
-            "Version": "0.10.0-dev-373-g07883940b",
-            "Updated": "\/Date(1684887779837)\/"
+            "Version": "0.10.0-dev-510-g3c4890d1e",
+            "Updated": "\/Date(1686618810400)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "neovim-qt",
+            "Version": "0.2.17",
+            "Updated": "\/Date(1686619697736)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "nodejs",
-            "Version": "20.2.0",
-            "Updated": "\/Date(1684286418721)\/"
+            "Version": "20.3.0",
+            "Updated": "\/Date(1686271032730)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pandoc",
-            "Version": "3.1.2",
-            "Updated": "\/Date(1679971697794)\/"
+            "Version": "3.1.3",
+            "Updated": "\/Date(1686186444813)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pnpm",
-            "Version": "8.5.1",
-            "Updated": "\/Date(1684204806796)\/"
+            "Version": "8.6.2",
+            "Updated": "\/Date(1686618703660)\/"
         },
         {
             "Info": "",
@@ -170,15 +177,15 @@
             "Info": "",
             "Source": "extras",
             "Name": "vcredist2022",
-            "Version": "14.34.31938.0",
-            "Updated": "\/Date(1683506843878)\/"
+            "Version": "14.36.32532.0",
+            "Updated": "\/Date(1685322419798)\/"
         },
         {
             "Info": "",
             "Source": "extras",
             "Name": "windows-terminal",
-            "Version": "1.16.10261.0",
-            "Updated": "\/Date(1675045018952)\/"
+            "Version": "1.17.11461.0",
+            "Updated": "\/Date(1685406948401)\/"
         },
         {
             "Info": "",
@@ -193,31 +200,31 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1684894626000)\/",
+                "value": "\/Date(1686616347000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年5月24日 11:17:06"
+                "DateTime": "2023年6月13日 09:32:27"
             },
-            "Manifests": 1866
+            "Manifests": 1865
         },
         {
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1684888565000)\/",
+                "value": "\/Date(1686616415000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年5月24日 09:36:05"
+                "DateTime": "2023年6月13日 09:33:35"
             },
-            "Manifests": 1198
+            "Manifests": 1202
         },
         {
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1684893204000)\/",
+                "value": "\/Date(1686601694000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年5月24日 10:53:24"
+                "DateTime": "2023年6月13日 05:28:14"
             },
-            "Manifests": 424
+            "Manifests": 425
         }
     ]
 }
