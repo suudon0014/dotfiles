@@ -192,6 +192,7 @@ call ddu#custom#patch_global({
             \ 'previewFloatingBorder': 'single',
             \ 'previewSplit': 'vertical',
             \ 'filterSplitDirection': 'floating',
+            \ 'filterFloatingPosition': 'bottom',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
