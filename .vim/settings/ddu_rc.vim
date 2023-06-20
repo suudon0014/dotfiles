@@ -268,6 +268,12 @@ call ddu#custom#patch_global({
         \ 'git_branch': {
             \ 'defaultAction': 'switch',
         \ },
+        \ 'lsp': {
+            \ 'defaultAction': 'open',
+        \ },
+        \ 'lsp_codeAction': {
+            \ 'defaultAction': 'apply',
+        \ },
     \ },
     \ 'actionOptions': {
         \ 'narrow': {
