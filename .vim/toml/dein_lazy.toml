@@ -523,3 +523,13 @@ hook_source = '''
         call dda#completion(s:prompt)
     endfunction
 '''
+
+[[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+depends = ['denops.vim']
+on_source = ['kensaku_search.vim']
+
+[[plugins]]
+repo = 'lambdalisue/kensaku-search.vim'
+depends = ['denops.vim', 'kensaku.vim']
+on_map = '<Plug>(kensaku-'
