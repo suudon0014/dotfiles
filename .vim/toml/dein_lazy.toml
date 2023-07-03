@@ -240,10 +240,7 @@ hook_source = '''
 [[plugins]]
 repo = 'Shougo/pum.vim'
 on_event = 'InsertEnter'
-depends = ['vim-vsnip', 'vim-vsnip-integ']
-hook_source = '''
-autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
-'''
+depends = ['vim-vsnip']
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
@@ -257,10 +254,6 @@ hook_source = '''
     smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
     "let g:vsnip_filetypes = {}
 '''
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-on_source = ['vim-vsnip']
 
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'

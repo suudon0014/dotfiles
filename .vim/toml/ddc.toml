@@ -115,3 +115,7 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'delphinus/ddc-shell-history'
 on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+on_source = ['ddc.vim']
