@@ -152,7 +152,8 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Event': " Event",
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
-        \ }
+        \ },
+        \ 'snippetEngine': denops#callback#register({body -> vsnip#anonymous(body)}),
     \ },
     \ 'file': {
     \   'mode': 'posix',
