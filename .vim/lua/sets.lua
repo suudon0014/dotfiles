@@ -26,7 +26,6 @@ vim.opt.foldcolumn = '1'
 -- encoding
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = 'utf-8,sjis'
-vim.opt.termencoding = 'utf-8'
 vim.opt.fileformats = 'unix,dos'
 
 -- etc.
