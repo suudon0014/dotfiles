@@ -239,6 +239,9 @@ call ddu#custom#patch_global({
         \ 'dein_update': {
             \ 'matchers': ['matcher_dein_update', 'matcher_fzf'],
         \ },
+        \ 'file_rec': {
+            \ 'converters': [{'name': 'converter_hl_dir'}],
+        \ },
     \ },
     \ 'kindOptions': {
         \ 'file': {

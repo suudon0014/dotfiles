@@ -206,6 +206,10 @@ repo = 'yuki-yano/ddu-filter-fzf'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'kyoh86/ddu-filter-converter_hl_dir'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-kind-file'
 on_source = ['ddu.vim']
 
