@@ -149,6 +149,10 @@ lspinfo = '''
 '''
 
 [[plugins]]
+repo = 'uga-rosa/ddc-nvim-lsp-setup'
+on_source = ['nvim-lspconfig']
+
+[[plugins]]
 repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
 
