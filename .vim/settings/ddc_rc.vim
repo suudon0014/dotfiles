@@ -83,7 +83,8 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'nvim-lsp': {
     \     'mark': '[LSP]',
-    \     'forceCompletionPattern': '\.\w*|:\w*|->\w*|"\w*/*',
+    \     'dup': 'keep',
+    \     'keywordPattern': '\k+',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},
@@ -153,7 +154,10 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
         \ },
-        \ 'snippetEngine': denops#callback#register({body -> vsnip#anonymous(body)}),
+    \   'snippetEngine': denops#callback#register({body -> vsnip#anonymous(body)}),
+    \   'enableResolveItem': v:true,
+    \   'enableAdditionalTextEdit': v:true,
+    \   'confirmBehavior': 'replace',
     \ },
     \ 'file': {
     \   'mode': 'posix',
