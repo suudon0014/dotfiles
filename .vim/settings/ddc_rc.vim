@@ -192,7 +192,7 @@ function! Obsidian() abort
     \       dir: '~/obsidian_vault',
     \ }})
 endfunction
-autocmd BufRead,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
+autocmd BufEnter,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
 
 " terminal
 call ddc#enable_terminal_completion()
