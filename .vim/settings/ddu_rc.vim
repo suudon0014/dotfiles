@@ -114,6 +114,7 @@ function! s:DduFilerSingleStart() abort
             \ 'options': {
                 \ 'columns': ['icon_filename'],
                 \ 'path': getcwd(),
+                \ 'converters': ['converter_file_info'],
             \ },
         \ }],
     \ })

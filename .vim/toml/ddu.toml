@@ -210,6 +210,10 @@ repo = 'kyoh86/ddu-filter-converter_hl_dir'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'kamecha/ddu-filter-converter_file_info'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-kind-file'
 on_source = ['ddu.vim']
 
