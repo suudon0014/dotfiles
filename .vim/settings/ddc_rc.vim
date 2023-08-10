@@ -83,9 +83,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'nvim-lsp': {
     \     'mark': '[LSP]',
-    \     'forceCompletionPattern': '\.\w*|:\w*|->\w*|"\w*/*',
+    \     'dup': 'keep',
+    \     'keywordPattern': '\k+',
     \ },
-    \ 'vsnip': {'mark': '[VSNIP]', 'dup': 'keep',},
+    \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},
     \ 'file': {
     \     'mark': '[FILE]',
@@ -152,7 +153,11 @@ call ddc#custom#patch_global('sourceParams', {
             \ 'Event': " Event",
             \ 'Operator': " Operator",
             \ 'TypeParameter': "󿞃 TypeParameter"
-        \ }
+        \ },
+    \   'snippetEngine': denops#callback#register({body -> vsnip#anonymous(body)}),
+    \   'enableResolveItem': v:true,
+    \   'enableAdditionalTextEdit': v:true,
+    \   'confirmBehavior': 'replace',
     \ },
     \ 'file': {
     \   'mode': 'posix',
@@ -175,17 +180,23 @@ call ddc#custom#patch_global('backspaceCompletion', v:true)
 
 " Obsidian
 function! Obsidian() abort
-    call ddc#custom#patch_buffer('sources', ['nvim-obsidian'])
+    call ddc#custom#patch_buffer('sources', ['nvim-obsidian', 'nvim-obsidian-new'])
     call ddc#custom#patch_buffer('sourceOptions', #{
     \   nvim-obsidian: #{
     \       mark: '[OBS]',
+    \ },
+    \   nvim-obsidian-new: #{
+    \       mark: '[OBS+]',
     \ }})
     call ddc#custom#patch_buffer('sourceParams', #{
     \   nvim-obsidian: #{
     \       dir: '~/obsidian_vault',
+    \   },
+    \   nvim-obsidian-new: #{
+    \       dir: '~/obsidian_vault',
     \ }})
 endfunction
-autocmd BufRead,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
+autocmd BufEnter,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
 
 " terminal
 call ddc#enable_terminal_completion()
@@ -196,5 +207,7 @@ call ddc#custom#patch_filetype(['deol'], #{
 \ })
 
 
-call ddc#enable()
+call ddc#enable( #{
+    \ context_filetype: "context_filetype",
+\ })
 

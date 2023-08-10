@@ -102,6 +102,7 @@ mason.setup({
     }
 })
 
+require("ddc_nvim_lsp_setup").setup()
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 

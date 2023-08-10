@@ -7,6 +7,11 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+depends = ['denops.vim']
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-ui-ff'
 on_source = ['ddu.vim']
 [plugins.ftplugin]
@@ -16,7 +21,7 @@ ddu-ff = '''
     nnoremap <buffer> * <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
     nnoremap <buffer> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
     nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('refreshItems')<CR>
-    nnoremap <buffer> p <Cmd>call ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
     nnoremap <buffer> <C-h> <Cmd>call ddu#ui#do_action('cancel')<CR>
     nnoremap <buffer> a <Cmd>call ddu#ui#do_action('chooseAction')<CR>
@@ -72,7 +77,7 @@ ddu-filer = '''
     nnoremap <buffer> o <Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>
     nnoremap <buffer> O <Cmd>call ddu#ui#do_action('expandItem', {'maxLevel': -1})<CR>
     nnoremap <buffer> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
-    nnoremap <buffer> P <Cmd>call ddu#ui#do_action('preview')<CR>
+    nnoremap <buffer> P <Cmd>call ddu#ui#do_action('togglePreview')<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
     nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
     nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
@@ -181,6 +186,14 @@ repo = 'kamecha/ddu-source-tab'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'suudon0014/ddu-source-arglist'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
@@ -190,6 +203,14 @@ on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kyoh86/ddu-filter-converter_hl_dir'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kamecha/ddu-filter-converter_file_info'
 on_source = ['ddu.vim']
 
 [[plugins]]

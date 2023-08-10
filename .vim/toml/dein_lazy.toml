@@ -3,13 +3,16 @@ repo = 'Shougo/dein.vim'
 on_event = 'VimEnter'
 
 [[plugins]]
-repo = 'Townk/vim-autoclose'
+repo = 'cohama/lexima.vim'
 on_event = ['BufEnter']
 hook_source = '''
     augroup autoclose
         autocmd! *
-        autocmd FileType ddu-ff-filter :AutoCloseOff
+        autocmd FileType ddu-ff-filter let b:lexima_disabled = 1
     augroup END
+
+    call lexima#add_rule(#{at: '\%#', char: ',', input: ',<Space>'})
+    call lexima#add_rule(#{at: ', \%#', char: '<Enter>', input: '<BS><Enter>'})
 '''
 
 [[plugins]]
@@ -146,6 +149,10 @@ lspinfo = '''
 '''
 
 [[plugins]]
+repo = 'uga-rosa/ddc-nvim-lsp-setup'
+on_source = ['nvim-lspconfig']
+
+[[plugins]]
 repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
 
@@ -240,10 +247,7 @@ hook_source = '''
 [[plugins]]
 repo = 'Shougo/pum.vim'
 on_event = 'InsertEnter'
-depends = ['vim-vsnip', 'vim-vsnip-integ']
-hook_source = '''
-autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
-'''
+depends = ['vim-vsnip']
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
@@ -257,10 +261,6 @@ hook_source = '''
     smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
     "let g:vsnip_filetypes = {}
 '''
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-on_source = ['vim-vsnip']
 
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
@@ -300,15 +300,39 @@ hook_source = '''
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 on_map = '<Plug>(gin-'
-on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus']
+on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
 on_func = 'gin#'
 hook_source = '''
     let g:gin_log_default_args = ['--graph', '--oneline', '--all', '--date=short', '--decorate=short']
+
+    command! ShowGitDashboard call s:show_git_dashboard()
+    function! s:show_git_dashboard()
+        tabnew
+        GinStatus ++opener=topleft\ split
+        wincmd j
+        GinBranch
+        GinLog ++opener=botright\ vsplit
+    endfunction
 '''
 [plugins.ftplugin]
+gin-branch = '''
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer><silent> q :q<CR>
+'''
+gin-diff = '''
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer><silent> q :q<CR>
+'''
 gin-log = '''
-    nnoremap <buffer> sh <Plug>(gin-action-show)
-    nnoremap <buffer> sw <Plug>(gin-action-switch)
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer> gsh <Plug>(gin-action-show)
+    nnoremap <buffer> gsw <Plug>(gin-action-switch)
+    nnoremap <buffer><silent> q :q<CR>
+'''
+gin-status = '''
+    nnoremap <buffer><silent> r :e!<CR>
+    nnoremap <buffer> e <Plug>(gin-action-edit)
+    nnoremap <buffer><silent> q :q<CR>
 '''
 
 [[plugins]]
@@ -468,9 +492,8 @@ lua_source = '''
 repo = 'epwalsh/obsidian.nvim'
 on_source = 'nvim-cmp'
 lua_source = '''
-    vim.cmd('cd ~')
     require('obsidian').setup({
-        dir = 'obsidian_vault',
+        dir = '~/obsidian_vault',
         notes_subdir = '01_Inbox',
         daily_notes = {
             folder = '02_Daily',
@@ -484,22 +507,6 @@ lua_source = '''
 [[plugins]]
 repo = 'itchyny/vim-qfedit'
 on_ft = ['qf']
-
-[[plugins]]
-repo = 'delphinus/skkeleton_indicator.nvim'
-depends = ['skkeleton']
-on_source = ['ddc.vim']
-hook_source = '''
-    highlight SkkeletonIndicatorEiji guifg=#70dcfa guibg=#0d3a58 gui=bold
-    highlight SkkeletonIndicatorHira guifg=#95fa3e guibg=#0d3a58 gui=bold
-    highlight SkkeletonIndicatorKata guifg=#fdff91 guibg=#0d3a58 gui=bold
-    highlight SkkeletonIndicatorHankata guifg=#f279dc guibg=#0d3a58 gui=bold
-    highlight SkkeletonIndicatorZenkaku guifg=#4daffa guibg=#0d3a58 gui=bold
-    lua require'skkeleton_indicator'.setup{
-    \   alwaysShown = true,
-    \   fadeOutMs = 1000,
-    \ }
-'''
 
 [[plugins]]
 repo = 'gamoutatsumi/dps-ghosttext.vim'
@@ -522,3 +529,13 @@ hook_source = '''
         call dda#completion(s:prompt)
     endfunction
 '''
+
+[[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+depends = ['denops.vim']
+on_source = ['kensaku_search.vim']
+
+[[plugins]]
+repo = 'lambdalisue/kensaku-search.vim'
+depends = ['denops.vim', 'kensaku.vim']
+on_map = '<Plug>(kensaku-'

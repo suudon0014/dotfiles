@@ -36,6 +36,7 @@ on_source = ['ddc.vim']
 hook_source = '''
     imap <C-j> <Plug>(skkeleton-toggle)
     cmap <C-j> <Plug>(skkeleton-toggle)
+    tmap <C-j> <Plug>(skkeleton-toggle)
     call skkeleton#config({
     \   'eggLikeNewline': v:true,
     \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
@@ -114,4 +115,8 @@ on_source = ['ddc.vim']
 
 [[plugins]]
 repo = 'delphinus/ddc-shell-history'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
 on_source = ['ddc.vim']

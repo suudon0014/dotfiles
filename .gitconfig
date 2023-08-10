@@ -47,5 +47,11 @@
 
 [mergetool "nvimdiff"]
     cmd = "nvim -d -c \"4wincmd w | wincmd J | wincmd =\" -d \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\""
+
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
+
 [credential "helperselector"]
 	selected = manager

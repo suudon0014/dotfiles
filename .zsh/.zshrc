@@ -90,6 +90,7 @@ function select-history() {
 }
 zle -N select-history
 setopt +o nomatch
+setopt hist_ignore_all_dups
 bindkey -v
 bindkey "^R" select-history
 bindkey "jj" vi-cmd-mode

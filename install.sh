@@ -76,6 +76,6 @@ SCOOP_DIR=${DOTFILES}/scoop
 SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop
 ln -sfv ${SCOOP_DIR}/scoop_config.json ${SCOOP_CONFIG_DIR}/config.json
 scoop import ${SCOOP_DIR}/scoopfile.json
-ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json "${LOCALAPPDATA}/Microsoft/Windows Terminal/settings.json"
+ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json ~/scoop/persist/windows-terminal/settings/settings.json
 mkdir -p ${APPDATA}/bat
 ln -sfv ${SCOOP_DIR}/bat_config ${APPDATA}/bat/config

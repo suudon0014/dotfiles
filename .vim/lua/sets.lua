@@ -20,14 +20,12 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 
 -- folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = 'manual'
 vim.opt.foldcolumn = '1'
 
 -- encoding
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = 'utf-8,sjis'
-vim.opt.termencoding = 'utf-8'
 vim.opt.fileformats = 'unix,dos'
 
 -- etc.
@@ -96,18 +94,20 @@ vim.g.loaded_spellfile_plugin   = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.skip_loading_mswin        = 1
 
-local clipboard = {}
-clipboard['name'] = 'win32yank'
-clipboard['copy'] = {
-    ['+'] = 'win32yank.exe -i --crlf',
-    ['*'] = 'win32yank.exe -i --crlf',
-}
-clipboard['paste'] = {
-    ['+'] = 'win32yank.exe -o --lf',
-    ['*'] = 'win32yank.exe -o --lf',
-}
-clipboard['cache_enabled'] = 0
-vim.g.clipboard = clipboard
+if vim.fn.has('win32') or vim.fn.has('win64') then
+    local clipboard = {}
+    clipboard['name'] = 'win32yank'
+    clipboard['copy'] = {
+        ['+'] = 'win32yank.exe -i --crlf',
+        ['*'] = 'win32yank.exe -i --crlf',
+    }
+    clipboard['paste'] = {
+        ['+'] = 'win32yank.exe -o --lf',
+        ['*'] = 'win32yank.exe -o --lf',
+    }
+    clipboard['cache_enabled'] = 0
+    vim.g.clipboard = clipboard
+end
 
 if vim.fn.has('nvim') == 1 then
     vim.opt.pumblend = 30

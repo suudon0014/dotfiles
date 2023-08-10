@@ -6,7 +6,7 @@ nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, [['[LINE]', 'B
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, [['[BUFFER]', 'Blue']])<CR>
 nnoremap ,rw :DduGrep<Space>
 nnoremap <silent> ,rl :call <SID>DduGrep('', v:true)<CR>
-nnoremap <silent> ,a :call <SID>DduGrepCWord()<CR>
+nnoremap <silent> ,ra :call <SID>DduGrepCWord()<CR>
 nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, [['[CMD_HIST]', 'Blue']])<CR>
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, [['[COLORSCHEME]', 'Blue']])<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, [['[HELP]', 'Blue']])<CR>
@@ -20,6 +20,7 @@ nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_D
 nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, [['[GIT_SHOW_REF]', 'Blue']])<CR>
 nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT_STATUS]', 'Blue']])<CR>
 nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
+nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, [['[ARG_LIST]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -85,7 +86,7 @@ function! s:DduGrep(...) abort
     endif
 
     let s:ui_params = s:ddu_win_and_preview_pos
-    let s:ui_params['floatingTitle'] = '[GREP]'
+    let s:ui_params['floatingTitle'] = [['[GREP]', 'Blue']]
     " let s:ui_params['autoAction'] = {'name': 'preview'}
     call ddu#start({
         \ 'uiParams': {'ff': s:ui_params},
@@ -113,6 +114,7 @@ function! s:DduFilerSingleStart() abort
             \ 'options': {
                 \ 'columns': ['icon_filename'],
                 \ 'path': getcwd(),
+                \ 'converters': ['converter_file_info'],
             \ },
         \ }],
     \ })
@@ -191,6 +193,7 @@ call ddu#custom#patch_global({
             \ 'previewFloatingBorder': 'single',
             \ 'previewSplit': 'vertical',
             \ 'filterSplitDirection': 'floating',
+            \ 'filterFloatingPosition': 'bottom',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
@@ -229,12 +232,16 @@ call ddu#custom#patch_global({
     \ 'sourceOptions': {
         \ '_': {
             \ 'matchers': ['matcher_fzf'],
+            \ 'sorters': ['sorter_fzf'],
         \ },
         \ 'dirmark': {
             \ 'defaultAction': 'cd',
         \ },
         \ 'dein_update': {
             \ 'matchers': ['matcher_dein_update', 'matcher_fzf'],
+        \ },
+        \ 'file_rec': {
+            \ 'converters': [{'name': 'converter_hl_dir'}],
         \ },
     \ },
     \ 'kindOptions': {
@@ -264,6 +271,12 @@ call ddu#custom#patch_global({
         \ },
         \ 'git_branch': {
             \ 'defaultAction': 'switch',
+        \ },
+        \ 'lsp': {
+            \ 'defaultAction': 'open',
+        \ },
+        \ 'lsp_codeAction': {
+            \ 'defaultAction': 'apply',
         \ },
     \ },
     \ 'actionOptions': {

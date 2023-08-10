@@ -46,6 +46,7 @@ hook_add = '''
         autocmd!
         autocmd ColorScheme * highlight Folded cterm=bold ctermfg=10 gui=bold guifg=LightGreen
         autocmd ColorScheme * highlight CursorLine ctermbg=8 guibg=#5d6173
+        autocmd ColorScheme * highlight Comment cterm=NONE gui=NONE
     augroup END
 '''
 hook_source = '''
