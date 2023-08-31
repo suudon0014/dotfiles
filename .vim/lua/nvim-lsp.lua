@@ -144,7 +144,23 @@ mason_lspconfig.setup_handlers({ function(server_name)
             }
         })
     elseif server_name == 'denols' then
+        opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
+        opts.init_options = {
+            lint = true,
+            unstable = true,
+            suggest = {
+                imports = {
+                    hosts = {
+                        ["https://deno.land"] = true,
+                        ["https://cdn.nest.land"] = true,
+                        ["https://crux.land"] = true,
+                    },
+                },
+            },
+        }
     elseif server_name == 'tsserver' then
+        opts.root_dir = lspconfig.util.root_pattern("package.json")
+        opts.single_file_support = false
     end
 
     lspconfig[server_name].setup(opts)
