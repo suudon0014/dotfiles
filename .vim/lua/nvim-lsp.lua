@@ -112,6 +112,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
     opts.on_attach = on_attach
     opts.detached = false
     opts.capabilities = capabilities
+    opts.single_file_support = true
 
     if server_name == 'clangd' then
         opts.cmd = {
@@ -138,7 +139,6 @@ mason_lspconfig.setup_handlers({ function(server_name)
 
     if server_name == 'marksman' then
         opts.cmd = {'marksman.cmd'}
-        opts.single_file_support = true
     end
 
     if server_name == 'bashls' then
