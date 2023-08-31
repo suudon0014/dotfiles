@@ -124,9 +124,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
             "--header-insertion=never",
             "--limit-results=0",
         }
-    end
-
-    if server_name == 'sumneko_lua' then
+    elseif server_name == 'sumneko_lua' then
         opts.settings = {
             Lua = {
               runtime = {version = 'LuaJIT'},
@@ -135,25 +133,21 @@ mason_lspconfig.setup_handlers({ function(server_name)
               telemetry = {enable = false},
             },
         }
-    end
-
-    if server_name == 'marksman' then
+    elseif server_name == 'marksman' then
         opts.cmd = {'marksman.cmd'}
-    end
-
-    if server_name == 'bashls' then
+    elseif server_name == 'bashls' then
         opts.filetypes = {'sh', 'zsh'}
-    end
-
-    if server_name == 'rust_analyzer' then
+    elseif server_name == 'rust_analyzer' then
         require('rust-tools').setup({
             server = {
                 on_attach = on_attach,
             }
         })
-    else
-        lspconfig[server_name].setup(opts)
+    elseif server_name == 'denols' then
+    elseif server_name == 'tsserver' then
     end
+
+    lspconfig[server_name].setup(opts)
 end })
 
 require("fidget").setup{
