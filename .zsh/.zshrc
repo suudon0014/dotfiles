@@ -148,6 +148,10 @@ function git {
     fi
 }
 
+function unixdate() {
+    date --date='@'$1 +'%Y/%m/%d %H:%M:%S'
+}
+
 # for WSL2
 if [ -e /etc/init.d/docker ]; then
     sudo /etc/init.d/docker start
