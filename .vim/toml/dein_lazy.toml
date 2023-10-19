@@ -11,8 +11,17 @@ hook_source = '''
         autocmd FileType ddu-ff-filter let b:lexima_disabled = 1
     augroup END
 
-    call lexima#add_rule(#{at: '\%#', char: ',', input: ',<Space>'})
+    call lexima#add_rule(#{char: ',', input: ',<Space>'})
     call lexima#add_rule(#{at: ', \%#', char: '<Enter>', input: '<BS><Enter>'})
+
+    call lexima#add_rule(#{at: '<\%#', char: '>', input:'', input_after: '>'})
+    call lexima#add_rule(#{at: '\%#>', char: '>', leave: '>'})
+    call lexima#add_rule(#{at: '<\%#>', char: '<BS>', input:'<BS>', delete: 1})
+
+    call lexima#add_rule(#{at: '^\s*\%#$', char: '-', input:'- ', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^\s*\%#$', char: '*', input:'* ', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^- \%#$', char: '-', input:'<BS>-', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^\s*\* \%#$', char: '*', input:'<BS>*', filetype: 'markdown'})
 '''
 
 [[plugins]]
