@@ -33,6 +33,7 @@ if dein#min#load_state(s:dein_dir)
     let s:submode_lazy_toml = s:rc_dir . '/dein_submode_lazy.toml'
     let s:colorscheme_lazy_toml = s:rc_dir . '/dein_colorscheme_lazy.toml'
     let s:lightline_lazy_toml = s:rc_dir . '/dein_lightline_lazy.toml'
+    let s:dpp_toml = s:rc_dir . '/dpp.toml'
 
     "read and cache the toml files
     call dein#load_toml(s:dein_toml, {'lazy':0})
@@ -42,6 +43,7 @@ if dein#min#load_state(s:dein_dir)
     call dein#load_toml(s:submode_lazy_toml, {'lazy':1})
     call dein#load_toml(s:colorscheme_lazy_toml, {'lazy':1})
     call dein#load_toml(s:lightline_lazy_toml, {'lazy':1})
+    call dein#load_toml(s:dpp_toml, {'lazy':0})
 
     "end the setting
     call dein#end()
