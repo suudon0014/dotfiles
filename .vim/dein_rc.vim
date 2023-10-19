@@ -21,7 +21,7 @@ if &runtimepath !~# '/dein.vim'
 endif
 
 "dein.vim settings
-if dein#load_state(s:dein_dir)
+if dein#min#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     "create plugins list file using TOML format beforehand
