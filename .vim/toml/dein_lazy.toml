@@ -21,6 +21,7 @@ hook_source = '''
     call lexima#add_rule(#{at: '^\s*\%#$', char: '-', input:'- ', filetype: 'markdown'})
     call lexima#add_rule(#{at: '^\s*\%#$', char: '*', input:'* ', filetype: 'markdown'})
     call lexima#add_rule(#{at: '^- \%#$', char: '-', input:'<BS>-', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^- \%#$', char: '>', input:'<BS>>', filetype: 'markdown'})
     call lexima#add_rule(#{at: '^\s*\* \%#$', char: '*', input:'<BS>*', filetype: 'markdown'})
 '''
 
