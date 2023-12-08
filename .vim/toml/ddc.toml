@@ -41,6 +41,7 @@ hook_source = '''
     \   'eggLikeNewline': v:true,
     \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
     \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'completionRankFile': '~/.config/skk/rank.json',
     \   'usePopup': v:false,
     \   'keepState': v:true,
     \   'markerHenkan': '>',

@@ -98,8 +98,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'skkeleton': {
     \   'mark': '[SKK]',
-    \   'matchers': ['skkeleton'],
+    \   'matchers': [],
     \   'sorters': [],
+    \   'converters': [],
     \   'isVolatile': v:true,
     \ },
     \ 'buffer': {
