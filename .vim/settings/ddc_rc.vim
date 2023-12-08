@@ -210,7 +210,6 @@ autocmd BufEnter,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
 call ddc#enable_terminal_completion()
 call ddc#custom#patch_filetype(['deol'], #{
 \   specialBufferCompletion: v:true,
-\   keywordPattern: '[0-9a-zA-Z_./#:-]*',
 \   sources: ['zsh', 'shell-history', 'around'],
 \ })
 
