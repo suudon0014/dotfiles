@@ -22,6 +22,8 @@ ddu-ff = '''
     nnoremap <buffer> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
     nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('refreshItems')<CR>
     nnoremap <buffer> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-e>"'})<CR>
+    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-y>"'})<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
     nnoremap <buffer> <C-h> <Cmd>call ddu#ui#do_action('cancel')<CR>
     nnoremap <buffer> a <Cmd>call ddu#ui#do_action('chooseAction')<CR>
@@ -78,6 +80,8 @@ ddu-filer = '''
     nnoremap <buffer> O <Cmd>call ddu#ui#do_action('expandItem', {'maxLevel': -1})<CR>
     nnoremap <buffer> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
     nnoremap <buffer> P <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-e>"'})<CR>
+    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-y>"'})<CR>
     nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
     nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
     nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
