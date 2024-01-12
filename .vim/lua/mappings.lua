@@ -18,6 +18,32 @@ vim.keymap.set('v', '<Leader>l', 'g$h')
 -- move to the bracket counterpart
 vim.keymap.set('', '<Leader>b', '%')
 
+-- Digraph search
+vim.keymap.set('', '<Leader>f', 'f<C-k>')
+local digraphs = vim.cmd.digraphs
+digraphs('aa', 12354) -- あ
+digraphs('ii', 12356) -- い
+digraphs('uu', 12358) -- う
+digraphs('ee', 12360) -- え
+digraphs('oo', 12362) -- お
+digraphs('AA', 12450) -- ア
+digraphs('II', 12452) -- イ
+digraphs('UU', 12454) -- ウ
+digraphs('EE', 12456) -- エ
+digraphs('OO', 12458) -- オ
+digraphs('xa', 12353) -- ぁ
+digraphs('xi', 12355) -- ぃ
+digraphs('xu', 12357) -- ぅ
+digraphs('xe', 12359) -- ぇ
+digraphs('xo', 12361) -- ぉ
+digraphs('xA', 12449) -- ァ
+digraphs('xI', 12451) -- ィ
+digraphs('xU', 12453) -- ゥ
+digraphs('xE', 12455) -- ェ
+digraphs('xO', 12457) -- ォ
+digraphs(',,', 12289) -- 、
+digraphs('..', 12290) -- 。
+
 -- command line mode
 vim.keymap.set('c', '<C-b>', '<Up>')
 vim.keymap.set('c', '<C-f>', '<Down>')
