@@ -39,8 +39,8 @@ hook_source = '''
     tmap <C-j> <Plug>(skkeleton-toggle)
     call skkeleton#config({
     \   'eggLikeNewline': v:true,
-    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
-    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'globalDictionaries': ["~/.config/skk/SKK-JISYO.L"],
+    \   'userDictionary': "~/.config/skk/my_jisyo",
     \   'completionRankFile': '~/.config/skk/rank.json',
     \   'usePopup': v:false,
     \   'keepState': v:true,
