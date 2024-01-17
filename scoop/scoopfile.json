@@ -44,29 +44,29 @@
             "Info": "",
             "Source": "main",
             "Name": "deno",
-            "Version": "1.38.5",
-            "Updated": "\/Date(1701838732194)\/"
+            "Version": "1.39.4",
+            "Updated": "\/Date(1705452248710)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "doxygen",
-            "Version": "1.9.8",
-            "Updated": "\/Date(1693183469660)\/"
+            "Version": "1.10.0",
+            "Updated": "\/Date(1703550678372)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "fd",
-            "Version": "8.7.1",
-            "Updated": "\/Date(1698020939500)\/"
+            "Version": "9.0.0",
+            "Updated": "\/Date(1703119562524)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "fzf",
-            "Version": "0.44.1",
-            "Updated": "\/Date(1700623861928)\/"
+            "Version": "0.45.0",
+            "Updated": "\/Date(1704762456486)\/"
         },
         {
             "Info": "",
@@ -93,8 +93,8 @@
             "Info": "",
             "Source": "main",
             "Name": "imagemagick",
-            "Version": "7.1.1-22",
-            "Updated": "\/Date(1701650243885)\/"
+            "Version": "7.1.1-26",
+            "Updated": "\/Date(1704762500286)\/"
         },
         {
             "Info": "",
@@ -135,8 +135,8 @@
             "Info": "",
             "Source": "versions",
             "Name": "neovim-nightly",
-            "Version": "0.10.0-a935c75",
-            "Updated": "\/Date(1699403254785)\/"
+            "Version": "0.10.0-2098",
+            "Updated": "\/Date(1705452279209)\/"
         },
         {
             "Info": "",
@@ -149,36 +149,43 @@
             "Info": "",
             "Source": "main",
             "Name": "nodejs",
-            "Version": "21.4.0",
-            "Updated": "\/Date(1701838779139)\/"
+            "Version": "21.6.0",
+            "Updated": "\/Date(1705452327079)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "obsidian",
+            "Version": "1.5.3",
+            "Updated": "\/Date(1705452355663)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pandoc",
-            "Version": "3.1.9",
-            "Updated": "\/Date(1698626130072)\/"
+            "Version": "3.1.11.1",
+            "Updated": "\/Date(1704762533499)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "pnpm",
-            "Version": "8.11.0",
-            "Updated": "\/Date(1701319636624)\/"
+            "Version": "8.14.1",
+            "Updated": "\/Date(1705019871525)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "python",
-            "Version": "3.12.0",
-            "Updated": "\/Date(1696297476480)\/"
+            "Version": "3.12.1",
+            "Updated": "\/Date(1702257448390)\/"
         },
         {
             "Info": "",
             "Source": "main",
             "Name": "ripgrep",
-            "Version": "14.0.3",
-            "Updated": "\/Date(1701319638998)\/"
+            "Version": "14.1.0",
+            "Updated": "\/Date(1704762542877)\/"
         },
         {
             "Info": "",
@@ -221,31 +228,31 @@
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
             "Updated": {
-                "value": "\/Date(1702009554000)\/",
+                "value": "\/Date(1705451542000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年12月8日 13:25:54"
+                "DateTime": "2024年1月17日 09:32:22"
             },
-            "Manifests": 1889
+            "Manifests": 1928
         },
         {
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
             "Updated": {
-                "value": "\/Date(1702009572000)\/",
+                "value": "\/Date(1705451561000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年12月8日 13:26:12"
+                "DateTime": "2024年1月17日 09:32:41"
             },
-            "Manifests": 1265
+            "Manifests": 1286
         },
         {
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
             "Updated": {
-                "value": "\/Date(1702009923000)\/",
+                "value": "\/Date(1705436921000)\/",
                 "DisplayHint": 2,
-                "DateTime": "2023年12月8日 13:32:03"
+                "DateTime": "2024年1月17日 05:28:41"
             },
-            "Manifests": 433
+            "Manifests": 435
         }
     ]
 }
