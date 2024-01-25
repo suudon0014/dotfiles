@@ -39,7 +39,7 @@ hook_source = '''
     tmap <C-j> <Plug>(skkeleton-toggle)
     call skkeleton#config({
     \   'eggLikeNewline': v:true,
-    \   'globalDictionaries': ["~/.config/skk/SKK-JISYO.L"],
+    \   'globalDictionaries': [["~/.config/skk/SKK-JISYO.L", "euc-jp"]],
     \   'userDictionary': "~/.config/skk/my_jisyo",
     \   'completionRankFile': '~/.config/skk/rank.json',
     \   'usePopup': v:false,
