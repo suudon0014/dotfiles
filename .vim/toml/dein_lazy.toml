@@ -11,8 +11,18 @@ hook_source = '''
         autocmd FileType ddu-ff-filter let b:lexima_disabled = 1
     augroup END
 
-    call lexima#add_rule(#{at: '\%#', char: ',', input: ',<Space>'})
+    call lexima#add_rule(#{char: ',', input: ',<Space>'})
     call lexima#add_rule(#{at: ', \%#', char: '<Enter>', input: '<BS><Enter>'})
+
+    call lexima#add_rule(#{at: '<\%#', char: '>', input:'', input_after: '>'})
+    call lexima#add_rule(#{at: '\%#>', char: '>', leave: '>'})
+    call lexima#add_rule(#{at: '<\%#>', char: '<BS>', input:'<BS>', delete: 1})
+
+    call lexima#add_rule(#{at: '^\s*\%#$', char: '-', input:'- ', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^\s*\%#$', char: '*', input:'* ', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^- \%#$', char: '-', input:'<BS>-', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^- \%#$', char: '>', input:'<BS>>', filetype: 'markdown'})
+    call lexima#add_rule(#{at: '^\s*\* \%#$', char: '*', input:'<BS>*', filetype: 'markdown'})
 '''
 
 [[plugins]]
@@ -133,7 +143,7 @@ hook_source = '''
 repo = 'williamboman/mason.nvim'
 on_event = ['CursorHold', 'InsertEnter', 'BufRead']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
-hook_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
+hook_post_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
@@ -149,7 +159,8 @@ lspinfo = '''
 '''
 
 [[plugins]]
-repo = 'uga-rosa/ddc-nvim-lsp-setup'
+repo = 'uga-rosa/ddc-source-lsp-setup'
+depends = ['ddc-source-lsp']
 on_source = ['nvim-lspconfig']
 
 [[plugins]]
@@ -464,6 +475,7 @@ on_cmd = 'help'
 [[plugins]]
 repo = 'j-hui/fidget.nvim'
 on_source = ['mason.nvim']
+rev = 'legacy'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -481,38 +493,32 @@ on_source = ['mason.nvim']
 repo = 'nvim-lua/plenary.nvim'
 on_event = ['CursorHold', 'CmdlineEnter']
 
-[[plugins]]
-repo = 'hrsh7th/nvim-cmp'
-on_source = 'plenary.nvim'
-lua_source = '''
-    require('cmp').setup()
-'''
+# [[plugins]]
+# repo = 'hrsh7th/nvim-cmp'
+# on_source = 'plenary.nvim'
+# lua_source = '''
+#     require('cmp').setup()
+# '''
 
-[[plugins]]
-repo = 'epwalsh/obsidian.nvim'
-on_source = 'nvim-cmp'
-lua_source = '''
-    require('obsidian').setup({
-        dir = '~/obsidian_vault',
-        notes_subdir = '01_Inbox',
-        daily_notes = {
-            folder = '02_Daily',
-        },
-        completion = {
-            nvim_cmp = false,
-        },
-    })
-'''
+# [[plugins]]
+# repo = 'epwalsh/obsidian.nvim'
+# on_source = 'nvim-cmp'
+# lua_source = '''
+#     require('obsidian').setup({
+#         dir = '~/obsidian_vault',
+#         notes_subdir = '01_Inbox',
+#         daily_notes = {
+#             folder = '02_Daily',
+#         },
+#         completion = {
+#             nvim_cmp = false,
+#         },
+#     })
+# '''
 
 [[plugins]]
 repo = 'itchyny/vim-qfedit'
 on_ft = ['qf']
-
-[[plugins]]
-repo = 'gamoutatsumi/dps-ghosttext.vim'
-depends = ['denops.vim']
-on_cmd = ['GhostStart']
-on_func = 'ghosttext#'
 
 [[plugins]]
 repo = 'Shougo/dda.vim'

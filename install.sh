@@ -71,6 +71,8 @@ ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fis
 
 ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 
+ln -sfv ${DOTFILES}/lazygit ${XDG_CONFIG_HOME}/lazygit
+
 # scoop
 SCOOP_DIR=${DOTFILES}/scoop
 SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop

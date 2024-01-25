@@ -39,8 +39,9 @@ hook_source = '''
     tmap <C-j> <Plug>(skkeleton-toggle)
     call skkeleton#config({
     \   'eggLikeNewline': v:true,
-    \   'globalJisyo': "~/.config/skk/SKK-JISYO.L",
-    \   'userJisyo': "~/.config/skk/my_jisyo",
+    \   'globalDictionaries': [["~/.config/skk/SKK-JISYO.L", "euc-jp"]],
+    \   'userDictionary': "~/.config/skk/my_jisyo",
+    \   'completionRankFile': '~/.config/skk/rank.json',
     \   'usePopup': v:false,
     \   'keepState': v:true,
     \   'markerHenkan': '>',
@@ -90,7 +91,7 @@ repo = 'Shougo/ddc-source-cmdline-history'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-source-nvim-lsp'
+repo = 'Shougo/ddc-source-lsp'
 on_source = ['ddc.vim']
 
 [[plugins]]

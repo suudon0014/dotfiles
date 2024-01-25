@@ -64,7 +64,7 @@ call ddc#custom#patch_global('autoCompleteEvents',
 \)
 call ddc#custom#patch_global('sources', [
     \ 'vsnip',
-    \ 'nvim-lsp',
+    \ 'lsp',
     \ 'around',
     \ 'file',
     \ 'path',
@@ -81,10 +81,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'ignoreCase' : v:true,
     \     'minAutoCompleteLength': 1,
     \ },
-    \ 'nvim-lsp': {
-    \     'mark': '[LSP]',
-    \     'dup': 'keep',
-    \     'keywordPattern': '\k+',
+    \ 'lsp': #{
+    \     mark: '[LSP]',
+    \     dup: 'keep',
+    \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},
@@ -98,8 +98,9 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'skkeleton': {
     \   'mark': '[SKK]',
-    \   'matchers': ['skkeleton'],
+    \   'matchers': [],
     \   'sorters': [],
+    \   'converters': [],
     \   'isVolatile': v:true,
     \ },
     \ 'buffer': {
@@ -126,38 +127,11 @@ call ddc#custom#patch_global('sourceOptions', {
 \ })
 
 call ddc#custom#patch_global('sourceParams', {
-    \ 'nvim-lsp': {
-        \ 'kindLabels': {
-            \ 'Text': " Text",
-            \ 'Method': " Method",
-            \ 'Function': " Function",
-            \ 'Constructor': " Constructor",
-            \ 'Field': " Field",
-            \ 'Variable': " Variable",
-            \ 'Class': "󿴯 Class",
-            \ 'Interface': " Interface",
-            \ 'Module': " Module",
-            \ 'Property': " Property",
-            \ 'Unit': " Unit",
-            \ 'Value': " Value",
-            \ 'Enum': " Enum",
-            \ 'Keyword': " Keyword",
-            \ 'Snippet': " Snippet",
-            \ 'Color': " Color",
-            \ 'File': "󿜘 File",
-            \ 'Reference': "󿜆 Reference",
-            \ 'Folder': " Folder",
-            \ 'EnumMember': " EnumMember",
-            \ 'Constant': "󿣾 Constant",
-            \ 'Struct': "󿳼 Struct",
-            \ 'Event': " Event",
-            \ 'Operator': " Operator",
-            \ 'TypeParameter': "󿞃 TypeParameter"
-        \ },
-    \   'snippetEngine': denops#callback#register({body -> vsnip#anonymous(body)}),
-    \   'enableResolveItem': v:true,
-    \   'enableAdditionalTextEdit': v:true,
-    \   'confirmBehavior': 'replace',
+    \ 'lsp': #{
+    \   snippetEngine: denops#callback#register({body -> vsnip#anonymous(body)}),
+    \   enableResolveItem: v:true,
+    \   enableAdditionalTextEdit: v:true,
+    \   confirmBehavior: 'replace',
     \ },
     \ 'file': {
     \   'mode': 'posix',
@@ -174,6 +148,40 @@ call ddc#custom#patch_global('sourceParams', {
     \ 'shell-history': {
     \   'command': ['zsh', '-c', 'history'],
     \ },
+\ })
+
+call ddc#custom#patch_global(#{
+    \ filterParams: #{
+        \ converter_kind_labels: #{
+            \ kindLabels: #{
+                \ Text: " Text",
+                \ Method: " Method",
+                \ Function: " Function",
+                \ Constructor: " Constructor",
+                \ Field: " Field",
+                \ Variable: " Variable",
+                \ Class: "󿴯 Class",
+                \ Interface: " Interface",
+                \ Module: " Module",
+                \ Property: " Property",
+                \ Unit: " Unit",
+                \ Value: " Value",
+                \ Enum: " Enum",
+                \ Keyword: " Keyword",
+                \ Snippet: " Snippet",
+                \ Color: " Color",
+                \ File: "󿜘 File",
+                \ Reference: "󿜆 Reference",
+                \ Folder: " Folder",
+                \ EnumMember: " EnumMember",
+                \ Constant: "󿣾 Constant",
+                \ Struct: "󿳼 Struct",
+                \ Event: " Event",
+                \ Operator: " Operator",
+                \ TypeParameter: "󿞃 TypeParameter"
+            \ },
+        \ }
+    \ }
 \ })
 
 call ddc#custom#patch_global('backspaceCompletion', v:true)
@@ -196,13 +204,12 @@ function! Obsidian() abort
     \       dir: '~/obsidian_vault',
     \ }})
 endfunction
-autocmd BufEnter,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
+" autocmd BufEnter,BufNewFile ~/obsidian_vault/**/*.md call Obsidian()
 
 " terminal
 call ddc#enable_terminal_completion()
 call ddc#custom#patch_filetype(['deol'], #{
 \   specialBufferCompletion: v:true,
-\   keywordPattern: '[0-9a-zA-Z_./#:-]*',
 \   sources: ['zsh', 'shell-history', 'around'],
 \ })
 
