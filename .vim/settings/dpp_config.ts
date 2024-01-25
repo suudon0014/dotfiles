@@ -1,6 +1,16 @@
-import {BaseConfig, ContextBuilder, Dpp, Plugin} from "https://deno.land/x/dpp_vim@v0.0.7/types.ts";
+import {BaseConfig, ConfigReturn, ContextBuilder, Dpp, Plugin} from "https://deno.land/x/dpp_vim@v0.0.7/types.ts";
 import {Denops, fn} from "https://deno.land/x/dpp_vim@v0.0.7/deps.ts";
 
+type Toml = {
+    hooks_file?: string;
+    ftplugins?: Record<string, string>;
+    plugins?: Plugin[];
+};
+
+type LazyMakeStateResult = {
+    plugins: Plugin[];
+    stateLines: string[];
+};
 
 export class Config extends BaseConfig {
     override async config(args: {
@@ -8,24 +18,18 @@ export class Config extends BaseConfig {
         contextBuilder: ContextBuilder;
         basePath: string;
         dpp: Dpp;
-    }): Promise<{
-        plugins: Plugin[];
-        stateLines: string[];
-    }> {
+    }): Promise<ConfigReturn> {
+
         args.contextBuilder.setGlobal({
+            extParams: {
+                installer: {
+                    checkDiff: true,
+                },
+            },
             protocols: ["git"],
         });
 
-        type Toml = {
-            hooks_file?: string;
-            ftplugins?: Record<string, string>;
-            plugins?: Plugin[];
-        };
-
-        type LazyMakeStateResult = {
-            plugins: Plugin[];
-            stateLines: string[];
-        };
+        console.log(args);
 
         const [context, options] = await args.contextBuilder.get(args.denops);
         const tomlFilesDir = "~/dotfiles/.vim/toml/";
