@@ -493,28 +493,28 @@ on_source = ['mason.nvim']
 repo = 'nvim-lua/plenary.nvim'
 on_event = ['CursorHold', 'CmdlineEnter']
 
-[[plugins]]
-repo = 'hrsh7th/nvim-cmp'
-on_source = 'plenary.nvim'
-lua_source = '''
-    require('cmp').setup()
-'''
+# [[plugins]]
+# repo = 'hrsh7th/nvim-cmp'
+# on_source = 'plenary.nvim'
+# lua_source = '''
+#     require('cmp').setup()
+# '''
 
-[[plugins]]
-repo = 'epwalsh/obsidian.nvim'
-on_source = 'nvim-cmp'
-lua_source = '''
-    require('obsidian').setup({
-        dir = '~/obsidian_vault',
-        notes_subdir = '01_Inbox',
-        daily_notes = {
-            folder = '02_Daily',
-        },
-        completion = {
-            nvim_cmp = false,
-        },
-    })
-'''
+# [[plugins]]
+# repo = 'epwalsh/obsidian.nvim'
+# on_source = 'nvim-cmp'
+# lua_source = '''
+#     require('obsidian').setup({
+#         dir = '~/obsidian_vault',
+#         notes_subdir = '01_Inbox',
+#         daily_notes = {
+#             folder = '02_Daily',
+#         },
+#         completion = {
+#             nvim_cmp = false,
+#         },
+#     })
+# '''
 
 [[plugins]]
 repo = 'itchyny/vim-qfedit'
