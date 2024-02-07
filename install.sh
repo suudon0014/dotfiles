@@ -25,28 +25,28 @@ if [ "$(expr substr $(uname -s) 1 4)" == "MSYS"\
     # setx VIMRUNTIME ${VimRoot}/vim82
 
     # Create python venvs for neovim
-    if [ ! -d ~/.venv ]; then
-        echo -e "\nPython venvs for neovim is not found.\nStart creating..."
-        mkdir ~/.venv && cd ~/.venv
+    # if [ ! -d ~/.venv ]; then
+    #     echo -e "\nPython venvs for neovim is not found.\nStart creating..."
+    #     mkdir ~/.venv && cd ~/.venv
 
-        # python2 venv for neovim
-        python -m virtualenv neovim2
-        source neovim2/Scripts/activate
-        pip install -U neovim
-        deactivate
+    #     # python2 venv for neovim
+    #     python -m virtualenv neovim2
+    #     source neovim2/Scripts/activate
+    #     pip install -U neovim
+    #     deactivate
 
-        # python3 venv for neovim
-        python3 -m venv neovim3 --without-pip
-        curl -kL https://bootstrap.pypa.io/get-pip.py > get-pip.py
-        source neovim3/Scripts/activate
-        python get-pip.py
-        pip install -U neovim python-language-server compiledb
-        deactivate
+    #     # python3 venv for neovim
+    #     python3 -m venv neovim3 --without-pip
+    #     curl -kL https://bootstrap.pypa.io/get-pip.py > get-pip.py
+    #     source neovim3/Scripts/activate
+    #     python get-pip.py
+    #     pip install -U neovim python-language-server compiledb
+    #     deactivate
 
-        cd ~
-    else
-        echo -e "\nPython venvs for neovim is found."
-    fi
+    #     cd ~
+    # else
+    #     echo -e "\nPython venvs for neovim is found."
+    # fi
 
 # for Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -66,18 +66,18 @@ ln -sfv ${DOTFILES}/.git_commit_template ~/.git_commit_template
 
 ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 
-ln -sfv ${DOTFILES}/.fish/config.fish ${XDG_CONFIG_HOME}/fish/config.fish
-ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fish_prompt.fish
+# ln -sfv ${DOTFILES}/.fish/config.fish ${XDG_CONFIG_HOME}/fish/config.fish
+# ln -sfv ${DOTFILES}/.fish/fish_prompt.fish ${XDG_CONFIG_HOME}/fish/functions/fish_prompt.fish
 
 ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 
 ln -sfv ${DOTFILES}/lazygit ${XDG_CONFIG_HOME}/lazygit
 
 # scoop
-SCOOP_DIR=${DOTFILES}/scoop
-SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop
-ln -sfv ${SCOOP_DIR}/scoop_config.json ${SCOOP_CONFIG_DIR}/config.json
-scoop import ${SCOOP_DIR}/scoopfile.json
-ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json ~/scoop/persist/windows-terminal/settings/settings.json
-mkdir -p ${APPDATA}/bat
-ln -sfv ${SCOOP_DIR}/bat_config ${APPDATA}/bat/config
+# SCOOP_DIR=${DOTFILES}/scoop
+# SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop
+# ln -sfv ${SCOOP_DIR}/scoop_config.json ${SCOOP_CONFIG_DIR}/config.json
+# scoop import ${SCOOP_DIR}/scoopfile.json
+# ln -sfv ${SCOOP_DIR}/windows_terminal_settings.json ~/scoop/persist/windows-terminal/settings/settings.json
+# mkdir -p ${APPDATA}/bat
+# ln -sfv ${SCOOP_DIR}/bat_config ${APPDATA}/bat/config
