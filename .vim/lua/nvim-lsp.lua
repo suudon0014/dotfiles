@@ -165,7 +165,11 @@ mason_lspconfig.setup_handlers({ function(server_name)
 end })
 
 require("fidget").setup{
-    text = {
-        spinner = 'moon',
+    progress = {
+        display = {
+            progress_icon = {
+                pattern = 'moon',
+            },
+        },
     },
 }

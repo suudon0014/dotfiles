@@ -475,7 +475,6 @@ on_cmd = 'help'
 [[plugins]]
 repo = 'j-hui/fidget.nvim'
 on_source = ['mason.nvim']
-rev = 'legacy'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
