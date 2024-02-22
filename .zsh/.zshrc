@@ -130,8 +130,6 @@ function fzv() {
     vim "$dir"
 }
 
-. ~/z/z.sh
-
 function isWinDir {
     case $PWD/ in
         /mnt/*) return $(true);;
