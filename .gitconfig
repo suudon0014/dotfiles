@@ -55,3 +55,8 @@
 
 [credential "helperselector"]
 	selected = manager
+
+[gitflow "feature.finish"]
+    no-ff = true
+[gitflow "bugfix.finish"]
+    no-ff = true
