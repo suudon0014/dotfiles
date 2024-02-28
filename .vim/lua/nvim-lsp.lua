@@ -70,7 +70,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Set up of LSP servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('ddc_source_lsp').make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -121,8 +121,16 @@ mason_lspconfig.setup_handlers({ function(server_name)
             "--completion-style=detailed",
             "--header-insertion=never",
             "--limit-results=0",
+            "--function-arg-placeholders",
+            "--fallback-style=llvm",
         }
-    elseif server_name == 'sumneko_lua' then
+        opts.init_options = {
+          usePlaceholders = true,
+          completeUnimported = true,
+          clangdFileStatus = true,
+        }
+        opts.capabilities.offsetEncoding = {"utf-16"}
+    elseif server_name == 'lua_ls' then
         opts.settings = {
             Lua = {
               runtime = {version = 'LuaJIT'},
