@@ -80,11 +80,12 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'converters': ['converter_fuzzy'],
     \     'ignoreCase' : v:true,
     \     'minAutoCompleteLength': 1,
+    \     'timeout': 1000,
     \ },
     \ 'lsp': #{
     \     mark: '[LSP]',
     \     dup: 'keep',
-    \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
+    \     keywordPattern: '\k+',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},

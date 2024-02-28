@@ -143,7 +143,6 @@ hook_source = '''
 repo = 'williamboman/mason.nvim'
 on_event = ['CursorHold', 'InsertEnter', 'BufRead']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
-hook_post_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
