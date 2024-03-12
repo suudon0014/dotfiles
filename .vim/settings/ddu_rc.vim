@@ -65,10 +65,12 @@ function! s:DduStart(source, preview_enable, custom_enable, floating_title) abor
         call ddu#start({'name': a:source,
             \ 'uiParams': {'ff': s:ui_params},
         \ })
+        autocmd FileType ddu-ff ++once call timer_start(1, {-> ddu#ui#do_action('openFilterWindow')})
     else
         call ddu#start({'sources': [{'name': a:source}],
             \ 'uiParams': {'ff': s:ui_params},
         \ })
+        autocmd FileType ddu-ff ++once call timer_start(1, {-> ddu#ui#do_action('openFilterWindow')})
     endif
 endfunction
 
@@ -184,7 +186,6 @@ call ddu#custom#patch_global({
         \ 'ff': {
             \ 'split': 'floating',
             \ 'floatingBorder': 'single',
-            \ 'startFilter': v:true,
             \ 'winHeight': 20,
             \ 'winWidth': &columns / 2,
             \ 'previewHeight': 20,
@@ -315,11 +316,6 @@ call ddu#custom#patch_global({
 \ })
 
 call ddu#custom#patch_local('dirmark_custom', {
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'startFilter': v:false,
-        \ },
-    \ },
     \ 'sources': [{'name': 'dirmark'}],
     \ 'actionOptions': {
         \ 'cd': {
