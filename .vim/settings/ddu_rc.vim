@@ -71,7 +71,7 @@ function! s:DduStart(source, preview_enable, custom_enable, start_filter, floati
         \ })
     endif
     if a:start_filter
-        autocmd User Ddu:uiReady
+        autocmd User Ddu:uiReady ++once
             \ : if &l:filetype ==# 'ddu-ff'
             \ |     call ddu#ui#do_action('openFilterWindow')
             \ | endif
