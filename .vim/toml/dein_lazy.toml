@@ -119,6 +119,16 @@ repo = 'RRethy/nvim-treesitter-textsubjects'
 on_source = ['nvim-treesitter']
 
 [[plugins]]
+repo = 'Wansmer/treesj'
+on_source = ['nvim-treesitter']
+lua_source = '''
+require('treesj').setup()
+vim.keymap.set('n', '<Leader>M', function()
+    require('treesj').toggle({split = { recursive = true }})
+end)
+'''
+
+[[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 hook_source = '''
