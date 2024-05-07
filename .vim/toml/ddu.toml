@@ -198,6 +198,10 @@ repo = 'uga-rosa/ddu-source-lsp'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'shutils/ddu-source-obsidian'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
@@ -218,7 +222,15 @@ repo = 'kamecha/ddu-filter-converter_file_info'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'Shougo/ddu-filter-converter_display_word'
+on_source = ['ddu.vim']
+
+[[plugins]]
 repo = 'Shougo/ddu-kind-file'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-word'
 on_source = ['ddu.vim']
 
 [[plugins]]

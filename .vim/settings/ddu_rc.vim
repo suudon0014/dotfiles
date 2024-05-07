@@ -22,6 +22,8 @@ nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, v:true,
 nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
 nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, v:true, [['[ARG_LIST]', 'Blue']])<CR>
 
+nnoremap <silent> ,on :call <SID>DduStart('obsidian_note', v:true, v:false, v:true, [['[OBS]', 'Blue']])<CR>
+
 " functions and commands
 function! s:set_ddu_win_pos() abort
     let s:ddu_win_pos = {
@@ -233,6 +235,11 @@ call ddu#custom#patch_global({
         \ dein_update: #{
             \ maxProcess: 8,
         \ },
+        \ obsidian_note: #{
+            \ vaults: [#{
+                \ path: expand('~/OneDrive/obsidian'),
+                \ name: 'obsidian_vault',
+            \ }]
         \ },
     \ },
     \ 'sourceOptions': #{
@@ -249,6 +256,14 @@ call ddu#custom#patch_global({
         \ file_rec: #{
             \ converters: [{'name': 'converter_hl_dir'}],
         \ },
+        \ obsidian_note: #{
+            \ matchers: [
+                \ 'converter_obsidian_rel_path',
+                \ 'converter_obsidian_title',
+                \ 'converter_display_word',
+                \ 'matcher_fzf',
+            \ ],
+            \ converters: ['converter_obsidian_backlink']
         \ },
     \ },
     \ 'kindOptions': {
