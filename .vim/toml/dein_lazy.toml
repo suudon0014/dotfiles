@@ -40,19 +40,19 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'sh -c "cd app && yarn install"'
 depends = ['open-browser.vim']
 
-[[plugins]]
-repo = 'tani/glance-vim'
-on_ft = 'markdown'
-hook_source = '''
-    let g:glance#markdown_breaks = v:true
-    let g:glance#markdown_html = v:true
-    let g:glance#markdown_linkify = v:true
-    let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
-    let g:glance#markdown_plugins = [
-        \ 'https://esm.sh/markdown-it-emoji',
-        \ 'https://esm.sh/markdown-it-mathjax3?bundle',
-    \ ]
-'''
+# [[plugins]]
+# repo = 'tani/glance-vim'
+# on_ft = 'markdown'
+# hook_source = '''
+#     let g:glance#markdown_breaks = v:true
+#     let g:glance#markdown_html = v:true
+#     let g:glance#markdown_linkify = v:true
+#     let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
+#     let g:glance#markdown_plugins = [
+#         \ 'https://esm.sh/markdown-it-emoji',
+#         \ 'https://esm.sh/markdown-it-mathjax3?bundle',
+#     \ ]
+# '''
 #end markdown
 
 [[plugins]]
