@@ -560,3 +560,12 @@ on_event = ['CursorHold']
 lua_source = '''
 require('incline').setup()
 '''
+
+[[plugins]]
+repo = 'tani/dmacro.nvim'
+on_event = ['InsertEnter']
+lua_source = '''
+require('dmacro').setup({
+    dmacro_key = '<C-t>'
+})
+'''
