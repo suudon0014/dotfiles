@@ -553,3 +553,10 @@ on_source = ['kensaku_search.vim']
 repo = 'lambdalisue/kensaku-search.vim'
 depends = ['denops.vim', 'kensaku.vim']
 on_map = '<Plug>(kensaku-'
+
+[[plugins]]
+repo = 'b0o/incline.nvim'
+on_event = ['CursorHold']
+lua_source = '''
+require('incline').setup()
+'''
