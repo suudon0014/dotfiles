@@ -569,3 +569,10 @@ require('dmacro').setup({
     dmacro_key = '<C-t>'
 })
 '''
+
+[[plugins]]
+repo = 'shellRaining/hlchunk.nvim'
+on_event = ['BufEnter']
+lua_source = '''
+require('hlchunk').setup({})
+'''
