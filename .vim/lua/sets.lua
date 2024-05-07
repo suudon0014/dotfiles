@@ -4,7 +4,7 @@ vim.opt.backupdir = vim.env.HOME .. "/vimtmp/bk"
 vim.opt.directory = vim.env.HOME .. "/vimtmp/swap"
 vim.opt.swapfile = false
 
--- about search
+-- search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -27,6 +27,9 @@ vim.opt.foldcolumn = '1'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = 'utf-8,sjis'
 vim.opt.fileformats = 'unix,dos'
+
+-- diagnostics
+vim.diagnostic.config({severity_sort = true})
 
 -- etc.
 vim.opt.cursorline = true
