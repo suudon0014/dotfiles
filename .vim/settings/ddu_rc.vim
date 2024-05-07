@@ -215,38 +215,40 @@ call ddu#custom#patch_global({
             \ 'previewFloatingZindex': 100,
         \ },
     \ },
-    \ 'sourceParams': {
-        \ 'file_rec': {
-            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
+    \ 'sourceParams': #{
+        \ file_rec: #{
+            \ ignoredDirectories: ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
         \ },
-        \ 'rg': {
-            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
-            \ 'highlights': {
-                \ 'path': 'Identifier',
-                \ 'lineNr': 'Comment',
-                \ 'word': 'Constant',
+        \ rg: #{
+            \ args: ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
+            \ highlights: #{
+                \ path: 'Identifier',
+                \ lineNr: 'Comment',
+                \ word: 'Constant',
             \ },
         \ },
-        \ 'help': {
-            \ 'helpLang': 'ja,en',
+        \ help: #{
+            \ helpLang: 'ja,en',
         \ },
-        \ 'dein_update': {
-            \ 'maxProcess': 8,
+        \ dein_update: #{
+            \ maxProcess: 8,
+        \ },
         \ },
     \ },
-    \ 'sourceOptions': {
-        \ '_': {
-            \ 'matchers': ['matcher_fzf'],
-            \ 'sorters': ['sorter_fzf'],
+    \ 'sourceOptions': #{
+        \ _: #{
+            \ matchers: ['matcher_fzf'],
+            \ sorters: ['sorter_fzf'],
         \ },
-        \ 'dirmark': {
-            \ 'defaultAction': 'cd',
+        \ dirmark: #{
+            \ defaultAction: 'cd',
         \ },
-        \ 'dein_update': {
-            \ 'matchers': ['matcher_dein_update', 'matcher_fzf'],
+        \ dein_update: #{
+            \ matchers: ['matcher_dein_update', 'matcher_fzf'],
         \ },
-        \ 'file_rec': {
-            \ 'converters': [{'name': 'converter_hl_dir'}],
+        \ file_rec: #{
+            \ converters: [{'name': 'converter_hl_dir'}],
+        \ },
         \ },
     \ },
     \ 'kindOptions': {
