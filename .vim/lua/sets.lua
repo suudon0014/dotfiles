@@ -1,5 +1,6 @@
 -- set backup folders
 vim.opt.undodir = vim.env.HOME .. "/vimtmp/undo"
+vim.opt.undofile = true
 vim.opt.backupdir = vim.env.HOME .. "/vimtmp/bk"
 vim.opt.directory = vim.env.HOME .. "/vimtmp/swap"
 vim.opt.swapfile = false

@@ -576,3 +576,7 @@ on_event = ['BufEnter']
 lua_source = '''
 require('hlchunk').setup({})
 '''
+
+[[plugins]]
+repo = 'mbbill/undotree'
+on_event = ['BufEnter']
