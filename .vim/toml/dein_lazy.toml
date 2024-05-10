@@ -318,7 +318,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'lambdalisue/gin.vim'
+repo = 'lambdalisue/vim-gin'
 on_map = '<Plug>(gin-'
 on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
 on_func = 'gin#'
