@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 -- map jj to Esc
 vim.keymap.set({'i', 'c'}, 'jj', '<Esc>', {silent = true})
+vim.keymap.set({'i', 'c'}, 'j<Leader>', 'j', {silent = true})
 vim.keymap.set({'i', 'c'}, 'ｊｊ', '<Esc>', {silent = true})
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', {silent = true})
 
