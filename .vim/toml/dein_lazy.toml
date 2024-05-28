@@ -103,10 +103,6 @@ repo = 'nvim-treesitter/nvim-treesitter-textobjects'
 on_source = ['nvim-treesitter']
 
 [[plugins]]
-repo = 'p00f/nvim-ts-rainbow'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
 repo = 'haringsrob/nvim_context_vt'
 on_source = ['nvim-treesitter']
 
