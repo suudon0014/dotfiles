@@ -551,13 +551,6 @@ depends = ['denops.vim', 'kensaku.vim']
 on_map = '<Plug>(kensaku-'
 
 [[plugins]]
-repo = 'b0o/incline.nvim'
-on_event = ['CursorHold']
-lua_source = '''
-require('incline').setup()
-'''
-
-[[plugins]]
 repo = 'tani/dmacro.nvim'
 on_event = ['InsertEnter']
 lua_source = '''
