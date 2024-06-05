@@ -80,6 +80,15 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 vim.keymap.set('n', 'sN', ':<C-u>bn<CR>')
 vim.keymap.set('n', 'sP', ':<C-u>bp<CR>')
 
+-- swap a" and 2i"
+for _, quote in pairs({'"', "'", '`'}) do
+    vim.keymap.set({'x', 'o'}, "a" .. quote, "2i" .. quote)
+end
+
+for _, quote in pairs({'"', "'", '`'}) do
+    vim.keymap.set({'x', 'o'}, "2i" .. quote, "a" .. quote)
+end
+
 -- etc.
 vim.keymap.set('', 'j', 'gj')
 vim.keymap.set('', 'k', 'gk')
