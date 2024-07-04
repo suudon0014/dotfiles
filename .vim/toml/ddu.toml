@@ -20,7 +20,7 @@ ddu-ff = '''
     nnoremap <buffer> x <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
     nnoremap <buffer> * <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
     nnoremap <buffer> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-    nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('refreshItems')<CR>
+    nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('redraw', #{method: 'refreshItems'})<CR>
     nnoremap <buffer> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
     nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-e>"'})<CR>
     nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-y>"'})<CR>
