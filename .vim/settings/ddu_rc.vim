@@ -22,6 +22,8 @@ nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT
 nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
 nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, [['[ARG_LIST]', 'Blue']])<CR>
 
+nnoremap <silent> ,on :call <SID>DduStart('obsidian_note', v:true, v:false, [['[OBS]', 'Blue']])<CR>
+
 " functions and commands
 function! s:set_ddu_win_pos() abort
     let s:ddu_win_pos = {
@@ -184,7 +186,6 @@ call ddu#custom#patch_global({
         \ 'ff': {
             \ 'split': 'floating',
             \ 'floatingBorder': 'single',
-            \ 'startFilter': v:true,
             \ 'winHeight': 20,
             \ 'winWidth': &columns / 2,
             \ 'previewHeight': 20,
@@ -192,8 +193,6 @@ call ddu#custom#patch_global({
             \ 'previewFloating': v:true,
             \ 'previewFloatingBorder': 'single',
             \ 'previewSplit': 'vertical',
-            \ 'filterSplitDirection': 'floating',
-            \ 'filterFloatingPosition': 'bottom',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
@@ -210,38 +209,53 @@ call ddu#custom#patch_global({
             \ 'previewFloatingZindex': 100,
         \ },
     \ },
-    \ 'sourceParams': {
-        \ 'file_rec': {
-            \ 'ignoredDirectories': ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
+    \ 'sourceParams': #{
+        \ file_rec: #{
+            \ ignoredDirectories: ['.git', '.cache', '.clangd', '.vs', '.obsidian', '.obsidian_win', '.obsidian_android', '.trash'],
         \ },
-        \ 'rg': {
-            \ 'args': ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
-            \ 'highlights': {
-                \ 'path': 'Identifier',
-                \ 'lineNr': 'Comment',
-                \ 'word': 'Constant',
+        \ rg: #{
+            \ args: ['--column', '--no-heading', '--no-ignore', '--glob', '!.git/', '--hidden', '--color', 'never', '--smart-case', '--json'],
+            \ highlights: #{
+                \ path: 'Identifier',
+                \ lineNr: 'Comment',
+                \ word: 'Constant',
             \ },
         \ },
-        \ 'help': {
-            \ 'helpLang': 'ja,en',
+        \ help: #{
+            \ helpLang: 'ja,en',
         \ },
-        \ 'dein_update': {
-            \ 'maxProcess': 8,
+        \ dein_update: #{
+            \ maxProcess: 8,
+        \ },
+        \ obsidian_note: #{
+            \ vaults: [#{
+                \ path: expand('~/OneDrive/obsidian'),
+                \ name: 'obsidian_vault',
+            \ }]
         \ },
     \ },
-    \ 'sourceOptions': {
-        \ '_': {
-            \ 'matchers': ['matcher_fzf'],
-            \ 'sorters': ['sorter_fzf'],
+    \ 'sourceOptions': #{
+        \ _: #{
+            \ matchers: ['matcher_fzf'],
+            \ sorters: ['sorter_fzf'],
         \ },
-        \ 'dirmark': {
-            \ 'defaultAction': 'cd',
+        \ dirmark: #{
+            \ defaultAction: 'cd',
         \ },
-        \ 'dein_update': {
-            \ 'matchers': ['matcher_dein_update', 'matcher_fzf'],
+        \ dein_update: #{
+            \ matchers: ['matcher_dein_update', 'matcher_fzf'],
         \ },
-        \ 'file_rec': {
-            \ 'converters': [{'name': 'converter_hl_dir'}],
+        \ file_rec: #{
+            \ converters: [{'name': 'converter_hl_dir'}],
+        \ },
+        \ obsidian_note: #{
+            \ matchers: [
+                \ 'converter_obsidian_rel_path',
+                \ 'converter_obsidian_title',
+                \ 'converter_display_word',
+                \ 'matcher_fzf',
+            \ ],
+            \ converters: ['converter_obsidian_backlink']
         \ },
     \ },
     \ 'kindOptions': {
@@ -315,11 +329,6 @@ call ddu#custom#patch_global({
 \ })
 
 call ddu#custom#patch_local('dirmark_custom', {
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'startFilter': v:false,
-        \ },
-    \ },
     \ 'sources': [{'name': 'dirmark'}],
     \ 'actionOptions': {
         \ 'cd': {

@@ -40,19 +40,19 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 build = 'sh -c "cd app && yarn install"'
 depends = ['open-browser.vim']
 
-[[plugins]]
-repo = 'tani/glance-vim'
-on_ft = 'markdown'
-hook_source = '''
-    let g:glance#markdown_breaks = v:true
-    let g:glance#markdown_html = v:true
-    let g:glance#markdown_linkify = v:true
-    let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
-    let g:glance#markdown_plugins = [
-        \ 'https://esm.sh/markdown-it-emoji',
-        \ 'https://esm.sh/markdown-it-mathjax3?bundle',
-    \ ]
-'''
+# [[plugins]]
+# repo = 'tani/glance-vim'
+# on_ft = 'markdown'
+# hook_source = '''
+#     let g:glance#markdown_breaks = v:true
+#     let g:glance#markdown_html = v:true
+#     let g:glance#markdown_linkify = v:true
+#     let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
+#     let g:glance#markdown_plugins = [
+#         \ 'https://esm.sh/markdown-it-emoji',
+#         \ 'https://esm.sh/markdown-it-mathjax3?bundle',
+#     \ ]
+# '''
 #end markdown
 
 [[plugins]]
@@ -103,10 +103,6 @@ repo = 'nvim-treesitter/nvim-treesitter-textobjects'
 on_source = ['nvim-treesitter']
 
 [[plugins]]
-repo = 'p00f/nvim-ts-rainbow'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
 repo = 'haringsrob/nvim_context_vt'
 on_source = ['nvim-treesitter']
 
@@ -117,6 +113,16 @@ on_source = ['nvim-treesitter']
 [[plugins]]
 repo = 'RRethy/nvim-treesitter-textsubjects'
 on_source = ['nvim-treesitter']
+
+[[plugins]]
+repo = 'Wansmer/treesj'
+on_source = ['nvim-treesitter']
+lua_source = '''
+require('treesj').setup()
+vim.keymap.set('n', '<Leader>M', function()
+    require('treesj').toggle({split = { recursive = true }})
+end)
+'''
 
 [[plugins]]
 repo = 'lervag/vimtex'
@@ -308,7 +314,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'lambdalisue/gin.vim'
+repo = 'lambdalisue/vim-gin'
 on_map = '<Plug>(gin-'
 on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
 on_func = 'gin#'
@@ -543,3 +549,23 @@ on_source = ['kensaku_search.vim']
 repo = 'lambdalisue/kensaku-search.vim'
 depends = ['denops.vim', 'kensaku.vim']
 on_map = '<Plug>(kensaku-'
+
+[[plugins]]
+repo = 'tani/dmacro.nvim'
+on_event = ['InsertEnter']
+lua_source = '''
+require('dmacro').setup({
+    dmacro_key = '<C-t>'
+})
+'''
+
+[[plugins]]
+repo = 'shellRaining/hlchunk.nvim'
+on_event = ['BufEnter']
+lua_source = '''
+require('hlchunk').setup({})
+'''
+
+[[plugins]]
+repo = 'mbbill/undotree'
+on_event = ['BufEnter']

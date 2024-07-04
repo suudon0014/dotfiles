@@ -12,8 +12,8 @@ hook_source = '''
     nnoremap sK <C-w>K
     nnoremap sL <C-w>L
     nnoremap sH <C-w>H
-    nnoremap sr <C-w>r
-    nnoremap sR <C-w>R
+    " nnoremap sr <C-w>r
+    " nnoremap sR <C-w>R
     nnoremap s= <C-w>=
     nnoremap sO <C-w>=
     nnoremap sw <C-w>w
@@ -51,8 +51,8 @@ hook_source = '''
     call submode#enter_with('window_mode', 'n', '', 'sH', '<C-w>H')
     call submode#enter_with('window_mode', 'n', '', 'sJ', '<C-w>J')
     call submode#enter_with('window_mode', 'n', '', 'sK', '<C-w>K')
-    call submode#enter_with('window_mode', 'n', '', 'sr', '<C-w>r')
-    call submode#enter_with('window_mode', 'n', '', 'sR', '<C-w>R')
+    " call submode#enter_with('window_mode', 'n', '', 'sr', '<C-w>r')
+    " call submode#enter_with('window_mode', 'n', '', 'sR', '<C-w>R')
     call submode#enter_with('window_mode', 'n', '', 'sO', '<C-w>=')
     call submode#enter_with('window_mode', 'n', '', 'so', ':<C-u>vertical res<CR><C-w>_')
     call submode#enter_with('window_mode', 'n', '', 'sw', '<C-w>w')

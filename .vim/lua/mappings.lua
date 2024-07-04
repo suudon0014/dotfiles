@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 -- map jj to Esc
 vim.keymap.set({'i', 'c'}, 'jj', '<Esc>', {silent = true})
+vim.keymap.set({'i', 'c'}, 'j<Leader>', 'j', {silent = true})
 vim.keymap.set({'i', 'c'}, 'ｊｊ', '<Esc>', {silent = true})
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', {silent = true})
 
@@ -78,6 +79,15 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 -- buffer
 vim.keymap.set('n', 'sN', ':<C-u>bn<CR>')
 vim.keymap.set('n', 'sP', ':<C-u>bp<CR>')
+
+-- swap a" and 2i"
+for _, quote in pairs({'"', "'", '`'}) do
+    vim.keymap.set({'x', 'o'}, "a" .. quote, "2i" .. quote)
+end
+
+for _, quote in pairs({'"', "'", '`'}) do
+    vim.keymap.set({'x', 'o'}, "2i" .. quote, "a" .. quote)
+end
 
 -- etc.
 vim.keymap.set('', 'j', 'gj')

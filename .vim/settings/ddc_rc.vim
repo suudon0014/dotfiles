@@ -86,6 +86,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \     mark: '[LSP]',
     \     dup: 'keep',
     \     keywordPattern: '\k+',
+    \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},
