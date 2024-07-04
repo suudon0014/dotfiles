@@ -45,16 +45,6 @@ ddu-ff = '''
     nnoremap <buffer> <Esc><Esc> <Nop>
 '''
 
-ddu-ff-filter = '''
-    inoremap <buffer> <CR> <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
-    nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
-    inoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext', {'loop': v:true})<CR>
-    inoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious', {'loop': v:true})<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('cursorNext', {'loop': v:true})<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('cursorPrevious', {'loop': v:true})<CR>
-    nnoremap <buffer> q <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
-'''
-
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
 on_source = ['ddu.vim']

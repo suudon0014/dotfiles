@@ -1,28 +1,28 @@
 " configs about ddu.vim
 
 " mappings
-nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false, v:true, [['[FILE]', 'Blue']])<CR>
-nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, v:true, [['[LINE]', 'Blue']])<CR>
-nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, v:true, [['[BUFFER]', 'Blue']])<CR>
+nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false, [['[FILE]', 'Blue']])<CR>
+nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, [['[LINE]', 'Blue']])<CR>
+nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, [['[BUFFER]', 'Blue']])<CR>
 nnoremap ,rw :DduGrep<Space>
 nnoremap <silent> ,rl :call <SID>DduGrep('', v:true)<CR>
 nnoremap <silent> ,ra :call <SID>DduGrepCWord()<CR>
-nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, v:true, [['[CMD_HIST]', 'Blue']])<CR>
-nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, v:true, [['[COLORSCHEME]', 'Blue']])<CR>
-nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, v:true, [['[HELP]', 'Blue']])<CR>
-nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true, v:false, [['[DIRMARK]', 'Blue']])<CR>
-nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false, v:true, [['[MARKS]', 'Blue']])<CR>
-nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false, v:true, [['[DEIN]', 'Blue']])<CR>
+nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, [['[CMD_HIST]', 'Blue']])<CR>
+nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, [['[COLORSCHEME]', 'Blue']])<CR>
+nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, [['[HELP]', 'Blue']])<CR>
+nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true, [['[DIRMARK]', 'Blue']])<CR>
+nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false, [['[MARKS]', 'Blue']])<CR>
+nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false, [['[DEIN]', 'Blue']])<CR>
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>
 nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
-nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, v:true, [['[GIT_DIFF]', 'Blue']])<CR>
-nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, v:true, [['[GIT_SHOW_REF]', 'Blue']])<CR>
-nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, v:true, [['[GIT_STATUS]', 'Blue']])<CR>
-nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
-nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, v:true, [['[ARG_LIST]', 'Blue']])<CR>
+nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
+nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, [['[GIT_SHOW_REF]', 'Blue']])<CR>
+nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT_STATUS]', 'Blue']])<CR>
+nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
+nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, [['[ARG_LIST]', 'Blue']])<CR>
 
-nnoremap <silent> ,on :call <SID>DduStart('obsidian_note', v:true, v:false, v:true, [['[OBS]', 'Blue']])<CR>
+nnoremap <silent> ,on :call <SID>DduStart('obsidian_note', v:true, v:false, [['[OBS]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -53,7 +53,7 @@ augroup AutoResizeDduWinPos
     autocmd VimEnter,VimResized * call s:set_ddu_win_and_preview_pos()
 augroup END
 
-function! s:DduStart(source, preview_enable, custom_enable, start_filter, floating_title) abort
+function! s:DduStart(source, preview_enable, custom_enable, floating_title) abort
     if a:preview_enable
         let s:ui_params = s:ddu_win_and_preview_pos
         " let s:ui_params['autoAction'] = {'name': 'preview'}
@@ -71,12 +71,6 @@ function! s:DduStart(source, preview_enable, custom_enable, start_filter, floati
         call ddu#start({'sources': [{'name': a:source}],
             \ 'uiParams': {'ff': s:ui_params},
         \ })
-    endif
-    if a:start_filter
-        autocmd User Ddu:uiReady ++once
-            \ : if &l:filetype ==# 'ddu-ff'
-            \ |     call ddu#ui#do_action('openFilterWindow')
-            \ | endif
     endif
 endfunction
 
@@ -199,8 +193,6 @@ call ddu#custom#patch_global({
             \ 'previewFloating': v:true,
             \ 'previewFloatingBorder': 'single',
             \ 'previewSplit': 'vertical',
-            \ 'filterSplitDirection': 'floating',
-            \ 'filterFloatingPosition': 'bottom',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
         \ },
