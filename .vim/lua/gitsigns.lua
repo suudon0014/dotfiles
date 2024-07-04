@@ -15,15 +15,15 @@ require('gitsigns').setup({
         -- Navigation
         map('n', ']c', function()
           if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
+          vim.schedule(function() gs.nav_hunk('next') end)
           return '<Ignore>'
-        end, {expr=true, desc='gitsigns.next_hunk'})
+        end, {expr=true, desc='gitsigns.nav_hunk:next'})
 
         map('n', '[c', function()
           if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
+          vim.schedule(function() gs.nav_hunk('prev') end)
           return '<Ignore>'
-        end, {expr=true, desc='gitsigns.next_hunk'})
+        end, {expr=true, desc='gitsigns.nav_hunk:prev'})
 
         -- Actions
         -- stage/unstage
