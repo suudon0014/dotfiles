@@ -1,6 +1,7 @@
 " configs about ddu.vim
 
 " mappings
+nnoremap ,<Leader> ,
 nnoremap <silent> ,ff :call <SID>DduStart('file_rec', v:true, v:false, [['[FILE]', 'Blue']])<CR>
 nnoremap <silent> ,l :call <SID>DduStart('line', v:true, v:false, [['[LINE]', 'Blue']])<CR>
 nnoremap <silent> ,b :call <SID>DduStart('buffer', v:true, v:false, [['[BUFFER]', 'Blue']])<CR>
