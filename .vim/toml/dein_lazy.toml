@@ -553,10 +553,9 @@ on_map = '<Plug>(kensaku-'
 [[plugins]]
 repo = 'tani/dmacro.nvim'
 on_event = ['InsertEnter']
-lua_source = '''
-require('dmacro').setup({
-    dmacro_key = '<C-t>'
-})
+hook_source = '''
+    inoremap <C-t> <Plug>(dmacro-play-macro)
+    nnoremap <C-t> <Plug>(dmacro-play-macro)
 '''
 
 [[plugins]]
