@@ -591,3 +591,36 @@ hook_source = '''
 	  \   "maxOutputTokens": 5000,
 	  \ }
 '''
+
+[[plugins]]
+repo = 'Robitx/gp.nvim'
+on_cmd = ['GpChatNew', 'GpChatPaste', 'GpChatToggle', 'GpChatFinder', 'GpChatRespond', 'GpChatDelete', 'GpRewrite', 'GpAppend', 'GpPrepend', 'GpEnew', 'GpNew', 'GpVnew', 'GpTabnew', 'GpPopup', 'GpImplement', 'GpContext', 'GpWhisper', 'GpWhisperRewrite', 'GpWhisperAppend', 'GpWhisperPrepend', 'GpWhisperEnew', 'GpWhisperNew', 'GpWhisperVnew', 'GpWhisperTabnew', 'GpWhisperPopup', 'GpNextAgent', 'GpAgent', 'GpImage', 'GpImageAgent', 'GpStop', 'GpInspectPlugin']
+lua_source = '''
+local conf = {
+    providers = {
+        googleai = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+            secret = os.getenv("GEMINI_API_KEY"),
+        },
+    },
+    agents = {
+        {
+            name = "Gemini-Pro",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-1.5-pro"},
+            system_prompt = "You must respond in Japanese.",
+        },
+        {
+            name = "Gemini-Flash",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-1.5-flash"},
+            system_prompt = "You must respond in Japanese.",
+        },
+    },
+}
+require('gp').setup(conf)
+'''
