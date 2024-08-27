@@ -596,6 +596,21 @@ hook_source = '''
 repo = 'Robitx/gp.nvim'
 on_cmd = ['GpChatNew', 'GpChatPaste', 'GpChatToggle', 'GpChatFinder', 'GpChatRespond', 'GpChatDelete', 'GpRewrite', 'GpAppend', 'GpPrepend', 'GpEnew', 'GpNew', 'GpVnew', 'GpTabnew', 'GpPopup', 'GpImplement', 'GpContext', 'GpWhisper', 'GpWhisperRewrite', 'GpWhisperAppend', 'GpWhisperPrepend', 'GpWhisperEnew', 'GpWhisperNew', 'GpWhisperVnew', 'GpWhisperTabnew', 'GpWhisperPopup', 'GpNextAgent', 'GpAgent', 'GpImage', 'GpImageAgent', 'GpStop', 'GpInspectPlugin']
 lua_source = '''
+function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
+
 local conf = {
     providers = {
         googleai = {
@@ -610,7 +625,7 @@ local conf = {
             chat = true,
             command = true,
             model = {model = "gemini-1.5-pro"},
-            system_prompt = "You must respond in Japanese.",
+            system_prompt = general_system_prompt,
         },
         {
             name = "Gemini-Flash",
@@ -618,8 +633,33 @@ local conf = {
             chat = true,
             command = true,
             model = {model = "gemini-1.5-flash"},
-            system_prompt = "You must respond in Japanese.",
+            system_prompt = general_system_prompt,
         },
+    },
+    hooks = {
+        TranslateToJpPopup = function(gp, params)
+            local prompt = LoadTextFile("translateJp.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.popup, agent, prompt)
+        end,
+
+        TranslateToEnPopup = function(gp, params)
+            local prompt = LoadTextFile("translateEn.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.popup, agent, prompt)
+        end,
+
+        ExplainCodePopup = function(gp, params)
+            local prompt = LoadTextFile("explainCode.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.popup, agent, prompt)
+        end,
+
+        CreateCommitMessagePopup = function(gp, params)
+            local prompt = LoadTextFile("createCommitMessage.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.popup, agent, prompt)
+        end,
     },
 }
 require('gp').setup(conf)
