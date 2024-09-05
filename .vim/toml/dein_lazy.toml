@@ -4,7 +4,7 @@ on_event = 'VimEnter'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-on_event = ['BufEnter']
+on_event = ['InsertEnter']
 hook_source = '''
     augroup autoclose
         autocmd! *
@@ -594,7 +594,7 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Robitx/gp.nvim'
-on_cmd = ['GpChatNew', 'GpChatPaste', 'GpChatToggle', 'GpChatFinder', 'GpChatRespond', 'GpChatDelete', 'GpRewrite', 'GpAppend', 'GpPrepend', 'GpEnew', 'GpNew', 'GpVnew', 'GpTabnew', 'GpPopup', 'GpImplement', 'GpContext', 'GpWhisper', 'GpWhisperRewrite', 'GpWhisperAppend', 'GpWhisperPrepend', 'GpWhisperEnew', 'GpWhisperNew', 'GpWhisperVnew', 'GpWhisperTabnew', 'GpWhisperPopup', 'GpNextAgent', 'GpAgent', 'GpImage', 'GpImageAgent', 'GpStop', 'GpInspectPlugin']
+on_event = ['VimEnter']
 lua_source = '''
 function LoadTextFile(fileName)
     local home_dir = os.getenv('HOME')
