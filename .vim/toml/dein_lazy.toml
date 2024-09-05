@@ -613,6 +613,14 @@ local conf = {
             model = {model = "gemini-1.5-flash"},
             system_prompt = general_system_prompt,
         },
+        {
+            name = "Gemini-Flash-Exp",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-1.5-flash-exp-0827"},
+            system_prompt = general_system_prompt,
+        },
     },
     hooks = {
         TranslateToJpPopup = function(gp, params)
