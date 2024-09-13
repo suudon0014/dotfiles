@@ -618,6 +618,7 @@ end
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
 local conf = {
+    chat_dir = os.getenv('HOME') .. '/OneDrive/gp/chats',
     providers = {
         googleai = {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
