@@ -586,8 +586,8 @@ vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<CR>", keymapOptions("Rewrite
 vim.keymap.set({"n", "i"}, "<C-g>a", "<Cmd>GpAppend<CR>", keymapOptions("Append"))
 vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<CR>", keymapOptions("Append"))
 
-vim.keymap.set({"n", "i"}, "<C-g>b", "<Cmd>GpPrepend<CR>", keymapOptions("Prepend"))
-vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<CR>", keymapOptions("Prepend"))
+vim.keymap.set({"n", "i"}, "<C-g>p", "<Cmd>GpPrepend<CR>", keymapOptions("Prepend"))
+vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPrepend<CR>", keymapOptions("Prepend"))
 
 vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Implement"))
 
