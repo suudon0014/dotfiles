@@ -685,3 +685,60 @@ vim.api.nvim_command("source " .. gpNvimScriptFilePath)
 repo = 'stevearc/dressing.nvim'
 on_event = ['VimEnter']
 
+[[plugins]]
+repo = 'olimorris/codecompanion.nvim'
+on_event = ['VimEnter']
+depends = ['plenary.nvim']
+lua_source = '''
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local default_system_prompt = require('codecompanion').config.opts.system_prompt
+
+require('codecompanion').setup({
+    adapters = {
+        gemini = function()
+            return require('codecompanion.adapters').extend('gemini', {
+                schema = {
+                    model = {
+                        default = "gemini-1.5-flash-002",
+                        choices = {
+                            "gemini-1.5-flash-002",
+                            "gemini-1.5-flash-8b",
+                            "gemini-1.5-pro-002",
+                        },
+                    },
+                },
+            })
+        end,
+    },
+    strategies = {
+        chat = {
+            adapter = "gemini",
+        },
+        inline = {
+            adapter = "gemini",
+        },
+        agent = {
+            adapter = "gemini",
+        },
+    },
+    opts = {
+        system_prompt = function ()
+            local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
+            return default_system_prompt .. '\n' .. my_system_prompt
+        end,
+    },
+})
+
+'''
