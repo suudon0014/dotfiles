@@ -680,3 +680,8 @@ require('gp').setup(conf)
 local gpNvimScriptFilePath = os.getenv('HOME') .. '/dotfiles/.vim/llm_prompt/gp_nvim_func.vim'
 vim.api.nvim_command("source " .. gpNvimScriptFilePath)
 '''
+
+[[plugins]]
+repo = 'stevearc/dressing.nvim'
+on_event = ['VimEnter']
+
