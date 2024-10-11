@@ -703,7 +703,7 @@ local function LoadTextFile(fileName)
     return prompt
 end
 
-local default_system_prompt = require('codecompanion').config.opts.system_prompt
+local default_system_prompt = require('codecompanion.config').opts.system_prompt
 
 require('codecompanion').setup({
     adapters = {
@@ -736,7 +736,7 @@ require('codecompanion').setup({
     opts = {
         system_prompt = function ()
             local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
-            return default_system_prompt .. '\n' .. my_system_prompt
+            return default_system_prompt .. '\n\n' .. my_system_prompt
         end,
     },
 })
