@@ -672,10 +672,10 @@ local conf = {
             gp.Prompt(params, gp.Target.new, agent, prompt)
         end,
 
-        RefactorPopup = function(gp, params)
+        Refactor = function(gp, params)
             local prompt = LoadTextFile("refactor.md")
             local agent = gp.get_command_agent()
-            gp.Prompt(params, gp.Target.popup, agent, prompt)
+            gp.Prompt(params, gp.Target.append, agent, prompt)
         end,
     },
 }
