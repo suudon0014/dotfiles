@@ -608,8 +608,8 @@ vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPrepend<CR>", keymapOptions("Prepend
 
 vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Implement"))
 
-vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJpPopup<CR>", keymapOptions("Translate to JP"))
-vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEnPopup<CR>", keymapOptions("Translate to EN"))
+vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJp<CR>", keymapOptions("Translate to JP"))
+vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEn<CR>", keymapOptions("Translate to EN"))
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
@@ -648,28 +648,28 @@ local conf = {
         },
     },
     hooks = {
-        TranslateToJpPopup = function(gp, params)
+        TranslateToJp = function(gp, params)
             local prompt = LoadTextFile("translateJp.md")
             local agent = gp.get_command_agent()
-            gp.Prompt(params, gp.Target.popup, agent, prompt)
+            gp.Prompt(params, gp.Target.new, agent, prompt)
         end,
 
-        TranslateToEnPopup = function(gp, params)
+        TranslateToEn = function(gp, params)
             local prompt = LoadTextFile("translateEn.md")
             local agent = gp.get_command_agent()
-            gp.Prompt(params, gp.Target.popup, agent, prompt)
+            gp.Prompt(params, gp.Target.new, agent, prompt)
         end,
 
-        ExplainCodePopup = function(gp, params)
+        ExplainCode = function(gp, params)
             local prompt = LoadTextFile("explainCode.md")
             local agent = gp.get_command_agent()
-            gp.Prompt(params, gp.Target.popup, agent, prompt)
+            gp.Prompt(params, gp.Target.new, agent, prompt)
         end,
 
-        CreateCommitMessagePopup = function(gp, params)
+        CreateCommitMessage = function(gp, params)
             local prompt = LoadTextFile("createCommitMessage.md")
             local agent = gp.get_command_agent()
-            gp.Prompt(params, gp.Target.popup, agent, prompt)
+            gp.Prompt(params, gp.Target.new, agent, prompt)
         end,
 
         RefactorPopup = function(gp, params)
