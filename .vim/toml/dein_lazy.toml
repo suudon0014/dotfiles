@@ -575,8 +575,25 @@ local function keymapOptions(desc)
         desc = "LLM prompt " .. desc,
     }
 end
-vim.keymap.set({"n", "i"}, "<C-g>c", "<Cmd>GpChatNew<CR>", keymapOptions("New Chat"))
-vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpChatNew<CR>", keymapOptions("New Chat"))
+
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local code_completion_prompt = LoadTextFile("codeCompletion.md")
+vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpAppend " .. code_completion_prompt .. "<CR>", keymapOptions("Completion"))
+
+vim.keymap.set({"n", "i"}, "<C-g>n", "<Cmd>GpChatNew<CR>", keymapOptions("New Chat"))
+vim.keymap.set("v", "<C-g>n", ":<C-u>'<,'>GpChatNew<CR>", keymapOptions("New Chat"))
 
 vim.keymap.set({"n", "i"}, "<C-g>f", "<Cmd>GpChatFinder<CR>", keymapOptions("Chat Finder"))
 
@@ -593,19 +610,6 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Imple
 
 vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJpPopup<CR>", keymapOptions("Translate to JP"))
 vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEnPopup<CR>", keymapOptions("Translate to EN"))
-
-local function LoadTextFile(fileName)
-    local home_dir = os.getenv('HOME')
-    local prompt_dir = 'dotfiles/.vim/llm_prompt'
-    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
-    local file = io.open(filePath, "r")
-    local prompt = ""
-    if file then
-        prompt = file:read("*a")
-        file:close()
-    end
-    return prompt
-end
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
