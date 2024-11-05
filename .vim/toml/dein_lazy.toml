@@ -643,7 +643,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-1.5-flash-8b", top_k = 40},
+            model = {model = "gemini-1.5-flash-8b-exp-0924", top_k = 40},
             system_prompt = general_system_prompt,
         },
     },
@@ -718,7 +718,7 @@ require('codecompanion').setup({
                         default = "gemini-1.5-flash-002",
                         choices = {
                             "gemini-1.5-flash-002",
-                            "gemini-1.5-flash-8b",
+                            "gemini-1.5-flash-8b-exp-0924",
                             "gemini-1.5-pro-002",
                         },
                     },
