@@ -42,7 +42,6 @@ hook_source = '''
     \   'globalDictionaries': [["~/.config/skk/SKK-JISYO.L", "euc-jp"]],
     \   'userDictionary': "~/.config/skk/my_jisyo",
     \   'completionRankFile': '~/.config/skk/rank.json',
-    \   'usePopup': v:false,
     \   'keepState': v:true,
     \   'markerHenkan': '>',
     \   'markerHenkanSelect': 'v',
