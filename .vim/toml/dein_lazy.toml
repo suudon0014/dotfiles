@@ -563,6 +563,14 @@ repo = 'mbbill/undotree'
 on_event = ['BufEnter']
 
 [[plugins]]
+repo = 'stevearc/oil.nvim'
+on_event = ['BufEnter']
+lua_source = '''
+require('oil').setup()
+vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"})
+'''
+
+[[plugins]]
 repo = 'Robitx/gp.nvim'
 on_event = ['VimEnter']
 lua_source = '''
