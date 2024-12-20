@@ -619,6 +619,12 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Imple
 vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJp<CR>", keymapOptions("Translate to JP"))
 vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEn<CR>", keymapOptions("Translate to EN"))
 
+vim.keymap.set({"n", "i"}, "<C-g>s", "<Cmd>GpNew<CR>", keymapOptions("New with split"))
+vim.keymap.set("v", "<C-g>s", ":<C-u>'<,'>GpNew<CR>", keymapOptions("New with split"))
+
+vim.keymap.set({"n", "i"}, "<C-g>v", "<Cmd>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+vim.keymap.set("v", "<C-g>v", ":<C-u>'<,'>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
 local conf = {
