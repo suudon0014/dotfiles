@@ -4,7 +4,7 @@ on_event = 'VimEnter'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-on_event = ['BufEnter']
+on_event = ['InsertEnter']
 hook_source = '''
     augroup autoclose
         autocmd! *
@@ -177,6 +177,7 @@ repo = 'vim-denops/denops.vim'
 on_event = ['VimEnter']
 hook_source = '''
     let g:denops_server_addr = '127.0.0.1:32123'
+    let g:denops#server#deno_args = ['-q', '--no-lock', '--unstable-kv', '-A']
 '''
 
 [[plugins]]
@@ -551,15 +552,6 @@ depends = ['denops.vim', 'kensaku.vim']
 on_map = '<Plug>(kensaku-'
 
 [[plugins]]
-repo = 'tani/dmacro.nvim'
-on_event = ['InsertEnter']
-lua_source = '''
-require('dmacro').setup({
-    dmacro_key = '<C-t>'
-})
-'''
-
-[[plugins]]
 repo = 'shellRaining/hlchunk.nvim'
 on_event = ['BufEnter']
 lua_source = '''
@@ -569,3 +561,223 @@ require('hlchunk').setup({})
 [[plugins]]
 repo = 'mbbill/undotree'
 on_event = ['BufEnter']
+
+[[plugins]]
+repo = 'stevearc/oil.nvim'
+on_event = ['BufEnter']
+lua_source = '''
+require('oil').setup()
+vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"})
+'''
+
+[[plugins]]
+repo = 'Robitx/gp.nvim'
+on_event = ['VimEnter']
+lua_source = '''
+-- key mappings
+local function keymapOptions(desc)
+    return {
+        noremap = true,
+        silent = true,
+        nowait = true,
+        desc = "LLM prompt " .. desc,
+    }
+end
+
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local code_completion_prompt = LoadTextFile("codeCompletion.md")
+vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpAppend " .. code_completion_prompt .. "<CR>", keymapOptions("Completion"))
+
+vim.keymap.set({"n", "i"}, "<C-g>n", "<Cmd>GpChatNew<CR>", keymapOptions("New Chat"))
+vim.keymap.set("v", "<C-g>n", ":<C-u>'<,'>GpChatNew<CR>", keymapOptions("New Chat"))
+
+vim.keymap.set({"n", "i"}, "<C-g>f", "<Cmd>GpChatFinder<CR>", keymapOptions("Chat Finder"))
+
+vim.keymap.set({"n", "i"}, "<C-g>r", "<Cmd>GpRewrite<CR>", keymapOptions("Rewrite"))
+vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<CR>", keymapOptions("Rewrite"))
+
+vim.keymap.set({"n", "i"}, "<C-g>a", "<Cmd>GpAppend<CR>", keymapOptions("Append"))
+vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<CR>", keymapOptions("Append"))
+
+vim.keymap.set({"n", "i"}, "<C-g>p", "<Cmd>GpPrepend<CR>", keymapOptions("Prepend"))
+vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPrepend<CR>", keymapOptions("Prepend"))
+
+vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Implement"))
+
+vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJp<CR>", keymapOptions("Translate to JP"))
+vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEn<CR>", keymapOptions("Translate to EN"))
+
+local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
+
+local conf = {
+    chat_dir = os.getenv('HOME') .. '/OneDrive/gp/chats',
+    providers = {
+        googleai = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+            secret = os.getenv("GEMINI_API_KEY"),
+        },
+    },
+    agents = {
+        {
+            name = "Gemini-Pro",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-1.5-pro-002", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Flash",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-flash-exp", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Flash-8B",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-1.5-flash-8b-exp-0924", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Exp",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-exp-1206", top_k = 64},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-LearnLM",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "learnlm-1.5-pro-experimental", top_k = 64},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Thinking",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-flash-thinking-exp", top_k = 64},
+            system_prompt = general_system_prompt,
+        }
+    },
+    hooks = {
+        TranslateToJp = function(gp, params)
+            local prompt = LoadTextFile("translateJp.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        TranslateToEn = function(gp, params)
+            local prompt = LoadTextFile("translateEn.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        ExplainCode = function(gp, params)
+            local prompt = LoadTextFile("explainCode.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        CreateCommitMessage = function(gp, params)
+            local prompt = LoadTextFile("createCommitMessage.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        Refactor = function(gp, params)
+            local prompt = LoadTextFile("refactor.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.append, agent, prompt)
+        end,
+    },
+}
+require('gp').setup(conf)
+
+local gpNvimScriptFilePath = os.getenv('HOME') .. '/dotfiles/.vim/llm_prompt/gp_nvim_func.vim'
+vim.api.nvim_command("source " .. gpNvimScriptFilePath)
+'''
+
+[[plugins]]
+repo = 'stevearc/dressing.nvim'
+on_event = ['VimEnter']
+
+[[plugins]]
+repo = 'olimorris/codecompanion.nvim'
+on_event = ['VimEnter']
+depends = ['plenary.nvim']
+lua_source = '''
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local default_system_prompt = require('codecompanion.config').opts.system_prompt
+
+require('codecompanion').setup({
+    adapters = {
+        gemini = function()
+            return require('codecompanion.adapters').extend('gemini', {
+                schema = {
+                    model = {
+                        default = "gemini-1.5-flash-002",
+                        choices = {
+                            "gemini-1.5-flash-002",
+                            "gemini-1.5-flash-8b-exp-0924",
+                            "gemini-1.5-pro-002",
+                        },
+                    },
+                },
+            })
+        end,
+    },
+    strategies = {
+        chat = {
+            adapter = "gemini",
+        },
+        inline = {
+            adapter = "gemini",
+        },
+        agent = {
+            adapter = "gemini",
+        },
+    },
+    opts = {
+        system_prompt = function ()
+            local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
+            return default_system_prompt .. '\n\n' .. my_system_prompt
+        end,
+    },
+})
+
+vim.cmd('cabbrev cci CodeCompanion')
+vim.cmd('cabbrev ccc CodeCompanionChat')
+vim.cmd('cabbrev cca CodeCompanionActions')
+'''

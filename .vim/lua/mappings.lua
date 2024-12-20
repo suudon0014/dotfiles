@@ -89,6 +89,15 @@ for _, quote in pairs({'"', "'", '`'}) do
     vim.keymap.set({'x', 'o'}, "2i" .. quote, "a" .. quote)
 end
 
+-- change uppercase and lower case
+vim.keymap.set('i', '<C-g><C-u>', '<Esc>gUiwgi')
+vim.keymap.set('i', '<C-g><C-l>', '<Esc>guiwgi')
+vim.keymap.set('i', '<C-g><C-k>', '<Esc>bgUlgi')
+
+-- paste adjust indents
+vim.keymap.set('n', 'p', ']p')
+vim.keymap.set('n', 'P', ']P')
+
 -- etc.
 vim.keymap.set('', 'j', 'gj')
 vim.keymap.set('', 'k', 'gk')

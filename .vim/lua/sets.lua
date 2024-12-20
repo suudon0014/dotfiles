@@ -73,6 +73,7 @@ vim.opt.fillchars = {
     vertright = '┣',
     verthoriz = '╋',
 }
+vim.opt.splitright = true
 
 -- disable default plugins
 vim.g.loaded_netrw              = 1

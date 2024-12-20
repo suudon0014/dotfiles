@@ -42,7 +42,6 @@ hook_source = '''
     \   'globalDictionaries': [["~/.config/skk/SKK-JISYO.L", "euc-jp"]],
     \   'userDictionary': "~/.config/skk/my_jisyo",
     \   'completionRankFile': '~/.config/skk/rank.json',
-    \   'usePopup': v:false,
     \   'keepState': v:true,
     \   'markerHenkan': '>',
     \   'markerHenkanSelect': 'v',
@@ -121,4 +120,19 @@ on_source = ['ddc.vim']
 
 [[plugins]]
 repo = 'uga-rosa/ddc-source-vsnip'
+on_source = ['ddc.vim']
+
+# GitHub Copilot
+[[plugins]]
+repo = 'github/copilot.vim'
+on_source = ['ddc.vim']
+hook_source = '''
+let g:copilot_no_maps = v:true
+'''
+hook_post_source = '''
+Copilot disable
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-source-copilot'
 on_source = ['ddc.vim']

@@ -40,6 +40,17 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>eb', '<Cmd>Lspsaga show_buf_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>ep', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
     vim.keymap.set('n', '<C-l>en', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+    vim.keymap.set('n', '<C-l>et', function()
+        local config = vim.diagnostic.config()
+        local toggled_underline = not config.underline
+        local toggled_virtual_text = not config.virtual_text
+        local toggled_signs = not config.signs
+        vim.diagnostic.config({
+            underline = toggled_underline,
+            virtual_text = toggled_virtual_text,
+            signs = toggled_signs,
+        })
+    end, opts)
     vim.keymap.set('n', '<C-l>dg', '<Cmd>Lspsaga goto_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>dp', '<Cmd>Lspsaga peek_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>dtg', '<Cmd>Lspsaga goto_type_definition<CR>', opts)

@@ -72,7 +72,7 @@ alias gg='git graph'
 # Plugins
 zinit light "zsh-users/zsh-completions"
 zinit light "zsh-users/zsh-autosuggestions"
-# zinit load zsh-users/zsh-syntax-highlighting
+zinit light "zsh-users/zsh-syntax-highlighting"
 # zinit light "zdharma-continuum/fast-syntax-highlighting"
 # zinit light "b4b4r07/enhancd"
 # End of Plugins
