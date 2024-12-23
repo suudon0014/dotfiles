@@ -753,27 +753,20 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-1.5-flash-002",
+                        default = "gemini-2.0-flash-exp",
                         choices = {
-                            "gemini-1.5-flash-002",
+                            "gemini-2.0-flash-exp",
                             "gemini-1.5-flash-8b-exp-0924",
                             "gemini-1.5-pro-002",
+                            "gemini-exp-1206",
                         },
                     },
-                },
-            })
-        end,
+        }})end,
     },
     strategies = {
-        chat = {
-            adapter = "gemini",
-        },
-        inline = {
-            adapter = "gemini",
-        },
-        agent = {
-            adapter = "gemini",
-        },
+        chat = {adapter = "gemini",},
+        inline = {adapter = "gemini",},
+        agent = {adapter = "gemini",},
     },
     opts = {
         system_prompt = function ()
