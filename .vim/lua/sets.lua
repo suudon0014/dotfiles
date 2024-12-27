@@ -74,6 +74,7 @@ vim.opt.fillchars = {
     verthoriz = '╋',
 }
 vim.opt.splitright = true
+vim.opt.timeoutlen = 1000
 
 -- disable default plugins
 vim.g.loaded_netrw              = 1

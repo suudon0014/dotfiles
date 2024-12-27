@@ -128,13 +128,13 @@ end)
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 hook_source = '''
-    let g:vimtex_compiler_latexmk = {
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 1,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
+    let g:vimtex_compiler_latexmk = #{
+        \ build_dir : '',
+        \ callback : 1,
+        \ continuous : 1,
+        \ executable : 'latexmk',
+        \ hooks : [],
+        \ options : [
         \   '-pdfdvi',
         \   '-verbose',
         \   '-file-line-error',
@@ -230,11 +230,11 @@ hook_source = '''
     tnoremap <Esc> <C-\><C-n>
 
     function! s:set_deol_win_pos() abort
-        let s:deol_win_pos = {
-            \ 'winWidth': float2nr(&columns * 0.9),
-            \ 'winCol': float2nr(&columns * 0.05),
-            \ 'winHeight': float2nr(&lines * 0.6),
-            \ 'winRow': float2nr(&lines * 0.2),
+        let s:deol_win_pos = #{
+            \ winWidth: float2nr(&columns * 0.9),
+            \ winCol: float2nr(&columns * 0.05),
+            \ winHeight: float2nr(&lines * 0.6),
+            \ winRow: float2nr(&lines * 0.2),
         \ }
     endfunction
 
@@ -288,9 +288,9 @@ repo = 'osyo-manga/vim-precious'
 on_event = 'CursorMoved'
 hook_source = '''
     let g:precious_enable_switch_CursorMoved = {
-        \ "*": 0,
-        \ "help": 1,
-        \ "toml": 1,
+        \ '*': 0,
+        \ 'help': 1,
+        \ 'toml': 1,
     \ }
 
     augroup precious
@@ -434,20 +434,13 @@ repo = 'goerz/jupytext.vim'
 on_path = ['\.ipynb', '\.py']
 hook_source = '''
     let g:jupytext_fmt = 'py:percent'
-    let g:jupytext_filetype_map = {'py': 'python'}
+    let g:jupytext_filetype_map = #{py: 'python'}
 '''
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
 on_event = 'VimEnter'
 hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
-
-[[plugins]]
-repo = 'dinhhuy258/git.nvim'
-on_event = 'VimEnter'
-lua_source = '''
-    require('git').setup()
-'''
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
@@ -462,9 +455,7 @@ on_event = 'CursorHold'
 hook_post_source = '''
     let g:vsession_save_last_on_leave = 0
     let g:vsession_ui = 'fzf'
-    nnoremap <silent> <Leader>ss :SaveSession<CR>
-    nnoremap <silent> <Leader>sl :LoadSession<CR>
-    nnoremap <silent> <Leader>sd :DeleteSession<CR>
+    nnoremap <Leader>s <Nop>
 '''
 [plugins.ftplugin]
 vsession-quickpick = '''
@@ -619,6 +610,12 @@ vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Imple
 vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJp<CR>", keymapOptions("Translate to JP"))
 vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEn<CR>", keymapOptions("Translate to EN"))
 
+vim.keymap.set({"n", "i"}, "<C-g>s", "<Cmd>GpNew<CR>", keymapOptions("New with split"))
+vim.keymap.set("v", "<C-g>s", ":<C-u>'<,'>GpNew<CR>", keymapOptions("New with split"))
+
+vim.keymap.set({"n", "i"}, "<C-g>v", "<Cmd>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+vim.keymap.set("v", "<C-g>v", ":<C-u>'<,'>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
 local conf = {
@@ -747,27 +744,20 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-1.5-flash-002",
+                        default = "gemini-2.0-flash-exp",
                         choices = {
-                            "gemini-1.5-flash-002",
+                            "gemini-2.0-flash-exp",
                             "gemini-1.5-flash-8b-exp-0924",
                             "gemini-1.5-pro-002",
+                            "gemini-exp-1206",
                         },
                     },
-                },
-            })
-        end,
+        }})end,
     },
     strategies = {
-        chat = {
-            adapter = "gemini",
-        },
-        inline = {
-            adapter = "gemini",
-        },
-        agent = {
-            adapter = "gemini",
-        },
+        chat = {adapter = "gemini",},
+        inline = {adapter = "gemini",},
+        agent = {adapter = "gemini",},
     },
     opts = {
         system_prompt = function ()
@@ -781,3 +771,81 @@ vim.cmd('cabbrev cci CodeCompanion')
 vim.cmd('cabbrev ccc CodeCompanionChat')
 vim.cmd('cabbrev cca CodeCompanionActions')
 '''
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+on_event = ['KeyInputPre', 'CursorHold']
+lua_source = '''
+local wk = require('which-key')
+local gs = require('gitsigns')
+wk.add({
+    {"<Leader>g", group = "gitsigns", mode = {"n", "v"}},
+
+    {"<Leader>gs", group = "stage", mode = {"n", "v"}},
+    {"<Leader>gsb", function() gs.stage_buffer() end, desc = "buffer"},
+    {"<Leader>gsh", function() gs.stage_hunk() end, desc = "hunk", mode = {"n", "v"}},
+    {"<Leader>gsu", function() gs.undo_stage_hunk() end, desc = "undo"},
+
+    {"<Leader>gr", group = "reset", mode = {"n", "v"}},
+    {"<Leader>grb", function() gs.reset_buffer() end, desc = "buffer"},
+    {"<Leader>grh", function() gs.reset_hunk() end, desc = "hunk", mode = {"n", "v"}},
+
+    {"<Leader>gd", group = "diff"},
+    {"<Leader>gdc", function() gs.diffthis('~') end, desc = "last commit"},
+    {"<Leader>gdi", function() gs.diffthis() end, desc = "index"},
+
+    {"<Leader>gt", group = "gitsigns (toggle)"},
+    {"<Leader>gtb", function() gs.toggle_current_line_blame() end, desc = "blame (line)"},
+    {"<Leader>gtd", function() gs.toggle_deleted() end, desc = "deleted"},
+    {"<Leader>gtl", function() gs.toggle_linehl() end, desc = "line highlight"},
+    {"<Leader>gtn", function() gs.toggle_numhl() end, desc = "num highlight"},
+    {"<Leader>gts", function() gs.toggle_signs() end, desc = "signs"},
+    {"<Leader>gtw", function() gs.toggle_word_diff() end, desc = "word diff"},
+
+    {"<Leader>gb", function() gs.blame_line{full = true} end, desc = "blame"},
+    {"<Leader>gp", function() gs.preview_hunk() end, desc = "preview"},
+
+    {"<Leader>s", group = "session"},
+    {"<Leader>sd", "<Cmd>DeleteSession<CR>", desc = "delete"},
+    {"<Leader>sl", "<Cmd>LoadSession<CR>", desc = "load"},
+    {"<Leader>ss", "<Cmd>SaveSession<CR>", desc = "save"},
+
+    {"<C-g>", group = "gp.nvim", mode = {"n", "v"}},
+    {"<C-g>t", group = "translate (gp.nvim)", mode = {"v"}},
+
+    {",a", group = "ddu (arglist)"},
+    {",f", group = "ddu (file)"},
+    {",g", group = "ddu (git)"},
+    {",o", group = "ddu (obsidian)"},
+    {",r", group = "ddu (grep)"},
+
+    {"<Leader>t", group = "translate (google)", mode = {"n", "v"}},
+    {"<C-l>", group = "LSP", mode = {"n", "v"}},
+})
+'''
+
+[[plugins]]
+repo = 'thinca/vim-partedit'
+on_cmd = 'Partedit'
+on_func = 'partedit#'
+hook_add = '''
+let g:partedit#prefix_pattern = '\s*'
+let g:partedit#auto_prefix = 0
+let g:partedit#opener = 'split'
+'''
+[plugins.ftplugin]
+toml_mardown = '''
+nnoremap <buffer> <Leader>e <Cmd>call <SID>operator_partedit()<CR>
+function! s:operator_partedit() abort
+    let context = context_filetype#get()
+    if context.range == [[0, 0], [0, 0]]
+        echohl WarningMsg
+        echomsg 'Context is not found'
+        echohl NONE
+        return
+    endif
+    call partedit#start(context.range[0][0], context.range[1][0], #{filetype: context.filetype})
+    nnoremap <buffer><nowait> Q <Cmd>w<CR><Cmd>ParteditEnd<CR>
+endfunction
+'''
+
