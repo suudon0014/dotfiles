@@ -455,9 +455,7 @@ on_event = 'CursorHold'
 hook_post_source = '''
     let g:vsession_save_last_on_leave = 0
     let g:vsession_ui = 'fzf'
-    nnoremap <silent> <Leader>ss :SaveSession<CR>
-    nnoremap <silent> <Leader>sl :LoadSession<CR>
-    nnoremap <silent> <Leader>sd :DeleteSession<CR>
+    nnoremap <Leader>s <Nop>
 '''
 [plugins.ftplugin]
 vsession-quickpick = '''
@@ -773,3 +771,18 @@ vim.cmd('cabbrev cci CodeCompanion')
 vim.cmd('cabbrev ccc CodeCompanionChat')
 vim.cmd('cabbrev cca CodeCompanionActions')
 '''
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+on_event = ['KeyInputPre', 'CursorHold']
+lua_source = '''
+local wk = require('which-key')
+local gs = require('gitsigns')
+wk.add({
+    {"<Leader>s", group = "session"},
+    {"<Leader>sd", "<Cmd>DeleteSession<CR>", desc = "delete"},
+    {"<Leader>sl", "<Cmd>LoadSession<CR>", desc = "load"},
+    {"<Leader>ss", "<Cmd>SaveSession<CR>", desc = "save"},
+})
+'''
+
