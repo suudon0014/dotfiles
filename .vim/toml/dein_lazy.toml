@@ -783,6 +783,18 @@ wk.add({
     {"<Leader>sd", "<Cmd>DeleteSession<CR>", desc = "delete"},
     {"<Leader>sl", "<Cmd>LoadSession<CR>", desc = "load"},
     {"<Leader>ss", "<Cmd>SaveSession<CR>", desc = "save"},
+
+    {"<C-g>", group = "gp.nvim", mode = {"n", "v"}},
+    {"<C-g>t", group = "translate (gp.nvim)", mode = {"v"}},
+
+    {",a", group = "ddu (arglist)"},
+    {",f", group = "ddu (file)"},
+    {",g", group = "ddu (git)"},
+    {",o", group = "ddu (obsidian)"},
+    {",r", group = "ddu (grep)"},
+
+    {"<Leader>t", group = "translate (google)", mode = {"n", "v"}},
+    {"<C-l>", group = "LSP", mode = {"n", "v"}},
 })
 '''
 
