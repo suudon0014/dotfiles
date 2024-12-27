@@ -128,13 +128,13 @@ end)
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 hook_source = '''
-    let g:vimtex_compiler_latexmk = {
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 1,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
+    let g:vimtex_compiler_latexmk = #{
+        \ build_dir : '',
+        \ callback : 1,
+        \ continuous : 1,
+        \ executable : 'latexmk',
+        \ hooks : [],
+        \ options : [
         \   '-pdfdvi',
         \   '-verbose',
         \   '-file-line-error',
@@ -230,11 +230,11 @@ hook_source = '''
     tnoremap <Esc> <C-\><C-n>
 
     function! s:set_deol_win_pos() abort
-        let s:deol_win_pos = {
-            \ 'winWidth': float2nr(&columns * 0.9),
-            \ 'winCol': float2nr(&columns * 0.05),
-            \ 'winHeight': float2nr(&lines * 0.6),
-            \ 'winRow': float2nr(&lines * 0.2),
+        let s:deol_win_pos = #{
+            \ winWidth: float2nr(&columns * 0.9),
+            \ winCol: float2nr(&columns * 0.05),
+            \ winHeight: float2nr(&lines * 0.6),
+            \ winRow: float2nr(&lines * 0.2),
         \ }
     endfunction
 
@@ -287,10 +287,10 @@ on_source = ['vim-vsnip']
 repo = 'osyo-manga/vim-precious'
 on_event = 'CursorMoved'
 hook_source = '''
-    let g:precious_enable_switch_CursorMoved = {
-        \ "*": 0,
-        \ "help": 1,
-        \ "toml": 1,
+    let g:precious_enable_switch_CursorMoved = #{
+        \ *: 0,
+        \ help: 1,
+        \ toml: 1,
     \ }
 
     augroup precious
@@ -434,7 +434,7 @@ repo = 'goerz/jupytext.vim'
 on_path = ['\.ipynb', '\.py']
 hook_source = '''
     let g:jupytext_fmt = 'py:percent'
-    let g:jupytext_filetype_map = {'py': 'python'}
+    let g:jupytext_filetype_map = #{py: 'python'}
 '''
 
 [[plugins]]
