@@ -1,3 +1,4 @@
 gui:
   language: 'en'
   showIcons: true
+promptToReturnFromSubprocess: false

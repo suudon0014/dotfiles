@@ -644,27 +644,11 @@ local conf = {
             system_prompt = general_system_prompt,
         },
         {
-            name = "Gemini-Flash-8B",
-            provider = "googleai",
-            chat = true,
-            command = true,
-            model = {model = "gemini-1.5-flash-8b-exp-0924", top_k = 40},
-            system_prompt = general_system_prompt,
-        },
-        {
             name = "Gemini-Exp",
             provider = "googleai",
             chat = true,
             command = true,
             model = {model = "gemini-exp-1206", top_k = 64},
-            system_prompt = general_system_prompt,
-        },
-        {
-            name = "Gemini-LearnLM",
-            provider = "googleai",
-            chat = true,
-            command = true,
-            model = {model = "learnlm-1.5-pro-experimental", top_k = 64},
             system_prompt = general_system_prompt,
         },
         {
@@ -747,7 +731,6 @@ require('codecompanion').setup({
                         default = "gemini-2.0-flash-exp",
                         choices = {
                             "gemini-2.0-flash-exp",
-                            "gemini-1.5-flash-8b-exp-0924",
                             "gemini-1.5-pro-002",
                             "gemini-exp-1206",
                         },
@@ -822,30 +805,5 @@ wk.add({
     {"<Leader>t", group = "translate (google)", mode = {"n", "v"}},
     {"<C-l>", group = "LSP", mode = {"n", "v"}},
 })
-'''
-
-[[plugins]]
-repo = 'thinca/vim-partedit'
-on_cmd = 'Partedit'
-on_func = 'partedit#'
-hook_add = '''
-let g:partedit#prefix_pattern = '\s*'
-let g:partedit#auto_prefix = 0
-let g:partedit#opener = 'split'
-'''
-[plugins.ftplugin]
-toml_mardown = '''
-nnoremap <buffer> <Leader>e <Cmd>call <SID>operator_partedit()<CR>
-function! s:operator_partedit() abort
-    let context = context_filetype#get()
-    if context.range == [[0, 0], [0, 0]]
-        echohl WarningMsg
-        echomsg 'Context is not found'
-        echohl NONE
-        return
-    endif
-    call partedit#start(context.range[0][0], context.range[1][0], #{filetype: context.filetype})
-    nnoremap <buffer><nowait> Q <Cmd>w<CR><Cmd>ParteditEnd<CR>
-endfunction
 '''
 

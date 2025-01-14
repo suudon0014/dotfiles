@@ -58,6 +58,7 @@ zinit light-mode for \
 # Aliases
 alias ll='ls -laht'
 alias la='ls -a'
+alias lg='lazygit'
 alias dc='docker compose'
 alias gst='git status'
 alias gd='git diff'
@@ -68,6 +69,7 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gsw='git switch'
 alias gg='git graph'
+alias llm='llm -u -m gemini-2.0-flash-exp'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
