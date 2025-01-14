@@ -71,7 +71,8 @@ ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 
 ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 
-ln -sfv ${DOTFILES}/lazygit ${XDG_CONFIG_HOME}/lazygit
+mkdir -p ${XDG_CONFIG_HOME}/lagygit
+ln -sfv ${DOTFILES}/lazygit/config.yml ${XDG_CONFIG_HOME}/lazygit/config.yml
 
 # scoop
 # SCOOP_DIR=${DOTFILES}/scoop
