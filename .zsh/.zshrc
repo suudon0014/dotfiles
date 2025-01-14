@@ -58,6 +58,7 @@ zinit light-mode for \
 # Aliases
 alias ll='ls -laht'
 alias la='ls -a'
+alias lg='lazygit'
 alias dc='docker compose'
 alias gst='git status'
 alias gd='git diff'
