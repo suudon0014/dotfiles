@@ -70,6 +70,8 @@ alias gba='git branch -a'
 alias gsw='git switch'
 alias gg='git graph'
 alias lf='llm -u -m gemini-2.0-flash-exp'
+alias vi='nvim'
+alias vim='nvim'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
