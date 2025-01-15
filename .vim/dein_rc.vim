@@ -1,14 +1,16 @@
 " configs about dein.vim
 
+"installing directory
+let s:dein_dir = expand('~/.cache/dein')
+
 " global parameters
 let g:dein#install_github_api_token = $GITHUB_API_TOKEN
 let g:dein#install_max_processes = 8
 let g:dein#install_process_timeout = 1800
 let g:dein#install_progress_type = 'floating'
 let g:dein#types#git#clone_depth = 1
+let g:dein#install_log_filename = s:dein_dir . '/install_log.log'
 
-"installing directory
-let s:dein_dir = expand('~/.cache/dein')
 " dir of dein.vim
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
