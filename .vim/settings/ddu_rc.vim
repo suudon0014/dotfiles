@@ -196,6 +196,7 @@ call ddu#custom#patch_global({
             \ 'previewSplit': 'vertical',
             \ 'reversed': v:false,
             \ 'prompt': '> ',
+            \ 'maxDisplayItems': 10000,
         \ },
         \ 'filer': {
             \ 'split': 'floating',
