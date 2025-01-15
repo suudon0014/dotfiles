@@ -15,7 +15,7 @@ config.keys = {
     {key = 's', mods = 'SHIFT|CTRL', action = act.SplitHorizontal {domain = 'CurrentPaneDomain'},},
     {key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain',},
     {key = 't', mods = 'META', action = act.ShowTabNavigator,},
-    {key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard'},
+    {key = 'v', mods = 'META', action = act.PasteFrom 'Clipboard'},
     {key = 'v', mods = 'SHIFT|CTRL', action = act.SplitVertical {domain = 'CurrentPaneDomain'},},
     {key = '[', mods = 'CTRL', action = act.PaneSelect,},
     {key = 'h', mods = 'LEADER', action = act.AdjustPaneSize {'Left', 5}},
