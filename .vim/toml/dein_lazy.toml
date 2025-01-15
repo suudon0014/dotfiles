@@ -596,8 +596,8 @@ vim.keymap.set("v", "<C-g>n", ":<C-u>'<,'>GpChatNew<CR>", keymapOptions("New Cha
 
 vim.keymap.set({"n", "i"}, "<C-g>f", "<Cmd>GpChatFinder<CR>", keymapOptions("Chat Finder"))
 
-vim.keymap.set({"n", "i"}, "<C-g>r", "<Cmd>GpRewrite<CR>", keymapOptions("Rewrite"))
-vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<CR>", keymapOptions("Rewrite"))
+vim.keymap.set({"n", "i"}, "<C-g>rw", "<Cmd>GpRewrite<CR>", keymapOptions("Rewrite"))
+vim.keymap.set("v", "<C-g>rw", ":<C-u>'<,'>GpRewrite<CR>", keymapOptions("Rewrite"))
 
 vim.keymap.set({"n", "i"}, "<C-g>a", "<Cmd>GpAppend<CR>", keymapOptions("Append"))
 vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<CR>", keymapOptions("Append"))
@@ -615,6 +615,11 @@ vim.keymap.set("v", "<C-g>s", ":<C-u>'<,'>GpNew<CR>", keymapOptions("New with sp
 
 vim.keymap.set({"n", "i"}, "<C-g>v", "<Cmd>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
 vim.keymap.set("v", "<C-g>v", ":<C-u>'<,'>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+
+vim.keymap.set("v", "<C-g>e", ":<C-u>'<,'>GpExplainCode<CR>", keymapOptions("Explain Code"))
+vim.keymap.set("v", "<C-g>g", ":<C-u>'<,'>GpCreateCommitMessage<CR>", keymapOptions("Commit Message"))
+vim.keymap.set("v", "<C-g>rf", ":<C-u>'<,'>GpRefactor<CR>", keymapOptions("Refactor"))
+
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
