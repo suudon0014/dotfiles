@@ -82,12 +82,6 @@ call ddc#custom#patch_global('sourceOptions', {
     \     'minAutoCompleteLength': 1,
     \     'timeout': 1000,
     \ },
-    \ 'copilot': #{
-    \   mark: '[COP]',
-    \   matchers: [],
-    \   minAutoCompleteLength: 0,
-    \   isVolatile: v:true,
-    \ },
     \ 'lsp': #{
     \     mark: '[LSP]',
     \     dup: 'keep',
