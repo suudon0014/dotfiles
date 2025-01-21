@@ -107,7 +107,7 @@ repo = 'tani/ddc-path'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'ttak0422/ddc-source-nvim-obsidian'
+repo = 'shutils/ddc-source-obsidian'
 on_source = ['ddc.vim']
 
 [[plugins]]
