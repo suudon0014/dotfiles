@@ -70,7 +70,6 @@ call ddc#custom#patch_global('sources', [
     \ 'path',
     \ 'skkeleton',
     \ 'buffer',
-    \ 'cmdline-history',
     \ 'input',
 \ ])
 call ddc#custom#patch_global('sourceOptions', {
