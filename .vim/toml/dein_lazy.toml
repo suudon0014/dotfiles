@@ -771,8 +771,7 @@ wk.add({
 
     {"<Leader>gs", group = "stage", mode = {"n", "v"}},
     {"<Leader>gsb", function() gs.stage_buffer() end, desc = "buffer"},
-    {"<Leader>gsh", function() gs.stage_hunk() end, desc = "hunk", mode = {"n", "v"}},
-    {"<Leader>gsu", function() gs.undo_stage_hunk() end, desc = "undo"},
+    {"<Leader>gsh", function() gs.stage_hunk() end, desc = "hunk (toggle)", mode = {"n", "v"}},
 
     {"<Leader>gr", group = "reset", mode = {"n", "v"}},
     {"<Leader>grb", function() gs.reset_buffer() end, desc = "buffer"},
@@ -784,7 +783,6 @@ wk.add({
 
     {"<Leader>gt", group = "gitsigns (toggle)"},
     {"<Leader>gtb", function() gs.toggle_current_line_blame() end, desc = "blame (line)"},
-    {"<Leader>gtd", function() gs.toggle_deleted() end, desc = "deleted"},
     {"<Leader>gtl", function() gs.toggle_linehl() end, desc = "line highlight"},
     {"<Leader>gtn", function() gs.toggle_numhl() end, desc = "num highlight"},
     {"<Leader>gts", function() gs.toggle_signs() end, desc = "signs"},
