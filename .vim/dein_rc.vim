@@ -5,7 +5,7 @@ let s:dein_dir = expand('~/.cache/dein')
 
 " global parameters
 let g:dein#install_github_api_token = $GITHUB_API_TOKEN
-let g:dein#install_max_processes = 8
+let g:dein#install_max_processes = 32
 let g:dein#install_process_timeout = 1800
 let g:dein#install_progress_type = 'floating'
 let g:dein#types#git#clone_depth = 1

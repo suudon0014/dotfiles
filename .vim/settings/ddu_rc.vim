@@ -232,7 +232,7 @@ call ddu#custom#patch_global({
             \ helpLang: 'ja,en',
         \ },
         \ dein_update: #{
-            \ maxProcess: 8,
+            \ maxProcess: 32,
         \ },
         \ obsidian_note: #{
             \ vaults: [#{
