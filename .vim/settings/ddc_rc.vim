@@ -86,6 +86,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \     dup: 'keep',
     \     keywordPattern: '\k+',
     \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
+    \     enabledIf: '!ddc#syntax#in("comment")',
     \ },
     \ 'vsnip': {'mark': '[VSNIP]',},
     \ 'around': {'mark': '[AROUND]'},
