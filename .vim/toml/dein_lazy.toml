@@ -557,7 +557,10 @@ on_event = ['BufEnter']
 repo = 'stevearc/oil.nvim'
 on_event = ['BufEnter']
 lua_source = '''
-require('oil').setup()
+require('oil').setup({
+    view_options = {
+        show_hidden = true
+}})
 vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"})
 '''
 
