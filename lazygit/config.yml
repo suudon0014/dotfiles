@@ -1,4 +1,5 @@
 gui:
   language: 'en'
   showIcons: true
+  filterMode: 'fuzzy'
 promptToReturnFromSubprocess: false
