@@ -824,3 +824,36 @@ wk.add({
 })
 '''
 
+[[plugins]]
+repo = 'yetone/avante.nvim'
+build = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+on_cmd = ['AvanteAsk']
+on_source = ['dressing.nvim', 'plenary.nvim', 'nui.nvim']
+on_event = ['VimEnter']
+lua_source = '''
+require('avante_lib').load()
+require('avante').setup({
+    provider = "gemini",
+    auto_suggestions_provider = "gemini",
+    gemini = {model = "gemini-2.0-flash-exp"},
+    behavior = {
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = true,
+    },
+    vendors = {
+        ollama = {
+            __inherited_from = "openai",
+            api_key_name = "",
+            endpoint = "http://localhost:11434/v1",
+            model = "codegemma:2b",
+        }
+    }
+})
+'''
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+on_event = ['VimEnter']
+
