@@ -633,6 +633,9 @@ local conf = {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
             secret = os.getenv("GEMINI_API_KEY"),
         },
+        ollama = {
+            endpoint = "http://localhost:11434/v1/chat/completions",
+        },
     },
     agents = {
         {
@@ -666,7 +669,15 @@ local conf = {
             command = true,
             model = {model = "gemini-2.0-flash-thinking-exp-01-21", top_k = 64},
             system_prompt = general_system_prompt,
-        }
+        },
+        {
+            name = "Gemma2-2b-jpn",
+            provider = "ollama",
+            chat = true,
+            command = true,
+            model = {model = "hf.co/alfredplpl/gemma-2-2b-jpn-it-gguf:latest", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
     },
     hooks = {
         TranslateToJp = function(gp, params)
