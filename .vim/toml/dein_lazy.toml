@@ -664,7 +664,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-2.0-flash-thinking-exp", top_k = 64},
+            model = {model = "gemini-2.0-flash-thinking-exp-01-21", top_k = 64},
             system_prompt = general_system_prompt,
         }
     },
