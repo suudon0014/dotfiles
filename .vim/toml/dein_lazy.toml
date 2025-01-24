@@ -623,6 +623,7 @@ vim.keymap.set("v", "<C-g>e", ":<C-u>'<,'>GpExplainCode<CR>", keymapOptions("Exp
 vim.keymap.set("v", "<C-g>g", ":<C-u>'<,'>GpCreateCommitMessage<CR>", keymapOptions("Commit Message"))
 vim.keymap.set("v", "<C-g>rf", ":<C-u>'<,'>GpRefactor<CR>", keymapOptions("Refactor"))
 
+vim.keymap.set("v", "<C-g>y", ":<C-u>'<,'>GpChatPaste<CR>", keymapOptions("Paste to Chat"))
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
