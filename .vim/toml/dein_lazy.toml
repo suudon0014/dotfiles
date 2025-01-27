@@ -763,9 +763,9 @@ require('codecompanion').setup({
         agent = {adapter = "gemini",},
     },
     opts = {
-        system_prompt = function ()
+        system_prompt = function (opts)
             local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
-            return default_system_prompt .. '\n\n' .. my_system_prompt
+            return default_system_prompt(opts) .. '\n\n' .. my_system_prompt
         end,
     },
 })
