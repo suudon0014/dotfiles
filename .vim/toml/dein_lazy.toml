@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-on_event = 'VimEnter'
+on_event = 'CursorHold'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -456,18 +456,18 @@ on_map = '<Plug>(kensaku-'
 
 [[plugins]]
 repo = 'shellRaining/hlchunk.nvim'
-on_event = ['BufEnter']
+on_event = ['BufReadPre', 'BufNewFile']
 lua_source = '''
 require('hlchunk').setup({})
 '''
 
 [[plugins]]
 repo = 'mbbill/undotree'
-on_event = ['BufEnter']
+on_event = ['BufReadPre', 'BufNewFile']
 
 [[plugins]]
 repo = 'stevearc/oil.nvim'
-on_event = ['BufEnter']
+on_event = ['CursorHold']
 lua_source = '''
 require('oil').setup({
     view_options = {
