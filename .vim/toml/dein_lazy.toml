@@ -26,43 +26,6 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
-hook_source = '''
-    nmap <C-p> <Plug>MarkdownPreview
-    let g:mkdp_auto_start = 0
-    let g:mkdp_auto_close = 0
-'''
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-build = 'sh -c "cd app && yarn install"'
-depends = ['open-browser.vim']
-
-# [[plugins]]
-# repo = 'tani/glance-vim'
-# on_ft = 'markdown'
-# hook_source = '''
-#     let g:glance#markdown_breaks = v:true
-#     let g:glance#markdown_html = v:true
-#     let g:glance#markdown_linkify = v:true
-#     let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/water.css@2/out/water.css");'
-#     let g:glance#markdown_plugins = [
-#         \ 'https://esm.sh/markdown-it-emoji',
-#         \ 'https://esm.sh/markdown-it-mathjax3?bundle',
-#     \ ]
-# '''
-#end markdown
-
-[[plugins]]
-repo = 'jmcantrell/vim-virtualenv'
-on_ft = 'python'
-hook_source = '''
-    let g:virtualenv_directory = '.'
-'''
-
-[[plugins]]
 repo = 'rhysd/reply.vim'
 on_cmd = ['Repl', 'ReplAuto']
 
@@ -79,49 +42,6 @@ repo = 'elzr/vim-json'
 on_ft = 'json'
 hook_source = '''
     let g:vim_json_syntax_conceal = 0
-'''
-
-[[plugins]]
-repo = 'jupyter-vim/jupyter-vim'
-on_ft = 'python'
-hook_source = '''
-    nnoremap <buffer> <silent> <leader>jc :JupyterConnect<CR>
-    nnoremap <buffer> <silent> <leader>jd :JupyterDiconnect<CR>
-    nnoremap <buffer> <silent> <leader>js :JupyterSendCell<CR>
-    nnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
-    vnoremap <buffer> <silent> <leader>jr :JupyterSendRange<CR>
-'''
-
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-on_event = 'CursorHold'
-on_cmd = ['TSUpdate', 'TSUpdateSync']
-hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
-
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter-textobjects'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
-repo = 'haringsrob/nvim_context_vt'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
-repo = 'm-demare/hlargs.nvim'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
-repo = 'RRethy/nvim-treesitter-textsubjects'
-on_source = ['nvim-treesitter']
-
-[[plugins]]
-repo = 'Wansmer/treesj'
-on_source = ['nvim-treesitter']
-lua_source = '''
-require('treesj').setup()
-vim.keymap.set('n', '<Leader>M', function()
-    require('treesj').toggle({split = { recursive = true }})
-end)
 '''
 
 [[plugins]]
@@ -427,14 +347,6 @@ repo = 'norcalli/nvim-colorizer.lua'
 on_event = ['BufRead', 'CursorHold']
 lua_source = '''
     require('colorizer').setup()
-'''
-
-[[plugins]]
-repo = 'goerz/jupytext.vim'
-on_path = ['\.ipynb', '\.py']
-hook_source = '''
-    let g:jupytext_fmt = 'py:percent'
-    let g:jupytext_filetype_map = #{py: 'python'}
 '''
 
 [[plugins]]

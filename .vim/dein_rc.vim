@@ -30,22 +30,28 @@ if dein#min#load_state(s:dein_dir)
     let s:rc_dir = expand('~/dotfiles/.vim/toml')
     let s:dein_toml = s:rc_dir . '/dein.toml'
     let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-    let s:ddc_toml = s:rc_dir . '/ddc.toml'
-    let s:ddu_toml = s:rc_dir . '/ddu.toml'
-    let s:submode_lazy_toml = s:rc_dir . '/dein_submode_lazy.toml'
-    let s:colorscheme_lazy_toml = s:rc_dir . '/dein_colorscheme_lazy.toml'
-    let s:lightline_lazy_toml = s:rc_dir . '/dein_lightline_lazy.toml'
-    let s:dpp_toml = s:rc_dir . '/dpp.toml'
+    let s:ddc_toml = s:rc_dir . '/ddc_lazy.toml'
+    let s:ddu_toml = s:rc_dir . '/ddu_lazy.toml'
+    let s:dpp_toml = s:rc_dir . '/dpp_lazy.toml'
+    let s:submode_toml = s:rc_dir . '/submode_lazy.toml'
+    let s:colorscheme_toml = s:rc_dir . '/colorscheme_lazy.toml'
+    let s:lightline_toml = s:rc_dir . '/lightline_lazy.toml'
+    let s:markdown_toml = s:rc_dir . '/markdown_lazy.toml'
+    let s:python_toml = s:rc_dir . '/python_lazy.toml'
+    let s:treesitter_toml = s:rc_dir . '/treesitter_lazy.toml'
 
     "read and cache the toml files
     call dein#load_toml(s:dein_toml, {'lazy':0})
+    call dein#load_toml(s:lazy_toml, {'lazy':1})
     call dein#load_toml(s:ddc_toml, {'lazy':1})
     call dein#load_toml(s:ddu_toml, {'lazy':1})
-    call dein#load_toml(s:lazy_toml, {'lazy':1})
-    call dein#load_toml(s:submode_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:colorscheme_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:lightline_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:dpp_toml, {'lazy':0})
+    call dein#load_toml(s:dpp_toml, {'lazy':1})
+    call dein#load_toml(s:submode_toml, {'lazy':1})
+    call dein#load_toml(s:colorscheme_toml, {'lazy':1})
+    call dein#load_toml(s:lightline_toml, {'lazy':1})
+    call dein#load_toml(s:markdown_toml, {'lazy':1})
+    call dein#load_toml(s:python_toml, {'lazy':1})
+    call dein#load_toml(s:treesitter_toml, {'lazy':1})
 
     "end the setting
     call dein#end()

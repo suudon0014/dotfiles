@@ -1,0 +1,10 @@
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+hook_source = '''
+    nmap <C-p> <Plug>MarkdownPreview
+    let g:mkdp_auto_start = 0
+    let g:mkdp_auto_close = 0
+'''
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && yarn install"'
+

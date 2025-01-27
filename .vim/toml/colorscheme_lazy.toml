@@ -1,0 +1,56 @@
+[[plugins]]
+repo = 'tomasr/molokai'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'GertjanReynaert/cobalt2-vim-theme'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'savq/melange'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'sainnhe/edge'
+on_event = 'CursorMoved'
+
+[[plugins]]
+repo = 'christianchiarulli/nvcode-color-schemes.vim'
+on_event = 'CursorMoved'
+hook_source = '''
+    let g:nvcode_termcolors = 256
+'''
+
+[[plugins]]
+repo = 'sainnhe/sonokai'
+on_source = ['lightline.vim']
+hook_add = '''
+    augroup modColorschemeGroup
+        autocmd!
+        autocmd ColorScheme * highlight Folded cterm=bold ctermfg=10 gui=bold guifg=LightGreen
+        autocmd ColorScheme * highlight CursorLine ctermbg=8 guibg=#5d6173
+        autocmd ColorScheme * highlight Comment cterm=NONE gui=NONE
+    augroup END
+'''
+hook_source = '''
+    augroup setColorschemeGroup
+        autocmd!
+        autocmd VimEnter * nested colorscheme sonokai
+    augroup END
+'''
