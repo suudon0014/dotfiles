@@ -684,6 +684,7 @@ require('codecompanion').setup({
 [[plugins]]
 repo = 'folke/which-key.nvim'
 on_event = ['KeyInputPre', 'CursorHold']
+on_source = ['gitsigns.nvim']
 lua_source = '''
 local wk = require('which-key')
 local gs = require('gitsigns')
