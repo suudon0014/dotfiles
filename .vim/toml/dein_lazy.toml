@@ -769,12 +769,12 @@ require('avante').setup({
 
 [[plugins]]
 repo = 'stevearc/dressing.nvim'
-on_source = ['avante.nvim']
-
-[[plugins]]
-repo = 'MunifTanjim/nui.nvim'
-on_source = ['avante.nvim']
+on_source = ['avante.nvim', 'codecompanion.nvim']
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 on_source = ['avante.nvim', 'codecompanion.nvim']
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+on_source = ['avante.nvim']
