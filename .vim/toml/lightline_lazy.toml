@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 depends = ['sonokai']
-on_event = 'BufEnter'
+on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 hook_source = '''
     let s:lightline_colorscheme = 'sonokai'
     let g:lightline = {
