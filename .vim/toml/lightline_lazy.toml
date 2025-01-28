@@ -28,6 +28,14 @@ hook_source = '''
             \ },
     \ }
 
+    if has('gui_running')
+        let g:lightline.component.lineinfo = "\ue0a1 " . '%3l:%-2v'
+        let g:lightline.separator = {'left': "\ue0b0 ", 'right': "\ue0b2 "}
+        let g:lightline.subseparator = {'left': "\ue0b1 ", 'right': "\ue0b3 "}
+        let g:lightline.component_function.readonly = 'LightlineReadonly'
+        let g:lightline.component_function.filename = 'LightlineFilename'
+    endif
+
     let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
     let s:palette.tabline.tabsel = [['#444444', '#8ac6f2', '0', '39']]
     let s:palette.tabline.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']]
@@ -45,7 +53,11 @@ hook_source = '''
         if winwidth(0) < 60
             return ''
         elseif l:branch_name != ''
-            return l:branch_name
+            if has('gui_running')
+                return "\ue725 " . l:branch_name
+            else
+                return l:branch_name
+            endif
         else
             return ''
         endif
@@ -90,6 +102,16 @@ hook_source = '''
         endif
 
         return l:mode
+    endfunction
+
+    function! LightlineReadonly()
+        return &readonly ? "\uf023 " : ''
+    endfunction
+
+    function! LightlineFilename()
+        return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
     endfunction
 
     "reload lightline settings
