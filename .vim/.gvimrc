@@ -4,14 +4,10 @@
     source $VIMRUNTIME/menu.vim
 endif
 
-if has('nvim') && !exists('g:neovide')
+if has('nvim')
     Guifont! Cica:h11
     GuiPopupmenu 0
     GuiTabline 0
-endif
-if exists('g:neovide')
-    let g:neovide_cursor_animation_length = 0.03
-    let g:neovide_cursor_vfx_mode = 'railgun'
 endif
 set guifont=Cica:h11
 set guifontwide=Cica:h11
