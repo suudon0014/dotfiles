@@ -461,8 +461,8 @@ vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"
 
 [[plugins]]
 repo = 'Robitx/gp.nvim'
-on_event = ['BufEnter']
-lua_source = '''
+on_cmd = ["GpAppend" "GpChatNew", "GpChatNew", "GpChatFinder", "GpRewrite", "GpRewrite", "GpAppend", "GpAppend", "GpPrepend", "GpPrepend", "GpImplement", "GpTranslateToJp", "GpTranslateToEn", "GpNew", "GpNew", "GpVnew", "GpVnew", "GpExplainCode", "GpCreateCommitMessage", "GpRefactor", "GpChatPaste"]
+lua_add = '''
 -- key mappings
 local function keymapOptions(desc)
     return {
@@ -519,6 +519,20 @@ vim.keymap.set("v", "<C-g>g", ":<C-u>'<,'>GpCreateCommitMessage<CR>", keymapOpti
 vim.keymap.set("v", "<C-g>rf", ":<C-u>'<,'>GpRefactor<CR>", keymapOptions("Refactor"))
 
 vim.keymap.set("v", "<C-g>y", ":<C-u>'<,'>GpChatPaste<CR>", keymapOptions("Paste to Chat"))
+'''
+lua_source = '''
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
