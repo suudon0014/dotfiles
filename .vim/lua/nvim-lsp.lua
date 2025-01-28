@@ -154,12 +154,6 @@ mason_lspconfig.setup_handlers({ function(server_name)
         opts.cmd = {'marksman.cmd'}
     elseif server_name == 'bashls' then
         opts.filetypes = {'sh', 'zsh'}
-    elseif server_name == 'rust_analyzer' then
-        require('rust-tools').setup({
-            server = {
-                on_attach = on_attach,
-            }
-        })
     elseif server_name == 'denols' then
         opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
         opts.init_options = {

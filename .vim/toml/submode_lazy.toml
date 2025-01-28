@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'kana/vim-submode'
-on_event = ['VimEnter']
+on_event = ['CursorHold']
 hook_source = '''
     "window
     nnoremap s <Nop>
