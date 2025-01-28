@@ -685,6 +685,7 @@ require('codecompanion').setup({
 vim.cmd('cabbrev cci CodeCompanion')
 vim.cmd('cabbrev ccc CodeCompanionChat')
 vim.cmd('cabbrev cca CodeCompanionActions')
+vim.cmd('cabbrev ccx CodeCompanionCmd')
 '''
 
 [[plugins]]
