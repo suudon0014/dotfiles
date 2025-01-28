@@ -615,7 +615,13 @@ vim.api.nvim_command("source " .. gpNvimScriptFilePath)
 
 [[plugins]]
 repo = 'olimorris/codecompanion.nvim'
-on_event = ['BufEnter']
+on_cmd = ['CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions', 'CodeCompanionCmd']
+lua_add = '''
+vim.cmd('cabbrev cci CodeCompanion')
+vim.cmd('cabbrev ccc CodeCompanionChat')
+vim.cmd('cabbrev cca CodeCompanionActions')
+vim.cmd('cabbrev ccx CodeCompanionCmd')
+'''
 lua_source = '''
 local function LoadTextFile(fileName)
     local home_dir = os.getenv('HOME')
@@ -659,11 +665,6 @@ require('codecompanion').setup({
         end,
     },
 })
-
-vim.cmd('cabbrev cci CodeCompanion')
-vim.cmd('cabbrev ccc CodeCompanionChat')
-vim.cmd('cabbrev cca CodeCompanionActions')
-vim.cmd('cabbrev ccx CodeCompanionCmd')
 '''
 
 [[plugins]]
@@ -719,8 +720,15 @@ wk.add({
 [[plugins]]
 repo = 'yetone/avante.nvim'
 build = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-on_cmd = ['AvanteAsk']
-on_event = ['BufEnter']
+on_cmd = ['AvanteAsk', 'AvanteChat', 'AvanteEdit', 'AvanteFocus', 'AvanteRefresh', 'AvanteShowRepoMap', 'AvanteToggle']
+lua_add = '''
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<Leader>aa', '<Cmd>AvanteAsk<CR>', opts)
+vim.keymap.set('n', '<Leader>af', '<Cmd>AvanteFocus<CR>', opts)
+vim.keymap.set('n', '<Leader>ar', '<Cmd>AvanteRefresh<CR>', opts)
+vim.keymap.set('n', '<Leader>aR', '<Cmd>AvanteShowRepoMap<CR>', opts)
+vim.keymap.set('n', '<Leader>at', '<Cmd>AvanteToggle<CR>', opts)
+'''
 lua_source = '''
 require('avante_lib').load()
 require('avante').setup({
