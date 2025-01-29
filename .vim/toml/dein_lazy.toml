@@ -346,7 +346,7 @@ lua_source = '''
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
-on_event = ['BufEnter']
+on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
 
 [[plugins]]
@@ -684,34 +684,32 @@ require('codecompanion').setup({
 [[plugins]]
 repo = 'folke/which-key.nvim'
 on_event = ['KeyInputPre', 'CursorHold']
-on_source = ['gitsigns.nvim']
 lua_source = '''
 local wk = require('which-key')
-local gs = require('gitsigns')
 wk.add({
     {"<Leader>g", group = "gitsigns", mode = {"n", "v"}},
 
     {"<Leader>gs", group = "stage", mode = {"n", "v"}},
-    {"<Leader>gsb", function() gs.stage_buffer() end, desc = "buffer"},
-    {"<Leader>gsh", function() gs.stage_hunk() end, desc = "hunk (toggle)", mode = {"n", "v"}},
+    {"<Leader>gsb", "<Cmd>Gitsigns stage_buffer<CR>", desc = "buffer"},
+    {"<Leader>gsh", "<Cmd>Gitsigns stage_hunk<CR>", desc = "hunk (toggle)", mode = {"n", "v"}},
 
     {"<Leader>gr", group = "reset", mode = {"n", "v"}},
-    {"<Leader>grb", function() gs.reset_buffer() end, desc = "buffer"},
-    {"<Leader>grh", function() gs.reset_hunk() end, desc = "hunk", mode = {"n", "v"}},
+    {"<Leader>grb", "<Cmd>Gitsigns reset_buffer<CR>", desc = "buffer"},
+    {"<Leader>grh", "<Cmd>Gitsigns reset_hunk<CR>", desc = "hunk", mode = {"n", "v"}},
 
     {"<Leader>gd", group = "diff"},
-    {"<Leader>gdc", function() gs.diffthis('~') end, desc = "last commit"},
-    {"<Leader>gdi", function() gs.diffthis() end, desc = "index"},
+    {"<Leader>gdc", "<Cmd>Gitsigns diffthis ~1<CR>", desc = "last commit"},
+    {"<Leader>gdi", "<Cmd>Gitsigns diffthis<CR>", desc = "index"},
 
     {"<Leader>gt", group = "gitsigns (toggle)"},
-    {"<Leader>gtb", function() gs.toggle_current_line_blame() end, desc = "blame (line)"},
-    {"<Leader>gtl", function() gs.toggle_linehl() end, desc = "line highlight"},
-    {"<Leader>gtn", function() gs.toggle_numhl() end, desc = "num highlight"},
-    {"<Leader>gts", function() gs.toggle_signs() end, desc = "signs"},
-    {"<Leader>gtw", function() gs.toggle_word_diff() end, desc = "word diff"},
+    {"<Leader>gtb", "<Cmd>Gitsigns toggle_current_line_blame<CR>", desc = "blame (line)"},
+    {"<Leader>gtl", "<Cmd>Gitsigns toggle_linehl<CR>", desc = "line highlight"},
+    {"<Leader>gtn", "<Cmd>Gitsigns toggle_numhl<CR>", desc = "num highlight"},
+    {"<Leader>gts", "<Cmd>Gitsigns toggle_signs<CR>", desc = "signs"},
+    {"<Leader>gtw", "<Cmd>Gitsigns toggle_word_diff<CR>", desc = "word diff"},
 
-    {"<Leader>gb", function() gs.blame_line{full = true} end, desc = "blame"},
-    {"<Leader>gp", function() gs.preview_hunk() end, desc = "preview"},
+    {"<Leader>gb", "<Cmd>Gitsigns blame_line full=true<CR>", desc = "blame(full)"},
+    {"<Leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", desc = "preview"},
 
     {"<Leader>s", group = "session"},
     {"<Leader>sd", "<Cmd>DeleteSession<CR>", desc = "delete"},
