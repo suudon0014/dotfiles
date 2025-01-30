@@ -102,22 +102,25 @@ hook_source = '''
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
-on_source = ['denops.vim']
+on_source = ['ddc.vim']
+depends = ['denops.vim']
 hook_source = '''
     call signature_help#enable()
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-on_source = ['denops.vim']
+on_source = ['ddc.vim']
+depends = ['denops.vim']
 hook_source = '''
     call popup_preview#enable()
 '''
 
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
-on_source = ['denops.vim']
-hook_source = '''
+on_map = ['<Plug>(Translate']
+depends = ['denops.vim']
+hook_add = '''
     nmap <Leader>tr <Plug>(Translate)
     vmap <Leader>tr <Plug>(Translate)
 '''
