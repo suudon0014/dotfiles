@@ -430,12 +430,13 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lambdalisue/kensaku.vim'
-on_source = ['denops.vim']
+depends = ['denops.vim']
+on_source = ['kensaku-search.vim']
 
 [[plugins]]
 repo = 'lambdalisue/kensaku-search.vim'
-on_map = '<Plug>(kensaku-'
-on_source = ['kensaku_search.vim']
+depends = ['kensaku.vim']
+on_source = ['pum.vim']
 
 [[plugins]]
 repo = 'shellRaining/hlchunk.nvim'

@@ -10,7 +10,6 @@ inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
 inoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
-
 " functions
 function! CommandlinePre() abort
     cnoremap <Tab> <Cmd>call pum#map#insert_relative(+1)<CR>
@@ -19,7 +18,7 @@ function! CommandlinePre() abort
     cnoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
     cnoremap <C-y> <Cmd>call pum#map#confirm()<CR>
     cnoremap <C-e> <Cmd>call pum#map#cancel()<CR>
-    cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR><CR>' : '<CR>'
+    cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR><CR>' : '<Plug>(kensaku-search-replace)<CR>'
 
     if !exists('b:prev_buffer_config')
         let b:prev_buffer_config = ddc#custom#get_buffer()
