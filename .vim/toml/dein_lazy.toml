@@ -7,7 +7,7 @@ repo = 'cohama/lexima.vim'
 on_event = ['InsertEnter']
 hook_source = '''
     augroup autoclose
-        autocmd! *
+        autocmd!
         autocmd FileType ddu-ff-filter let b:lexima_disabled = 1
     augroup END
 
@@ -213,7 +213,7 @@ hook_source = '''
     \ }
 
     augroup precious
-        autocmd! *
+        autocmd!
         autocmd InsertEnter * :PreciousSwitch
         autocmd InsertLeave * :PreciousReset
     augroup END
