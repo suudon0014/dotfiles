@@ -24,9 +24,9 @@ function! CommandlinePre() abort
         let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
     call ddc#custom#patch_buffer('cmdlineSources', {
-        \ ':': ['cmdline', 'cmdline-history', 'around', 'file', 'path'],
-        \ '@': ['input', 'cmdline-history', 'around', 'file', 'path'],
-        \ '>': ['input', 'cmdline-history', 'around', 'file', 'path'],
+        \ ':': ['cmdline', 'cmdline_history', 'around', 'file', 'path'],
+        \ '@': ['input', 'cmdline_history', 'around', 'file', 'path'],
+        \ '>': ['input', 'cmdline_history', 'around', 'file', 'path'],
         \ '/': ['around', 'line'],
         \ '?': ['around', 'line'],
         \ '-': ['around', 'line'],
@@ -110,7 +110,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \ 'cmdline': {
     \   'mark': '[C-LINE]',
     \ },
-    \ 'cmdline-history': {
+    \ 'cmdline_history': {
     \   'mark': '[C-HIST]',
     \ },
     \ 'input': {
