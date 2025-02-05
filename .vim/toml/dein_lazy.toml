@@ -97,7 +97,7 @@ repo = 'vim-denops/denops.vim'
 on_event = ['VimEnter']
 hook_source = '''
     let g:denops_server_addr = '127.0.0.1:32123'
-    let g:denops#server#deno_args = ['-q', '--no-lock', '--unstable-kv', '-A']
+    let g:denops#server#deno_args = ['-q', '--no-lock', '--unstable-kv', '-A', '--unstable-ffi']
 '''
 
 [[plugins]]
@@ -210,6 +210,7 @@ hook_source = '''
         \ '*': 0,
         \ 'help': 1,
         \ 'toml': 1,
+        \ 'ddt-shell': 1,
     \ }
 
     augroup precious
@@ -780,3 +781,40 @@ on_source = ['avante.nvim', 'codecompanion.nvim']
 [[plugins]]
 repo = 'MunifTanjim/nui.nvim'
 on_source = ['avante.nvim']
+
+[[plugins]]
+repo = 'Shougo/ddt.vim'
+on_func = ['ddt#']
+hook_source = '''
+call ddt#custom#patch_global(#{
+    \ uiParams: #{
+    \   shell: #{
+    \       prompt: '=\\\>',
+    \       promptPattern: '\w*=\\\> \?',
+    \       shellHistoryPath: expand('~') .. '\\Desktop\\shellhist.log',
+    \   },
+    \   terminal: #{
+    \       command: ['zsh'],
+    \       promptPattern: has('win32') ? '\f\+>' : '\w*% \?',
+    \   },
+    \ }
+\ })
+'''
+
+[[plugins]]
+repo = 'Shougo/ddt-ui-terminal'
+on_source = ['ddt.vim']
+
+[[plugins]]
+repo = 'Shougo/ddt-ui-shell'
+on_source = ['ddt.vim']
+[plugins.ftplugin]
+ddt-shell = '''
+    nnoremap <buffer> <CR> <Cmd>call ddt#ui#do_action('executeLine')<CR>
+    inoremap <buffer> <CR> <Cmd>call ddt#ui#do_action('executeLine')<CR>
+    nnoremap <buffer> <C-n> <Cmd>call ddt#ui#do_action('nextPrompt')<CR>
+    nnoremap <buffer> <C-p> <Cmd>call ddt#ui#do_action('previousPrompt')<CR>
+    nnoremap <buffer> <C-y> <Cmd>call ddt#ui#do_action('pastePrompt')<CR>
+    inoremap <buffer> <C-c> <Cmd>call ddt#ui#do_action('terminate')<CR>
+'''
+
