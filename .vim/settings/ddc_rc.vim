@@ -117,8 +117,8 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': '[INP]',
     \   'isVolatile': v:true,
     \ },
-    \ 'zsh': {
-    \   'mark': '[ZSH]',
+    \ 'shell_native': {
+    \   'mark': '[SHELL]',
     \ },
     \ 'shell-history': {
     \   'mark': '[S-HIST]',
@@ -191,7 +191,7 @@ call ddc#custom#patch_global('backspaceCompletion', v:true)
 call ddc#enable_terminal_completion()
 call ddc#custom#patch_filetype(['deol'], #{
 \   specialBufferCompletion: v:true,
-\   sources: ['zsh', 'shell-history', 'around'],
+\   sources: ['shell_native', 'shell-history', 'around'],
 \ })
 
 

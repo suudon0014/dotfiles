@@ -111,7 +111,7 @@ repo = 'shutils/ddc-source-obsidian'
 on_source = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-source-zsh'
+repo = 'Shougo/ddc-source-shell_native'
 on_source = ['ddc.vim']
 
 [[plugins]]
