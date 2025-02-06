@@ -155,7 +155,8 @@ mason_lspconfig.setup_handlers({ function(server_name)
     elseif server_name == 'bashls' then
         opts.filetypes = {'sh', 'zsh'}
     elseif server_name == 'denols' then
-        opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
+        opts.single_file_support = false
+        opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock")
         opts.init_options = {
             lint = true,
             unstable = true,
@@ -169,7 +170,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
                 },
             },
         }
-    elseif server_name == 'tsserver' then
+    elseif server_name == 'ts_ls' then
         opts.root_dir = lspconfig.util.root_pattern("package.json")
         opts.single_file_support = false
     end
