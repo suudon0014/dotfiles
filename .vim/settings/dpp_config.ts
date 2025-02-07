@@ -31,35 +31,36 @@ export class Config extends BaseConfig {
         const tomlFilesDir = "~/dotfiles/.vim/toml/";
         const tomls: Toml[] = [];
 
-        tomls.push(
-            await args.dpp.extAction(
-                args.denops,
-                context,
-                options,
-                "toml",
-                "load", {
-                    path: await fn.expand(args.denops, tomlFilesDir + "dein.toml"),
-                    options: {
-                        lazy: false,
-                    },
-                },
-            ) as Toml,
-        );
+        const tomlFiles = [
+            { name: "dein.toml", lazy: false },
+            { name: "dein_lazy.toml", lazy: true },
+            { name: "colorscheme_lazy.toml", lazy: true },
+            { name: "markdown_lazy.toml", lazy: true },
+            { name: "ddc_lazy.toml", lazy: true },
+            { name: "ddu_lazy.toml", lazy: true },
+            { name: "dpp_lazy.toml", lazy: true },
+            { name: "lightline_lazy.toml", lazy: true },
+            { name: "python_lazy.toml", lazy: true },
+            { name: "submode_lazy.toml", lazy: true },
+            { name: "treesitter_lazy.toml", lazy: true },
+        ];
 
-        // tomls.push(
-        //     await args.dpp.extAction(
-        //         args.denops,
-        //         context,
-        //         options,
-        //         "toml",
-        //         "load", {
-        //             path: await fn.expand(args.denops, tomlFilesDir + "dpp_sample.toml"),
-        //             options: {
-        //                 lazy: true,
-        //             },
-        //         },
-        //     ) as Toml,
-        // );
+        for (const { name, lazy } of tomlFiles) {
+            tomls.push(
+                await args.dpp.extAction(
+                    args.denops,
+                    context,
+                    options,
+                    "toml",
+                    "load", {
+                        path: await fn.expand(args.denops, tomlFilesDir + name),
+                        options: {
+                            lazy: lazy,
+                        },
+                    },
+                ) as Toml,
+            );
+        }
 
         const recordPlugins: Record<string, Plugin> = {};
         const ftplugins: Record<string, string> = {};
@@ -95,8 +96,6 @@ export class Config extends BaseConfig {
                 plugins: Object.values(recordPlugins),
             },
         ) as LazyMakeStateResult;
-
-	console.log(lazyResult);
 
         return {
             plugins: lazyResult.plugins,

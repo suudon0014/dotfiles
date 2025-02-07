@@ -6,8 +6,10 @@ endif
 let s:dpp_plugin_list = [
     \ 'Shougo/dpp.vim',
     \ 'Shougo/dpp-ext-installer',
-    \ 'Shougo/dpp-ext-lazy',
     \ 'Shougo/dpp-ext-toml',
+    \ 'Shougo/dpp-ext-lazy',
+    \ 'Shougo/dpp-ext-local',
+    \ 'staticWagomU/dpp-ext-lua',
     \ 'Shougo/dpp-protocol-git',
     \ 'vim-denops/denops.vim'
     \ ]
@@ -30,10 +32,10 @@ endfor
 
 let g:denops#debug = 1
 
-const s:dpp_base      = '~/.cache/dpp'
-const s:dpp_source    = '~/.cache/dpp/repos/github.com/Shougo/dpp.vim'
+const s:dpp_base      = '~/.cache/nvim/dpp'
+const s:dpp_source    = s:dpp_base .. '/repos/github.com/Shougo/dpp.vim'
 const s:dpp_config    = '~/dotfiles/.vim/settings/dpp_config.ts'
-const s:denops_source = '~/.cache/dpp/repos/github.com/vim-denops/denops.vim'
+const s:denops_source = s:dpp_base .. '/repos/github.com/vim-denops/denops.vim'
 
 if dpp#min#load_state(s:dpp_base)
     execute 'set runtimepath^=' .. s:denops_source
