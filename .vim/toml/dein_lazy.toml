@@ -466,7 +466,7 @@ vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"
 
 [[plugins]]
 repo = 'Robitx/gp.nvim'
-on_cmd = ["GpAppend" "GpChatNew", "GpChatNew", "GpChatFinder", "GpRewrite", "GpRewrite", "GpAppend", "GpAppend", "GpPrepend", "GpPrepend", "GpImplement", "GpTranslateToJp", "GpTranslateToEn", "GpNew", "GpNew", "GpVnew", "GpVnew", "GpExplainCode", "GpCreateCommitMessage", "GpRefactor", "GpChatPaste"]
+on_cmd = ["GpAppend", "GpChatNew", "GpChatFinder", "GpRewrite", "GpPrepend", "GpImplement", "GpTranslateToJp", "GpTranslateToEn", "GpNew", "GpVnew", "GpExplainCode", "GpCreateCommitMessage", "GpRefactor", "GpChatPaste"]
 lua_add = '''
 -- key mappings
 local function keymapOptions(desc)
