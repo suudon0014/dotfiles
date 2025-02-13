@@ -41,7 +41,6 @@ export class Config extends BaseConfig {
             { name: "dpp_lazy.toml", lazy: true },
             { name: "lightline_lazy.toml", lazy: true },
             { name: "python_lazy.toml", lazy: true },
-            { name: "submode_lazy.toml", lazy: true },
             { name: "treesitter_lazy.toml", lazy: true },
         ];
 

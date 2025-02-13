@@ -11,6 +11,7 @@ runtime! lua/sets.lua
 source ~/dotfiles/.vim/dein_rc.vim
 " source ~/dotfiles/.vim/settings/dpp_install.vim
 source ~/dotfiles/.vim/settings/env.vim
+source ~/dotfiles/.vim/settings/submode.vim
 
 augroup myAuGroup
     autocmd!
