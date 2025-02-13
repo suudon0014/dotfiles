@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
+repo = 'sano-jin/markdown-preview.nvim'
 hook_source = '''
     nmap <C-p> <Plug>MarkdownPreview
     let g:mkdp_auto_start = 0
