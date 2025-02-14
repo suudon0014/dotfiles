@@ -520,8 +520,9 @@ hook_source = '''
 call ddt#custom#patch_global(#{
     \ uiParams: #{
     \   shell: #{
-    \       prompt: '=\\\>',
-    \       promptPattern: '\w*=\\\> \?',
+    \       prompt: '>',
+    \       promptPattern: '\w*> \?',
+    \       userPrompt: 'fnamemodify(getcwd(), ":~")',
     \       shellHistoryPath: expand('~') .. '\\Desktop\\shellhist.log',
     \   },
     \   terminal: #{
