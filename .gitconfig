@@ -60,3 +60,5 @@
     no-ff = true
 [gitflow "bugfix.finish"]
     no-ff = true
+[include]
+    path = ~/.gitconfig.local
