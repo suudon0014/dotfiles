@@ -1,0 +1,277 @@
+[[plugins]]
+repo = 'Robitx/gp.nvim'
+on_cmd = ["GpAppend", "GpChatNew", "GpChatFinder", "GpRewrite", "GpPrepend", "GpImplement", "GpTranslateToJp", "GpTranslateToEn", "GpNew", "GpVnew", "GpExplainCode", "GpCreateCommitMessage", "GpRefactor", "GpChatPaste"]
+lua_add = '''
+-- key mappings
+local function keymapOptions(desc)
+    return {
+        noremap = true,
+        silent = true,
+        nowait = true,
+        desc = "LLM prompt " .. desc,
+    }
+end
+
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local code_completion_prompt = LoadTextFile("codeCompletion.md")
+vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpAppend " .. code_completion_prompt .. "<CR>", keymapOptions("Completion"))
+
+vim.keymap.set({"n", "i"}, "<C-g>n", "<Cmd>GpChatNew<CR>", keymapOptions("New Chat"))
+vim.keymap.set("v", "<C-g>n", ":<C-u>'<,'>GpChatNew<CR>", keymapOptions("New Chat"))
+
+vim.keymap.set({"n", "i"}, "<C-g>f", "<Cmd>GpChatFinder<CR>", keymapOptions("Chat Finder"))
+
+vim.keymap.set({"n", "i"}, "<C-g>rw", "<Cmd>GpRewrite<CR>", keymapOptions("Rewrite"))
+vim.keymap.set("v", "<C-g>rw", ":<C-u>'<,'>GpRewrite<CR>", keymapOptions("Rewrite"))
+
+vim.keymap.set({"n", "i"}, "<C-g>a", "<Cmd>GpAppend<CR>", keymapOptions("Append"))
+vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<CR>", keymapOptions("Append"))
+
+vim.keymap.set({"n", "i"}, "<C-g>p", "<Cmd>GpPrepend<CR>", keymapOptions("Prepend"))
+vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPrepend<CR>", keymapOptions("Prepend"))
+
+vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpImplement<CR>", keymapOptions("Implement"))
+
+vim.keymap.set("v", "<C-g>tj", ":<C-u>'<,'>GpTranslateToJp<CR>", keymapOptions("Translate to JP"))
+vim.keymap.set("v", "<C-g>te", ":<C-u>'<,'>GpTranslateToEn<CR>", keymapOptions("Translate to EN"))
+
+vim.keymap.set({"n", "i"}, "<C-g>s", "<Cmd>GpNew<CR>", keymapOptions("New with split"))
+vim.keymap.set("v", "<C-g>s", ":<C-u>'<,'>GpNew<CR>", keymapOptions("New with split"))
+
+vim.keymap.set({"n", "i"}, "<C-g>v", "<Cmd>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+vim.keymap.set("v", "<C-g>v", ":<C-u>'<,'>GpVnew<CR>", keymapOptions("Vnew with vsplit"))
+
+vim.keymap.set("v", "<C-g>e", ":<C-u>'<,'>GpExplainCode<CR>", keymapOptions("Explain Code"))
+vim.keymap.set("v", "<C-g>g", ":<C-u>'<,'>GpCreateCommitMessage<CR>", keymapOptions("Commit Message"))
+vim.keymap.set("v", "<C-g>rf", ":<C-u>'<,'>GpRefactor<CR>", keymapOptions("Refactor"))
+
+vim.keymap.set("v", "<C-g>y", ":<C-u>'<,'>GpChatPaste<CR>", keymapOptions("Paste to Chat"))
+'''
+lua_source = '''
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
+
+local conf = {
+    chat_dir = os.getenv('HOME') .. '/OneDrive/gp/chats',
+    providers = {
+        googleai = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+            secret = os.getenv("GEMINI_API_KEY"),
+        },
+        ollama = {
+            endpoint = "http://localhost:11434/v1/chat/completions",
+        },
+    },
+    agents = {
+        {
+            name = "Gemini-Pro",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-pro-exp-02-05", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Flash",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-flash-001", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Flash-Lite",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-flash-lite-preview-02-05", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Exp",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-exp-1206", top_k = 64},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemini-Thinking",
+            provider = "googleai",
+            chat = true,
+            command = true,
+            model = {model = "gemini-2.0-flash-thinking-exp-01-21", top_k = 64},
+            system_prompt = general_system_prompt,
+        },
+        {
+            name = "Gemma2-2b-jpn",
+            provider = "ollama",
+            chat = true,
+            command = true,
+            model = {model = "hf.co/alfredplpl/gemma-2-2b-jpn-it-gguf:latest", top_k = 40},
+            system_prompt = general_system_prompt,
+        },
+    },
+    hooks = {
+        TranslateToJp = function(gp, params)
+            local prompt = LoadTextFile("translateJp.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        TranslateToEn = function(gp, params)
+            local prompt = LoadTextFile("translateEn.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        ExplainCode = function(gp, params)
+            local prompt = LoadTextFile("explainCode.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        CreateCommitMessage = function(gp, params)
+            local prompt = LoadTextFile("createCommitMessage.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.new, agent, prompt)
+        end,
+
+        Refactor = function(gp, params)
+            local prompt = LoadTextFile("refactor.md")
+            local agent = gp.get_command_agent()
+            gp.Prompt(params, gp.Target.append, agent, prompt)
+        end,
+    },
+}
+require('gp').setup(conf)
+
+local gpNvimScriptFilePath = os.getenv('HOME') .. '/dotfiles/.vim/llm_prompt/gp_nvim_func.vim'
+vim.api.nvim_command("source " .. gpNvimScriptFilePath)
+'''
+
+[[plugins]]
+repo = 'olimorris/codecompanion.nvim'
+on_cmd = ['CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions', 'CodeCompanionCmd']
+lua_add = '''
+vim.cmd('cabbrev cci CodeCompanion')
+vim.cmd('cabbrev ccc CodeCompanionChat')
+vim.cmd('cabbrev cca CodeCompanionActions')
+vim.cmd('cabbrev ccx CodeCompanionCmd')
+'''
+lua_source = '''
+local function LoadTextFile(fileName)
+    local home_dir = os.getenv('HOME')
+    local prompt_dir = 'dotfiles/.vim/llm_prompt'
+    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
+    local file = io.open(filePath, "r")
+    local prompt = ""
+    if file then
+        prompt = file:read("*a")
+        file:close()
+    end
+    return prompt
+end
+
+local default_system_prompt = require('codecompanion.config').opts.system_prompt
+
+require('codecompanion').setup({
+    adapters = {
+        gemini = function()
+            return require('codecompanion.adapters').extend('gemini', {
+                schema = {
+                    model = {
+                        default = "gemini-2.0-flash-001",
+                        choices = {
+                            "gemini-2.0-flash-001",
+                            "gemini-2.0-pro-exp-02-05",
+                            "gemini-exp-1206",
+                        },
+                    },
+        }})end,
+    },
+    strategies = {
+        chat = {adapter = "gemini",},
+        inline = {adapter = "gemini",},
+        agent = {adapter = "gemini",},
+    },
+    opts = {
+        system_prompt = function (opts)
+            local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
+            return default_system_prompt(opts) .. '\n\n' .. my_system_prompt
+        end,
+    },
+})
+'''
+
+[[plugins]]
+repo = 'yetone/avante.nvim'
+build = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+on_cmd = ['AvanteAsk', 'AvanteChat', 'AvanteEdit', 'AvanteFocus', 'AvanteRefresh', 'AvanteShowRepoMap', 'AvanteToggle']
+lua_add = '''
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<Leader>aa', '<Cmd>AvanteAsk<CR>', opts)
+vim.keymap.set('n', '<Leader>af', '<Cmd>AvanteFocus<CR>', opts)
+vim.keymap.set('n', '<Leader>ar', '<Cmd>AvanteRefresh<CR>', opts)
+vim.keymap.set('n', '<Leader>aR', '<Cmd>AvanteShowRepoMap<CR>', opts)
+vim.keymap.set('n', '<Leader>at', '<Cmd>AvanteToggle<CR>', opts)
+'''
+lua_source = '''
+require('avante_lib').load()
+require('avante').setup({
+    provider = "gemini",
+    auto_suggestions_provider = "gemini",
+    gemini = {model = "gemini-2.0-flash-001"},
+    behavior = {
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = true,
+    },
+    vendors = {
+        ollama = {
+            __inherited_from = "openai",
+            api_key_name = "",
+            endpoint = "http://localhost:11434/v1",
+            model = "codegemma:2b",
+        }
+    }
+})
+'''
+
+[[plugins]]
+repo = 'stevearc/dressing.nvim'
+on_source = ['avante.nvim', 'codecompanion.nvim', 'gp.nvim']
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_source = ['avante.nvim', 'codecompanion.nvim']
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+on_source = ['avante.nvim']
+

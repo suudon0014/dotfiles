@@ -33,6 +33,7 @@ if dein#min#load_state(s:dein_dir)
     let s:ddc_toml = s:rc_dir . '/ddc_lazy.toml'
     let s:ddu_toml = s:rc_dir . '/ddu_lazy.toml'
     let s:dpp_toml = s:rc_dir . '/dpp_lazy.toml'
+    let s:ai_toml = s:rc_dir . '/ai_lazy.toml'
     let s:colorscheme_toml = s:rc_dir . '/colorscheme_lazy.toml'
     let s:lightline_toml = s:rc_dir . '/lightline_lazy.toml'
     let s:markdown_toml = s:rc_dir . '/markdown_lazy.toml'
@@ -45,6 +46,7 @@ if dein#min#load_state(s:dein_dir)
     call dein#load_toml(s:ddc_toml, {'lazy':1})
     call dein#load_toml(s:ddu_toml, {'lazy':1})
     call dein#load_toml(s:dpp_toml, {'lazy':1})
+    call dein#load_toml(s:ai_toml, {'lazy':1})
     call dein#load_toml(s:colorscheme_toml, {'lazy':1})
     call dein#load_toml(s:lightline_toml, {'lazy':1})
     call dein#load_toml(s:markdown_toml, {'lazy':1})
