@@ -39,6 +39,7 @@ export class Config extends BaseConfig {
             { name: "ddc_lazy.toml", lazy: true },
             { name: "ddu_lazy.toml", lazy: true },
             { name: "dpp_lazy.toml", lazy: true },
+            { name: "ai_lazy.toml", lazy: true },
             { name: "lightline_lazy.toml", lazy: true },
             { name: "python_lazy.toml", lazy: true },
             { name: "treesitter_lazy.toml", lazy: true },
