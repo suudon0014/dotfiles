@@ -72,6 +72,7 @@ alias gg='git graph'
 alias lf='llm -u -m gemini-2.0-flash-exp'
 alias vi='nvim'
 alias vim='nvim'
+alias fzfnvim='nvim $(/bin/find . -path ./.git -prune -o -type f -print | fzf)'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
