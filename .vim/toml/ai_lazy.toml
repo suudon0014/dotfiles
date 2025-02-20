@@ -231,6 +231,7 @@ require('codecompanion').setup({
 
 [[plugins]]
 repo = 'yetone/avante.nvim'
+hook_post_update = 'pwsh -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
 build = 'pwsh -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
 on_cmd = ['AvanteAsk', 'AvanteChat', 'AvanteEdit', 'AvanteFocus', 'AvanteRefresh', 'AvanteShowRepoMap', 'AvanteToggle']
 lua_add = '''
