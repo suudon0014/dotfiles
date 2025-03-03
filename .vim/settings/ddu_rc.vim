@@ -73,11 +73,6 @@ function! s:DduStart(source, preview_enable, custom_enable, floating_title) abor
             \ 'uiParams': {'ff': s:ui_params},
         \ })
     endif
-
-    if a:source ==# 'dein_update'
-        autocmd User Ddu:uiDone ++once call ddc#set_static_import_path()
-        autocmd User Ddu:uiDone ++once call ddu#set_static_import_path()
-    endif
 endfunction
 
 command! -nargs=* DduGrep :call <SID>DduGrep(<f-args>)

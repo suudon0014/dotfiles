@@ -76,7 +76,6 @@ function! s:deinClean()
     if len(dein#check_clean()) > 0
         echo "Processing..."
         call map(dein#check_clean(), "delete(v:val, 'rf')")
-        RecacheRtp
         echo "DeinClean completed."
     else
         echo "There's no disabled plugins."
@@ -99,17 +98,9 @@ endfunction
 command! DeinStrictUpdate :call s:deinStrictUpdate()
 function! s:deinStrictUpdate()
     call dein#update()
-    RecacheRtp
     echo dein#get_updates_log()
 endfunction
 
 DeinInstall
 autocmd VimEnter * call dein#call_hook('post_source')
-
-command! RecacheRtp :call s:recacheRuntimePath()
-function! s:recacheRuntimePath()
-    call dein#recache_runtimepath()
-    call ddc#set_static_import_path()
-    call ddu#set_static_import_path()
-endfunction
 
