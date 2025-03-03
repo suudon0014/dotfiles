@@ -100,7 +100,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-2.0-flash-001", top_k = 40},
+            model = {model = "gemini-2.0-flash", top_k = 40},
             system_prompt = general_system_prompt,
         },
         {
@@ -109,14 +109,6 @@ local conf = {
             chat = true,
             command = true,
             model = {model = "gemini-2.0-flash-lite-preview-02-05", top_k = 40},
-            system_prompt = general_system_prompt,
-        },
-        {
-            name = "Gemini-Exp",
-            provider = "googleai",
-            chat = true,
-            command = true,
-            model = {model = "gemini-exp-1206", top_k = 64},
             system_prompt = general_system_prompt,
         },
         {
@@ -205,12 +197,11 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-2.0-flash-001",
+                        default = "gemini-2.0-flash",
                         choices = {
-                            "gemini-2.0-flash-001",
+                            "gemini-2.0-flash",
                             "gemini-2.0-flash-thinking-exp-01-21",
                             "gemini-2.0-pro-exp-02-05",
-                            "gemini-exp-1206",
                         },
                     },
         }})end,
@@ -248,7 +239,7 @@ require('avante').setup({
     provider = "gemini",
     auto_suggestions_provider = "gemini",
     cursor_applying_provider = "gemini",
-    gemini = {model = "gemini-2.0-flash-001"},
+    gemini = {model = "gemini-2.0-flash"},
     behavior = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -257,12 +248,20 @@ require('avante').setup({
         enable_cursor_planning_mode = true,
     },
     vendors = {
+        gemini_pro = {
+            __inherited_from = "gemini",
+            model = "geminigemini-2.0-pro-exp-02-05",
+        },
+        gemini_thinking = {
+            __inherited_from = "gemini",
+            model = "gemini-2.0-flash-thinking-exp-01-21",
+        },
         ollama = {
             __inherited_from = "openai",
             api_key_name = "",
             endpoint = "http://localhost:11434/v1",
             model = "codegemma:2b",
-        }
+        },
     }
 })
 '''
