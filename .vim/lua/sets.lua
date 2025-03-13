@@ -75,6 +75,7 @@ vim.opt.fillchars = {
 }
 vim.opt.splitright = true
 vim.opt.timeoutlen = 2000
+vim.opt.shortmess:append('I')
 
 -- disable default plugins
 vim.g.loaded_netrw              = 1
