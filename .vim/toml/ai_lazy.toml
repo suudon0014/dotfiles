@@ -216,6 +216,13 @@ require('codecompanion').setup({
             local my_system_prompt = LoadTextFile("generalSystemPrompt.md")
             return default_system_prompt(opts) .. '\n\n' .. my_system_prompt
         end,
+        language = "Japanese",
+    },
+    display = {
+        chat = {
+            auto_scroll = false,
+            show_header_separator = true,
+        },
     },
 })
 '''
