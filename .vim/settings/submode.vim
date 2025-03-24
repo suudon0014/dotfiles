@@ -54,5 +54,6 @@ nnoremap <script> <SID>wst :<C-u>tabnew<CR><SID>ws
 nnoremap <script> <SID>wsn gt<SID>ws
 nnoremap <script> <SID>wsp gT<SID>ws
 nnoremap <script> <SID>wse <Nop>
+nnoremap <script> <SID>ws <Nop>
 
 nmap <SID>w <Nop>
