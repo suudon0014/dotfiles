@@ -24,6 +24,7 @@ hook_source = '''
             \   'fileformat': 'LightlineFileformat',
             \   'filetype': 'LightlineFiletype',
             \   'fileencoding': 'LightlineFileencoding',
+            \   'filename': 'LightlineFilename',
             \   'mode': 'LightlineMode',
             \ },
     \ }
@@ -33,7 +34,6 @@ hook_source = '''
         let g:lightline.separator = {'left': "\ue0b0 ", 'right': "\ue0b2 "}
         let g:lightline.subseparator = {'left': "\ue0b1 ", 'right': "\ue0b3 "}
         let g:lightline.component_function.readonly = 'LightlineReadonly'
-        let g:lightline.component_function.filename = 'LightlineFilename'
     endif
 
     let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
