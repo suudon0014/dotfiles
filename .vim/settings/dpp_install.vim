@@ -1,3 +1,5 @@
+let g:denops#debug = 1
+
 let $CACHE = expand('~/.cache')
 if !($CACHE->isdirectory())
     call mkdir($CACHE, 'p')
@@ -20,7 +22,7 @@ for s:plugin in s:dpp_plugin_list->filter({_, val -> &runtimepath !~# '/' .. val
 
     " Any plugins which not exists in current or cache directory will git-clone in cache directory.
     if !(s:dir->isdirectory())
-        let s:dir = $CACHE .. '/dpp/repos/github.com/' .. s:plugin
+        let s:dir = $CACHE .. '/nvim/dpp/repos/github.com/' .. s:plugin
         if !(s:dir->isdirectory())
             execute '!git clone https://github.com/' .. s:plugin s:dir
         endif
@@ -30,16 +32,14 @@ for s:plugin in s:dpp_plugin_list->filter({_, val -> &runtimepath !~# '/' .. val
     execute 'set runtimepath^=' .. s:dir->fnamemodify(':p')->substitute('[/\\]$', '', '')
 endfor
 
-let g:denops#debug = 1
-
 const s:dpp_base      = '~/.cache/nvim/dpp'
 const s:dpp_source    = s:dpp_base .. '/repos/github.com/Shougo/dpp.vim'
-const s:dpp_config    = '~/dotfiles/.vim/settings/dpp_config.ts'
 const s:denops_source = s:dpp_base .. '/repos/github.com/vim-denops/denops.vim'
+const s:dpp_config    = '~/dotfiles/.vim/settings/dpp_config.ts'
 
 if dpp#min#load_state(s:dpp_base)
     execute 'set runtimepath^=' .. s:denops_source
     autocmd User DenopsReady call dpp#make_state(s:dpp_base, s:dpp_config)
 endif
 
-call dpp#async_ext_action('installer', 'install')
+" call dpp#async_ext_action('installer', 'install')
