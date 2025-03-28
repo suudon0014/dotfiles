@@ -172,6 +172,7 @@ on_cmd = ['CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions', 'CodeCom
 lua_add = '''
 vim.cmd('cabbrev cci CodeCompanion')
 vim.cmd('cabbrev ccc CodeCompanionChat')
+vim.cmd('cabbrev cct CodeCompanionChat Toggle')
 vim.cmd('cabbrev cca CodeCompanionActions')
 vim.cmd('cabbrev ccx CodeCompanionCmd')
 '''
@@ -197,7 +198,7 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-2.0-flash",
+                        default = "gemini-2.0-flash-thinking-exp-01-21",
                         choices = {
                             "gemini-2.0-flash",
                             "gemini-2.0-flash-thinking-exp-01-21",
@@ -246,7 +247,7 @@ require('avante').setup({
     provider = "gemini",
     auto_suggestions_provider = "gemini",
     cursor_applying_provider = "gemini",
-    gemini = {model = "gemini-2.0-flash"},
+    gemini = {model = "gemini-2.0-flash-thinking-exp-01-21"},
     behavior = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -255,6 +256,10 @@ require('avante').setup({
         enable_cursor_planning_mode = true,
     },
     vendors = {
+        gemini_flash = {
+            __inherited_from = "gemini",
+            model = "gemini-2.0-flash",
+        },
         gemini_pro = {
             __inherited_from = "gemini",
             model = "geminigemini-2.5-pro-exp-03-25",
