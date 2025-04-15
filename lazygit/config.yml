@@ -3,4 +3,5 @@ gui:
   showIcons: true
   filterMode: 'fuzzy'
   mouseEvents: false
+  showFileTree: false
 promptToReturnFromSubprocess: false
