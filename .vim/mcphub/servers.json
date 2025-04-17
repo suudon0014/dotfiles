@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "git": {
+      "args": [
+        "-m",
+        "mcp_server_git"
+      ],
+      "disabled": false,
+      "command": "python"
+    }
+  }
+}
