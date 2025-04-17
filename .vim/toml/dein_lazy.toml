@@ -341,10 +341,14 @@ repo = 'terryma/vim-multiple-cursors'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 
 [[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
+repo = 'uga-rosa/ccc.nvim'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 lua_source = '''
-    require('colorizer').setup()
+require('ccc').setup({
+    highlighter = {
+        auto_enable = true,
+    },
+})
 '''
 
 [[plugins]]
