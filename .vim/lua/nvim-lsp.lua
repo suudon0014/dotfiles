@@ -114,10 +114,12 @@ mason_lspconfig.setup_handlers({ function(server_name)
     if server_name == 'clangd' then
         opts.cmd = {
             "clangd",
+            "--all-scopes-completion",
             "--background-index",
+            "--clang-tidy",
             "--completion-style=bundled",
             "--header-insertion=never",
-            "--limit-results=100",
+            "--limit-results=200",
             "--function-arg-placeholders",
             "--fallback-style=llvm",
         }
