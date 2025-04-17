@@ -521,12 +521,13 @@ repo = 'Shougo/ddt.vim'
 on_func = ['ddt#']
 hook_source = '''
 call ddt#custom#patch_global(#{
+    \ ui: 'shell',
     \ uiParams: #{
     \   shell: #{
     \       prompt: '>',
     \       promptPattern: '\w*> \?',
     \       userPrompt: 'fnamemodify(getcwd(), ":~")',
-    \       shellHistoryPath: expand('~') .. '\\Desktop\\shellhist.log',
+    \       shellHistoryPath: expand('~') .. '\\.cache\\ddt_shellhist.log',
     \   },
     \   terminal: #{
     \       command: ['zsh'],
