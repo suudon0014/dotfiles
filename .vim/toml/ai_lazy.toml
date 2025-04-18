@@ -203,10 +203,16 @@ require('codecompanion').setup({
                         choices = {
                             "gemini-2.0-flash",
                             "gemini-2.0-flash-thinking-exp-01-21",
+                            "gemini-2.5-flash-preview-04-17",
                             "gemini-2.5-pro-exp-03-25",
                         },
                     },
-        }})end,
+                },
+                config = {
+                    thinkingConfig = {
+                        thinkingBudget = 0,
+                }}
+            })end,
     },
     strategies = {
         chat = {
@@ -271,9 +277,13 @@ require('avante').setup({
         enable_cursor_planning_mode = true,
     },
     vendors = {
-        gemini_flash = {
+        gemini_2_0_flash = {
             __inherited_from = "gemini",
             model = "gemini-2.0-flash",
+        },
+        gemini_2_5_flash = {
+            __inherited_from = "gemini",
+            model = "gemini-2.5-flash-preview-04-17",
         },
         gemini_pro = {
             __inherited_from = "gemini",
