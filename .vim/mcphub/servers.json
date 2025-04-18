@@ -1,12 +1,41 @@
 {
   "mcpServers": {
     "git": {
-      "args": [
-        "-m",
-        "mcp_server_git"
-      ],
-      "disabled": false,
-      "command": "python"
+        "command": "python",
+        "args": [
+            "-m",
+            "mcp_server_git"
+        ]
+    },
+    "filesystem": {
+        "command": "pnpm",
+        "args": [
+            "dlx",
+            "@modelcontextprotocol/server-filesystem",
+            "~/dotfiles"
+        ]
+    },
+    "sequential-thinking": {
+        "command": "pnpm",
+        "args": [
+            "dlx",
+            "@modelcontextprotocol/server-sequential-thinking"
+        ]
+    },
+    "DuckDuckGo": {
+        "command": "pnpm",
+        "args": [
+            "dlx",
+            "duckduckgo-mcp-server"
+        ]
+    },
+    "time": {
+        "command": "python",
+        "args": [
+            "-m",
+            "mcp_server_time",
+            "--local-timezone=Asia/Tokyo"
+        ]
     }
   }
 }
