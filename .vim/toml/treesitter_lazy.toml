@@ -24,7 +24,9 @@ on_source = ['nvim-treesitter']
 repo = 'Wansmer/treesj'
 on_source = ['nvim-treesitter']
 lua_source = '''
-require('treesj').setup()
+require('treesj').setup({
+    use_default_keymaps = false,
+})
 vim.keymap.set('n', '<Leader>M', function()
     require('treesj').toggle({split = { recursive = true }})
 end)
