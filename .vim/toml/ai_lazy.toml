@@ -329,6 +329,9 @@ repo = 'ravitemer/mcphub.nvim'
 build = 'pnpm install -g mcp-hub@latest'
 on_cmd = ["MCPHub"]
 on_source = ['avante.nvim', 'codecompanion.nvim']
+lua_add = '''
+vim.keymap.set("n", "<Leader>m", ":MCPHub<CR>", {noremap = true, silent = true, nowait = true, desc = "Open McpHub"})
+'''
 lua_source = '''
 require("mcphub").setup({
     extensions = {
