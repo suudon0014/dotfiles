@@ -12,7 +12,8 @@ nnoremap <silent> ,c :call <SID>DduStart('command_history', v:false, v:false, [[
 nnoremap <silent> ,C :call <SID>DduStart('colorscheme', v:false, v:false, [['[COLORSCHEME]', 'Blue']])<CR>
 nnoremap <silent> ,H :call <SID>DduStart('help', v:true, v:false, [['[HELP]', 'Blue']])<CR>
 nnoremap <silent> ,d :call <SID>DduStart('dirmark_custom', v:false, v:true, [['[DIRMARK]', 'Blue']])<CR>
-nnoremap <silent> ,m :call <SID>DduStart('marks', v:true, v:false, [['[MARKS]', 'Blue']])<CR>
+nnoremap <silent> ,ma :call <SID>DduStart('marks', v:true, v:false, [['[MARKS]', 'Blue']])<CR>
+nnoremap <silent> ,mr :call <SID>DduStart('mr', v:true, v:false, [['[MR]', 'Blue']])<CR>
 nnoremap <silent> ,u :call <SID>DduStart('dein_update', v:false, v:false, [['[DEIN]', 'Blue']])<CR>
 nnoremap <silent> ,t :call <SID>DduFilerSideBarStart()<CR>
 nnoremap <silent> ,fs :call <SID>DduFilerSingleStart()<CR>

@@ -191,6 +191,14 @@ repo = 'shutils/ddu-source-obsidian'
 on_source = ['ddu.vim']
 
 [[plugins]]
+repo = 'kuuote/ddu-source-mr'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'lambdalisue/vim-mr'
+on_source = ['ddu-source-mr']
+
+[[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
