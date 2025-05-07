@@ -12,7 +12,7 @@ saga.setup({
 })
 
 local on_attach = function(client, bufnr)
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_set_option_value(...) end
     local opts = {noremap=true, silent=true, buffer=bufnr}
     vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
     vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
@@ -54,7 +54,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>gi', function() vim.lsp.buf.implementation() end, opts)
 
     if client.server_capabilities.documentHighlightProvider then
-        vim.api.nvim_exec([[
+        vim.api.nvim_exec2([[
             highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
             highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
             highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
@@ -63,7 +63,7 @@ local on_attach = function(client, bufnr)
                 autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
                 autocmd CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
             augroup END
-        ]], false)
+        ]], {})
 
     end
 end
