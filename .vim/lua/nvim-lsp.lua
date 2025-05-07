@@ -102,69 +102,70 @@ mason.setup({
 require("ddc_source_lsp_setup").setup()
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
-
 mason_lspconfig.setup()
-mason_lspconfig.setup_handlers({ function(server_name)
-    local opts = {}
-    opts.on_attach = on_attach
-    opts.detached = false
-    opts.capabilities = capabilities
-    opts.single_file_support = true
 
-    if server_name == 'clangd' then
-        opts.cmd = {
-            "clangd",
-            "--all-scopes-completion",
-            "--background-index",
-            "--clang-tidy",
-            "--completion-style=bundled",
-            "--header-insertion=never",
-            "--limit-results=200",
-            "--function-arg-placeholders",
-            "--fallback-style=llvm",
-        }
-        opts.init_options = {
-          usePlaceholders = true,
-          completeUnimported = true,
-          clangdFileStatus = true,
-        }
-        opts.capabilities.offsetEncoding = {"utf-16"}
-    elseif server_name == 'lua_ls' then
-        opts.settings = {
-            Lua = {
-              runtime = {version = 'LuaJIT'},
-              diagnostics = {globals = {'vim'}},
-              workspace = {library = vim.api.nvim_get_runtime_file("", true)},
-              telemetry = {enable = false},
-            },
-        }
-    elseif server_name == 'marksman' then
-        opts.cmd = {'marksman.cmd'}
-    elseif server_name == 'bashls' then
-        opts.filetypes = {'sh', 'zsh'}
-    elseif server_name == 'denols' then
-        opts.single_file_support = false
-        opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock")
-        opts.init_options = {
-            lint = true,
-            unstable = true,
-            suggest = {
-                imports = {
-                    hosts = {
-                        ["https://deno.land"] = true,
-                        ["https://cdn.nest.land"] = true,
-                        ["https://crux.land"] = true,
-                    },
+vim.lsp.config('*', {
+    on_attach = on_attach,
+    detached = false,
+    capabilities = capabilities,
+    single_file_support = true,
+})
+
+vim.lsp.config('clangd', {
+    cmd = {
+        "clangd",
+        "--all-scopes-completion",
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=bundled",
+        "--header-insertion=never",
+        "--limit-results=200",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm",
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+    },
+    capabilities = {
+        offsetEncoding = {"utf-16"},
+    },
+})
+
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+          runtime = {version = 'LuaJIT'},
+          diagnostics = {globals = {'vim', 'require'}},
+          workspace = {library = vim.api.nvim_get_runtime_file("", true)},
+          telemetry = {enable = false},
+        },
+    }
+})
+
+vim.lsp.config('denols', {
+    single_file_support = false,
+    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+    init_options = {
+        lint = true,
+        unstable = true,
+        suggest = {
+            imports = {
+                hosts = {
+                    ["https://deno.land"] = true,
+                    ["https://cdn.nest.land"] = true,
+                    ["https://crux.land"] = true,
                 },
             },
-        }
-    elseif server_name == 'ts_ls' then
-        opts.root_dir = lspconfig.util.root_pattern("package.json")
-        opts.single_file_support = false
-    end
+        },
+    },
+})
 
-    lspconfig[server_name].setup(opts)
-end })
+-- vim.lsp.config('ts_ls', {
+--     root_dir = lspconfig.util.root_pattern("package.json"),
+--     single_file_support = false
+-- })
 
 require("fidget").setup{
     progress = {
