@@ -1,41 +1,104 @@
 {
   "mcpServers": {
-    "git": {
-        "command": "python",
-        "args": [
-            "-m",
-            "mcp_server_git"
-        ]
-    },
-    "filesystem": {
-        "command": "pnpm",
-        "args": [
-            "dlx",
-            "@modelcontextprotocol/server-filesystem",
-            "~/dotfiles"
-        ]
-    },
-    "sequential-thinking": {
-        "command": "pnpm",
-        "args": [
-            "dlx",
-            "@modelcontextprotocol/server-sequential-thinking"
-        ]
-    },
     "DuckDuckGo": {
-        "command": "pnpm",
-        "args": [
-            "dlx",
-            "duckduckgo-mcp-server"
-        ]
+      "args": [
+        "dlx",
+        "duckduckgo-mcp-server"
+      ],
+      "disabled": true,
+      "command": "pnpm"
     },
     "time": {
-        "command": "python",
-        "args": [
-            "-m",
-            "mcp_server_time",
-            "--local-timezone=Asia/Tokyo"
-        ]
+      "args": [
+        "-m",
+        "mcp_server_time",
+        "--local-timezone=Asia/Tokyo"
+      ],
+      "disabled": true,
+      "command": "python"
+    },
+    "taskmanager": {
+      "args": [
+        "dlx",
+        "@kazuph/mcp-taskmanager"
+      ],
+      "disabled": true,
+      "command": "pnpm"
+    },
+    "filesystem": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-filesystem",
+        "~/dotfiles"
+      ],
+      "disabled": true,
+      "command": "pnpm"
+    },
+    "memory": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "disabled": true,
+      "command": "pnpm"
+    },
+    "git": {
+      "args": [
+        "-m",
+        "mcp_server_git"
+      ],
+      "disabled": true,
+      "command": "python",
+      "disabled_tools": [
+        "git_reset",
+        "git_create_branch"
+      ]
+    },
+    "fetch": {
+      "args": [
+        "C:/mcp-servers/fetch-mcp/dist/index.js"
+      ],
+      "disabled": true,
+      "command": "node",
+      "disabled_tools": [
+        
+      ]
+    },
+    "sequential-thinking": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "disabled": true,
+      "command": "pnpm"
+    }
+  },
+  "nativeMCPServers": {
+    "neovim": {
+      "custom_instructions": {
+        "disabled": true
+      },
+      "disabled": true,
+      "disabled_prompts": [
+        "parrot"
+      ],
+      "disabled_resources": [
+        
+      ]
+    },
+    "mcphub": {
+      "custom_instructions": {
+        "disabled": true
+      },
+      "disabled": false,
+      "disabled_prompts": [
+        "create_native_server"
+      ],
+      "disabled_resources": [
+        "mcphub://changelog",
+        "mcphub://native_server_guide",
+        "mcphub://docs"
+      ]
     }
   }
 }
