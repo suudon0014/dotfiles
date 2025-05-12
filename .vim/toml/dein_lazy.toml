@@ -66,12 +66,12 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'williamboman/mason.nvim'
+repo = 'mason-org/mason.nvim'
 on_event = ['CursorHold', 'InsertEnter', 'BufReadPost', 'BufNewFile']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
 
 [[plugins]]
-repo = 'williamboman/mason-lspconfig.nvim'
+repo = 'mason-org/mason-lspconfig.nvim'
 depends = ['nvim-lspconfig']
 on_source = ['mason.nvim']
 
