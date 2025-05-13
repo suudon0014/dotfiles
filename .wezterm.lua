@@ -30,7 +30,7 @@ config.audible_bell = 'Disabled'
 config.color_scheme = 'Sonokai (Gogh)'
 config.default_prog = {'zsh'}
 config.font = wezterm.font('Cica', {weight='Regular', stretch='Normal', style='Normal'})
-config.font_size = 12
+config.font_size = 11
 config.initial_cols = 100
 config.initial_rows = 50
 config.leader = {key = 'a', mods = 'CTRL'}
