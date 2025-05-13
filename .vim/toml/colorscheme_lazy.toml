@@ -48,6 +48,34 @@ hook_add = '''
         autocmd ColorScheme * highlight Comment cterm=NONE gui=NONE
     augroup END
 '''
-hook_source = '''
-    colorscheme sonokai
+lua_source = '''
+vim.cmd.colorscheme('sonokai')
+
+local extui_colorscheme = 'terafox'
+local extui_augroup = vim.api.nvim_create_augroup('extuiAuGroup', {})
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+    group = extui_augroup,
+    callback = function ()
+        local extui_shared = require('vim._extui.shared')
+        if not extui_shared.cfg.enable then
+            return
+        end
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        local extuiwin = extui_shared.wins[tabpage]
+        for _, w in pairs(extuiwin) do
+            require('styler').set_theme(w, {
+                colorscheme = extui_colorscheme
+            })
+        end
+    end
+})
 '''
+
+[[plugins]]
+repo = 'folke/styler.nvim'
+on_source = ['sonokai']
+
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
+on_source = ['sonokai']
+
