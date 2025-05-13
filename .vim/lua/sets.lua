@@ -159,12 +159,14 @@ vim.api.nvim_create_autocmd('RecordingEnter',{
     callback = function ()
         local msg = string.format("Macro Record Start[%s]", vim.fn.reg_recording())
         vim.notify(msg, vim.log.levels.INFO)
-    end
+    end,
+    group = sets_au_group_id,
 })
 
 vim.api.nvim_create_autocmd('RecordingLeave',{
     callback = function ()
         local msg = string.format("Macro Record End[%s]", vim.fn.reg_recording())
         vim.notify(msg, vim.log.levels.INFO)
-    end
+    end,
+    group = sets_au_group_id,
 })
