@@ -141,3 +141,17 @@ vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
     command = 'normal zR',
     group = sets_au_group_id,
 })
+
+-- extui
+vim.opt.cmdheight = 0
+local extui = require('vim._extui')
+extui.enable({
+    enable = true,
+    msg = {
+        pos = 'cmd',
+        box = {
+            timeout = 5000,
+        }
+    }
+})
+
