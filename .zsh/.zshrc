@@ -56,8 +56,8 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Aliases
-alias ll='ls -laht'
-alias la='ls -a'
+alias ll='ls -laht --color'
+alias la='ls -a --color'
 alias lg='lazygit'
 alias dc='docker compose'
 alias gst='git status'
@@ -73,6 +73,7 @@ alias lf='llm -u -m gemini-2.0-flash-exp'
 alias vi='nvim'
 alias vim='nvim'
 alias fzfnvim='nvim $(/bin/find . -path ./.git -prune -o -type f -print | fzf)'
+alias tree='tree -C'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
