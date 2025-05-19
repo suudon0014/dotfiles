@@ -114,6 +114,13 @@ on_source = ['ddc.vim']
 depends = ['denops.vim']
 hook_source = '''
     call popup_preview#enable()
+    augroup PopupPreviewAuGroup
+        autocmd!
+        autocmd BufEnter *.cpp call popup_preview#disable()
+        autocmd BufEnter *.h call popup_preview#disable()
+        autocmd BufLeave *.cpp call popup_preview#enable()
+        autocmd BufLeave *.h call popup_preview#enable()
+    augroup END
 '''
 
 [[plugins]]
