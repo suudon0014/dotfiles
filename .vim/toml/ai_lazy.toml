@@ -191,10 +191,6 @@ require('codecompanion').setup({
                         },
                     },
                 },
-                config = {
-                    thinkingConfig = {
-                        thinkingBudget = 0,
-                }}
             })end,
     },
     strategies = {
