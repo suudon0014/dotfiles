@@ -100,7 +100,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-2.5-flash-preview-04-17", top_k = 40},
+            model = {model = "gemini-2.5-flash-preview-05-20", top_k = 40},
             system_prompt = general_system_prompt,
         },
         {
@@ -183,9 +183,9 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-2.5-flash-preview-04-17",
+                        default = "gemini-2.5-flash-preview-05-20",
                         choices = {
-                            "gemini-2.5-flash-preview-04-17",
+                            "gemini-2.5-flash-preview-05-20",
                             "gemini-2.5-pro-exp-03-25",
                             "gemini-2.0-flash",
                         },
@@ -244,7 +244,7 @@ require('avante').setup({
     provider = "gemini",
     auto_suggestions_provider = "gemini",
     cursor_applying_provider = "gemini",
-    gemini = {model = "gemini-2.5-flash-preview-04-17"},
+    gemini = {model = "gemini-2.5-flash-preview-05-20"},
     behavior = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -255,7 +255,7 @@ require('avante').setup({
     vendors = {
         gemini_2_5_flash = {
             __inherited_from = "gemini",
-            model = "gemini-2.5-flash-preview-04-17",
+            model = "gemini-2.5-flash-preview-05-20",
         },
         gemini_pro = {
             __inherited_from = "gemini",
