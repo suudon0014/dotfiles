@@ -286,7 +286,7 @@ require('avante').setup({
 
 [[plugins]]
 repo = 'stevearc/dressing.nvim'
-on_source = ['avante.nvim', 'codecompanion.nvim', 'gp.nvim', 'mcphub.nvim']
+on_source = ['avante.nvim', 'codecompanion.nvim', 'gp.nvim', 'mcphub.nvim', 'mason.nvim']
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'

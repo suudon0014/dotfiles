@@ -16,18 +16,21 @@ local on_attach = function(client, bufnr)
     local opts = {noremap=true, silent=true, buffer=bufnr}
     vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
     vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-    vim.keymap.set('n', '<C-l>h', '<Cmd>Lspsaga hover_doc<CR>', opts)
     vim.keymap.set('n', '<C-l>o', '<Cmd>Lspsaga outline<CR>', opts)
-    vim.keymap.set('n', '<C-l>s', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     vim.keymap.set('n', '<C-l>ci', '<Cmd>Lspsaga incoming_calls<CR>', opts)
     vim.keymap.set('n', '<C-l>co', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
-    vim.keymap.set('n', '<C-l>rn', '<Cmd>Lspsaga rename<CR>', opts)
     vim.keymap.set('n', '<C-l>fi', '<Cmd>Lspsaga finder<CR>', opts)
     vim.keymap.set('n', '<C-l>ec', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>el', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>eb', '<Cmd>Lspsaga show_buf_diagnostics<CR>', opts)
     vim.keymap.set('n', '<C-l>ep', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
     vim.keymap.set('n', '<C-l>en', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+    vim.keymap.set('n', '<C-l>dp', '<Cmd>Lspsaga peek_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>dtp', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
+
+    vim.keymap.set('n', '<C-l>h', function() vim.lsp.buf.hover({border = 'rounded'}) end, opts)
+    vim.keymap.set('n', '<C-l>s', function() vim.lsp.buf.signature_help({border = 'rounded'}) end, opts)
+    vim.keymap.set('n', '<C-l>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<C-l>et', function()
         local config = vim.diagnostic.config()
         local toggled_underline = not config.underline
@@ -39,19 +42,17 @@ local on_attach = function(client, bufnr)
             signs = toggled_signs,
         })
     end, opts)
-    vim.keymap.set('n', '<C-l>dg', '<Cmd>Lspsaga goto_definition<CR>', opts)
-    vim.keymap.set('n', '<C-l>dp', '<Cmd>Lspsaga peek_definition<CR>', opts)
-    vim.keymap.set('n', '<C-l>dtg', '<Cmd>Lspsaga goto_type_definition<CR>', opts)
-    vim.keymap.set('n', '<C-l>dtp', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
+    vim.keymap.set('n', '<C-l>dg', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<C-l>dtg', vim.lsp.buf.type_definition, opts)
     opts['desc'] = 'vim.lsp.buf.references()'
-    vim.keymap.set('n', '<C-l>rf', function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set('n', '<C-l>rf', vim.lsp.buf.references, opts)
     opts['desc'] = 'vim.lsp.buf.format()'
     vim.keymap.set('n', '<C-l>fo', function() vim.lsp.buf.format {async=true} end, opts)
     vim.keymap.set('v', '<C-l>fo', function() vim.lsp.buf.format {async=true} end, opts)
     opts['desc'] = 'vim.lsp.buf.declaration()'
-    vim.keymap.set('n', '<C-l>gc', function() vim.lsp.buf.declaration() end, opts)
+    vim.keymap.set('n', '<C-l>gc', vim.lsp.buf.declaration, opts)
     opts['desc'] = 'vim.lsp.buf.implementation()'
-    vim.keymap.set('n', '<C-l>gi', function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set('n', '<C-l>gi', vim.lsp.buf.implementation, opts)
 
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec2([[
