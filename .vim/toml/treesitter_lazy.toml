@@ -2,7 +2,9 @@
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 on_cmd = ['TSUpdate', 'TSUpdateSync']
-hook_source = 'source ~/dotfiles/.vim/lua/nvim-treesitter.lua'
+lua_source = '''
+    vim.cmd.source('~/dotfiles/.vim/lua/nvim-treesitter.lua')
+'''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -24,11 +26,11 @@ on_source = ['nvim-treesitter']
 repo = 'Wansmer/treesj'
 on_source = ['nvim-treesitter']
 lua_source = '''
-require('treesj').setup({
-    use_default_keymaps = false,
-})
-vim.keymap.set('n', '<Leader>M', function()
-    require('treesj').toggle({split = { recursive = true }})
-end)
+    require('treesj').setup({
+        use_default_keymaps = false,
+    })
+    vim.keymap.set('n', '<Leader>M', function()
+        require('treesj').toggle({split = { recursive = true }})
+    end)
 '''
 

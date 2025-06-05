@@ -5,24 +5,26 @@ on_event = 'CursorHold'
 [[plugins]]
 repo = 'cohama/lexima.vim'
 on_event = ['InsertEnter']
-hook_source = '''
-    augroup autoclose
-        autocmd!
-        autocmd FileType ddu-ff-filter let b:lexima_disabled = 1
-    augroup END
+lua_source = '''
+    local leximaAuGroup = vim.api.nvim_create_augroup('leximaAuGroup', {})
+    vim.api.nvim_create_autocmd({'FileType'}, {
+        pattern = 'ddu-ff-filter',
+        callback = function() vim.b.lexima_disabled = 1 end,
+        group = leximaAuGroup,
+    })
 
-    call lexima#add_rule(#{char: ',', input: ',<Space>'})
-    call lexima#add_rule(#{at: ', \%#', char: '<Enter>', input: '<BS><Enter>'})
+    vim.fn['lexima#add_rule']({char = ',', input = ',<Space>'})
+    vim.fn['lexima#add_rule']({at = [[, \%#]], char = '<Enter>', input = '<BS><Enter>'})
 
-    call lexima#add_rule(#{at: '<\%#', char: '>', input:'', input_after: '>'})
-    call lexima#add_rule(#{at: '\%#>', char: '>', leave: '>'})
-    call lexima#add_rule(#{at: '<\%#>', char: '<BS>', input:'<BS>', delete: 1})
+    vim.fn['lexima#add_rule']({at = [[<\%#]], char = '>', input ='', input_after = '>'})
+    vim.fn['lexima#add_rule']({at = [[\%#>]], char = '>', leave = '>'})
+    vim.fn['lexima#add_rule']({at = [[<\%#>]], char = '<BS>', input ='<BS>', delete = 1})
 
-    call lexima#add_rule(#{at: '^\s*\%#$', char: '-', input:'- ', filetype: 'markdown'})
-    call lexima#add_rule(#{at: '^\s*\%#$', char: '*', input:'* ', filetype: 'markdown'})
-    call lexima#add_rule(#{at: '^- \%#$', char: '-', input:'<BS>-', filetype: 'markdown'})
-    call lexima#add_rule(#{at: '^- \%#$', char: '>', input:'<BS>>', filetype: 'markdown'})
-    call lexima#add_rule(#{at: '^\s*\* \%#$', char: '*', input:'<BS>*', filetype: 'markdown'})
+    vim.fn['lexima#add_rule']({at = [[^\s*\%#$]], char = '-', input ='- ', filetype = 'markdown'})
+    vim.fn['lexima#add_rule']({at = [[^\s*\%#$]], char = '*', input ='* ', filetype = 'markdown'})
+    vim.fn['lexima#add_rule']({at = [[^- \%#$]], char = '-', input ='<BS>-', filetype = 'markdown'})
+    vim.fn['lexima#add_rule']({at = [[^- \%#$]], char = '>', input ='<BS>>', filetype = 'markdown'})
+    vim.fn['lexima#add_rule']({at = [[^\s*\* \%#$]], char = '*', input ='<BS>*', filetype = 'markdown'})
 '''
 
 [[plugins]]
@@ -32,37 +34,37 @@ on_cmd = ['Repl', 'ReplAuto']
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_event = ['CursorMoved']
-hook_source = '''
-    let g:linediff_first_buffer_command = 'leftabove new'
-    let g:linediff_second_buffer_command = 'rightbelow vertical new'
+lua_source = '''
+    vim.g.linediff_first_buffer_command = 'leftabove new'
+    vim.g.linediff_second_buffer_command = 'rightbelow vertical new'
 '''
 
 [[plugins]]
 repo = 'elzr/vim-json'
 on_ft = 'json'
-hook_source = '''
-    let g:vim_json_syntax_conceal = 0
+lua_source = '''
+    vim.g.vim_json_syntax_conceal = 0
 '''
 
 [[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
-hook_source = '''
-    let g:vimtex_compiler_latexmk = #{
-        \ build_dir : '',
-        \ callback : 1,
-        \ continuous : 1,
-        \ executable : 'latexmk',
-        \ hooks : [],
-        \ options : [
-        \   '-pdfdvi',
-        \   '-verbose',
-        \   '-file-line-error',
-        \   '-synctex=1',
-        \   '-interaction=nonstopmode',
-        \ ],
-        \}
-    nmap <leader>tc <Plug>(vimtex-compile)
+lua_source = '''
+    vim.g.vimtex_compiler_latexmk = {
+        build_dir = '',
+        callback = 1,
+        continuous = 1,
+        executable = 'latexmk',
+        hooks = {},
+        options = {
+            '-pdfdvi',
+            '-verbose',
+            '-file-line-error',
+            '-synctex=1',
+            '-interaction=nonstopmode',
+        }
+    }
+    vim.keymap.set('n', '<Leader>tc', '<Plug>(vimtex-compile)', {remap = true})
 '''
 
 [[plugins]]
@@ -79,14 +81,14 @@ on_source = ['mason.nvim']
 repo = 'neovim/nvim-lspconfig'
 on_source = ['mason.nvim']
 [plugins.ftplugin]
-lspinfo = '''
-    nnoremap <buffer><silent> q :close<CR>
+lua_lspinfo = '''
+    vim.keymap.set('n', 'q', vim.cmd.close, {remap = false, buffer = true, silent = true})
 '''
 
-[[plugins]]
-repo = 'uga-rosa/ddc-source-lsp-setup'
-depends = ['ddc-source-lsp']
-on_source = ['nvim-lspconfig', 'ddc.vim']
+# [[plugins]]
+# repo = 'uga-rosa/ddc-source-lsp-setup'
+# depends = ['ddc-source-lsp']
+# on_source = ['nvim-lspconfig', 'ddc.vim']
 
 [[plugins]]
 repo = 'glepnir/lspsaga.nvim'
@@ -95,97 +97,56 @@ on_source = ['mason.nvim']
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = ['VimEnter']
-hook_source = '''
-    let g:denops_server_addr = '127.0.0.1:32123'
-    let g:denops#debug = 0
+lua_source = '''
+    vim.g.denops_server_addr = '127.0.0.1:32123'
+    vim.g["denops#debug"] = 0
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
 on_source = ['ddc.vim']
 depends = ['denops.vim']
-hook_source = '''
-    call signature_help#enable()
+lua_source = '''
+    vim.fn['signature_help#enable']()
 '''
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
 on_source = ['ddc.vim']
 depends = ['denops.vim']
-hook_source = '''
-    call popup_preview#enable()
-    augroup PopupPreviewAuGroup
-        autocmd!
-        autocmd BufEnter *.cpp call popup_preview#disable()
-        autocmd BufEnter *.h call popup_preview#disable()
-        autocmd BufLeave *.cpp call popup_preview#enable()
-        autocmd BufLeave *.h call popup_preview#enable()
-    augroup END
+lua_source = '''
+    vim.fn['popup_preview#enable']()
+
+    local popupPreviewAuGroup = vim.api.nvim_create_augroup('popupPreviewAuGroup', {})
+    vim.api.nvim_create_autocmd({'BufEnter'}, {
+        pattern = {'*.cpp', "*.h"},
+        callback = function() vim.fn['popup_preview#disable']() end,
+        group = popupPreviewAuGroup,
+    })
+    vim.api.nvim_create_autocmd({'BufLeave'}, {
+        pattern = {'*.cpp', "*.h"},
+        callback = function() vim.fn['popup_preview#enable']() end,
+        group = popupPreviewAuGroup,
+    })
 '''
 
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_map = ['<Plug>(Translate']
 depends = ['denops.vim']
-hook_add = '''
-    nmap <Leader>tr <Plug>(Translate)
-    vmap <Leader>tr <Plug>(Translate)
+lua_add = '''
+    vim.keymap.set({'n', 'v'}, '<Leader>tr', '<Plug>(Translate)', {remap = true})
 '''
 
 [[plugins]]
-repo = 'folke/trouble.nvim'
-on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    nnoremap <C-l>t :TroubleToggle<CR>
-'''
-
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-on_source = ['trouble.nvim']
-
-[[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
-on_source = ['trouble.nvim']
-
-[[plugins]]
-repo = 'Shougo/deol.nvim'
-on_map = '<Plug>(deol_'
-on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
-hook_source = '''
-    let g:deol#enable_ddc_completion = v:true
-    let g:deol#floating_border = 'single'
-    tnoremap <Esc> <C-\><C-n>
-
-    function! s:set_deol_win_pos() abort
-        let s:deol_win_pos = #{
-            \ winWidth: float2nr(&columns * 0.9),
-            \ winCol: float2nr(&columns * 0.05),
-            \ winHeight: float2nr(&lines * 0.6),
-            \ winRow: float2nr(&lines * 0.2),
-        \ }
-    endfunction
-
-    augroup AutoResizeDeolWinPos
-        autocmd!
-        autocmd VimEnter,VimResized * call s:set_deol_win_pos()
-    augroup END
-
-    nnoremap <silent>,z :<C-u>call <SID>deol_zsh()<CR>
-    function! s:deol_zsh() abort
-        execute 'Deol zsh -split=floating -start-insert=v:false -edit=v:true' .
-                \ ' -winwidth=' . s:deol_win_pos['winWidth']
-                \ ' -wincol=' . s:deol_win_pos['winCol']
-                \ ' -winheight=' . s:deol_win_pos['winHeight']
-                \ ' -winrow=' . s:deol_win_pos['winRow']
-    endfunction
-'''
+repo = 'nvim-tree/nvim-web-devicons'
+on_source = ['lualine.nvim']
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_event = 'CursorMoved'
-hook_source = '''
-    nmap ga <Plug>(EasyAlign)
-    xmap ga <Plug>(EasyAlign)
+lua_source = '''
+    vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)', {remap = true})
 '''
 
 [[plugins]]
@@ -195,14 +156,32 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
 on_source = ['ddc.vim']
-hook_source = '''
-    imap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
-    smap <expr> <C-k> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-k>'
-    imap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-    smap <expr> <C-f> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-    imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-    smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-    "let g:vsnip_filetypes = {}
+lua_source = '''
+    local opts = { expr = true, remap = true }
+
+    vim.keymap.set({'i', 's'}, '<C-k>', function()
+        if vim.fn['vsnip#expandable']() == 1 then
+            return '<Plug>(vsnip-expand)'
+        else
+            return '<C-k>'
+        end
+    end, opts)
+
+    vim.keymap.set({'i', 's'}, '<C-f>', function()
+        if vim.fn['vsnip#jumpable'](1) == 1 then
+            return '<Plug>(vsnip-jump-next)'
+        else
+            return '<C-f>'
+        end
+    end, opts)
+
+    vim.keymap.set({'i', 's'}, '<C-b>', function()
+        if vim.fn['vsnip#jumpable'](-1) == 1 then
+            return '<Plug>(vsnip-jump-prev)'
+        else
+            return '<C-b>'
+        end
+    end, opts)
 '''
 
 [[plugins]]
@@ -212,19 +191,25 @@ on_source = ['vim-vsnip']
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    let g:precious_enable_switch_CursorMoved = {
-        \ '*': 0,
-        \ 'help': 1,
-        \ 'toml': 1,
-        \ 'ddt-shell': 1,
-    \ }
+lua_source = '''
+    vim.g.precious_enable_switch_CursorMoved = {
+        ['*'] = 0,
+        help = 1,
+        toml = 1,
+        ['ddt-shell'] = 1,
+    }
 
-    augroup precious
-        autocmd!
-        autocmd InsertEnter * :PreciousSwitch
-        autocmd InsertLeave * :PreciousReset
-    augroup END
+    local preciousAuGroup = vim.api.nvim_create_augroup('preciousAuGroup', {})
+    vim.api.nvim_create_autocmd({'InsertEnter'}, {
+        pattern = {'*'},
+        command = 'PreciousSwitch',
+        group = preciousAuGroup,
+    })
+    vim.api.nvim_create_autocmd({'InsertLeave'}, {
+        pattern = {'*'},
+        command = 'PreciousReset',
+        group = preciousAuGroup,
+    })
 '''
 
 [[plugins]]
@@ -234,11 +219,9 @@ on_source = ['vim-precious']
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'
 on_event = 'CursorMoved'
-hook_source = '''
-    nmap <C-j> <Plug>(edgemotion-j)
-    nmap <C-k> <Plug>(edgemotion-k)
-    vmap <C-j> <Plug>(edgemotion-j)
-    vmap <C-k> <Plug>(edgemotion-k)
+lua_source = '''
+    vim.keymap.set({'n', 'v'}, '<C-j>', '<Plug>(edgemotion-j)', {remap = true})
+    vim.keymap.set({'n', 'v'}, '<C-k>', '<Plug>(edgemotion-k)', {remap = true})
 '''
 
 [[plugins]]
@@ -246,37 +229,38 @@ repo = 'lambdalisue/vim-gin'
 on_map = '<Plug>(gin-'
 on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
 on_func = 'gin#'
-hook_source = '''
-    let g:gin_log_default_args = ['--graph', '--oneline', '--all', '--date=short', '--decorate=short']
+lua_source = '''
+    vim.g.gin_log_default_args = {'--graph', '--oneline', '--all', '--date=short', '--decorate=short'}
 
-    command! ShowGitDashboard call s:show_git_dashboard()
-    function! s:show_git_dashboard()
-        tabnew
-        GinStatus ++opener=topleft\ split
-        wincmd j
-        GinBranch
-        GinLog ++opener=botright\ vsplit
-    endfunction
+    local function show_git_dashboard()
+        vim.cmd.tabnew()
+        vim.cmd.GinStatus('++opener=topleft split')
+        vim.cmd.wincmd('j')
+        vim.cmd.GinBranch()
+        vim.cmd.GinLog('++opener=botright vsplit')
+    end
+    vim.api.nvim_create_user_command('ShowGitDashboard', show_git_dashboard, {})
 '''
+
 [plugins.ftplugin]
-gin-branch = '''
-    nnoremap <buffer><silent> r :e!<CR>
-    nnoremap <buffer><silent> q :q<CR>
+lua_gin-branch = '''
+    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true})
 '''
-gin-diff = '''
-    nnoremap <buffer><silent> r :e!<CR>
-    nnoremap <buffer><silent> q :q<CR>
+lua_gin-diff = '''
+    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true})
 '''
-gin-log = '''
-    nnoremap <buffer><silent> r :e!<CR>
-    nnoremap <buffer> gsh <Plug>(gin-action-show)
-    nnoremap <buffer> gsw <Plug>(gin-action-switch)
-    nnoremap <buffer><silent> q :q<CR>
+lua_gin-log = '''
+    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'gsh', '<Plug>(gin-action-show)', {remap = false, buffer = true})
+    vim.keymap.set('n', 'gsw', '<Plug>(gin-action-switch)', {remap = false, buffer = true})
 '''
-gin-status = '''
-    nnoremap <buffer><silent> r :e!<CR>
-    nnoremap <buffer> e <Plug>(gin-action-edit)
-    nnoremap <buffer><silent> q :q<CR>
+lua_gin-status = '''
+    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true})
+    vim.keymap.set('n', 'e', '<Plug>(gin-action-edit)', {remap = false, buffer = true})
 '''
 
 [[plugins]]
@@ -291,16 +275,28 @@ on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 repo = 'kevinhwang91/nvim-hlslens'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 lua_source = '''
-require('hlslens').setup()
-local opts = {noremap = true, silent = true}
-vim.keymap.set('n', 'n', "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
-vim.keymap.set('n', 'N', "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>", opts)
-vim.keymap.set({'n', 'x'}, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>")
-vim.keymap.set({'n', 'x'}, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
-vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
-vim.keymap.set({'n', 'x'}, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
-vim.keymap.set('n', '<Leader>c', ':nohlsearch<CR>', opts)
-vim.keymap.set('n', '<esc><esc>', ':nohlsearch<CR><esc>', opts)
+    require('hlslens').setup()
+
+    vim.keymap.set('n', 'n', function()
+        vim.cmd.normal({args = {vim.v.count1 .. 'n'}, bang = true})
+        require('hlslens').start()
+    end, opts)
+
+    vim.keymap.set('n', 'N', function()
+        vim.cmd.normal({args = {vim.v.count1 .. 'N'}, bang = true})
+        require('hlslens').start()
+    end, opts)
+
+    local opts = {noremap = true, silent = true}
+    vim.keymap.set({'n', 'x'}, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set({'n', 'x'}, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set({'n', 'x'}, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set('n', '<Leader>c', vim.cmd.nohlsearch, opts)
+    vim.keymap.set('n', '<esc><esc>', function()
+        vim.cmd.nohlsearch()
+        return '<Esc>'
+    end, opts)
 '''
 
 [[plugins]]
@@ -314,34 +310,40 @@ on_event = ['CursorMoved']
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    let g:indentLine_setConceal = 0
-    let g:indentLine_char = '¦'
+lua_source = '''
+    vim.g.indentLine_setConceal = 0
+    vim.g.indentLine_char = '¦'
 '''
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    let g:extra_whitespace_ignored_filetypes = ['', 'ddu-filer', 'ddu-ff', 'mason', 'lspsagafinder']
+lua_source = '''
+    vim.g.extra_whitespace_ignored_filetypes = {'', 'ddu-filer', 'ddu-ff', 'mason', 'lspsagafinder'}
 '''
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    augroup commentary
-        autocmd!
-        autocmd FileType cpp let b:commentary_format = '// %s'
-        autocmd FileType matlab let b:commentary_format = '% %s'
-    augroup END
+lua_source = '''
+    local commentaryAuGroup = vim.api.nvim_create_augroup('commentaryAuGroup', {})
+    vim.api.nvim_create_autocmd({'FileType'}, {
+        pattern = {'cpp'},
+        callback = function() vim.b.commentary_format = '// %s' end,
+        group = commentaryAuGroup,
+    })
+    vim.api.nvim_create_autocmd({'FileType'}, {
+        pattern = {'matlab'},
+        callback = function() vim.b.commentary_format = '% %s' end,
+        group = commentaryAuGroup,
+    })
 '''
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = '''
-    let g:EasyMotion_smartcase = 1
+lua_source = '''
+    vim.g.EasyMotion_smartcase = 1
 '''
 
 [[plugins]]
@@ -352,39 +354,41 @@ on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 repo = 'uga-rosa/ccc.nvim'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 lua_source = '''
-require('ccc').setup({
-    highlighter = {
-        auto_enable = true,
-    },
-})
+    require('ccc').setup({
+        highlighter = {
+            auto_enable = true,
+        },
+    })
 '''
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
-hook_source = 'source ~/dotfiles/.vim/lua/gitsigns.lua'
+lua_source = '''
+    vim.cmd.source('~/dotfiles/.vim/lua/gitsigns.lua')
+'''
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
-hook_source = '''
-    let g:startuptime_tries = 10
+lua_source = '''
+    vim.g.startuptime_tries = 10
 '''
 
 [[plugins]]
 repo = 'skanehira/vsession'
 on_event = 'CursorHold'
-hook_post_source = '''
-    let g:vsession_save_last_on_leave = 0
-    let g:vsession_ui = 'fzf'
-    nnoremap <Leader>s <Nop>
+lua_post_source = '''
+    vim.g.vsession_save_last_on_leave = 0
+    vim.g.vsession_ui = 'fzf'
+    vim.keymap.set('n', '<Leader>s', '<Nop>', {remap = false})
 '''
 [plugins.ftplugin]
-vsession-quickpick = '''
-    nnoremap <buffer><silent> q :close<CR>
+lua_vsession-quickpick = '''
+    vim.keymap.set('n', 'q', vim.cmd.close, {remap = false, buffer = true, silent = true})
 '''
-vsession-quickpick-filter = '''
-    nmap <buffer><silent> q <Plug>(vsession-quickpick-cancel)
+lua_vsession-quickpick-filter = '''
+    vim.keymap.set('n', 'q', '<Plug>(vsession-quickpick-cancel)', {remap = true, buffer = true, silent = true})
 '''
 
 [[plugins]]
@@ -399,8 +403,8 @@ on_source = ['mason.nvim']
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
 on_func = 'quickrun#'
-hook_add = '''
-    nnoremap <silent> ,q :call quickrun#run()<CR>
+lua_add = '''
+    vim.keymap.set('n', ',q', vim.cmd.QuickRun, {remap = false, silent = true})
 '''
 
 [[plugins]]
@@ -428,22 +432,6 @@ repo = 'itchyny/vim-qfedit'
 on_ft = ['qf']
 
 [[plugins]]
-repo = 'Shougo/dda.vim'
-depends = ['denops.vim']
-on_func = 'dda#'
-on_cmd = ['DdaCompletion']
-hook_source = '''
-    command! -range DdaCompletion <line1>,<line2>call s:DdaCompletion()
-    function! s:DdaCompletion() range
-        let s:prompt = ''
-        for line in range(a:firstline, a:lastline)
-            let s:prompt = s:prompt . getline(line) . ' '
-        endfor
-        call dda#completion(s:prompt)
-    endfunction
-'''
-
-[[plugins]]
 repo = 'lambdalisue/kensaku.vim'
 depends = ['denops.vim']
 on_source = ['kensaku-search.vim']
@@ -468,11 +456,11 @@ on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 repo = 'stevearc/oil.nvim'
 on_event = ['CursorHold']
 lua_source = '''
-require('oil').setup({
-    view_options = {
-        show_hidden = true
-}})
-vim.keymap.set("n", "<Leader>o", "<Cmd>Oil<CR>", {desc = "Open parent directory"})
+    require('oil').setup({
+        view_options = {
+            show_hidden = true
+    }})
+    vim.keymap.set("n", "<Leader>o", vim.cmd.Oil, {desc = "Open parent directory"})
 '''
 
 [[plugins]]
@@ -484,31 +472,31 @@ wk.add({
     {"<Leader>g", group = "gitsigns", mode = {"n", "v"}},
 
     {"<Leader>gs", group = "stage", mode = {"n", "v"}},
-    {"<Leader>gsb", "<Cmd>Gitsigns stage_buffer<CR>", desc = "buffer"},
-    {"<Leader>gsh", "<Cmd>Gitsigns stage_hunk<CR>", desc = "hunk (toggle)", mode = {"n", "v"}},
+    {"<Leader>gsb", function() vim.cmd.Gitsigns('stage_buffer') end, desc = "buffer"},
+    {"<Leader>gsh", function() vim.cmd.Gitsigns('stage_hunk') end, desc = "hunk (toggle)", mode = {"n", "v"}},
 
     {"<Leader>gr", group = "reset", mode = {"n", "v"}},
-    {"<Leader>grb", "<Cmd>Gitsigns reset_buffer<CR>", desc = "buffer"},
-    {"<Leader>grh", "<Cmd>Gitsigns reset_hunk<CR>", desc = "hunk", mode = {"n", "v"}},
+    {"<Leader>grb", function() vim.cmd.Gitsigns('reset_buffer') end, desc = "buffer"},
+    {"<Leader>grh", function() vim.cmd.Gitsigns('reset_hunk') end, desc = "hunk", mode = {"n", "v"}},
 
     {"<Leader>gd", group = "diff"},
-    {"<Leader>gdc", "<Cmd>Gitsigns diffthis ~1<CR>", desc = "last commit"},
-    {"<Leader>gdi", "<Cmd>Gitsigns diffthis<CR>", desc = "index"},
+    {"<Leader>gdc", function() vim.cmd.Gitsigns('diffthis ~1') end, desc = "last commit"},
+    {"<Leader>gdi", function() vim.cmd.Gitsigns('diffthis') end, desc = "index"},
 
     {"<Leader>gt", group = "gitsigns (toggle)"},
-    {"<Leader>gtb", "<Cmd>Gitsigns toggle_current_line_blame<CR>", desc = "blame (line)"},
-    {"<Leader>gtl", "<Cmd>Gitsigns toggle_linehl<CR>", desc = "line highlight"},
-    {"<Leader>gtn", "<Cmd>Gitsigns toggle_numhl<CR>", desc = "num highlight"},
-    {"<Leader>gts", "<Cmd>Gitsigns toggle_signs<CR>", desc = "signs"},
-    {"<Leader>gtw", "<Cmd>Gitsigns toggle_word_diff<CR>", desc = "word diff"},
+    {"<Leader>gtb", function() vim.cmd.Gitsigns('toggle_current_line_blame') end, desc = "blame (line)"},
+    {"<Leader>gtl", function() vim.cmd.Gitsigns('toggle_linehl') end, desc = "line highlight"},
+    {"<Leader>gtn", function() vim.cmd.Gitsigns('toggle_numhl') end, desc = "num highlight"},
+    {"<Leader>gts", function() vim.cmd.Gitsigns('toggle_signs') end, desc = "signs"},
+    {"<Leader>gtw", function() vim.cmd.Gitsigns('toggle_word_diff') end, desc = "word diff"},
 
-    {"<Leader>gb", "<Cmd>Gitsigns blame_line full=true<CR>", desc = "blame(full)"},
-    {"<Leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", desc = "preview"},
+    {"<Leader>gb", function() vim.cmd.Gitsigns('blame_line full=true') end, desc = "blame(full)"},
+    {"<Leader>gp", function() vim.cmd.Gitsigns('preview_hunk') end, desc = "preview"},
 
     {"<Leader>s", group = "session"},
-    {"<Leader>sd", "<Cmd>DeleteSession<CR>", desc = "delete"},
-    {"<Leader>sl", "<Cmd>LoadSession<CR>", desc = "load"},
-    {"<Leader>ss", "<Cmd>SaveSession<CR>", desc = "save"},
+    {"<Leader>sd", vim.cmd.DeleteSession, desc = "delete"},
+    {"<Leader>sl", vim.cmd.LoadSession, desc = "load"},
+    {"<Leader>ss", vim.cmd.SaveSession, desc = "save"},
 
     {"<C-g>", group = "gp.nvim", mode = {"n", "v"}},
     {"<C-g>t", group = "translate (gp.nvim)", mode = {"v"}},
@@ -527,22 +515,22 @@ wk.add({
 [[plugins]]
 repo = 'Shougo/ddt.vim'
 on_func = ['ddt#']
-hook_source = '''
-call ddt#custom#patch_global(#{
-    \ ui: 'shell',
-    \ uiParams: #{
-    \   shell: #{
-    \       prompt: '>',
-    \       promptPattern: '\w*> \?',
-    \       userPrompt: 'fnamemodify(getcwd(), ":~")',
-    \       shellHistoryPath: expand('~') .. '\\.cache\\ddt_shellhist.log',
-    \   },
-    \   terminal: #{
-    \       command: ['zsh'],
-    \       promptPattern: has('win32') ? '\f\+>' : '\w*% \?',
-    \   },
-    \ }
-\ })
+lua_source = '''
+    -- vim.fn['ddt#custom#patch_global']({
+    --     ui = 'shell',
+    --     uiParams = {
+    --         shell = {
+    --             prompt = '>',
+    --             promptPattern = '%w*> %?',
+    --             userPrompt = vim.fn.fnamemodify(vim.fn.getcwd(), ":~"),
+    --             shellHistoryPath = vim.fn.expand('~') .. '\\.cache\\ddt_shellhist.log',
+    --         },
+    --         terminal = {
+    --             command = {'zsh'},
+    --             promptPattern = if vim.fn.has('win32') == 1 then '%f%+>' else '%w*%% %?' end,
+    --         },
+    --     },
+    -- })
 '''
 
 [[plugins]]
@@ -553,12 +541,10 @@ on_source = ['ddt.vim']
 repo = 'Shougo/ddt-ui-shell'
 on_source = ['ddt.vim']
 [plugins.ftplugin]
-ddt-shell = '''
-    nnoremap <buffer> <CR> <Cmd>call ddt#ui#do_action('executeLine')<CR>
-    inoremap <buffer> <CR> <Cmd>call ddt#ui#do_action('executeLine')<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddt#ui#do_action('nextPrompt')<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddt#ui#do_action('previousPrompt')<CR>
-    nnoremap <buffer> <C-y> <Cmd>call ddt#ui#do_action('pastePrompt')<CR>
-    inoremap <buffer> <C-c> <Cmd>call ddt#ui#do_action('terminate')<CR>
+lua_ddt-shell = '''
+    vim.keymap.set({'n', 'i'}, '<CR>', function() vim.fn['ddt#ui#do_action']('executeLine') end, {remap = false, buffer = true, desc = 'executeLine'})
+    vim.keymap.set('n', '<C-n>', function() vim.fn['ddt#ui#do_action']('nextPrompt') end, {remap = false, buffer = true, desc = 'nextPrompt'})
+    vim.keymap.set('n', '<C-p>', function() vim.fn['ddt#ui#do_action']('previousPrompt') end, {remap = false, buffer = true, desc = 'previousPrompt'})
+    vim.keymap.set('n', '<C-y>', function() vim.fn['ddt#ui#do_action']('pastePrompt') end, {remap = false, buffer = true, desc = 'pastePrompt'})
+    vim.keymap.set('i', '<C-c>', function() vim.fn['ddt#ui#do_action']('terminate') end, {remap = false, buffer = true, desc = 'terminate'})
 '''
-

@@ -1,0 +1,8 @@
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+depends = ['nvim-web-devicons']
+on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
+lua_source = '''
+    require('lualine').setup()
+'''
+

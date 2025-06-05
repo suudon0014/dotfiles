@@ -2,47 +2,51 @@
 repo = 'itchyny/lightline.vim'
 depends = ['sonokai']
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
+lua_source = '''
+    local lightline_colorscheme = 'sonokai'
+    vim.g.lightline = {
+        colorscheme = lightline_colorscheme,
+        mode_map = {c = 'NORMAL'},
+        active = {
+          left = {{'mode', 'paste'}, {'gitbranch', 'filename'}},
+          right = {{'lineinfo', 'percent'}, {'fileformat', 'fileencoding', 'filetype'}}
+        },
+        inactive = {
+          left = {{'filename'}},
+          right = {{'lineinfo', 'percent'}, {'filetype'}}
+        },
+        component = {
+          lineinfo = '%3l:%-2v',
+        },
+        component_function = {
+          modified = 'LightlineModified',
+          gitbranch = 'LightlineGitbranch',
+          fileformat = 'LightlineFileformat',
+          filetype = 'LightlineFiletype',
+          fileencoding = 'LightlineFileencoding',
+          filename = 'LightlineFilename',
+          mode = 'LightlineMode',
+        },
+    }
+
+    if vim.fn.has('gui_running') == 1 then
+        local tmp = vim.g.lightline
+        tmp.component.lineinfo = "\u{e0a1} " .. '%3l:%-2v'
+        tmp.separator = {left = "\u{e0b0} ", right = "\u{e0b2} "}
+        tmp.subseparator = {left = "\u{e0b1} ", right = "\u{e0b3} "}
+        tmp.component_function.readonly = 'LightlineReadonly'
+        vim.g.lightline = tmp
+    end
+
+    local palette = vim.api.nvim_eval('g:lightline#colorscheme#' .. lightline_colorscheme .. '#palette')
+    local setPalletTablineVar = 'let g:lightline#colorscheme#' .. lightline_colorscheme .. '#palette.tabline'
+    vim.api.nvim_exec2(setPalletTablineVar .. [=[.tabsel = [["#444444", "#8ac6f2", "0", "39"]] ]=], {})
+    vim.api.nvim_exec2(setPalletTablineVar .. [=[.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']] ]=], {})
+    vim.api.nvim_exec2(setPalletTablineVar .. [=[.middle = [['#93a1a1', '#002b36', '245', '234']] ]=], {})
+    vim.api.nvim_exec2(setPalletTablineVar .. [=[.left = [['#002b36', '#93a1a1', '234', '245']] ]=], {})
+'''
+
 hook_source = '''
-    let s:lightline_colorscheme = 'sonokai'
-    let g:lightline = {
-            \ 'colorscheme': s:lightline_colorscheme,
-            \ 'mode_map': {'c': 'NORMAL'},
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename'] ],
-            \   'right': [ ['lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'] ]
-            \ },
-            \ 'inactive': {
-            \   'left': [['filename']],
-            \   'right': [['lineinfo', 'percent'], ['filetype']]
-            \ },
-            \ 'component': {
-            \   'lineinfo': '%3l:%-2v',
-            \ },
-            \ 'component_function': {
-            \   'modified': 'LightlineModified',
-            \   'gitbranch': 'LightlineGitbranch',
-            \   'fileformat': 'LightlineFileformat',
-            \   'filetype': 'LightlineFiletype',
-            \   'fileencoding': 'LightlineFileencoding',
-            \   'filename': 'LightlineFilename',
-            \   'mode': 'LightlineMode',
-            \ },
-    \ }
-
-    if has('gui_running')
-        let g:lightline.component.lineinfo = "\ue0a1 " . '%3l:%-2v'
-        let g:lightline.separator = {'left': "\ue0b0 ", 'right': "\ue0b2 "}
-        let g:lightline.subseparator = {'left': "\ue0b1 ", 'right': "\ue0b3 "}
-        let g:lightline.component_function.readonly = 'LightlineReadonly'
-    endif
-
-    let s:palette = eval('g:lightline#colorscheme#' . s:lightline_colorscheme . '#palette')
-    let s:palette.tabline.tabsel = [['#444444', '#8ac6f2', '0', '39']]
-    let s:palette.tabline.right = [['#002b36', '#93a1a1', '234', '245'], ['#002b36', '#93a1a1', '234', '245']]
-    let s:palette.tabline.middle = [['#93a1a1', '#002b36', '245', '234']]
-    let s:palette.tabline.left = [['#002b36', '#93a1a1', '234', '245']]
-    unlet s:palette
-
     " functions and commands
     function! LightlineModified()
       return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
