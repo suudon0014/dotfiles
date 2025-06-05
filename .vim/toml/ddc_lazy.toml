@@ -2,8 +2,8 @@
 repo = 'Shougo/ddc.vim'
 depends = ['denops.vim']
 on_event = ['InsertEnter', 'CmdlineEnter']
-hook_source = '''
-    source ~/dotfiles/.vim/settings/ddc_rc.vim
+lua_source = '''
+    vim.cmd.source('~/dotfiles/.vim/settings/ddc_rc.vim')
 '''
 
 [[plugins]]
@@ -33,43 +33,41 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 on_source = ['ddc.vim']
-hook_source = '''
-    imap <C-j> <Plug>(skkeleton-toggle)
-    cmap <C-j> <Plug>(skkeleton-toggle)
-    tmap <C-j> <Plug>(skkeleton-toggle)
-    call skkeleton#config({
-    \   'eggLikeNewline': v:true,
-    \   'globalDictionaries': [["~/.config/skk/SKK-JISYO.L", "euc-jp"]],
-    \   'userDictionary': "~/.config/skk/my_jisyo",
-    \   'completionRankFile': '~/.config/skk/rank.json',
-    \   'keepState': v:true,
-    \   'markerHenkan': '>',
-    \   'markerHenkanSelect': 'v',
-    \ })
-    call skkeleton#register_kanatable('rom', {
-        \ 'jj': 'escape',
-        \ 'c1': ["\u2460"],
-        \ 'c2': ["\u2461"],
-        \ 'c3': ["\u2462"],
-        \ 'c4': ["\u2463"],
-        \ 'c5': ["\u2464"],
-        \ 'c6': ["\u2465"],
-        \ 'c7': ["\u2466"],
-        \ 'c8': ["\u2467"],
-        \ 'c9': ["\u2468"],
-        \ 'c0': ["\u2469"],
-    \ })
+lua_source = '''
+    vim.keymap.set({'i', 'c', 't'}, '<C-j>', '<Plug>(skkeleton-toggle)', {remap = true})
+    vim.fn['skkeleton#config']({
+        eggLikeNewline = true,
+        globalDictionaries = {{'~/.config/skk/SKK-JISYO.L', 'euc-jp'}},
+        userDictionary = '~/.config/skk/my_jisyo',
+        completionRankFile = '~/.config/skk/rank.json',
+        keepState = true,
+        markerHenkan = '>',
+        markerHenkanSelect = 'v',
+    })
+    vim.fn['skkeleton#register_kanatable']('rom', {
+        jj = 'escape',
+        c1 = {'\u{2460}'},
+        c2 = {'\u{2461}'},
+        c3 = {'\u{2462}'},
+        c4 = {'\u{2463}'},
+        c5 = {'\u{2464}'},
+        c6 = {'\u{2465}'},
+        c7 = {'\u{2466}'},
+        c8 = {'\u{2467}'},
+        c9 = {'\u{2468}'},
+        c0 = {'\u{2469}'},
+    })
 '''
 
 [[plugins]]
 repo = 'Matts966/skk-vconv.vim'
 depends = ['skkeleton']
 on_source = ['ddc.vim']
-hook_source = '''
-    let g:skk_vconv#no_default_mappings = v:true
+lua_source = '''
+    vim.g['skk_vconv#no_default_mappings'] = true
 '''
-hook_post_source = '''
-    vmap <C-s> <Plug>(skk-vconv:conv)
+lua_post_source = '''
+    vim.keymap.set('v', '<C-s>', '<Plug>(skk-vconv:conv)', {remap = false})
 '''
 
 # source
@@ -92,7 +90,9 @@ on_source = ['ddc.vim']
 [[plugins]]
 repo = 'Shougo/ddc-source-lsp'
 on_source = ['ddc.vim']
-hook_post_source = 'source ~/dotfiles/.vim/lua/nvim-lsp.lua'
+lua_post_source = '''
+    vim.cmd.source('~/dotfiles/.vim/lua/nvim-lsp.lua')
+'''
 
 [[plugins]]
 repo = 'Shougo/ddc-source-input'
