@@ -101,7 +101,7 @@ vim.g.loaded_spellfile_plugin   = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.skip_loading_mswin        = 1
 
-if vim.fn.has('win32') or vim.fn.has('win64') then
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
     local clipboard = {}
     clipboard['name'] = 'win32yank'
     clipboard['copy'] = {
