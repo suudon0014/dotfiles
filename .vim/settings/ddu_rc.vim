@@ -229,6 +229,7 @@ call ddu#custom#patch_global({
         \ },
         \ dein_update: #{
             \ maxProcess: 32,
+            \ useGraphQL: v:false,
         \ },
         \ obsidian_note: #{
             \ vaults: [#{
