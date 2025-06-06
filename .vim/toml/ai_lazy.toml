@@ -244,7 +244,6 @@ require('avante').setup({
     provider = "gemini",
     auto_suggestions_provider = "gemini",
     cursor_applying_provider = "gemini",
-    gemini = {model = "gemini-2.5-flash-preview-05-20"},
     behavior = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -252,7 +251,8 @@ require('avante').setup({
         auto_apply_diff_after_generation = true,
         enable_cursor_planning_mode = true,
     },
-    vendors = {
+    providers = {
+        gemini = {model = "gemini-2.5-flash-preview-05-20"},
         gemini_2_5_flash = {
             __inherited_from = "gemini",
             model = "gemini-2.5-flash-preview-05-20",
