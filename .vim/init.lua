@@ -65,24 +65,30 @@ vim.cmd.syntax('on')
 
 -- Gui
 if vim.fn.has('gui_running') == 1 then
-    if vim.fn.has('win32') == 1 or vim.fn.has('win64') then
-        vim.cmd.source(os.getenv('VIMRUNTIME') .. '/delmenu.vim')
-        vim.opt.langmenu = 'ja_jp.utf-8'
-        vim.cmd.source(os.getenv('VIMRUNTIME') .. '/menu.vim')
-    end
+    vim.api.nvim_create_autocmd('GUIEnter', {
+        pattern = '*',
+        callback = function()
+            if vim.fn.has('win32') == 1 or vim.fn.has('win64') then
+                vim.cmd.source(os.getenv('VIMRUNTIME') .. '/delmenu.vim')
+                vim.opt.langmenu = 'ja_jp.utf-8'
+                vim.cmd.source(os.getenv('VIMRUNTIME') .. '/menu.vim')
+            end
 
-    if vim.fn.has('nvim') == 1 then
-        vim.cmd.GuiFont({args = {'Cica:h11'}, bang = true})
-        vim.cmd.GuiPopupmenu(0)
-        vim.cmd.GuiTabline(0)
-    end
+            if vim.fn.has('nvim') == 1 then
+                vim.cmd.GuiFont({args = {'Cica:h11'}, bang = true})
+                vim.cmd.GuiPopupmenu(0)
+                vim.cmd.GuiTabline(0)
+            end
 
-    vim.opt.guioptions:remove('m')
-    vim.opt.guioptions:remove('T')
-    vim.opt.guioptions:remove('r')
-    vim.opt.guioptions:remove('R')
-    vim.opt.guioptions:remove('l')
-    vim.opt.guioptions:remove('L')
-    vim.opt.guioptions:remove('b')
+            vim.opt.guioptions:remove('m')
+            vim.opt.guioptions:remove('T')
+            vim.opt.guioptions:remove('r')
+            vim.opt.guioptions:remove('R')
+            vim.opt.guioptions:remove('l')
+            vim.opt.guioptions:remove('L')
+            vim.opt.guioptions:remove('b')
+            end,
+        once = true,
+    })
 end
 
