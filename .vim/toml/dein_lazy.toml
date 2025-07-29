@@ -553,7 +553,10 @@ lua_ddt-shell = '''
 repo = 'gamoutatsumi/dps-ghosttext.vim'
 depends = ['denops.vim']
 on_source = ['denops.vim']
-hook_post_source = '''
-    let g:dps_ghosttext#ftmap["gemini.google.com"] = "markdown"
+lua_post_source = '''
+    tmp_table = {}
+    tmp_table["gemini.google.com"] = "markdown"
+    tmp_table["aistudio.google.com"] = "markdown"
+    vim.g["dps_ghosttext#ftmap"] = vim.tbl_deep_extend("keep", vim.g["dps_ghosttext#ftmap"], tmp_table)
 '''
 
