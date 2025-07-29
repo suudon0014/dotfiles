@@ -548,3 +548,12 @@ lua_ddt-shell = '''
     vim.keymap.set('n', '<C-y>', function() vim.fn['ddt#ui#do_action']('pastePrompt') end, {remap = false, buffer = true, desc = 'pastePrompt'})
     vim.keymap.set('i', '<C-c>', function() vim.fn['ddt#ui#do_action']('terminate') end, {remap = false, buffer = true, desc = 'terminate'})
 '''
+
+[[plugins]]
+repo = 'gamoutatsumi/dps-ghosttext.vim'
+depends = ['denops.vim']
+on_source = ['denops.vim']
+hook_post_source = '''
+    let g:dps_ghosttext#ftmap["gemini.google.com"] = "markdown"
+'''
+
