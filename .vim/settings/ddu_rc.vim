@@ -21,10 +21,6 @@ nnoremap <silent> ,fd :call <SID>DduFilerDualStart()<CR>
 nnoremap <silent> ,gd :call <SID>DduStart('git_diff', v:true, v:false, [['[GIT_DIFF]', 'Blue']])<CR>
 nnoremap <silent> ,gr :call <SID>DduStart('git_ref', v:true, v:false, [['[GIT_SHOW_REF]', 'Blue']])<CR>
 nnoremap <silent> ,gs :call <SID>DduStart('git_status', v:true, v:false, [['[GIT_STATUS]', 'Blue']])<CR>
-nnoremap <silent> ,w :call <SID>DduStart('window_custom', v:true, v:true, [['[WINDOW]', 'Blue']])<CR>
-nnoremap <silent> ,al :call <SID>DduStart('arglist', v:true, v:false, [['[ARG_LIST]', 'Blue']])<CR>
-
-nnoremap <silent> ,on :call <SID>DduStart('obsidian_note', v:true, v:false, [['[OBS]', 'Blue']])<CR>
 
 " functions and commands
 function! s:set_ddu_win_pos() abort
@@ -231,12 +227,6 @@ call ddu#custom#patch_global({
             \ maxProcess: 32,
             \ useGraphQL: v:false,
         \ },
-        \ obsidian_note: #{
-            \ vaults: [#{
-                \ path: expand('~/OneDrive/obsidian'),
-                \ name: 'obsidian_vault',
-            \ }]
-        \ },
     \ },
     \ 'sourceOptions': #{
         \ _: #{
@@ -251,15 +241,6 @@ call ddu#custom#patch_global({
         \ },
         \ file_rec: #{
             \ converters: [{'name': 'converter_hl_dir'}],
-        \ },
-        \ obsidian_note: #{
-            \ matchers: [
-                \ 'converter_obsidian_rel_path',
-                \ 'converter_obsidian_title',
-                \ 'converter_display_word',
-                \ 'matcher_fzf',
-            \ ],
-            \ converters: ['converter_obsidian_backlink']
         \ },
     \ },
     \ 'kindOptions': {
@@ -280,9 +261,6 @@ call ddu#custom#patch_global({
         \ },
         \ 'dein_update': {
             \ 'defaultAction': 'viewDiff',
-        \ },
-        \ 'window': {
-            \ 'defaultAction': 'open',
         \ },
         \ 'git_tag': {
             \ 'defaultAction': 'switch',
@@ -339,17 +317,6 @@ call ddu#custom#patch_local('dirmark_custom', {
             \ 'quit': v:true,
         \ },
     \ },
-\ })
-
-call ddu#custom#patch_local('window_custom', {
-    \ 'uiParams': {
-        \ 'ff': {
-            \ 'autoAction': {'name': 'preview'},
-    \ }},
-    \ 'sources': [{
-        \ 'name': 'window',
-        \ 'params': {'ignoreBufNames': ["ddu-ff-filter-window_custom", "ddu-ff-window_custom"]},
-    \ }],
 \ })
 
 call ddu#custom#patch_local('filer_single', {

@@ -7,10 +7,6 @@ lua_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/ddc-ui-native'
-on_source = ['ddc.vim']
-
-[[plugins]]
 repo = 'Shougo/ddc-ui-pum'
 on_source = ['ddc.vim']
 
@@ -104,10 +100,6 @@ on_source = ['ddc.vim']
 
 [[plugins]]
 repo = 'tani/ddc-path'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'shutils/ddc-source-obsidian'
 on_source = ['ddc.vim']
 
 [[plugins]]

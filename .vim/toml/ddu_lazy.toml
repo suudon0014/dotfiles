@@ -171,23 +171,7 @@ repo = 'tennashi/ddu-source-git'
 on_source = ['ddu.vim']
 
 [[plugins]]
-repo = 'kamecha/ddu-source-window'
-on_source = ['ddu.vim']
-
-[[plugins]]
-repo = 'kamecha/ddu-source-tab'
-on_source = ['ddu.vim']
-
-[[plugins]]
-repo = 'suudon0014/ddu-source-arglist'
-on_source = ['ddu.vim']
-
-[[plugins]]
 repo = 'uga-rosa/ddu-source-lsp'
-on_source = ['ddu.vim']
-
-[[plugins]]
-repo = 'shutils/ddu-source-obsidian'
 on_source = ['ddu.vim']
 
 [[plugins]]
@@ -203,10 +187,6 @@ repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
 [[plugins]]
-repo = 'Shougo/ddu-filter-matcher_hidden'
-on_source = ['ddu.vim']
-
-[[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
 on_source = ['ddu.vim']
 
@@ -219,15 +199,7 @@ repo = 'kamecha/ddu-filter-converter_file_info'
 on_source = ['ddu.vim']
 
 [[plugins]]
-repo = 'Shougo/ddu-filter-converter_display_word'
-on_source = ['ddu.vim']
-
-[[plugins]]
 repo = 'Shougo/ddu-kind-file'
-on_source = ['ddu.vim']
-
-[[plugins]]
-repo = 'Shougo/ddu-kind-word'
 on_source = ['ddu.vim']
 
 [[plugins]]
