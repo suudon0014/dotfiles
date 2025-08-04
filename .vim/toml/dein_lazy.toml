@@ -138,7 +138,7 @@ on_source = ['lualine.nvim']
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-on_event = 'CursorMoved'
+on_map = 'ga'
 lua_source = '''
     vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)', {remap = true})
 '''
@@ -212,7 +212,7 @@ on_source = ['vim-precious']
 
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'
-on_event = 'CursorMoved'
+on_map = ['<C-j>', '<C-k>']
 lua_source = '''
     vim.keymap.set({'n', 'v'}, '<C-j>', '<Plug>(edgemotion-j)', {remap = true})
     vim.keymap.set({'n', 'v'}, '<C-k>', '<Plug>(edgemotion-k)', {remap = true})
@@ -448,7 +448,8 @@ on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 
 [[plugins]]
 repo = 'stevearc/oil.nvim'
-on_event = ['CursorHold']
+on_map = '<Leader>o'
+on_cmd = 'Oil'
 lua_source = '''
     require('oil').setup({
         view_options = {
