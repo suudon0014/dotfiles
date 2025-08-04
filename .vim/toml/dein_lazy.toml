@@ -71,6 +71,7 @@ lua_source = '''
 repo = 'mason-org/mason.nvim'
 on_event = ['CursorHold', 'InsertEnter', 'BufReadPost', 'BufNewFile']
 on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
+on_source = ['ddc-source-lsp']
 
 [[plugins]]
 repo = 'mason-org/mason-lspconfig.nvim'
