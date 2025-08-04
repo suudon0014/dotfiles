@@ -40,13 +40,6 @@ lua_source = '''
 '''
 
 [[plugins]]
-repo = 'elzr/vim-json'
-on_ft = 'json'
-lua_source = '''
-    vim.g.vim_json_syntax_conceal = 0
-'''
-
-[[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 lua_source = '''
