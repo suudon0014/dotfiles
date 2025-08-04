@@ -1,9 +1,9 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
-on_event = ['BufEnter']
-hook_source = '''
-    source ~/dotfiles/.vim/settings/ddu_rc.vim
+on_source = ['denops.vim']
+lua_source = '''
+    vim.cmd.source('~/dotfiles/.vim/settings/ddu_rc.vim')
 '''
 
 [[plugins]]
