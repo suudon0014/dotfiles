@@ -92,7 +92,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-2.5-pro-exp-03-25", top_k = 40},
+            model = {model = "gemini-2.5-pro", top_k = 40},
             system_prompt = general_system_prompt,
         },
         {
@@ -100,15 +100,7 @@ local conf = {
             provider = "googleai",
             chat = true,
             command = true,
-            model = {model = "gemini-2.5-flash-preview-05-20", top_k = 40},
-            system_prompt = general_system_prompt,
-        },
-        {
-            name = "Gemma2-2b-jpn",
-            provider = "ollama",
-            chat = true,
-            command = true,
-            model = {model = "hf.co/alfredplpl/gemma-2-2b-jpn-it-gguf:latest", top_k = 40},
+            model = {model = "gemini-2.5-flash", top_k = 40},
             system_prompt = general_system_prompt,
         },
     },
@@ -183,11 +175,10 @@ require('codecompanion').setup({
             return require('codecompanion.adapters').extend('gemini', {
                 schema = {
                     model = {
-                        default = "gemini-2.5-flash-preview-05-20",
+                        default = "gemini-2.5-flash",
                         choices = {
-                            "gemini-2.5-flash-preview-05-20",
-                            "gemini-2.5-pro-exp-03-25",
-                            "gemini-2.0-flash",
+                            "gemini-2.5-flash",
+                            "gemini-2.5-pro",
                         },
                     },
                 },
@@ -252,24 +243,14 @@ require('avante').setup({
         enable_cursor_planning_mode = true,
     },
     providers = {
-        gemini = {model = "gemini-2.5-flash-preview-05-20"},
+        gemini = {model = "gemini-2.5-flash"},
         gemini_2_5_flash = {
             __inherited_from = "gemini",
-            model = "gemini-2.5-flash-preview-05-20",
+            model = "gemini-2.5-flash",
         },
-        gemini_pro = {
+        gemini_2_5_pro = {
             __inherited_from = "gemini",
-            model = "gemini-2.5-pro-exp-03-25",
-        },
-        gemini_2_0_flash = {
-            __inherited_from = "gemini",
-            model = "gemini-2.0-flash",
-        },
-        ollama = {
-            __inherited_from = "openai",
-            api_key_name = "",
-            endpoint = "http://localhost:11434/v1",
-            model = "codegemma:2b",
+            model = "gemini-2.5-pro",
         },
     },
     system_prompt = function ()
