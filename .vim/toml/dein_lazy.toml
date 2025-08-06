@@ -371,11 +371,16 @@ lua_source = '''
 
 [[plugins]]
 repo = 'skanehira/vsession'
-on_event = 'CursorHold'
+on_cmd = ['DeleteSession', 'LoadSession', 'SaveSession']
+lua_add = '''
+    vim.keymap.set('n', '<Leader>s', '<Nop>', {remap = false})
+    vim.keymap.set('n', '<Leader>sd', vim.cmd.DeleteSession, {desc = 'delete'})
+    vim.keymap.set('n', '<Leader>sl', vim.cmd.LoadSession, {desc = 'load'})
+    vim.keymap.set('n', '<Leader>ss', vim.cmd.SaveSession, {desc = 'save'})
+'''
 lua_post_source = '''
     vim.g.vsession_save_last_on_leave = 0
     vim.g.vsession_ui = 'fzf'
-    vim.keymap.set('n', '<Leader>s', '<Nop>', {remap = false})
 '''
 [plugins.ftplugin]
 lua_vsession-quickpick = '''
@@ -489,9 +494,6 @@ wk.add({
     {"<Leader>gp", function() vim.cmd.Gitsigns('preview_hunk') end, desc = "preview"},
 
     {"<Leader>s", group = "session"},
-    {"<Leader>sd", vim.cmd.DeleteSession, desc = "delete"},
-    {"<Leader>sl", vim.cmd.LoadSession, desc = "load"},
-    {"<Leader>ss", vim.cmd.SaveSession, desc = "save"},
 
     {"<C-g>", group = "gp.nvim", mode = {"n", "v"}},
     {"<C-g>t", group = "translate (gp.nvim)", mode = {"v"}},
