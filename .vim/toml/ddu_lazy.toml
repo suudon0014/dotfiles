@@ -15,34 +15,54 @@ on_cmd = ['Ddu']
 repo = 'Shougo/ddu-ui-ff'
 on_source = ['ddu.vim']
 [plugins.ftplugin]
-ddu-ff = '''
-    nnoremap <buffer> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
-    nnoremap <buffer> x <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer> * <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
-    nnoremap <buffer> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-    nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('redraw', #{method: 'refreshItems'})<CR>
-    nnoremap <buffer> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-e>"'})<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-y>"'})<CR>
-    nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
-    nnoremap <buffer> <C-h> <Cmd>call ddu#ui#do_action('cancel')<CR>
-    nnoremap <buffer> a <Cmd>call ddu#ui#do_action('chooseAction')<CR>
-    nnoremap <buffer> c <Cmd>call ddu#ui#multi_actions('itemAction', {'name': 'cd'})<CR>
-    nnoremap <buffer> d <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
-    nnoremap <buffer> e <Cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<CR>
-    nnoremap <buffer> E <Cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<CR>
-    nnoremap <buffer> s <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
-    nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
-    nnoremap <buffer> v <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer> N <Cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<CR>
-    nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
-    nnoremap <buffer> yy <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
-    nnoremap <buffer> t <Cmd>call ddu#ui#do_action('itemAction', {'name': 'tabopen'})<CR>
-    nnoremap <buffer> <leader>l <Cmd>call ddu#ui#do_action('itemAction', {'name': 'loclist'})<CR>
-    nnoremap <buffer> <leader>q <Cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<CR>
-    nnoremap <buffer> u <Cmd>call ddu#ui#do_action('updateOptions', {
-        \ 'sourceOptions': {'_': {'matchers': []}}})<CR>
-    nnoremap <buffer> <Esc><Esc> <Nop>
+lua_ddu-ff = '''
+    vim.keymap.set('n', '<CR>', function() vim.fn['ddu#ui#do_action']('itemAction') end, {remap = false, buffer = true, desc = 'itemAction'})
+    vim.keymap.set('n', 'x', function() vim.fn['ddu#ui#do_action']('toggleSelectItem') end, {remap = false, buffer = true, desc = 'toggleSelectItem'})
+    vim.keymap.set('n', '*', function() vim.fn['ddu#ui#do_action']('toggleAllItems') end, {remap = false, buffer = true, desc = 'toggleAllItems'})
+    vim.keymap.set('n', 'i', function() vim.fn['ddu#ui#do_action']('openFilterWindow') end, {remap = false, buffer = true, desc = 'openFilterWindow'})
+    vim.keymap.set('n', '<C-l>', function() vim.fn['ddu#ui#do_action']('redraw', {method = 'refreshItems'}) end, {remap = false, buffer = true, desc = 'redraw'})
+    vim.keymap.set('n', 'p', function() vim.fn['ddu#ui#do_action']('togglePreview') end, {remap = false, buffer = true, desc = 'togglePreview'})
+
+    local keycode = function (keycode_str) return vim.api.nvim_replace_termcodes(keycode_str, true, true, true) end
+    vim.keymap.set('n', '<C-n>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-e>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Next)'})
+    vim.keymap.set('n', '<C-p>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-y>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Prev)'})
+
+    vim.keymap.set('n', 'q', function() vim.fn['ddu#ui#do_action']('quit') end, {remap = false, buffer = true, desc = 'quit'})
+    vim.keymap.set('n', '<C-h>', function() vim.fn['ddu#ui#do_action']('cancel') end, {remap = false, buffer = true, desc = 'cancel'})
+    vim.keymap.set('n', 'a', function() vim.fn['ddu#ui#do_action']('chooseAction') end, {remap = false, buffer = true, desc = 'chooseAction'})
+    vim.keymap.set('n', 'c', function() vim.fn['ddu#ui#multi_actions']('itemAction', {name = 'cd'}) end, {remap = false, buffer = true, desc = 'cd'})
+    vim.keymap.set('n', 'd', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'delete'}) end, {remap = false, buffer = true, desc = 'delete'})
+    vim.keymap.set('n', 'e', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'edit'}) end, {remap = false, buffer = true, desc = 'edit'})
+
+    vim.keymap.set('n', 'E', function()
+        vim.ui.input({prompt = 'params: '}, function(input_str)
+            if (input_str == nil) or (input_str == '') then
+                return
+            end
+
+        local eval_ok, eval_result_or_error = pcall(vim.fn.eval, input_str)
+        if not eval_ok then
+            return
+        end
+
+        local ddu_params = {params = eval_result_or_error}
+        local ddu_ok, ddu_error_msg = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', ddu_params)
+        if not ddu_ok then
+            return
+        end
+    end) end, {remap = false, buffer = true, desc = 'itemAction(manual)'})
+
+    vim.keymap.set('n', 's', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'split'}}) end, {remap = false, buffer = true, desc = 'open(split)'})
+    vim.keymap.set('n', 'u', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'undo'}) end, {remap = false, buffer = true, desc = 'undo'})
+    vim.keymap.set('n', 'v', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'vsplit'}}) end, {remap = false, buffer = true, desc = 'open(vsplit)'})
+    vim.keymap.set('n', 'N', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'newFile'}) end, {remap = false, buffer = true, desc = 'newFile'})
+    vim.keymap.set('n', 'r', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'rename'}) end, {remap = false, buffer = true, desc = 'rename'})
+    vim.keymap.set('n', 'yy', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'yank'}) end, {remap = false, buffer = true, desc = 'yank path'})
+    vim.keymap.set('n', 't', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'tabedit'}}) end, {remap = false, buffer = true, desc = 'tabedit'})
+    vim.keymap.set('n', '<Leader>l', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'loclist'}) end, {remap = false, buffer = true, desc = 'loclist'})
+    vim.keymap.set('n', '<Leader>q', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'quickfix'}) end, {remap = false, buffer = true, desc = 'quickfix'})
+    vim.keymap.set('n', 'u', function() vim.fn['ddu#ui#do_action']('updateOptions', {sourceOptions = {['_'] = {matchers = {}}}}) end, {remap = false, buffer = true, desc = 'updateOptions'})
+    vim.keymap.set('n', '<Esc><Esc>', '<Nop>', {remap = false, buffer = true, desc = '<Nop>'})
 '''
 
 [[plugins]]
