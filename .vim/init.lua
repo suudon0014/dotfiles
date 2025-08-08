@@ -11,8 +11,7 @@ vim.cmd.runtime({args = {'lua/sets.lua'}, bang = true})
 
 vim.cmd.source('~/dotfiles/.vim/dein_rc.lua')
 -- vim.cmd.source('~/dotfiles/.vim/settings/dpp_install.vim')
-vim.cmd.source('~/dotfiles/.vim/settings/submode.vim')
--- require('submode')
+require('submode')
 
 local myAuGroup = vim.api.nvim_create_augroup('myAuGroup', {})
 
