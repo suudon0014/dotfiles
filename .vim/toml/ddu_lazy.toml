@@ -69,70 +69,154 @@ lua_ddu-ff = '''
 repo = 'Shougo/ddu-ui-filer'
 on_source = ['ddu.vim']
 [plugins.ftplugin]
-ddu-filer = '''
-    nnoremap <buffer> * <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
-    nnoremap <buffer> a <Cmd>call ddu#ui#do_action('chooseAction')<CR>
-    nnoremap <buffer> b <Cmd>call ddu#ui#do_action('itemAction', {'name': 'dirmark'})<CR>
-    nnoremap <buffer> c <Cmd>call ddu#ui#multi_actions([
-        \ ['itemAction', {'name': 'copy'}],
-        \ ['clearSelectAllItems'],
-    \ ])<CR>
-    nnoremap <buffer> C <Cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<CR>
-    nnoremap <buffer> d <Cmd>call ddu#ui#do_action('itemAction', {'name': 'trash'})<CR>
-    nnoremap <buffer> D <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
-    nnoremap <buffer> h <Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>
-    nnoremap <buffer> I <Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow',
-        \ 'params': {'path': fnamemodify(input('New cwd: ', b:ddu_ui_filer_path, 'dir'), ':p')}})<CR>
-    nnoremap <buffer> K <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>
-    nnoremap <buffer> m <Cmd>call ddu#ui#do_action('itemAction', {'name': 'move'})<CR>
-    nnoremap <buffer> N <Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>
-    nnoremap <buffer> o <Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>
-    nnoremap <buffer> O <Cmd>call ddu#ui#do_action('expandItem', {'maxLevel': -1})<CR>
-    nnoremap <buffer> p <Cmd>call ddu#ui#do_action('itemAction', {'name': 'paste'})<CR>
-    nnoremap <buffer> P <Cmd>call ddu#ui#do_action('togglePreview')<CR>
-    nnoremap <buffer> <C-n> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-e>"'})<CR>
-    nnoremap <buffer> <C-p> <Cmd>call ddu#ui#do_action('previewExecute', #{command: 'execute "normal! \<C-y>"'})<CR>
-    nnoremap <buffer> q <Cmd>call ddu#ui#do_action('quit')<CR>
-    nnoremap <buffer> r <Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>
-    nnoremap <buffer> u <Cmd>call ddu#ui#do_action('itemAction', {'name': 'undo'})<CR>
-    nnoremap <buffer> x <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer> y <Cmd>call ddu#ui#do_action('itemAction', {'name': 'yank'})<CR>
-    nnoremap <buffer> <leader>l <Cmd>call ddu#ui#do_action('itemAction', {'name': 'loclist'})<CR>
-    nnoremap <buffer> <leader>q <Cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<CR>
-    nnoremap <buffer> <C-l> <Cmd>call ddu#ui#do_action('checkItems')<CR>
-    nnoremap <buffer><expr> s ddu#ui#get_item()->get('isTree', v:false) ?
-        \ "" :
-        \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>"
-    nnoremap <buffer><expr> v ddu#ui#get_item()->get('isTree', v:false) ?
-        \ "" :
-        \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>"
-    nnoremap <buffer> ~ <Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': expand('~')}})<CR>
-    nnoremap <buffer> > <Cmd>call ddu#ui#do_action('updateOptions',
-        \ {'sourceOptions': {'file': {'matchers': ToggleHidden('file')}}})<CR>
-    nnoremap <buffer><expr> <CR> ddu#ui#get_item()->get('isTree', v:false) ?
-        \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow'})<CR>" :
-        \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>"
-    nnoremap <buffer> <Esc><Esc> <Nop>
+lua_ddu-filer = '''
+    local itemActionKeymap = function(key, action, opts) vim.keymap.set('n', key, function() vim.fn['ddu#ui#do_action']('itemAction', {name = action}) end, opts) end
+    vim.keymap.set('n', '*', function() vim.fn['ddu#ui#do_action']('toggleAllItems') end, {remap = false, buffer = true, desc = 'toggleAllItems'})
+    vim.keymap.set('n', 'a', function() vim.fn['ddu#ui#do_action']('chooseAction') end, {remap = false, buffer = true, desc = 'chooseAction'})
+    vim.keymap.set('n', 'c', function() vim.fn['ddu#ui#multi_actions']({
+        {'itemAction', {name = 'copy'}},
+        {'clearSelectAllItems'}
+    }) end, {remap = false, buffer = true, desc = 'copy'})
 
-    nnoremap <buffer> se <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'extension'}}})<CR>
-    nnoremap <buffer> sf <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'filename'}}})<CR>
-    nnoremap <buffer> ss <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Size'}}})<CR>
-    nnoremap <buffer> st <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Time'}}})<CR>
-    nnoremap <buffer> sre <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Extension'}}})<CR>
-    nnoremap <buffer> srf <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'Filename'}}})<CR>
-    nnoremap <buffer> srs <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'size'}}})<CR>
-    nnoremap <buffer> srt <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'time'}}})<CR>
-    nnoremap <buffer> sn <Cmd>call ddu#ui#do_action('updateOptions', {'uiParams': {'filer': {'sort': 'none'}}})<CR>
+    itemActionKeymap('b', 'dirmark', {remap = false, buffer = true, desc = 'Add bookmark for dirmark'})
+    itemActionKeymap('C', 'cd', {remap = false, buffer = true, desc = 'cd'})
+    itemActionKeymap('d', 'trash', {remap = false, buffer = true, desc = 'trash'})
+    itemActionKeymap('D', 'delete', {remap = false, buffer = true, desc = 'delete'})
+    vim.keymap.set('n', 'h', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow', params = {path = '..'}}) end, {remap = false, buffer = true, desc = 'cd ..'})
 
-    function! ToggleHidden(name)
-        const current = ddu#custom#get_current(b:ddu_ui_name)
-        const source_options = get(current, 'sourceOptions', {})
-        const source_options_name = get(source_options, a:name, {})
-        const matchers = get(source_options_name, 'matchers', [])
-        return empty(matchers) ? ['matcher_hidden'] : []
-    endfunction
+    vim.keymap.set('n', 'I', function()
+        local default_path_suggestion = vim.b.ddu_ui_filer_path
 
-    autocmd TabEnter,CursorHold,FocusGained <buffer> call ddu#ui#do_action('checkItems')
+        vim.ui.input({prompt = 'New cwd: ', default = default_path_suggestion, completion = 'dir'}, function(input_path)
+            if input_path == nil then
+                vim.notify("Input cancelled for DDU narrow action.", vim.log.levels.INFO, {title = "DDU Action"})
+                return
+            end
+
+            local ok_fnamemodify, full_path_or_error = pcall(vim.fn.fnamemodify, input_path, ':p')
+            if not ok_fnamemodify then
+                vim.notify("Error processing path: " .. tostring(full_path_or_error), vim.log.levels.ERROR, {title = "DDU Action Error"})
+                return
+            end
+
+            local ddu_action_args = {name = 'narrow', params = {path = full_path_or_error}}
+            local ok_ddu, ddu_error_msg = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', ddu_action_args)
+            if not ok_ddu then
+                vim.notify("DDU action 'itemAction' failed: " .. tostring(ddu_error_msg), vim.log.levels.ERROR, {title = "DDU Action Error"})
+            end
+        end)
+    end, {remap = false, buffer = true, desc = 'Open another directory'})
+
+    itemActionKeymap('K', 'newDirectory', {remap = false, buffer = true, desc = 'newDirectory'})
+    itemActionKeymap('m', 'move', {remap = false, buffer = true, desc = 'move file'})
+    itemActionKeymap('N', 'newFile', {remap = false, buffer = true, desc = 'newFile'})
+    itemActionKeymap('p', 'paste', {remap = false, buffer = true, desc = 'paste file'})
+    vim.keymap.set('n', 'o', function() vim.fn['ddu#ui#do_action']('expandItem', {mode = 'toggle'}) end, {remap = false, buffer = true, desc = 'expand(toggle)'})
+    vim.keymap.set('n', 'O', function() vim.fn['ddu#ui#do_action']('expandItem', {maxLevel = -1}) end, {remap = false, buffer = true, desc = 'expand(recursive)'})
+    vim.keymap.set('n', 'P', function() vim.fn['ddu#ui#do_action']('togglePreview') end, {remap = false, buffer = true, desc = 'togglePreview'})
+
+    local keycode = function (keycode_str) return vim.api.nvim_replace_termcodes(keycode_str, true, true, true) end
+    vim.keymap.set('n', '<C-n>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-e>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Next)'})
+    vim.keymap.set('n', '<C-p>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-y>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Prev)'})
+    vim.keymap.set('n', 'q', function() vim.fn['ddu#ui#do_action']('quit') end, {remap = false, buffer = true, desc = 'quit'})
+    itemActionKeymap('r', 'rename', {remap = false, buffer = true, desc = 'rename'})
+    itemActionKeymap('u', 'undo', {remap = false, buffer = true, desc = 'undo'})
+    vim.keymap.set('n', 'x', function() vim.fn['ddu#ui#do_action']('toggleSelectItem') end, {remap = false, buffer = true, desc = 'toggleSelectItem'})
+    itemActionKeymap('y', 'yank', {remap = false, buffer = true, desc = 'yank path'})
+    itemActionKeymap('<Leader>l', 'loclist', {remap = false, buffer = true, desc = 'loclist'})
+    itemActionKeymap('<Leader>q', 'quickfix', {remap = false, buffer = true, desc = 'quickfix'})
+    vim.keymap.set('n', '<C-l>', function() vim.fn['ddu#ui#do_action']('checkItems') end, {remap = false, buffer = true, desc = 'checkItems'})
+
+    local check_is_tree = function()
+        local item_dict = vim.fn['ddu#ui#get_item']()
+        local is_tree = false
+        if item_dict then
+            if item_dict.isTree ~= nil then
+                is_tree = item_dict.isTree
+            end
+        end
+        return is_tree
+    end
+
+    local open_with_split = function(split_method)
+        local is_tree = check_is_tree()
+        if not is_tree then
+            local action_params = {name = 'open', params = {command = split_method}}
+            local ok, err = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', action_params)
+            if not ok then
+                vim.notify("DDU action 'itemAction' (open split) failed: " .. tostring(err), vim.log.levels.ERROR, {title = "DDU Action Error"})
+            end
+        end
+    end
+
+    vim.keymap.set('n', 's', function() open_with_split('split') end, {remap = false, buffer = true, desc = 'open(split)'})
+    vim.keymap.set('n', 'v', function() open_with_split('vsplit') end, {remap = false, buffer = true, desc = 'open(vsplit)'})
+
+    vim.keymap.set('n', '~', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow', params = {path = vim.fn.expand('~')}}) end, {remap = false, buffer = true, desc = 'cd ~'})
+
+    local narrow_or_open = function()
+        local is_tree = check_is_tree()
+        if is_tree then
+            vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow'})
+        else
+            vim.fn['ddu#ui#do_action']('itemAction', {name = 'open'})
+        end
+    end
+    vim.keymap.set('n', '<CR>', narrow_or_open, {remap = false, buffer = true, desc = 'dir:narrow, file:open'})
+
+    vim.keymap.set('n', '<Esc><Esc>', '<Nop>', {remap = false, buffer = true, desc = '<Nop>'})
+
+    vim.keymap.set('n', 'se', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'extension'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(extension: a->z)'})
+
+    vim.keymap.set('n', 'sf', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'filename'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(filename: a->z)'})
+
+    vim.keymap.set('n', 'ss', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Size'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(size: large->small)'})
+
+    vim.keymap.set('n', 'st', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Time'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(time: new->old)'})
+
+    vim.keymap.set('n', 'sre', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Extension'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(extension: z->a)'})
+
+    vim.keymap.set('n', 'srf', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Filename'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(filename: z->a)'})
+
+    vim.keymap.set('n', 'srs', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'size'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(size: small->large)'})
+
+    vim.keymap.set('n', 'srt', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'time'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(time: old->new)'})
+
+    vim.keymap.set('n', 'sn', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'none'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(none)'})
+
+    local dduFilerAuGroup = vim.api.nvim_create_augroup('dduFilerAuGroup', {})
+    vim.api.nvim_create_autocmd({'TabEnter', 'CursorHold', 'FocusGained'}, {
+        pattern = {'*'},
+        callback = function() vim.fn['ddu#ui#do_action']('checkItems') end,
+        group = dduFilerAuGroup,
+    })
 '''
 
 [[plugins]]
