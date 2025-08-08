@@ -57,7 +57,7 @@ lua_ddu-ff = '''
     vim.keymap.set('n', 'v', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'vsplit'}}) end, {remap = false, buffer = true, desc = 'open(vsplit)'})
     vim.keymap.set('n', 'N', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'newFile'}) end, {remap = false, buffer = true, desc = 'newFile'})
     vim.keymap.set('n', 'r', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'rename'}) end, {remap = false, buffer = true, desc = 'rename'})
-    vim.keymap.set('n', 'yy', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'yank'}) end, {remap = false, buffer = true, desc = 'yank path'})
+    vim.keymap.set('n', 'y', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'yank'}) end, {remap = false, buffer = true, desc = 'yank path'})
     vim.keymap.set('n', 't', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'tabedit'}}) end, {remap = false, buffer = true, desc = 'tabedit'})
     vim.keymap.set('n', '<Leader>l', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'loclist'}) end, {remap = false, buffer = true, desc = 'loclist'})
     vim.keymap.set('n', '<Leader>q', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'quickfix'}) end, {remap = false, buffer = true, desc = 'quickfix'})
