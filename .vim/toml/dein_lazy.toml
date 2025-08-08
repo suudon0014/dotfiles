@@ -79,11 +79,6 @@ lua_lspinfo = '''
     vim.keymap.set('n', 'q', vim.cmd.close, {remap = false, buffer = true, silent = true})
 '''
 
-# [[plugins]]
-# repo = 'uga-rosa/ddc-source-lsp-setup'
-# depends = ['ddc-source-lsp']
-# on_source = ['nvim-lspconfig', 'ddc.vim']
-
 [[plugins]]
 repo = 'glepnir/lspsaga.nvim'
 on_source = ['mason.nvim']
