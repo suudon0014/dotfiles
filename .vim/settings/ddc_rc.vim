@@ -2,13 +2,6 @@
 
 " mappings
 nnoremap : <Cmd>call CommandlinePre()<CR>:
-inoremap <expr><Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<Tab>'
-inoremap <expr><S-Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<S-Tab>'
-inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
-inoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
 " functions
 function! CommandlinePre() abort
@@ -33,13 +26,13 @@ function! CommandlinePre() abort
         \ '=': ['input'],
     \ })
 
-    autocmd User DDCCmdlineLeave ++once call CommandlinePost()
-    autocmd InsertEnter <buffer> ++once call CommandlinePost()
+    autocmd User DDCCmdlineLeave ++once call <SID>CommandlinePost()
+    autocmd InsertEnter <buffer> ++once call <SID>CommandlinePost()
 
     call ddc#enable_cmdline_completion()
 endfunction
 
-function! CommandlinePost() abort
+function! s:CommandlinePost() abort
     silent! cunmap <Tab>
     silent! cunmap <S-Tab>
     silent! cunmap <C-n>
@@ -54,149 +47,4 @@ function! CommandlinePost() abort
       call ddc#custom#set_buffer({})
     endif
 endfunction
-
-
-" patches
-call ddc#custom#patch_global('ui', 'pum')
-call ddc#custom#patch_global('autoCompleteEvents',
-    \ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'TextChangedT', 'CmdlineEnter', 'CmdlineChanged']
-\)
-call ddc#custom#patch_global('sources', [
-    \ 'vsnip',
-    \ 'lsp',
-    \ 'around',
-    \ 'file',
-    \ 'path',
-    \ 'skkeleton',
-    \ 'buffer',
-    \ 'input',
-\ ])
-call ddc#custom#patch_global('sourceOptions', {
-    \ '_': {
-    \     'matchers': ['matcher_fuzzy'],
-    \     'sorters': ['sorter_fuzzy'],
-    \     'converters': ['converter_fuzzy'],
-    \     'ignoreCase' : v:true,
-    \     'minAutoCompleteLength': 1,
-    \     'timeout': 1000,
-    \ },
-    \ 'lsp': #{
-    \     mark: '[LSP]',
-    \     dup: 'keep',
-    \     keywordPattern: '\k+',
-    \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
-    \     enabledIf: '!ddc#syntax#in("comment")',
-    \     isVolatile: v:true,
-    \ },
-    \ 'vsnip': {'mark': '[VSNIP]',},
-    \ 'around': {'mark': '[AROUND]'},
-    \ 'file': {
-    \     'mark': '[FILE]',
-    \     'isVolatile': v:true,
-    \     'forceCompletionPattern': '\S/\S*'
-    \ },
-    \ 'path': {
-    \     'mark': '[PATH]',
-    \ },
-    \ 'skkeleton': {
-    \   'mark': '[SKK]',
-    \   'matchers': [],
-    \   'sorters': [],
-    \   'converters': [],
-    \   'isVolatile': v:true,
-    \ },
-    \ 'buffer': {
-    \   'mark': '[BUF]',
-    \ },
-    \ 'cmdline': {
-    \   'mark': '[C-LINE]',
-    \ },
-    \ 'cmdline_history': {
-    \   'mark': '[C-HIST]',
-    \ },
-    \ 'input': {
-    \   'mark': '[INP]',
-    \   'isVolatile': v:true,
-    \ },
-    \ 'shell_native': {
-    \   'mark': '[SHELL]',
-    \ },
-    \ 'shell-history': {
-    \   'mark': '[S-HIST]',
-    \   'minKeywordLength': 1,
-    \   'maxKeywordLength': 50,
-    \ },
-\ })
-
-call ddc#custom#patch_global('sourceParams', {
-    \ 'lsp': #{
-    \   snippetEngine: denops#callback#register({body -> vsnip#anonymous(body)}),
-    \   enableResolveItem: v:true,
-    \   enableAdditionalTextEdit: v:true,
-    \   confirmBehavior: 'replace',
-    \ },
-    \ 'file': {
-    \   'mode': 'posix',
-    \ },
-    \ 'path': {
-    \   'absolute': v:false,
-    \   'cmd': ['fd', '--max-depth', '5', '--hidden', '--exclude', '.git'],
-    \   'dirSeparator': 'slash',
-    \ },
-    \ 'buffer': {
-    \   'requireSameFiletype': v:false,
-    \   'bufNameStyle': "basename",
-    \ },
-    \ 'shell-history': {
-    \   'command': ['zsh', '-c', 'history'],
-    \ },
-\ })
-
-call ddc#custom#patch_global(#{
-    \ filterParams: #{
-        \ converter_kind_labels: #{
-            \ kindLabels: #{
-                \ Text: " Text",
-                \ Method: " Method",
-                \ Function: " Function",
-                \ Constructor: " Constructor",
-                \ Field: " Field",
-                \ Variable: " Variable",
-                \ Class: "󿴯 Class",
-                \ Interface: " Interface",
-                \ Module: " Module",
-                \ Property: " Property",
-                \ Unit: " Unit",
-                \ Value: " Value",
-                \ Enum: " Enum",
-                \ Keyword: " Keyword",
-                \ Snippet: " Snippet",
-                \ Color: " Color",
-                \ File: "󿜘 File",
-                \ Reference: "󿜆 Reference",
-                \ Folder: " Folder",
-                \ EnumMember: " EnumMember",
-                \ Constant: "󿣾 Constant",
-                \ Struct: "󿳼 Struct",
-                \ Event: " Event",
-                \ Operator: " Operator",
-                \ TypeParameter: "󿞃 TypeParameter"
-            \ },
-        \ }
-    \ }
-\ })
-
-call ddc#custom#patch_global('backspaceCompletion', v:true)
-
-" terminal
-call ddc#enable_terminal_completion()
-call ddc#custom#patch_filetype(['deol'], #{
-\   specialBufferCompletion: v:true,
-\   sources: ['shell_native', 'shell-history', 'around'],
-\ })
-
-
-call ddc#enable( #{
-    \ context_filetype: "context_filetype",
-\ })
 

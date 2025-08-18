@@ -4,6 +4,7 @@ depends = ['denops.vim']
 on_event = ['InsertEnter', 'CmdlineEnter']
 lua_source = '''
     vim.cmd.source('~/dotfiles/.vim/settings/ddc_rc.vim')
+    require('ddc_rc')
 '''
 
 [[plugins]]
