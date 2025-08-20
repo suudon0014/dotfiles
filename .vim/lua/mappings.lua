@@ -113,4 +113,10 @@ vim.keymap.set('t', '<S-Space>', '<Space>')
 vim.keymap.set('', '<S-k>', 'k')
 vim.keymap.set('n', '/', '/\\v')
 
-vim.cmd('cabbrev <expr> w] (getcmdtype() ==# ":" && getcmdline() ==# "w]") ? "w" : "w]"')
+vim.keymap.set('ca', 'w]', function()
+    if (vim.fn.getcmdtype() == ':') and (vim.fn.getcmdline() == 'w]') then
+        return 'w'
+    else
+        return 'w]'
+    end
+end, {expr = true})

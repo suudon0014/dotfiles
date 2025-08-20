@@ -147,11 +147,11 @@ repo = 'olimorris/codecompanion.nvim'
 on_source = ['mcphub.nvim']
 on_cmd = ['CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions', 'CodeCompanionCmd']
 lua_add = '''
-vim.cmd('cabbrev cci CodeCompanion')
-vim.cmd('cabbrev ccc CodeCompanionChat')
-vim.cmd('cabbrev cct CodeCompanionChat Toggle')
-vim.cmd('cabbrev cca CodeCompanionActions')
-vim.cmd('cabbrev ccx CodeCompanionCmd')
+vim.keymap.set('ca', 'cci', 'CodeCompanion')
+vim.keymap.set('ca', 'ccc', 'CodeCompanionChat')
+vim.keymap.set('ca', 'cct', 'CodeCompanionChat Toggle')
+vim.keymap.set('ca', 'cca', 'CodeCompanionActions')
+vim.keymap.set('ca', 'ccx', 'CodeCompanionCmd')
 '''
 lua_source = '''
 local function LoadTextFile(fileName)
