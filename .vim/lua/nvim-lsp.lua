@@ -1,5 +1,11 @@
 require('vim.lsp.log').set_level('OFF')
 
+vim.diagnostic.config({
+    float = {
+        border = 'rounded',
+    }
+})
+
 local saga = require('lspsaga')
 saga.setup({
     outline = {
@@ -14,17 +20,15 @@ saga.setup({
 local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_set_option_value(...) end
     local opts = {noremap=true, silent=true, buffer=bufnr}
-    vim.keymap.set('n', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-    vim.keymap.set('v', '<C-l>a', '<Cmd>Lspsaga code_action<CR>', opts)
-    vim.keymap.set('n', '<C-l>o', '<Cmd>Lspsaga outline<CR>', opts)
-    vim.keymap.set('n', '<C-l>ci', '<Cmd>Lspsaga incoming_calls<CR>', opts)
-    vim.keymap.set('n', '<C-l>co', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
-    vim.keymap.set('n', '<C-l>fi', '<Cmd>Lspsaga finder<CR>', opts)
-    vim.keymap.set('n', '<C-l>ec', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
-    vim.keymap.set('n', '<C-l>el', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
-    vim.keymap.set('n', '<C-l>eb', '<Cmd>Lspsaga show_buf_diagnostics<CR>', opts)
-    vim.keymap.set('n', '<C-l>ep', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-    vim.keymap.set('n', '<C-l>en', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+    vim.keymap.set('n', '<C-l>a', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('v', '<C-l>a', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<C-l>ci', vim.lsp.buf.incoming_calls, opts)
+    vim.keymap.set('n', '<C-l>co', vim.lsp.buf.outgoing_calls, opts)
+    vim.keymap.set('n', '<C-l>ec', function() vim.diagnostic.open_float({scope = 'cursor'}) end, opts)
+    vim.keymap.set('n', '<C-l>el', function() vim.diagnostic.open_float({scope = 'line'}) end, opts)
+    vim.keymap.set('n', '<C-l>eb', function() vim.diagnostic.open_float({scope = 'buffer'}) end, opts)
+    vim.keymap.set('n', '<C-l>ep', function() vim.diagnostic.jump({count = 1, float = true}) end, opts)
+    vim.keymap.set('n', '<C-l>en', function() vim.diagnostic.jump({count = -1, float = true}) end, opts)
     vim.keymap.set('n', '<C-l>dp', '<Cmd>Lspsaga peek_definition<CR>', opts)
     vim.keymap.set('n', '<C-l>dtp', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
 
