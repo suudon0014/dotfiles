@@ -9,7 +9,7 @@ vim.cmd.runtime({args = {'lua/mappings.lua'}, bang = true})
 vim.cmd.runtime({args = {'lua/sets.lua'}, bang = true})
 -- vim.cmd.runtime({args = {'lua/extui.lua'}, bang = true})
 
-vim.cmd.source('~/dotfiles/.vim/dein_rc.lua')
+require('dein_rc')
 -- vim.cmd.source('~/dotfiles/.vim/settings/dpp_install.vim')
 require('submode')
 

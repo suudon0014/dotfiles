@@ -66,16 +66,12 @@ if dein.load_state(dein_dir) == 1 then
     dein.save_state()
 end
 
--- functions and commands
 -- install if there are plugins not installed
-vim.api.nvim_create_user_command('DeinInstall', function ()
-    if dein.check_install() then
-        dein.install()
-    else
-        vim.print('All plugins have already installed.')
-    end
-end, {})
+if dein.check_install() then
+    dein.install()
+end
 
+-- functions and commands
 -- work only when delete plugins
 vim.api.nvim_create_user_command('DeinClean', function ()
     local disabled_plugins = dein.check_clean()
@@ -106,8 +102,6 @@ vim.api.nvim_create_user_command('DeinStrictUpdate', function ()
     dein.update()
     vim.print(dein.get_updates_log())
 end, {})
-
-vim.cmd.DeinInstall()
 
 vim.api.nvim_create_autocmd({'VimEnter'}, {
     pattern = {'*'},
