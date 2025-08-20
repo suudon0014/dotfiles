@@ -15,20 +15,22 @@ config.keys = {
     {key = 's', mods = 'SHIFT|CTRL', action = act.SplitHorizontal {domain = 'CurrentPaneDomain'},},
     {key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain',},
     {key = 't', mods = 'META', action = act.ShowTabNavigator,},
-    {key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard'},
+    {key = 'v', mods = 'META', action = act.PasteFrom 'Clipboard'},
     {key = 'v', mods = 'SHIFT|CTRL', action = act.SplitVertical {domain = 'CurrentPaneDomain'},},
     {key = '[', mods = 'CTRL', action = act.PaneSelect,},
     {key = 'h', mods = 'LEADER', action = act.AdjustPaneSize {'Left', 5}},
     {key = 'j', mods = 'LEADER', action = act.AdjustPaneSize {'Down', 5}},
     {key = 'k', mods = 'LEADER', action = act.AdjustPaneSize {'Up', 5}},
     {key = 'l', mods = 'LEADER', action = act.AdjustPaneSize {'Right', 5}},
+    {key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1)},
+    {key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1)},
 }
 
 config.audible_bell = 'Disabled'
 config.color_scheme = 'Sonokai (Gogh)'
 config.default_prog = {'zsh'}
 config.font = wezterm.font('Cica', {weight='Regular', stretch='Normal', style='Normal'})
-config.font_size = 12
+config.font_size = 11
 config.initial_cols = 100
 config.initial_rows = 50
 config.leader = {key = 'a', mods = 'CTRL'}

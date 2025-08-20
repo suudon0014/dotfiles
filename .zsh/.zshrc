@@ -56,8 +56,8 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Aliases
-alias ll='ls -laht'
-alias la='ls -a'
+alias ll='ls -laht --color'
+alias la='ls -a --color'
 alias lg='lazygit'
 alias dc='docker compose'
 alias gst='git status'
@@ -69,7 +69,11 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gsw='git switch'
 alias gg='git graph'
-alias llm='llm -u -m gemini-2.0-flash-exp'
+alias lf='llm -u -m gemini-2.0-flash-exp'
+alias vi='nvim'
+alias vim='nvim'
+alias fzfnvim='nvim $(/bin/find . -path ./.git -prune -o -type f -print | fzf)'
+alias tree='tree -C'
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
@@ -164,3 +168,30 @@ if type ip > /dev/null; then
 fi
 
 export LIBGL_ALWAYS_SOFTWARE=1
+
+# OSC 133
+_prompt_executing=""
+function __prompt_precmd() {
+    local ret="$?"
+    if test "$_prompt_executing" != "0"
+    then
+      _PROMPT_SAVE_PS1="$PS1"
+      _PROMPT_SAVE_PS2="$PS2"
+      PS1=$'%{\e]133;P;k=i\a%}'$PS1$'%{\e]133;B\a\e]122;> \a%}'
+      PS2=$'%{\e]133;P;k=s\a%}'$PS2$'%{\e]133;B\a%}'
+    fi
+    if test "$_prompt_executing" != ""
+    then
+       printf "\033]133;D;%s;aid=%s\007" "$ret" "$$"
+    fi
+    printf "\033]133;A;cl=m;aid=%s\007" "$$"
+    _prompt_executing=0
+}
+function __prompt_preexec() {
+    PS1="$_PROMPT_SAVE_PS1"
+    PS2="$_PROMPT_SAVE_PS2"
+    printf "\033]133;C;\007"
+    _prompt_executing=1
+}
+preexec_functions+=(__prompt_preexec)
+precmd_functions+=(__prompt_precmd)

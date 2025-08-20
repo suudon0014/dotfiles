@@ -1,0 +1,111 @@
+{
+  "mcpServers": {
+    "memory": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "command": "pnpm",
+      "disabled": true
+    },
+    "git": {
+      "disabled_tools": [
+        "git_reset",
+        "git_create_branch"
+      ],
+      "args": [
+        "-m",
+        "mcp_server_git"
+      ],
+      "command": "python",
+      "disabled": true
+    },
+    "taskmanager": {
+      "args": [
+        "dlx",
+        "@kazuph/mcp-taskmanager"
+      ],
+      "command": "pnpm",
+      "disabled": true
+    },
+    "sequential-thinking": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "pnpm",
+      "disabled": true
+    },
+    "DuckDuckGo": {
+      "args": [
+        "dlx",
+        "duckduckgo-mcp-server"
+      ],
+      "command": "pnpm",
+      "disabled": true
+    },
+    "filesystem": {
+      "args": [
+        "dlx",
+        "@modelcontextprotocol/server-filesystem",
+        "~/dotfiles"
+      ],
+      "command": "pnpm",
+      "disabled": true
+    },
+    "fetch": {
+      "disabled_tools": [
+        
+      ],
+      "args": [
+        "C:/mcp-servers/fetch-mcp/dist/index.js"
+      ],
+      "command": "node",
+      "disabled": true
+    },
+    "DuckDuckGo2": {
+      "args": [
+        "C:/Users/0703/source/repos/duckduckgo-mcp-server/build/index.js"
+      ],
+      "command": "node",
+      "disabled": true
+    },
+    "time": {
+      "args": [
+        "-m",
+        "mcp_server_time",
+        "--local-timezone=Asia/Tokyo"
+      ],
+      "command": "python",
+      "disabled": true
+    }
+  },
+  "nativeMCPServers": {
+    "mcphub": {
+      "disabled_prompts": [
+        "create_native_server"
+      ],
+      "disabled_resources": [
+        "mcphub://changelog",
+        "mcphub://native_server_guide",
+        "mcphub://docs"
+      ],
+      "custom_instructions": {
+        "disabled": true
+      },
+      "disabled": false
+    },
+    "neovim": {
+      "disabled_prompts": [
+        "parrot"
+      ],
+      "disabled_resources": [
+        
+      ],
+      "custom_instructions": {
+        "disabled": true
+      },
+      "disabled": true
+    }
+  }
+}

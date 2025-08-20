@@ -1,14 +1,16 @@
 " configs about dein.vim
 
+"installing directory
+let s:dein_dir = expand('~/.cache/dein')
+
 " global parameters
 let g:dein#install_github_api_token = $GITHUB_API_TOKEN
-let g:dein#install_max_processes = 8
+let g:dein#install_max_processes = 32
 let g:dein#install_process_timeout = 1800
 let g:dein#install_progress_type = 'floating'
 let g:dein#types#git#clone_depth = 1
+let g:dein#install_log_filename = s:dein_dir . '/install_log.log'
 
-"installing directory
-let s:dein_dir = expand('~/.cache/dein')
 " dir of dein.vim
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -28,22 +30,29 @@ if dein#min#load_state(s:dein_dir)
     let s:rc_dir = expand('~/dotfiles/.vim/toml')
     let s:dein_toml = s:rc_dir . '/dein.toml'
     let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-    let s:ddc_toml = s:rc_dir . '/ddc.toml'
-    let s:ddu_toml = s:rc_dir . '/ddu.toml'
-    let s:submode_lazy_toml = s:rc_dir . '/dein_submode_lazy.toml'
-    let s:colorscheme_lazy_toml = s:rc_dir . '/dein_colorscheme_lazy.toml'
-    let s:lightline_lazy_toml = s:rc_dir . '/dein_lightline_lazy.toml'
-    let s:dpp_toml = s:rc_dir . '/dpp.toml'
+    let s:ddc_toml = s:rc_dir . '/ddc_lazy.toml'
+    let s:ddu_toml = s:rc_dir . '/ddu_lazy.toml'
+    let s:dpp_toml = s:rc_dir . '/dpp_lazy.toml'
+    let s:ai_toml = s:rc_dir . '/ai_lazy.toml'
+    let s:colorscheme_toml = s:rc_dir . '/colorscheme_lazy.toml'
+    " let s:lightline_toml = s:rc_dir . '/lightline_lazy.toml'
+    let s:lualine_toml = s:rc_dir . '/lualine_lazy.toml'
+    let s:markdown_toml = s:rc_dir . '/markdown_lazy.toml'
+    let s:python_toml = s:rc_dir . '/python_lazy.toml'
+    let s:treesitter_toml = s:rc_dir . '/treesitter_lazy.toml'
 
     "read and cache the toml files
     call dein#load_toml(s:dein_toml, {'lazy':0})
+    call dein#load_toml(s:lazy_toml, {'lazy':1})
     call dein#load_toml(s:ddc_toml, {'lazy':1})
     call dein#load_toml(s:ddu_toml, {'lazy':1})
-    call dein#load_toml(s:lazy_toml, {'lazy':1})
-    call dein#load_toml(s:submode_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:colorscheme_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:lightline_lazy_toml, {'lazy':1})
-    call dein#load_toml(s:dpp_toml, {'lazy':0})
+    call dein#load_toml(s:dpp_toml, {'lazy':1})
+    call dein#load_toml(s:ai_toml, {'lazy':1})
+    call dein#load_toml(s:colorscheme_toml, {'lazy':1})
+    call dein#load_toml(s:lualine_toml, {'lazy':1})
+    call dein#load_toml(s:markdown_toml, {'lazy':1})
+    call dein#load_toml(s:python_toml, {'lazy':1})
+    call dein#load_toml(s:treesitter_toml, {'lazy':1})
 
     "end the setting
     call dein#end()
@@ -68,7 +77,6 @@ function! s:deinClean()
     if len(dein#check_clean()) > 0
         echo "Processing..."
         call map(dein#check_clean(), "delete(v:val, 'rf')")
-        call dein#recache_runtimepath()
         echo "DeinClean completed."
     else
         echo "There's no disabled plugins."
@@ -91,9 +99,9 @@ endfunction
 command! DeinStrictUpdate :call s:deinStrictUpdate()
 function! s:deinStrictUpdate()
     call dein#update()
-    call dein#recache_runtimepath()
     echo dein#get_updates_log()
 endfunction
 
 DeinInstall
 autocmd VimEnter * call dein#call_hook('post_source')
+

@@ -1,0 +1,323 @@
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = ['denops.vim']
+on_source = ['denops.vim']
+lua_source = '''
+    require('ddu_rc')
+'''
+
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+depends = ['ddu.vim']
+on_cmd = ['Ddu']
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+on_source = ['ddu.vim']
+[plugins.ftplugin]
+lua_ddu-ff = '''
+    vim.keymap.set('n', '<CR>', function() vim.fn['ddu#ui#do_action']('itemAction') end, {remap = false, buffer = true, desc = 'itemAction'})
+    vim.keymap.set('n', 'x', function() vim.fn['ddu#ui#do_action']('toggleSelectItem') end, {remap = false, buffer = true, desc = 'toggleSelectItem'})
+    vim.keymap.set('n', '*', function() vim.fn['ddu#ui#do_action']('toggleAllItems') end, {remap = false, buffer = true, desc = 'toggleAllItems'})
+    vim.keymap.set('n', 'i', function() vim.fn['ddu#ui#do_action']('openFilterWindow') end, {remap = false, buffer = true, desc = 'openFilterWindow'})
+    vim.keymap.set('n', '<C-l>', function() vim.fn['ddu#ui#do_action']('redraw', {method = 'refreshItems'}) end, {remap = false, buffer = true, desc = 'redraw'})
+    vim.keymap.set('n', 'p', function() vim.fn['ddu#ui#do_action']('togglePreview') end, {remap = false, buffer = true, desc = 'togglePreview'})
+
+    local keycode = function (keycode_str) return vim.api.nvim_replace_termcodes(keycode_str, true, true, true) end
+    vim.keymap.set('n', '<C-n>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-e>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Next)'})
+    vim.keymap.set('n', '<C-p>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-y>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Prev)'})
+
+    vim.keymap.set('n', 'q', function() vim.fn['ddu#ui#do_action']('quit') end, {remap = false, buffer = true, desc = 'quit'})
+    vim.keymap.set('n', '<C-h>', function() vim.fn['ddu#ui#do_action']('cancel') end, {remap = false, buffer = true, desc = 'cancel'})
+    vim.keymap.set('n', 'a', function() vim.fn['ddu#ui#do_action']('chooseAction') end, {remap = false, buffer = true, desc = 'chooseAction'})
+    vim.keymap.set('n', 'c', function() vim.fn['ddu#ui#multi_actions']('itemAction', {name = 'cd'}) end, {remap = false, buffer = true, desc = 'cd'})
+    vim.keymap.set('n', 'd', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'delete'}) end, {remap = false, buffer = true, desc = 'delete'})
+    vim.keymap.set('n', 'e', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'edit'}) end, {remap = false, buffer = true, desc = 'edit'})
+
+    vim.keymap.set('n', 'E', function()
+        vim.ui.input({prompt = 'params: '}, function(input_str)
+            if (input_str == nil) or (input_str == '') then
+                return
+            end
+
+        local eval_ok, eval_result_or_error = pcall(vim.fn.eval, input_str)
+        if not eval_ok then
+            return
+        end
+
+        local ddu_params = {params = eval_result_or_error}
+        local ddu_ok, ddu_error_msg = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', ddu_params)
+        if not ddu_ok then
+            return
+        end
+    end) end, {remap = false, buffer = true, desc = 'itemAction(manual)'})
+
+    vim.keymap.set('n', 's', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'split'}}) end, {remap = false, buffer = true, desc = 'open(split)'})
+    vim.keymap.set('n', 'u', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'undo'}) end, {remap = false, buffer = true, desc = 'undo'})
+    vim.keymap.set('n', 'v', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'vsplit'}}) end, {remap = false, buffer = true, desc = 'open(vsplit)'})
+    vim.keymap.set('n', 'N', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'newFile'}) end, {remap = false, buffer = true, desc = 'newFile'})
+    vim.keymap.set('n', 'r', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'rename'}) end, {remap = false, buffer = true, desc = 'rename'})
+    vim.keymap.set('n', 'y', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'yank'}) end, {remap = false, buffer = true, desc = 'yank path'})
+    vim.keymap.set('n', 't', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'open', params = {command = 'tabedit'}}) end, {remap = false, buffer = true, desc = 'tabedit'})
+    vim.keymap.set('n', '<Leader>l', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'loclist'}) end, {remap = false, buffer = true, desc = 'loclist'})
+    vim.keymap.set('n', '<Leader>q', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'quickfix'}) end, {remap = false, buffer = true, desc = 'quickfix'})
+    vim.keymap.set('n', 'u', function() vim.fn['ddu#ui#do_action']('updateOptions', {sourceOptions = {['_'] = {matchers = {}}}}) end, {remap = false, buffer = true, desc = 'updateOptions'})
+    vim.keymap.set('n', '<Esc><Esc>', '<Nop>', {remap = false, buffer = true, desc = '<Nop>'})
+'''
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+on_source = ['ddu.vim']
+[plugins.ftplugin]
+lua_ddu-filer = '''
+    local itemActionKeymap = function(key, action, opts) vim.keymap.set('n', key, function() vim.fn['ddu#ui#do_action']('itemAction', {name = action}) end, opts) end
+    vim.keymap.set('n', '*', function() vim.fn['ddu#ui#do_action']('toggleAllItems') end, {remap = false, buffer = true, desc = 'toggleAllItems'})
+    vim.keymap.set('n', 'a', function() vim.fn['ddu#ui#do_action']('chooseAction') end, {remap = false, buffer = true, desc = 'chooseAction'})
+    vim.keymap.set('n', 'c', function() vim.fn['ddu#ui#multi_actions']({
+        {'itemAction', {name = 'copy'}},
+        {'clearSelectAllItems'}
+    }) end, {remap = false, buffer = true, desc = 'copy'})
+
+    itemActionKeymap('b', 'dirmark', {remap = false, buffer = true, desc = 'Add bookmark for dirmark'})
+    itemActionKeymap('C', 'cd', {remap = false, buffer = true, desc = 'cd'})
+    itemActionKeymap('d', 'trash', {remap = false, buffer = true, desc = 'trash'})
+    itemActionKeymap('D', 'delete', {remap = false, buffer = true, desc = 'delete'})
+    vim.keymap.set('n', 'h', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow', params = {path = '..'}}) end, {remap = false, buffer = true, desc = 'cd ..'})
+
+    vim.keymap.set('n', 'I', function()
+        local default_path_suggestion = vim.b.ddu_ui_filer_path
+
+        vim.ui.input({prompt = 'New cwd: ', default = default_path_suggestion, completion = 'dir'}, function(input_path)
+            if input_path == nil then
+                vim.notify("Input cancelled for DDU narrow action.", vim.log.levels.INFO, {title = "DDU Action"})
+                return
+            end
+
+            local ok_fnamemodify, full_path_or_error = pcall(vim.fn.fnamemodify, input_path, ':p')
+            if not ok_fnamemodify then
+                vim.notify("Error processing path: " .. tostring(full_path_or_error), vim.log.levels.ERROR, {title = "DDU Action Error"})
+                return
+            end
+
+            local ddu_action_args = {name = 'narrow', params = {path = full_path_or_error}}
+            local ok_ddu, ddu_error_msg = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', ddu_action_args)
+            if not ok_ddu then
+                vim.notify("DDU action 'itemAction' failed: " .. tostring(ddu_error_msg), vim.log.levels.ERROR, {title = "DDU Action Error"})
+            end
+        end)
+    end, {remap = false, buffer = true, desc = 'Open another directory'})
+
+    itemActionKeymap('K', 'newDirectory', {remap = false, buffer = true, desc = 'newDirectory'})
+    itemActionKeymap('m', 'move', {remap = false, buffer = true, desc = 'move file'})
+    itemActionKeymap('N', 'newFile', {remap = false, buffer = true, desc = 'newFile'})
+    itemActionKeymap('p', 'paste', {remap = false, buffer = true, desc = 'paste file'})
+    vim.keymap.set('n', 'o', function() vim.fn['ddu#ui#do_action']('expandItem', {mode = 'toggle'}) end, {remap = false, buffer = true, desc = 'expand(toggle)'})
+    vim.keymap.set('n', 'O', function() vim.fn['ddu#ui#do_action']('expandItem', {maxLevel = -1}) end, {remap = false, buffer = true, desc = 'expand(recursive)'})
+    vim.keymap.set('n', 'P', function() vim.fn['ddu#ui#do_action']('togglePreview') end, {remap = false, buffer = true, desc = 'togglePreview'})
+
+    local keycode = function (keycode_str) return vim.api.nvim_replace_termcodes(keycode_str, true, true, true) end
+    vim.keymap.set('n', '<C-n>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-e>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Next)'})
+    vim.keymap.set('n', '<C-p>', function() vim.fn['ddu#ui#do_action']('previewExecute', {command = 'normal! ' .. keycode('<C-y>')}) end, {remap = false, buffer = true, desc = 'scrollPreview(Prev)'})
+    vim.keymap.set('n', 'q', function() vim.fn['ddu#ui#do_action']('quit') end, {remap = false, buffer = true, desc = 'quit'})
+    itemActionKeymap('r', 'rename', {remap = false, buffer = true, desc = 'rename'})
+    itemActionKeymap('u', 'undo', {remap = false, buffer = true, desc = 'undo'})
+    vim.keymap.set('n', 'x', function() vim.fn['ddu#ui#do_action']('toggleSelectItem') end, {remap = false, buffer = true, desc = 'toggleSelectItem'})
+    itemActionKeymap('y', 'yank', {remap = false, buffer = true, desc = 'yank path'})
+    itemActionKeymap('<Leader>l', 'loclist', {remap = false, buffer = true, desc = 'loclist'})
+    itemActionKeymap('<Leader>q', 'quickfix', {remap = false, buffer = true, desc = 'quickfix'})
+    vim.keymap.set('n', '<C-l>', function() vim.fn['ddu#ui#do_action']('checkItems') end, {remap = false, buffer = true, desc = 'checkItems'})
+
+    local check_is_tree = function()
+        local item_dict = vim.fn['ddu#ui#get_item']()
+        local is_tree = false
+        if item_dict then
+            if item_dict.isTree ~= nil then
+                is_tree = item_dict.isTree
+            end
+        end
+        return is_tree
+    end
+
+    local open_with_split = function(split_method)
+        local is_tree = check_is_tree()
+        if not is_tree then
+            local action_params = {name = 'open', params = {command = split_method}}
+            local ok, err = pcall(vim.fn['ddu#ui#do_action'], 'itemAction', action_params)
+            if not ok then
+                vim.notify("DDU action 'itemAction' (open split) failed: " .. tostring(err), vim.log.levels.ERROR, {title = "DDU Action Error"})
+            end
+        end
+    end
+
+    vim.keymap.set('n', 's', function() open_with_split('split') end, {remap = false, buffer = true, desc = 'open(split)'})
+    vim.keymap.set('n', 'v', function() open_with_split('vsplit') end, {remap = false, buffer = true, desc = 'open(vsplit)'})
+
+    vim.keymap.set('n', '~', function() vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow', params = {path = vim.fn.expand('~')}}) end, {remap = false, buffer = true, desc = 'cd ~'})
+
+    local narrow_or_open = function()
+        local is_tree = check_is_tree()
+        if is_tree then
+            vim.fn['ddu#ui#do_action']('itemAction', {name = 'narrow'})
+        else
+            vim.fn['ddu#ui#do_action']('itemAction', {name = 'open'})
+        end
+    end
+    vim.keymap.set('n', '<CR>', narrow_or_open, {remap = false, buffer = true, desc = 'dir:narrow, file:open'})
+
+    vim.keymap.set('n', '<Esc><Esc>', '<Nop>', {remap = false, buffer = true, desc = '<Nop>'})
+
+    vim.keymap.set('n', 'se', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'extension'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(extension: a->z)'})
+
+    vim.keymap.set('n', 'sf', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'filename'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(filename: a->z)'})
+
+    vim.keymap.set('n', 'ss', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Size'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(size: large->small)'})
+
+    vim.keymap.set('n', 'st', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Time'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(time: new->old)'})
+
+    vim.keymap.set('n', 'sre', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Extension'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(extension: z->a)'})
+
+    vim.keymap.set('n', 'srf', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'Filename'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(filename: z->a)'})
+
+    vim.keymap.set('n', 'srs', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'size'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(size: small->large)'})
+
+    vim.keymap.set('n', 'srt', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'time'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(time: old->new)'})
+
+    vim.keymap.set('n', 'sn', function() vim.fn['ddu#ui#multi_actions']({
+        {'updateOptions', {uiParams = {filer = {sort = 'none'}}}},
+        {'redraw', {method = 'refreshItems'}}
+    }) end, {remap = false, buffer = true, desc = 'sort(none)'})
+
+    local dduFilerAuGroup = vim.api.nvim_create_augroup('dduFilerAuGroup', {})
+    vim.api.nvim_create_autocmd({'TabEnter', 'CursorHold', 'FocusGained'}, {
+        pattern = {'*'},
+        callback = function() vim.fn['ddu#ui#do_action']('checkItems') end,
+        group = dduFilerAuGroup,
+    })
+'''
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-source-action'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = '4513ECHO/ddu-source-colorscheme'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Bakudankun/ddu-source-dirmark'
+on_source = ['ddu.vim']
+denops_wait = 0
+
+[[plugins]]
+repo = 'k-ota106/ddu-source-marks'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'matsui54/ddu-source-dein_update'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kuuote/ddu-source-git_diff'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'tennashi/ddu-source-git'
+on_source = ['ddu.vim']
+denops_wait = 0
+
+[[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kuuote/ddu-source-mr'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'lambdalisue/vim-mr'
+on_source = ['ddu-source-mr']
+denops_wait = 0
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'yuki-yano/ddu-filter-fzf'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kyoh86/ddu-filter-converter_hl_dir'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kamecha/ddu-filter-converter_file_info'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kmnk/denite-dirmark'
+on_source = ['ddu.vim']

@@ -26,6 +26,6 @@ require('gitsigns').setup({
         end, {expr=true, desc='gitsigns.nav_hunk:prev'})
 
         -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        map({'o', 'x'}, 'ih', gs.select_hunk)
     end
 })

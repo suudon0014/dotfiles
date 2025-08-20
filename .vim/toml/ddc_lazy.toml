@@ -1,0 +1,117 @@
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim']
+on_event = ['InsertEnter', 'CmdlineEnter']
+lua_source = '''
+    vim.cmd.source('~/dotfiles/.vim/settings/ddc_rc.vim')
+    require('ddc_rc')
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_head'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-sorter_rank'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-converter_remove_overlap'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = ['ddc.vim']
+lua_source = '''
+    vim.keymap.set({'i', 'c', 't'}, '<C-j>', '<Plug>(skkeleton-toggle)', {remap = true})
+    vim.fn['skkeleton#config']({
+        eggLikeNewline = true,
+        globalDictionaries = {{'~/.config/skk/SKK-JISYO.L', 'euc-jp'}},
+        userDictionary = '~/.config/skk/my_jisyo',
+        completionRankFile = '~/.config/skk/rank.json',
+        keepState = true,
+        markerHenkan = '>',
+        markerHenkanSelect = 'v',
+    })
+    vim.fn['skkeleton#register_kanatable']('rom', {
+        jj = 'escape',
+        c1 = {'\u{2460}'},
+        c2 = {'\u{2461}'},
+        c3 = {'\u{2462}'},
+        c4 = {'\u{2463}'},
+        c5 = {'\u{2464}'},
+        c6 = {'\u{2465}'},
+        c7 = {'\u{2466}'},
+        c8 = {'\u{2467}'},
+        c9 = {'\u{2468}'},
+        c0 = {'\u{2469}'},
+    })
+'''
+
+[[plugins]]
+repo = 'Matts966/skk-vconv.vim'
+depends = ['skkeleton']
+on_source = ['ddc.vim']
+lua_source = '''
+    vim.g['skk_vconv#no_default_mappings'] = true
+'''
+lua_post_source = '''
+    vim.keymap.set('v', '<C-s>', '<Plug>(skk-vconv:conv)', {remap = false})
+'''
+
+# source
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline_history'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-lsp'
+on_source = ['ddc.vim']
+lua_post_source = '''
+    vim.cmd.source('~/dotfiles/.vim/lua/nvim-lsp.lua')
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-source-input'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'tani/ddc-path'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-shell_native'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'delphinus/ddc-shell-history'
+on_source = ['ddc.vim']
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+on_source = ['ddc.vim']
+

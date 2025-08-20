@@ -3,13 +3,15 @@
 filetype off
 filetype plugin indent off
 
-source ~/dotfiles/.vim/dein_rc.vim
-source ~/dotfiles/.vim/settings/env.vim
-
 "load separated setting files
 set runtimepath+=~/dotfiles/.vim/
 runtime! lua/mappings.lua
 runtime! lua/sets.lua
+" runtime! lua/extui.lua
+
+source ~/dotfiles/.vim/dein_rc.vim
+" source ~/dotfiles/.vim/settings/dpp_install.vim
+source ~/dotfiles/.vim/settings/submode.vim
 
 augroup myAuGroup
     autocmd!

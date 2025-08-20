@@ -74,7 +74,8 @@ vim.opt.fillchars = {
     verthoriz = '╋',
 }
 vim.opt.splitright = true
-vim.opt.timeoutlen = 1000
+vim.opt.timeoutlen = 2000
+vim.opt.shortmess:append('I')
 
 -- disable default plugins
 vim.g.loaded_netrw              = 1
@@ -100,7 +101,7 @@ vim.g.loaded_spellfile_plugin   = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.skip_loading_mswin        = 1
 
-if vim.fn.has('win32') or vim.fn.has('win64') then
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
     local clipboard = {}
     clipboard['name'] = 'win32yank'
     clipboard['copy'] = {
@@ -140,3 +141,4 @@ vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
     command = 'normal zR',
     group = sets_au_group_id,
 })
+
