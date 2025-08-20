@@ -4,7 +4,7 @@ vim.keymap.set('i', '<Tab>', function()
         vim.fn['pum#map#insert_relative'](1)
     else
         local tab = vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
-        vim.api.nvim_feedkeys(tab, 'c', false)
+        vim.api.nvim_feedkeys(tab, 'n', false)
     end
 end, {noremap = true})
 
@@ -27,7 +27,7 @@ vim.keymap.set('i', '<CR>', function()
         vim.fn['pum#map#confirm']()
     else
         local cr = vim.api.nvim_replace_termcodes('<CR>', true, false, true)
-        vim.api.nvim_feedkeys(cr, 'c', false)
+        vim.api.nvim_feedkeys(cr, 'n', false)
     end
 end, {noremap = true})
 
