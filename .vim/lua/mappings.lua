@@ -99,8 +99,9 @@ vim.keymap.set('n', 'p', ']p')
 vim.keymap.set('n', 'P', ']P')
 
 -- etc.
-vim.keymap.set('n', 'gj', 'gj<SID>g', {remap = true})
-vim.keymap.set('n', 'gk', 'gk<SID>g', {remap = true})
+-- j,k -> gj,gk
+vim.keymap.set('n', 'j', 'gj<SID>g', {remap = true})
+vim.keymap.set('n', 'k', 'gk<SID>g', {remap = true})
 vim.keymap.set('n', '<SID>gj', 'gj<SID>g', {script = true})
 vim.keymap.set('n', '<SID>gk', 'gk<SID>g', {script = true})
 vim.keymap.set('n', '<SID>g', '<Nop>', {remap = true, script = true})
