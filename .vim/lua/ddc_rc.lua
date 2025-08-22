@@ -13,7 +13,7 @@ vim.keymap.set('i', '<S-Tab>', function()
         vim.fn['pum#map#insert_relative'](-1)
     else
         local stab = vim.api.nvim_replace_termcodes('<S-Tab>', true, false, true)
-        vim.api.nvim_feedkeys(stab, 'c', false)
+        vim.api.nvim_feedkeys(stab, 'n', false)
     end
 end, {noremap = true})
 
@@ -32,68 +32,74 @@ vim.keymap.set('i', '<CR>', function()
 end, {noremap = true})
 
 -- functions
--- local function CommandlinePost()
---     pcall(vim.keymap.del, 'c', '<Tab>')
---     pcall(vim.keymap.del, 'c', '<S-Tab>')
---     pcall(vim.keymap.del, 'c', '<C-n>')
---     pcall(vim.keymap.del, 'c', '<C-p>')
---     pcall(vim.keymap.del, 'c', '<C-y>')
---     pcall(vim.keymap.del, 'c', '<C-e>')
+local function CommandlinePost()
+    pcall(vim.keymap.del, 'c', '<Tab>')
+    pcall(vim.keymap.del, 'c', '<S-Tab>')
+    pcall(vim.keymap.del, 'c', '<C-n>')
+    pcall(vim.keymap.del, 'c', '<C-p>')
+    pcall(vim.keymap.del, 'c', '<C-y>')
+    pcall(vim.keymap.del, 'c', '<C-e>')
 
---     if vim.b.prev_buffer_config ~= nil then
---         vim.fn['ddc#custom#set_buffer'](vim.b.prev_buffer_config)
---         vim.b.prev_buffer_config = nil
---     else
---         vim.fn['ddc#custom#set_buffer'](vim.empty_dict())
---     end
--- end
+    if vim.b.prev_buffer_config ~= nil then
+        vim.fn['ddc#custom#set_buffer'](vim.b.prev_buffer_config)
+        vim.b.prev_buffer_config = nil
+    else
+        vim.fn['ddc#custom#set_buffer'](vim.empty_dict())
+    end
+end
 
--- local function CommandlinePre()
---     local opts = {noremap = true, silent = true}
---     vim.keymap.set('c', '<Tab>', function() vim.fn['pum#map#insert_relative'](1) end, opts)
---     vim.keymap.set('c', '<S-Tab>', function() vim.fn['pum#map#insert_relative'](-1) end, opts)
---     vim.keymap.set('c', '<C-n>', function() vim.fn['pum#map#insert_relative'](1) end, opts)
---     vim.keymap.set('c', '<C-p>', function() vim.fn['pum#map#insert_relative'](-1) end, opts)
---     vim.keymap.set('c', '<C-y>', vim.fn['pum#map#confirm'], opts)
---     vim.keymap.set('c', '<C-e>', vim.fn['pum#map#cancel'], opts)
---     vim.keymap.set('c', '<CR>', function()
---         if vim.fn['pum#visible']() then
---             vim.fn['pum#map#confirm']()
---         else
---             vim.fn['kensaku_search#replace']()
---         end
---         local cr = vim.api.nvim_replace_termcodes('<CR>', true, false, true)
---         vim.api.nvim_feedkeys(cr, 'c', false)
---     end, opts)
+local function CommandlinePre(key)
+    local opts = {noremap = true, silent = true}
+    vim.keymap.set('c', '<Tab>', function() vim.fn['pum#map#insert_relative'](1) end, opts)
+    vim.keymap.set('c', '<S-Tab>', function() vim.fn['pum#map#insert_relative'](-1) end, opts)
+    vim.keymap.set('c', '<C-n>', function() vim.fn['pum#map#insert_relative'](1) end, opts)
+    vim.keymap.set('c', '<C-p>', function() vim.fn['pum#map#insert_relative'](-1) end, opts)
+    vim.keymap.set('c', '<C-y>', vim.fn['pum#map#confirm'], opts)
+    vim.keymap.set('c', '<C-e>', vim.fn['pum#map#cancel'], opts)
+    vim.keymap.set('c', '<CR>', function()
+        if vim.fn['pum#visible']() then
+            vim.fn['pum#map#confirm']()
+        else
+            vim.fn['kensaku_search#replace']()
+        end
+        local cr = vim.api.nvim_replace_termcodes('<CR>', true, false, true)
+        vim.api.nvim_feedkeys(cr, 'n', false)
+    end, opts)
 
---     vim.b.prev_buffer_config = vim.fn['ddc#custom#get_buffer']()
+    vim.b.prev_buffer_config = vim.fn['ddc#custom#get_buffer']()
 
---     vim.fn['ddc#custom#patch_buffer']('cmdlineSources', {
---         [':'] = {'cmdline', 'cmdline_history', 'around', 'file', 'path'},
---         ['@'] = {'input', 'cmdline_history', 'around', 'file', 'path'},
---         ['>'] = {'input', 'cmdline_history', 'around', 'file', 'path'},
---         ['/'] = {'around', 'line'},
---         ['?'] = {'around', 'line'},
---         ['-'] = {'around', 'line'},
---         ['='] = {'input'},
---     })
+    vim.fn['ddc#custom#patch_buffer']('cmdlineSources', {
+        [':'] = {'cmdline', 'cmdline_history', 'around', 'file', 'path'},
+        ['@'] = {'input', 'cmdline_history', 'around', 'file', 'path'},
+        ['>'] = {'input', 'cmdline_history', 'around', 'file', 'path'},
+        ['/'] = {'around', 'line'},
+        ['?'] = {'around', 'line'},
+        ['-'] = {'around', 'line'},
+        ['='] = {'input'},
+    })
 
---     vim.api.nvim_create_autocmd({'User'}, {
---         pattern = {'DDCCmdlineLeave'},
---         once = true,
---         callback = CommandlinePost,
---     })
---     vim.api.nvim_create_autocmd({'InsertEnter'}, {
---         buffer = vim.fn.bufnr(),
---         once = true,
---         callback = CommandlinePost,
---     })
+    vim.api.nvim_create_autocmd({'User'}, {
+        pattern = {'DDCCmdlineLeave'},
+        once = true,
+        callback = CommandlinePost,
+    })
+    vim.api.nvim_create_autocmd({'InsertEnter'}, {
+        buffer = vim.fn.bufnr(),
+        once = true,
+        callback = CommandlinePost,
+    })
 
---     vim.fn['ddc#enable_cmdline_completion']()
--- end
+    vim.fn['ddc#enable_cmdline_completion']()
+    vim.api.nvim_feedkeys(key, 'n', true)
+end
 
 -- mappings
--- vim.keymap.set({'n', 'x'}, ':', CommandlinePre, {noremap = true})
+-- vim.keymap.set({'n', 'x'}, ':', function()
+--     CommandlinePre(':')
+-- end, {noremap = true})
+-- vim.keymap.set({'n', 'x'}, '/', function()
+--     CommandlinePre('/\\v')
+-- end, {noremap = true})
 
 -- " patches
 vim.fn['ddc#custom#patch_global']({
