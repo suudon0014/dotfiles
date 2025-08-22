@@ -3,7 +3,7 @@ repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 on_cmd = ['TSUpdate', 'TSUpdateSync']
 lua_source = '''
-    require('nvim-treesitter.lua')
+    vim.cmd.source('~/dotfiles/.vim/lua/nvim-treesitter.lua')
 '''
 
 [[plugins]]

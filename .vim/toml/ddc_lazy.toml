@@ -88,7 +88,7 @@ on_source = ['ddc.vim']
 repo = 'Shougo/ddc-source-lsp'
 on_source = ['ddc.vim']
 lua_post_source = '''
-    require('nvim-lsp.lua')
+    vim.cmd.source('~/dotfiles/.vim/lua/nvim-lsp.lua')
 '''
 
 [[plugins]]
