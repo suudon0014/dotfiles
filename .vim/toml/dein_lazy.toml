@@ -352,7 +352,7 @@ lua_source = '''
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 lua_source = '''
-    vim.cmd.source('~/dotfiles/.vim/lua/gitsigns.lua')
+    require('gitsigns.lua')
     vim.keymap.set('n', '<Leader>gsb', require('gitsigns').stage_buffer, {desc = 'buffer'})
     vim.keymap.set({'n', 'v'}, '<Leader>gsh', require('gitsigns').stage_hunk, {desc = 'hunk(toggle)'})
     vim.keymap.set('n', '<Leader>grb', require('gitsigns').reset_buffer, {desc = 'buffer'})
