@@ -4,6 +4,7 @@ vim.opt.undofile = true
 vim.opt.backupdir = vim.env.HOME .. "/vimtmp/bk"
 vim.opt.directory = vim.env.HOME .. "/vimtmp/swap"
 vim.opt.swapfile = false
+vim.opt.autoread = true
 
 -- search
 vim.opt.hlsearch = true
