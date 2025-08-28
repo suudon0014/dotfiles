@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({'BufWritePost'}, {
         local isNotBufEmpty = string.len(vim.fn.expand('%')) ~= 0
         local isNotNoFile = vim.bo.buftype ~= 'nofile'
         if isNotBufEmpty and isNotNoFile then
-            vim.cmd('silent! mkview!')
+            vim.cmd.mkview({bang = true, mods = {emsg_silent = true}})
         end
     end,
     group = myAuGroup,
@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd({'BufRead'}, {
         local isNotBufEmpty = string.len(vim.fn.expand('%')) ~= 0
         local isNotNoFile = vim.bo.buftype ~= 'nofile'
         if isNotBufEmpty and isNotNoFile then
-            vim.cmd('silent! loadview')
+            vim.cmd.loadview({mods = {emsg_silent = true}})
         end
     end,
     group = myAuGroup,
