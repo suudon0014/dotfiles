@@ -33,33 +33,18 @@ local dein = require('dein')
 if dein.load_state(dein_dir) == 1 then
     dein.begin(dein_dir)
 
-    -- create plugins list file using TOML format beforehand
-    local rc_dir = vim.fn.expand('~/dotfiles/.vim/toml')
-    local dein_toml        = rc_dir .. '/dein.toml'
-    local lazy_toml        = rc_dir .. '/dein_lazy.toml'
-    local ddc_toml         = rc_dir .. '/ddc_lazy.toml'
-    local ddu_toml         = rc_dir .. '/ddu_lazy.toml'
-    local dpp_toml         = rc_dir .. '/dpp_lazy.toml'
-    local ai_toml          = rc_dir .. '/ai_lazy.toml'
-    local colorscheme_toml = rc_dir .. '/colorscheme_lazy.toml'
-    -- local lightline_toml   = rc_dir .. '/lightline_lazy.toml'
-    local lualine_toml     = rc_dir .. '/lualine_lazy.toml'
-    local markdown_toml    = rc_dir .. '/markdown_lazy.toml'
-    local python_toml      = rc_dir .. '/python_lazy.toml'
-    local treesitter_toml  = rc_dir .. '/treesitter_lazy.toml'
+    local function load_toml_files(toml_names, is_lazy)
+        for _, name in ipairs(toml_names) do
+            local toml_file = vim.fn.expand('~/dotfiles/.vim/toml/') .. "" .. name .. ".toml"
+            if vim.fn.filereadable(toml_file) == 1 then
+                dein.load_toml(toml_file, {lazy = is_lazy})
+            end
+        end
+    end
 
-    -- read and cache the toml files
-    dein.load_toml(dein_toml,        {lazy = false})
-    dein.load_toml(lazy_toml,        {lazy = true})
-    dein.load_toml(ddc_toml,         {lazy = true})
-    dein.load_toml(ddu_toml,         {lazy = true})
-    dein.load_toml(dpp_toml,         {lazy = true})
-    dein.load_toml(ai_toml,          {lazy = true})
-    dein.load_toml(colorscheme_toml, {lazy = true})
-    dein.load_toml(lualine_toml,     {lazy = true})
-    dein.load_toml(markdown_toml,    {lazy = true})
-    dein.load_toml(python_toml,      {lazy = true})
-    dein.load_toml(treesitter_toml,  {lazy = true})
+    load_toml_files({'dein'}, false)
+    load_toml_files({'dein_lazy', 'ddc_lazy', 'ddu_lazy', 'ai_lazy', 'colorscheme_lazy', 'lualine_lazy', 'markdown_lazy', 'python_lazy', 'treesitter_lazy'}, true)
+    -- 'dpp.lazy', 'lightline_lazy'
 
     -- end the setting
     dein.end_()
