@@ -82,9 +82,6 @@ local conf = {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
             secret = os.getenv("GEMINI_API_KEY"),
         },
-        ollama = {
-            endpoint = "http://localhost:11434/v1/chat/completions",
-        },
     },
     agents = {
         {
