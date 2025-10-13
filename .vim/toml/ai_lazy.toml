@@ -292,3 +292,6 @@ require("mcphub").setup({
 })
 '''
 
+[[plugins]]
+repo = 'folke/sidekick.nvim'
+on_event = ['BufEnter']
