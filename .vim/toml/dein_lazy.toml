@@ -262,19 +262,28 @@ on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 repo = 'kevinhwang91/nvim-hlslens'
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 lua_source = '''
+    local opts = {noremap = true, silent = true}
+
     require('hlslens').setup()
 
     vim.keymap.set('n', 'n', function()
-        vim.cmd.normal({args = {vim.v.count1 .. 'n'}, bang = true})
+        vim.cmd.normal({
+            args = {vim.v.count1 .. 'n'},
+            bang = true,
+            mods = {silent = true, emsg_silent = true}
+        })
         require('hlslens').start()
     end, opts)
 
     vim.keymap.set('n', 'N', function()
-        vim.cmd.normal({args = {vim.v.count1 .. 'N'}, bang = true})
+        vim.cmd.normal({
+            args = {vim.v.count1 .. 'N'},
+            bang = true,
+            mods = {silent = true, emsg_silent = true}
+        })
         require('hlslens').start()
     end, opts)
 
-    local opts = {noremap = true, silent = true}
     vim.keymap.set({'n', 'x'}, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>")
     vim.keymap.set({'n', 'x'}, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
     vim.keymap.set({'n', 'x'}, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
