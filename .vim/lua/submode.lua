@@ -3,63 +3,44 @@
 local function nmap(lhs, rhs) vim.keymap.set('n', lhs, rhs, {remap = true}) end
 local function nnoremap_script(lhs, rhs) vim.keymap.set('n', lhs, rhs, {noremap = true, script = true}) end
 
-nmap('sj', '<C-w>j<SID>ws')
-nmap('sk', '<C-w>k<SID>ws')
-nmap('sl', '<C-w>l<SID>ws')
-nmap('sh', '<C-w>h<SID>ws')
-nmap('sJ', '<C-w>J<SID>ws')
-nmap('sK', '<C-w>K<SID>ws')
-nmap('sL', '<C-w>L<SID>ws')
-nmap('sH', '<C-w>H<SID>ws')
-nmap('sw', '<C-w>w<SID>ws')
-nmap('ss', ':<C-u>sp<CR><SID>ws')
-nmap('sv', ':<C-u>vs<CR><SID>ws')
-nmap('sq', ':<C-u>q<CR><SID>ws')
-nmap('s;', '<C-w>+<SID>ws')
-nmap('s-', '<C-w>-<SID>ws')
-nmap('s,', '<C-w><<SID>ws')
-nmap('s.', '<C-w>><SID>ws')
-nmap('s=', '<C-w>=<SID>ws')
-nmap('sO', '<C-w>=<SID>ws')
-nmap('so', ':<C-u>vertical res<CR><C-w>_<SID>ws')
-nmap('sQ', ':<C-u>bd<CR><SID>ws')
-nmap('sc', ':<C-u>only<CR><SID>ws')
-nmap('st', ':<C-u>tabnew<CR><SID>ws')
-nmap('sn', 'gt<SID>ws')
-nmap('sp', 'gT<SID>ws')
-nmap('se', '<Nop>')
--- disable sr to avoid conflict with vim-sandwich
--- nmap('sr', '<C-w>r<SID>ws')
-nmap('sR', '<C-w>R<SID>ws')
+local mappings = {
+    {'j', '<C-w>j'},
+    {'k', '<C-w>k'},
+    {'l', '<C-w>l'},
+    {'h', '<C-w>h'},
+    {'J', '<C-w>J'},
+    {'K', '<C-w>K'},
+    {'L', '<C-w>L'},
+    {'H', '<C-w>H'},
+    {'w', '<C-w>w'},
+    {'s', ':<C-u>sp<CR>'},
+    {'v', ':<C-u>vs<CR>'},
+    {'q', ':<C-u>q<CR>'},
+    {';', '<C-w>+'},
+    {'-', '<C-w>-'},
+    {',', '<C-w><'},
+    {'.', '<C-w>>'},
+    {'=', '<C-w>='},
+    {'O', '<C-w>='},
+    {'o', ':<C-u>vertical res<CR><C-w>_'},
+    {'Q', ':<C-u>bd<CR>'},
+    {'c', ':<C-u>only<CR>'},
+    {'t', ':<C-u>tabnew<CR>'},
+    {'n', 'gt'},
+    {'p', 'gT'},
+    {'e', '<Nop>'},
+    -- disable sr to avoid conflict with vim-sandwich
+    {'r', '<C-w>r', disable_nmap = true},
+    {'R', '<C-w>R'},
+}
 
-nnoremap_script('<SID>wsj', '<C-w>j<SID>ws')
-nnoremap_script('<SID>wsk', '<C-w>k<SID>ws')
-nnoremap_script('<SID>wsl', '<C-w>l<SID>ws')
-nnoremap_script('<SID>wsh', '<C-w>h<SID>ws')
-nnoremap_script('<SID>wsJ', '<C-w>J<SID>ws')
-nnoremap_script('<SID>wsK', '<C-w>K<SID>ws')
-nnoremap_script('<SID>wsL', '<C-w>L<SID>ws')
-nnoremap_script('<SID>wsH', '<C-w>H<SID>ws')
-nnoremap_script('<SID>wsw', '<C-w>w<SID>ws')
-nnoremap_script('<SID>wss', ':<C-u>sp<CR><SID>ws')
-nnoremap_script('<SID>wsv', ':<C-u>vs<CR><SID>ws')
-nnoremap_script('<SID>wsq', ':<C-u>q<CR><SID>ws')
-nnoremap_script('<SID>ws;', '<C-w>+<SID>ws')
-nnoremap_script('<SID>ws-', '<C-w>-<SID>ws')
-nnoremap_script('<SID>ws,', '<C-w><<SID>ws')
-nnoremap_script('<SID>ws.', '<C-w>><SID>ws')
-nnoremap_script('<SID>ws=', '<C-w>=<SID>ws')
-nnoremap_script('<SID>wsO', '<C-w>=<SID>ws')
-nnoremap_script('<SID>wso', ':<C-u>vertical res<CR><C-w>_<SID>ws')
-nnoremap_script('<SID>wsQ', ':<C-u>bd<CR><SID>ws')
-nnoremap_script('<SID>wsc', ':<C-u>only<CR><SID>ws')
-nnoremap_script('<SID>wst', ':<C-u>tabnew<CR><SID>ws')
-nnoremap_script('<SID>wsn', 'gt<SID>ws')
-nnoremap_script('<SID>wsp', 'gT<SID>ws')
-nnoremap_script('<SID>wse', '<Nop>')
+for _, map in ipairs(mappings) do
+    local key, action = map[1], map[2]
+    if not map.disable_nmap then
+        nmap('s' .. key, action .. '<SID>ws')
+    end
+    nnoremap_script('<SID>ws' .. key, action .. '<SID>ws')
+end
+
 nnoremap_script('<SID>ws', '<Nop>')
-nnoremap_script('<SID>wsr', '<C-w>r<SID>ws')
-nnoremap_script('<SID>wsR', '<C-w>R<SID>ws')
-
 nmap('<SID>w', '<Nop>')
-

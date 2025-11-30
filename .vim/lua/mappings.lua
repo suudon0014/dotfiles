@@ -21,29 +21,34 @@ vim.keymap.set('', '<Leader>b', '%')
 
 -- Digraph search
 vim.keymap.set('', '<Leader>f', 'f<C-k>')
-local digraphs = vim.cmd.digraphs
-digraphs('aa', 12354) -- あ
-digraphs('ii', 12356) -- い
-digraphs('uu', 12358) -- う
-digraphs('ee', 12360) -- え
-digraphs('oo', 12362) -- お
-digraphs('AA', 12450) -- ア
-digraphs('II', 12452) -- イ
-digraphs('UU', 12454) -- ウ
-digraphs('EE', 12456) -- エ
-digraphs('OO', 12458) -- オ
-digraphs('xa', 12353) -- ぁ
-digraphs('xi', 12355) -- ぃ
-digraphs('xu', 12357) -- ぅ
-digraphs('xe', 12359) -- ぇ
-digraphs('xo', 12361) -- ぉ
-digraphs('xA', 12449) -- ァ
-digraphs('xI', 12451) -- ィ
-digraphs('xU', 12453) -- ゥ
-digraphs('xE', 12455) -- ェ
-digraphs('xO', 12457) -- ォ
-digraphs(',,', 12289) -- 、
-digraphs('..', 12290) -- 。
+local digraphs_list = {
+    {'aa', 12354}, -- あ
+    {'ii', 12356}, -- い
+    {'uu', 12358}, -- う
+    {'ee', 12360}, -- え
+    {'oo', 12362}, -- お
+    {'AA', 12450}, -- ア
+    {'II', 12452}, -- イ
+    {'UU', 12454}, -- ウ
+    {'EE', 12456}, -- エ
+    {'OO', 12458}, -- オ
+    {'xa', 12353}, -- ぁ
+    {'xi', 12355}, -- ぃ
+    {'xu', 12357}, -- ぅ
+    {'xe', 12359}, -- ぇ
+    {'xo', 12361}, -- ぉ
+    {'xA', 12449}, -- ァ
+    {'xI', 12451}, -- ィ
+    {'xU', 12453}, -- ゥ
+    {'xE', 12455}, -- ェ
+    {'xO', 12457}, -- ォ
+    {',,', 12289}, -- 、
+    {'..', 12290}, -- 。
+}
+
+for _, d in ipairs(digraphs_list) do
+    vim.cmd.digraphs(d[1], d[2])
+end
 
 -- command line mode
 vim.keymap.set('c', '<C-b>', '<Up>')

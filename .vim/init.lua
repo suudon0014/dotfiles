@@ -5,9 +5,9 @@ vim.cmd.filetype('plugin indent off')
 
 -- load separated setting files
 vim.opt.runtimepath:append('~/dotfiles/.vim/')
-vim.cmd.runtime({args = {'lua/mappings.lua'}, bang = true})
-vim.cmd.runtime({args = {'lua/sets.lua'}, bang = true})
--- vim.cmd.runtime({args = {'lua/extui.lua'}, bang = true})
+require('mappings')
+require('sets')
+-- require('extui')
 
 require('dein_rc')
 -- vim.cmd.source('~/dotfiles/.vim/settings/dpp_install.vim')
@@ -15,12 +15,16 @@ require('submode')
 
 local myAuGroup = vim.api.nvim_create_augroup('myAuGroup', {})
 
+local function should_save_view()
+    local isNotBufEmpty = string.len(vim.fn.expand('%')) ~= 0
+    local isNotNoFile = vim.bo.buftype ~= 'nofile'
+    return isNotBufEmpty and isNotNoFile
+end
+
 vim.api.nvim_create_autocmd({'BufWritePost'}, {
     pattern = {'?*'},
     callback = function ()
-        local isNotBufEmpty = string.len(vim.fn.expand('%')) ~= 0
-        local isNotNoFile = vim.bo.buftype ~= 'nofile'
-        if isNotBufEmpty and isNotNoFile then
+        if should_save_view() then
             vim.cmd.mkview({bang = true, mods = {emsg_silent = true}})
         end
     end,
@@ -29,9 +33,7 @@ vim.api.nvim_create_autocmd({'BufWritePost'}, {
 vim.api.nvim_create_autocmd({'BufRead'}, {
     pattern = {'?*'},
     callback = function ()
-        local isNotBufEmpty = string.len(vim.fn.expand('%')) ~= 0
-        local isNotNoFile = vim.bo.buftype ~= 'nofile'
-        if isNotBufEmpty and isNotNoFile then
+        if should_save_view() then
             vim.cmd.loadview({mods = {emsg_silent = true}})
         end
     end,

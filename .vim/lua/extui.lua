@@ -12,12 +12,13 @@ extui.enable({
 })
 
 -- macro
+local extui_recording_group = vim.api.nvim_create_augroup('extuiRecordingGroup', {})
 vim.api.nvim_create_autocmd('RecordingEnter',{
     callback = function ()
         local msg = string.format("Macro Record Start[%s]", vim.fn.reg_recording())
         vim.notify(msg, vim.log.levels.INFO)
     end,
-    group = sets_au_group_id,
+    group = extui_recording_group,
 })
 
 vim.api.nvim_create_autocmd('RecordingLeave',{
@@ -25,7 +26,7 @@ vim.api.nvim_create_autocmd('RecordingLeave',{
         local msg = string.format("Macro Record End[%s]", vim.fn.reg_recording())
         vim.notify(msg, vim.log.levels.INFO)
     end,
-    group = sets_au_group_id,
+    group = extui_recording_group,
 })
 
 -- colorscheme
