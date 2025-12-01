@@ -28,7 +28,7 @@ local mappings = {
     {'t', ':<C-u>tabnew<CR>'},
     {'n', 'gt'},
     {'p', 'gT'},
-    {'e', '<Nop>'},
+    {'e', '<Nop>', stop = true},
     -- disable sr to avoid conflict with vim-sandwich
     {'r', '<C-w>r', disable_nmap = true},
     {'R', '<C-w>R'},
@@ -36,10 +36,16 @@ local mappings = {
 
 for _, map in ipairs(mappings) do
     local key, action = map[1], map[2]
-    if not map.disable_nmap then
-        nmap('s' .. key, action .. '<SID>ws')
+
+    local suffix = '<SID>ws'
+    if map.stop then
+        suffix = ''
     end
-    nnoremap_script('<SID>ws' .. key, action .. '<SID>ws')
+
+    if not map.disable_nmap then
+        nmap('s' .. key, action .. suffix)
+    end
+    nnoremap_script('<SID>ws' .. key, action .. suffix)
 end
 
 nnoremap_script('<SID>ws', '<Nop>')
