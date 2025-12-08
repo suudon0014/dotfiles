@@ -117,10 +117,8 @@ if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
     vim.g.clipboard = clipboard
 end
 
-if vim.fn.has('nvim') == 1 then
-    vim.opt.pumblend = 30
-    vim.opt.winblend = 30
-end
+vim.opt.pumblend = 30
+vim.opt.winblend = 30
 
 local sets_au_group_id = vim.api.nvim_create_augroup('setsAuGroup', {})
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
