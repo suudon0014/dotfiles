@@ -59,7 +59,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-l>gi', vim.lsp.buf.implementation, opts)
 
     if client.server_capabilities.documentHighlightProvider then
-        local hl_opts = { cterm = 'underline', ctermbg = '8', gui = 'underline', guibg = '#104040' }
+        local hl_opts = { underline = true, bg = '#104040' }
         vim.api.nvim_set_hl(0, 'LspReferenceText', hl_opts)
         vim.api.nvim_set_hl(0, 'LspReferenceRead', hl_opts)
         vim.api.nvim_set_hl(0, 'LspReferenceWrite', hl_opts)
