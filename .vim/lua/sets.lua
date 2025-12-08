@@ -130,21 +130,18 @@ end
 vim.opt.pumblend = 30
 vim.opt.winblend = 30
 
+vim.filetype.add({
+    extension = {
+        toml = 'toml',
+        md   = 'markdown',
+        mdwn = 'markdown',
+        mkd  = 'markdown',
+        mkdn = 'markdown',
+        mark = 'markdown',
+    }
+})
+
 local sets_au_group_id = vim.api.nvim_create_augroup('setsAuGroup', {})
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-    pattern = {'*.toml'},
-    callback = function ()
-        vim.opt.filetype = 'toml'
-    end,
-    group = sets_au_group_id,
-})
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-    pattern = {'*.md', '*.mdwn', '*.mkd', '*.mkdn', '*.mark*'},
-    callback = function ()
-        vim.opt.filetype = 'markdown'
-    end,
-    group = sets_au_group_id,
-})
 vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
     pattern = {'*'},
     callback = function ()
