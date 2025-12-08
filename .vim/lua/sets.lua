@@ -1,8 +1,18 @@
 -- set backup folders
-vim.opt.undodir = vim.env.HOME .. "/vimtmp/undo"
+local state_dir  = vim.fn.stdpath('state')
+local undo_dir   = state_dir .. '/undo'
+local backup_dir = state_dir .. '/backup'
+local swap_dir   = state_dir .. '/swap'
+
+if vim.fn.isdirectory(undo_dir)   == 0 then vim.fn.mkdir(undo_dir, 'p') end
+if vim.fn.isdirectory(backup_dir) == 0 then vim.fn.mkdir(backup_dir, 'p') end
+if vim.fn.isdirectory(swap_dir)   == 0 then vim.fn.mkdir(swap_dir, 'p') end
+
+vim.opt.undodir   = undo_dir
+vim.opt.backupdir = backup_dir
+vim.opt.directory = swap_dir
+
 vim.opt.undofile = true
-vim.opt.backupdir = vim.env.HOME .. "/vimtmp/bk"
-vim.opt.directory = vim.env.HOME .. "/vimtmp/swap"
 vim.opt.swapfile = false
 vim.opt.autoread = true
 
