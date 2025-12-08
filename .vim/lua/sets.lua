@@ -141,13 +141,3 @@ vim.filetype.add({
     }
 })
 
-local sets_au_group_id = vim.api.nvim_create_augroup('setsAuGroup', {})
-vim.api.nvim_create_autocmd({'BufReadPost', 'FileReadPost'}, {
-    pattern = {'*'},
-    callback = function ()
-        local line_count = vim.api.nvim_buf_line_count(0)
-        vim.cmd.foldopen({range = {1, line_count}, mods = {emsg_silent = true}, bang = true})
-    end,
-    group = sets_au_group_id,
-})
-
