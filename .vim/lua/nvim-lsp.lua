@@ -156,7 +156,7 @@ vim.lsp.config('lua_ls', {
 
 vim.lsp.config('denols', {
     single_file_support = false,
-    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+    root_markers = {"deno.json", "deno.jsonc", "deno.lock"},
     init_options = {
         lint = true,
         unstable = true,
