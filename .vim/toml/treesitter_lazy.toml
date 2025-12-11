@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
 on_event = ['InsertEnter', 'BufReadPost', 'BufNewFile']
 on_cmd = ['TSUpdate', 'TSUpdateSync']
 lua_source = '''
