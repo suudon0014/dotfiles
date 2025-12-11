@@ -53,12 +53,12 @@ vim.api.nvim_create_autocmd({'VimLeave'}, {
 })
 
 -- show full path
-vim.api.nvim_create_user_command('Path', function () print(vim.fn.expand('%:p')) end, {})
+vim.api.nvim_create_user_command('Path', function ()
+    require('my_commands').show_path()
+end, {})
 
 vim.api.nvim_create_user_command('Profile', function ()
-    vim.cmd.profile('start ~/profile.txt')
-    vim.cmd.profile('func *')
-    vim.cmd.profile('file *')
+    require('my_commands').start_profile()
 end, {})
 
 vim.cmd.filetype('plugin indent on')
