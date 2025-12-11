@@ -56,8 +56,8 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Aliases
-alias ll='ls -laht --color'
-alias la='ls -a --color'
+alias ll='ls -laht --color --time-style=long-iso'
+alias la='ls -a --color --time-style=long-iso'
 alias lg='lazygit'
 alias dc='docker compose'
 alias gst='git status'
