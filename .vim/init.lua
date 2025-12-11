@@ -81,13 +81,7 @@ if vim.fn.has('gui_running') == 1 then
                 vim.cmd.GuiTabline(0)
             end
 
-            vim.opt.guioptions:remove('m')
-            vim.opt.guioptions:remove('T')
-            vim.opt.guioptions:remove('r')
-            vim.opt.guioptions:remove('R')
-            vim.opt.guioptions:remove('l')
-            vim.opt.guioptions:remove('L')
-            vim.opt.guioptions:remove('b')
+            vim.opt.guioptions:remove({'m', 'T', 'r', 'R', 'l', 'L', 'b'})
             end,
         once = true,
     })
