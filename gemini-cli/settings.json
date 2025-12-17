@@ -1,0 +1,38 @@
+{
+  "security": {
+    "folderTrust": {
+      "enabled": false
+    },
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": true
+  },
+  "ui": {
+    "hideWindowTitle": false,
+    "hideBanner": true,
+    "hideFooter": false,
+    "theme": "Dracula"
+  },
+  "general": {
+    "preferredEditor": "neovim",
+    "vimMode": false,
+    "previewFeatures": true
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    },
+    "allowed": [
+        "run_shell_command(ls)",
+        "run_shell_command(git add)",
+        "run_shell_command(git diff)",
+        "run_shell_command(git show)",
+        "run_shell_command(git status)",
+        "run_shell_command(git log)"
+    ]
+  }
+}
