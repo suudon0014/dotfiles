@@ -25,6 +25,9 @@ configs.setup {
             end
         end,
     },
+    indent = {
+        enable = true,
+    },
     textobjects = {
         select = {
             enable = true,
