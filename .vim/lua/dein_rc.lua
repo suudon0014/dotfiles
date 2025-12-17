@@ -34,8 +34,9 @@ if dein.load_state(dein_dir) == 1 then
     dein.begin(dein_dir)
 
     local function load_toml_files(toml_names, is_lazy)
+        local toml_dir = vim.fs.normalize(vim.fn.expand('~/dotfiles/.vim/toml/'))
         for _, name in ipairs(toml_names) do
-            local toml_file = vim.fs.normalize(vim.fs.joinpath(vim.fn.expand('~/dotfiles/.vim/toml/'), name .. ".toml"))
+            local toml_file = vim.fs.joinpath(toml_dir, name .. ".toml")
             if vim.fn.filereadable(toml_file) == 1 then
                 dein.load_toml(toml_file, {lazy = is_lazy})
             end
