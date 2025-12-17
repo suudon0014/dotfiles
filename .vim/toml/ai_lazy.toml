@@ -12,18 +12,7 @@ local function keymapOptions(desc)
     }
 end
 
-local function LoadTextFile(fileName)
-    local home_dir = os.getenv('HOME')
-    local prompt_dir = 'dotfiles/.vim/llm_prompt'
-    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
-    local file = io.open(filePath, "r")
-    local prompt = ""
-    if file then
-        prompt = file:read("*a")
-        file:close()
-    end
-    return prompt
-end
+local LoadTextFile = require('utils').LoadTextFile
 
 local code_completion_prompt = LoadTextFile("codeCompletion.md")
 vim.keymap.set("v", "<C-g>c", ":<C-u>'<,'>GpAppend " .. code_completion_prompt .. "<CR>", keymapOptions("Completion"))
@@ -60,18 +49,8 @@ vim.keymap.set("v", "<C-g>rf", ":<C-u>'<,'>GpRefactor<CR>", keymapOptions("Refac
 vim.keymap.set("v", "<C-g>y", ":<C-u>'<,'>GpChatPaste<CR>", keymapOptions("Paste to Chat"))
 '''
 lua_source = '''
-local function LoadTextFile(fileName)
-    local home_dir = os.getenv('HOME')
-    local prompt_dir = 'dotfiles/.vim/llm_prompt'
-    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
-    local file = io.open(filePath, "r")
-    local prompt = ""
-    if file then
-        prompt = file:read("*a")
-        file:close()
-    end
-    return prompt
-end
+local LoadTextFile = require('utils').LoadTextFile
+
 
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
@@ -151,18 +130,8 @@ vim.keymap.set('ca', 'cca', 'CodeCompanionActions')
 vim.keymap.set('ca', 'ccx', 'CodeCompanionCmd')
 '''
 lua_source = '''
-local function LoadTextFile(fileName)
-    local home_dir = os.getenv('HOME')
-    local prompt_dir = 'dotfiles/.vim/llm_prompt'
-    local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
-    local file = io.open(filePath, "r")
-    local prompt = ""
-    if file then
-        prompt = file:read("*a")
-        file:close()
-    end
-    return prompt
-end
+local LoadTextFile = require('utils').LoadTextFile
+
 
 local default_system_prompt = require('codecompanion.config').opts.system_prompt
 
