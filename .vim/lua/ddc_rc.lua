@@ -102,6 +102,35 @@ end
 -- end, {noremap = true})
 
 -- " patches
+local source_params = {
+    lsp = {
+      snippetEngine = vim.fn['denops#callback#register'](
+          function(body) vim.fn['vsnip#anonymous'](body) end
+      ),
+      enableResolveItem = true,
+      enableAdditionalTextEdit = true,
+      confirmBehavior = 'replace',
+    },
+    file = {
+      mode = 'posix',
+    },
+    path = {
+      absolute = false,
+      cmd = {'fd', '--max-depth', '5', '--hidden', '--exclude', '.git'},
+      dirSeparator = 'slash',
+    },
+    buffer = {
+      requireSameFiletype = false,
+      bufNameStyle = 'basename',
+    },
+}
+
+if vim.fn.executable('zsh') == 1 then
+    source_params['shell-history'] = {
+        command = {'zsh', '-c', 'history'},
+    }
+end
+
 vim.fn['ddc#custom#patch_global']({
     ui = 'pum',
     autoCompleteEvents = {'InsertEnter', 'TextChangedI', 'TextChangedP', 'TextChangedT', 'CmdlineEnter', 'CmdlineChanged'},
@@ -152,31 +181,7 @@ vim.fn['ddc#custom#patch_global']({
           maxKeywordLength = 50,
         },
     },
-    sourceParams = {
-        lsp = {
-          snippetEngine = vim.fn['denops#callback#register'](
-              function(body) vim.fn['vsnip#anonymous'](body) end
-          ),
-          enableResolveItem = true,
-          enableAdditionalTextEdit = true,
-          confirmBehavior = 'replace',
-        },
-        file = {
-          mode = 'posix',
-        },
-        path = {
-          absolute = false,
-          cmd = {'fd', '--max-depth', '5', '--hidden', '--exclude', '.git'},
-          dirSeparator = 'slash',
-        },
-        buffer = {
-          requireSameFiletype = false,
-          bufNameStyle = 'basename',
-        },
-        ['shell-history'] = {
-          command = {'zsh', '-c', 'history'},
-        },
-    },
+    sourceParams = source_params,
     filterParams = {
         converter_kind_labels = {
             kindLabels = {
