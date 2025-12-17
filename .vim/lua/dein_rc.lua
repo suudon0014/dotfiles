@@ -51,11 +51,6 @@ if dein.load_state(dein_dir) == 1 then
     dein.save_state()
 end
 
--- install if there are plugins not installed
-if dein.check_install() then
-    dein.install()
-end
-
 -- functions and commands
 -- work only when delete plugins
 vim.api.nvim_create_user_command('DeinClean', function ()
