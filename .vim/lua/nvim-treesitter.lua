@@ -85,11 +85,6 @@ configs.setup {
             },
         },
     },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    },
     textsubjects = {
         enable = true,
         prev_selection = ",",
