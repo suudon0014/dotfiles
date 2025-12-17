@@ -1,7 +1,7 @@
 local M = {}
 
 function M.LoadTextFile(fileName)
-    local home_dir = os.getenv('HOME')
+    local home_dir = vim.fn.expand('~')
     local prompt_dir = 'dotfiles/.vim/llm_prompt'
     local filePath = home_dir .. '/' .. prompt_dir .. '/' .. fileName
     local file = io.open(filePath, "r")
