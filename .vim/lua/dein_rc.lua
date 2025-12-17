@@ -9,10 +9,10 @@ vim.g['dein#install_max_processes'] = 32
 vim.g['dein#install_process_timeout'] = 1800
 vim.g['dein#install_progress_type'] = 'floating'
 vim.g['dein#types#git#clone_depth'] = 1
-vim.g['dein#install_log_filename'] = dein_dir .. '/install_log.log'
+vim.g['dein#install_log_filename'] = vim.fs.normalize(vim.fs.joinpath(dein_dir, 'install_log.log'))
 
 -- dir of dein.vim
-local dein_repo_dir = dein_dir .. '/repos/github.com/Shougo/dein.vim'
+local dein_repo_dir = vim.fs.normalize(vim.fs.joinpath(dein_dir, 'repos', 'github.com', 'Shougo', 'dein.vim'))
 
 -- download dein.vim if there's no dein.vim
 if not string.match(vim.api.nvim_eval('&runtimepath'), '/dein.vim') then
@@ -35,7 +35,7 @@ if dein.load_state(dein_dir) == 1 then
 
     local function load_toml_files(toml_names, is_lazy)
         for _, name in ipairs(toml_names) do
-            local toml_file = vim.fn.expand('~/dotfiles/.vim/toml/') .. "" .. name .. ".toml"
+            local toml_file = vim.fs.normalize(vim.fs.joinpath(vim.fn.expand('~/dotfiles/.vim/toml/'), name .. ".toml"))
             if vim.fn.filereadable(toml_file) == 1 then
                 dein.load_toml(toml_file, {lazy = is_lazy})
             end

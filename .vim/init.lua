@@ -70,9 +70,9 @@ if vim.fn.has('gui_running') == 1 then
         pattern = '*',
         callback = function()
             if vim.fn.has('win32') == 1 or vim.fn.has('win64') then
-                vim.cmd.source(os.getenv('VIMRUNTIME') .. '/delmenu.vim')
+                vim.cmd.source(vim.fs.normalize(vim.fs.joinpath(os.getenv('VIMRUNTIME'), 'delmenu.vim')))
                 vim.opt.langmenu = 'ja_jp.utf-8'
-                vim.cmd.source(os.getenv('VIMRUNTIME') .. '/menu.vim')
+                vim.cmd.source(vim.fs.normalize(vim.fs.joinpath(os.getenv('VIMRUNTIME'), 'menu.vim')))
             end
 
             if vim.fn.has('nvim') == 1 then

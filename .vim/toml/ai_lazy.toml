@@ -55,7 +55,7 @@ local LoadTextFile = require('utils').LoadTextFile
 local general_system_prompt = LoadTextFile("generalSystemPrompt.md")
 
 local conf = {
-    chat_dir = vim.fn.expand('~') .. '/OneDrive/gp/chats',
+    chat_dir = vim.fs.normalize(vim.fs.joinpath(vim.fn.expand('~'), 'OneDrive/gp/chats')),
     providers = {
         googleai = {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
@@ -114,7 +114,7 @@ local conf = {
 }
 require('gp').setup(conf)
 
-local gpNvimScriptFilePath = vim.fn.expand('~') .. '/dotfiles/.vim/llm_prompt/gp_nvim_func.vim'
+local gpNvimScriptFilePath = vim.fs.normalize(vim.fs.joinpath(vim.fn.expand('~'), 'dotfiles/.vim/llm_prompt/gp_nvim_func.vim'))
 vim.api.nvim_command("source " .. gpNvimScriptFilePath)
 '''
 
