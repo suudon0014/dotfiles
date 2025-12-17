@@ -15,6 +15,15 @@ configs.setup {
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = {"markdown"},
+
+        -- パフォーマンス改善: 大きなファイルではTreesitterを無効にする
+        disable = function(lang, buf)
+            local max_filesize = 10 * 1024 * 1024 -- 10 MB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
     },
     textobjects = {
         select = {
