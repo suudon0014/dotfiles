@@ -1,4 +1,9 @@
-require('nvim-treesitter.configs').setup {
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+    return
+end
+
+configs.setup {
     ensure_installed = {
         "bash", "c", "c_sharp", "cmake", "comment", "cpp", "diff", "dockerfile", "git_config", "git_rebase",
         "gitattributes", "gitcommit", "gitignore", "html", "java", "javascript", "jsdoc", "json", "latex", "lua",
@@ -84,6 +89,9 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
-require('hlargs').setup({
-    excluded_filetypes = {'toml'},
-})
+local hlargs_ok, hlargs = pcall(require, 'hlargs')
+if hlargs_ok then
+    hlargs.setup({
+        excluded_filetypes = {'toml'},
+    })
+end
