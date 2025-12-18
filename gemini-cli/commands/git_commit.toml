@@ -1,0 +1,16 @@
+description = "Gitの変更内容を分析してコミットを生成"
+prompt = """
+このリポジトリの現時点での変更内容を分析し、Gitのコミットを作成してください。
+ただし、以下のルールに必ず従ってください。
+
+- 複数の変更内容が含まれている場合、内容毎に複数のコミットに分けてください。
+- 特に指示がない場合、コミットメッセージは英語で書いてください。
+- コミット内容に応じて、コミットメッセージには以下のいずれかのプレフィックスを付けてください。
+    - feat: (new feature for the user, not a new feature for build script)
+    - fix: (bug fix for the user, not a fix to a build script)
+    - docs: (changes to the documentation)
+    - style: (formatting, missing semi colons, etc; no production code change)
+    - refactor: (refactoring production code, eg. renaming a variable)
+    - test: (adding missing tests, refactoring tests; no production code change)
+    - chore: (updating grunt tasks etc; no production code change)
+"""
