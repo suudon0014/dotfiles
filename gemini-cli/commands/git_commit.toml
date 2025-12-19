@@ -5,6 +5,7 @@ prompt = """
 
 - 複数の変更内容が含まれている場合、内容毎に複数のコミットに分けてください。
 - 特に指示がない場合、コミットメッセージは英語で書いてください。
+- ユーザーへの確認無しでの実行が許可されているgitのサブコマンドはadd, diff, show, status, logのみです。これら以外のサブコマンドとの連結(例:`git add . && git commit -m "message"`)は失敗するので、連結せずそれぞれ個別に実行してください。
 - コミット内容に応じて、コミットメッセージには以下のいずれかのプレフィックスを付けてください。
     - feat: (new feature for the user, not a new feature for build script)
     - fix: (bug fix for the user, not a fix to a build script)
