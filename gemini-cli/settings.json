@@ -15,24 +15,34 @@
     "hideWindowTitle": false,
     "hideBanner": true,
     "hideFooter": false,
-    "theme": "Dracula"
+    "theme": "Dracula",
+    "footer": {
+      "hideSandboxStatus": false
+    },
+    "accessibility": {
+      "disableLoadingPhrases": true
+    }
   },
   "general": {
     "preferredEditor": "neovim",
     "vimMode": false,
-    "previewFeatures": true
+    "previewFeatures": true,
+    "disableAutoUpdate": true
   },
   "tools": {
     "shell": {
       "showColor": true
     },
     "allowed": [
-        "run_shell_command(ls)",
-        "run_shell_command(git add)",
-        "run_shell_command(git diff)",
-        "run_shell_command(git show)",
-        "run_shell_command(git status)",
-        "run_shell_command(git log)"
+      "run_shell_command(ls)",
+      "run_shell_command(git add)",
+      "run_shell_command(git diff)",
+      "run_shell_command(git show)",
+      "run_shell_command(git status)",
+      "run_shell_command(git log)"
     ]
+  },
+  "output": {
+    "format": "text"
   }
 }
