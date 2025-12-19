@@ -20,7 +20,7 @@ else
     echo OS CHECK ERROR!
 fi
 
-DOTFILES=~/dotfiles
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # vim
 ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
