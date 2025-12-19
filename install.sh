@@ -42,6 +42,12 @@ ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 mkdir -p ${XDG_CONFIG_HOME}/lazygit
 ln -sfv ${DOTFILES}/lazygit/config.yml ${XDG_CONFIG_HOME}/lazygit/config.yml
 
+# gemini-cli
+mkdir -p ~/.gemini
+ln -sfv ${DOTFILES}/gemini-cli/GEMINI.md ~/.gemini/GEMINI.md
+ln -sfv ${DOTFILES}/gemini-cli/settings.json ~/.gemini/settings.json
+ln -sfv ${DOTFILES}/gemini-cli/commands ~/.gemini/commands
+
 # scoop
 # SCOOP_DIR=${DOTFILES}/scoop
 # SCOOP_CONFIG_DIR=${XDG_CONFIG_HOME}/scoop
