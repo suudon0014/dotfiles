@@ -1,6 +1,6 @@
 -- configs about ddc.vim and pum.vim
 vim.keymap.set('i', '<Tab>', function()
-    if vim.fn['pum#visible']() then
+    if vim.fn['pum#visible']() == 1 then
         vim.fn['pum#map#insert_relative'](1)
     else
         local tab = vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
@@ -9,7 +9,7 @@ vim.keymap.set('i', '<Tab>', function()
 end, {noremap = true})
 
 vim.keymap.set('i', '<S-Tab>', function()
-    if vim.fn['pum#visible']() then
+    if vim.fn['pum#visible']() == 1 then
         vim.fn['pum#map#insert_relative'](-1)
     else
         local stab = vim.api.nvim_replace_termcodes('<S-Tab>', true, false, true)
@@ -23,7 +23,7 @@ vim.keymap.set('i', '<C-y>', vim.fn['pum#map#confirm'], {noremap = true})
 vim.keymap.set('i', '<C-e>', vim.fn['pum#map#cancel'], {noremap = true})
 
 vim.keymap.set('i', '<CR>', function()
-    if vim.fn['pum#visible']() then
+    if vim.fn['pum#visible']() == 1 then
         vim.fn['pum#map#confirm']()
     else
         local cr = vim.api.nvim_replace_termcodes('<CR>', true, false, true)
@@ -57,7 +57,7 @@ local function CommandlinePre(key)
     vim.keymap.set('c', '<C-y>', vim.fn['pum#map#confirm'], opts)
     vim.keymap.set('c', '<C-e>', vim.fn['pum#map#cancel'], opts)
     vim.keymap.set('c', '<CR>', function()
-        if vim.fn['pum#visible']() then
+        if vim.fn['pum#visible']() == 1 then
             vim.fn['pum#map#confirm']()
         else
             vim.fn['kensaku_search#replace']()
@@ -66,7 +66,9 @@ local function CommandlinePre(key)
         vim.api.nvim_feedkeys(cr, 'n', false)
     end, opts)
 
-    vim.b.prev_buffer_config = vim.fn['ddc#custom#get_buffer']()
+    if vim.b.prev_buffer_config == nil then
+        vim.b.prev_buffer_config = vim.fn['ddc#custom#get_buffer']()
+    end
 
     vim.fn['ddc#custom#patch_buffer']('cmdlineSources', {
         [':'] = {'cmdline', 'cmdline_history', 'around', 'file', 'path'},
