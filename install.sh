@@ -35,7 +35,7 @@ ln -sfv ${DOTFILES}/.git_commit_template ~/.git_commit_template
 # etc.
 ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
-mkdir -p ${XDG_CONFIG_HOME}/lagygit
+mkdir -p ${XDG_CONFIG_HOME}/lazygit
 ln -sfv ${DOTFILES}/lazygit/config.yml ${XDG_CONFIG_HOME}/lazygit/config.yml
 
 # scoop
