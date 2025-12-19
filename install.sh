@@ -23,10 +23,14 @@ fi
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # vim
-ln -sfv ${DOTFILES}/.vim/.vimrc ${XDG_CONFIG_HOME}/nvim/init.vim
+mkdir -p ${XDG_CONFIG_HOME}/nvim
+ln -sfv ${DOTFILES}/.vim/init.lua ${XDG_CONFIG_HOME}/nvim/init.lua
 ln -sfv ${DOTFILES}/.vim/.gvimrc ${XDG_CONFIG_HOME}/nvim/ginit.vim
 ln -sfv ${DOTFILES}/.vim/.vimrc ~/.vimrc
 ln -sfv ${DOTFILES}/.vim/.gvimrc ~/.gvimrc
+
+# wezterm
+ln -sfv ${DOTFILES}/.wezterm.lua ~/.wezterm.lua
 
 # git
 ln -sfv ${DOTFILES}/.gitconfig ~/.gitconfig
