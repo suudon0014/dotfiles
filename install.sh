@@ -37,6 +37,7 @@ ln -sfv ${DOTFILES}/.gitconfig ~/.gitconfig
 ln -sfv ${DOTFILES}/.git_commit_template ~/.git_commit_template
 
 # etc.
+ln -sfv ${DOTFILES}/.tmux.conf ~/.tmux.conf
 ln -sfv ${DOTFILES}/.zsh/.zshrc ~/.zshrc
 ln -sfv ${DOTFILES}/.latexmkrc ~/.latexmkrc
 mkdir -p ${XDG_CONFIG_HOME}/lazygit
