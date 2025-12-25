@@ -158,9 +158,9 @@ function unixdate() {
 }
 
 # for WSL2
-if [ -e /etc/init.d/docker ]; then
-    sudo /etc/init.d/docker start
-fi
+# if [ -e /etc/init.d/docker ]; then
+#     sudo /etc/init.d/docker start
+# fi
 
 # for WSL2 GUI
 if type ip > /dev/null; then
