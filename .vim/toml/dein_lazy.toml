@@ -128,10 +128,6 @@ lua_add = '''
 '''
 
 [[plugins]]
-repo = 'nvim-tree/nvim-web-devicons'
-on_source = ['lualine.nvim']
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = 'ga'
 lua_source = '''
