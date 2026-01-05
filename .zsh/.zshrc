@@ -4,6 +4,7 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!\.git/*"'
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --inline-info --preview 'head -100 {}'"
+export EDITOR=nvim
 
 # Prompt Start
 function get-prompt {
