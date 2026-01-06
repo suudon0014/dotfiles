@@ -321,4 +321,28 @@ return {
       vim.keymap.set('n', ',q', vim.cmd.QuickRun, { remap = false, silent = true, desc = 'QuickRun' })
     end,
   },
+  {
+    'lewis6991/gitsigns.nvim',
+    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    config = function()
+      vim.cmd.source('~/dotfiles/.vim/lua/gitsigns.lua')
+      vim.keymap.set('n', '<Leader>gsb', require('gitsigns').stage_buffer, { desc = 'buffer' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>gsh', require('gitsigns').stage_hunk, { desc = 'hunk(toggle)' })
+      vim.keymap.set('n', '<Leader>grb', require('gitsigns').reset_buffer, { desc = 'buffer' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>grh', require('gitsigns').reset_hunk, { desc = 'hunk' })
+      vim.keymap.set('n', '<Leader>gdc', function()
+        require('gitsigns').diffthis('~1')
+      end, { desc = 'last commit' })
+      vim.keymap.set('n', '<Leader>gdi', require('gitsigns').diffthis, { desc = 'index' })
+      vim.keymap.set('n', '<Leader>gtb', require('gitsigns').toggle_current_line_blame, { desc = 'blame (line)' })
+      vim.keymap.set('n', '<Leader>gtl', require('gitsigns').toggle_linehl, { desc = 'line highlight' })
+      vim.keymap.set('n', '<Leader>gtn', require('gitsigns').toggle_numhl, { desc = 'num highlight' })
+      vim.keymap.set('n', '<Leader>gts', require('gitsigns').toggle_signs, { desc = 'signs' })
+      vim.keymap.set('n', '<Leader>gtw', require('gitsigns').toggle_word_diff, { desc = 'word diff' })
+      vim.keymap.set('n', '<Leader>gb', function()
+        require('gitsigns').blame_line({ full = true })
+      end, { desc = 'blame(full)' })
+      vim.keymap.set('n', '<Leader>gp', require('gitsigns').preview_hunk, { desc = 'preview' })
+    end,
+  },
 }
