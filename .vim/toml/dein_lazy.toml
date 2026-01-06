@@ -62,14 +62,6 @@ lua_source = '''
 '''
 
 [[plugins]]
-repo = 'skanehira/denops-translate.vim'
-on_map = ['<Plug>(Translate']
-depends = ['denops.vim']
-lua_add = '''
-    vim.keymap.set({'n', 'v'}, '<Leader>tr', '<Plug>(Translate)', {remap = true})
-'''
-
-[[plugins]]
 repo = 'Shougo/pum.vim'
 on_source = ['ddc.vim']
 
@@ -105,45 +97,6 @@ lua_source = '''
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
 on_source = ['vim-vsnip']
-
-[[plugins]]
-repo = 'lambdalisue/vim-gin'
-on_map = '<Plug>(gin-'
-on_cmd = ['Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard']
-on_func = 'gin#'
-lua_source = '''
-    vim.g.gin_log_default_args = {'--graph', '--oneline', '--all', '--date=short', '--decorate=short'}
-
-    local function show_git_dashboard()
-        vim.cmd.tabnew()
-        vim.cmd.GinStatus('++opener=topleft split')
-        vim.cmd.wincmd('j')
-        vim.cmd.GinBranch()
-        vim.cmd.GinLog('++opener=botright vsplit')
-    end
-    vim.api.nvim_create_user_command('ShowGitDashboard', show_git_dashboard, {})
-'''
-
-[plugins.ftplugin]
-lua_gin-branch = '''
-    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true, desc = 'edit'})
-    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true, desc = 'quit'})
-'''
-lua_gin-diff = '''
-    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true, desc = 'edit'})
-    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true, desc = 'quit'})
-'''
-lua_gin-log = '''
-    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true, desc = 'edit'})
-    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true, desc = 'quit'})
-    vim.keymap.set('n', 'gsh', '<Plug>(gin-action-show)', {remap = false, buffer = true, desc = 'gin-action-show'})
-    vim.keymap.set('n', 'gsw', '<Plug>(gin-action-switch)', {remap = false, buffer = true, desc = 'gin-action-switch'})
-'''
-lua_gin-status = '''
-    vim.keymap.set('n', 'r', vim.cmd.edit({bang = true}), {remap = false, buffer = true, silent = true, desc = 'edit'})
-    vim.keymap.set('n', 'q', vim.cmd.quit(), {remap = false, buffer = true, silent = true, desc = 'quit'})
-    vim.keymap.set('n', 'e', '<Plug>(gin-action-edit)', {remap = false, buffer = true, desc = 'gin-action-edit'})
-'''
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
@@ -186,16 +139,6 @@ on_source = ['mason.nvim']
 # '''
 
 [[plugins]]
-repo = 'lambdalisue/kensaku.vim'
-depends = ['denops.vim']
-on_source = ['kensaku-search.vim']
-
-[[plugins]]
-repo = 'lambdalisue/kensaku-search.vim'
-depends = ['kensaku.vim']
-on_source = ['pum.vim']
-
-[[plugins]]
 repo = 'Shougo/ddt.vim'
 on_func = ['ddt#']
 lua_source = '''
@@ -231,16 +174,3 @@ lua_ddt-shell = '''
     vim.keymap.set('n', '<C-y>', function() vim.fn['ddt#ui#do_action']('pastePrompt') end, {remap = false, buffer = true, desc = 'pastePrompt'})
     vim.keymap.set('i', '<C-c>', function() vim.fn['ddt#ui#do_action']('terminate') end, {remap = false, buffer = true, desc = 'terminate'})
 '''
-
-[[plugins]]
-repo = 'gamoutatsumi/dps-ghosttext.vim'
-depends = ['denops.vim']
-on_cmd = ['GhostStart']
-on_func = ['ghosttext#']
-lua_post_source = '''
-    tmp_table = {}
-    tmp_table["gemini.google.com"] = "markdown"
-    tmp_table["aistudio.google.com"] = "markdown"
-    vim.g["dps_ghosttext#ftmap"] = vim.tbl_deep_extend("keep", vim.g["dps_ghosttext#ftmap"], tmp_table)
-'''
-
