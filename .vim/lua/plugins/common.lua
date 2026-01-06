@@ -78,7 +78,6 @@ return {
         ['*'] = 0,
         help = 1,
         toml = 1,
-        ['ddt-shell'] = 1,
       }
 
       local preciousAuGroup = vim.api.nvim_create_augroup('preciousAuGroup', {})
