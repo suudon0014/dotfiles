@@ -3,104 +3,12 @@ repo = 'Shougo/dein.vim'
 on_event = 'CursorHold'
 
 [[plugins]]
-repo = 'mason-org/mason.nvim'
-on_event = ['CursorHold', 'InsertEnter', 'BufReadPost', 'BufNewFile']
-on_cmd = ['Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog']
-on_source = ['ddc-source-lsp']
-
-[[plugins]]
-repo = 'mason-org/mason-lspconfig.nvim'
-depends = ['nvim-lspconfig']
-on_source = ['mason.nvim']
-
-[[plugins]]
-repo = 'neovim/nvim-lspconfig'
-on_source = ['mason.nvim']
-[plugins.ftplugin]
-lua_lspinfo = '''
-    vim.keymap.set('n', 'q', vim.cmd.close, {remap = false, buffer = true, silent = true})
-'''
-
-[[plugins]]
-repo = 'glepnir/lspsaga.nvim'
-on_source = ['mason.nvim']
-
-[[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = ['VimEnter']
 lua_source = '''
     vim.g.denops_server_addr = '127.0.0.1:32123'
     vim.g["denops#debug"] = 0
 '''
-
-[[plugins]]
-repo = 'matsui54/denops-signature_help'
-on_source = ['ddc.vim']
-depends = ['denops.vim']
-lua_source = '''
-    vim.fn['signature_help#enable']()
-'''
-
-[[plugins]]
-repo = 'matsui54/denops-popup-preview.vim'
-on_source = ['ddc.vim']
-depends = ['denops.vim']
-lua_source = '''
-    vim.fn['popup_preview#enable']()
-
-    local popupPreviewAuGroup = vim.api.nvim_create_augroup('popupPreviewAuGroup', {})
-    vim.api.nvim_create_autocmd({'BufEnter'}, {
-        pattern = {'*.cpp', "*.h"},
-        callback = function() vim.fn['popup_preview#disable']() end,
-        group = popupPreviewAuGroup,
-    })
-    vim.api.nvim_create_autocmd({'BufLeave'}, {
-        pattern = {'*.cpp', "*.h"},
-        callback = function() vim.fn['popup_preview#enable']() end,
-        group = popupPreviewAuGroup,
-    })
-'''
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-on_source = ['ddc.vim']
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-on_source = ['ddc.vim']
-lua_source = '''
-    vim.keymap.set({'i', 's'}, '<C-k>', function()
-        if vim.fn['vsnip#expandable']() == 1 then
-            return '<Plug>(vsnip-expand)'
-        else
-            return '<C-k>'
-        end
-    end, {expr = true, remap = true, desc = 'vsnip-expand'})
-
-    vim.keymap.set({'i', 's'}, '<C-f>', function()
-        if vim.fn['vsnip#jumpable'](1) == 1 then
-            return '<Plug>(vsnip-jump-next)'
-        else
-            return '<C-f>'
-        end
-    end, {expr = true, remap = true, desc = 'vsnip-jump-next'})
-
-    vim.keymap.set({'i', 's'}, '<C-b>', function()
-        if vim.fn['vsnip#jumpable'](-1) == 1 then
-            return '<Plug>(vsnip-jump-prev)'
-        else
-            return '<C-b>'
-        end
-    end, {expr = true, remap = true, desc = 'vsnip-jump-prev'})
-'''
-
-[[plugins]]
-repo = 'rafamadriz/friendly-snippets'
-on_source = ['vim-vsnip']
-
-[[plugins]]
-repo = 'j-hui/fidget.nvim'
-on_source = ['mason.nvim']
 
 # [[plugins]]
 # repo = 'epwalsh/obsidian.nvim'
