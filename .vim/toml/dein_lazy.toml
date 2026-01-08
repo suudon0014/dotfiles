@@ -9,19 +9,3 @@ lua_source = '''
     vim.g.denops_server_addr = '127.0.0.1:32123'
     vim.g["denops#debug"] = 0
 '''
-
-# [[plugins]]
-# repo = 'epwalsh/obsidian.nvim'
-# on_source = 'nvim-cmp'
-# lua_source = '''
-#     require('obsidian').setup({
-#         dir = '~/obsidian_vault',
-#         notes_subdir = '01_Inbox',
-#         daily_notes = {
-#             folder = '02_Daily',
-#         },
-#         completion = {
-#             nvim_cmp = false,
-#         },
-#     })
-# '''

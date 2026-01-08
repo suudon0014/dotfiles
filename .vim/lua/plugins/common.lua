@@ -339,4 +339,20 @@ return {
       vim.keymap.set('n', '<Leader>gp', require('gitsigns').preview_hunk, { desc = 'preview' })
     end,
   },
+  {
+      'obsidian-nvim/obsidian.nvim',
+      version = '*',
+      lazy = true,
+      ft = 'markdown',
+      dependencies = {'saghen/blink.cmp'},
+      opts = {
+          legacy_commands = false,
+          workspaces = {
+              {
+                  name = 'my_vault',
+                  path = '~/OneDrive/obsidian',
+              }
+          },
+      },
+  }
 }
