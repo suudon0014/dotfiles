@@ -344,6 +344,7 @@ return {
       version = '*',
       lazy = true,
       ft = 'markdown',
+      cmd = {'Obsidian'},
       dependencies = {'saghen/blink.cmp'},
       opts = {
           legacy_commands = false,
@@ -352,6 +353,10 @@ return {
                   name = 'my_vault',
                   path = '~/OneDrive/obsidian',
               }
+          },
+          daily_notes = {
+              folder = '02_Daily',
+              date_format = '%Y%m%d000000',
           },
       },
   }
