@@ -44,8 +44,8 @@ if dein.load_state(dein_dir) == 1 then
     end
 
     load_toml_files({'dein'}, false)
-    load_toml_files({'dein_lazy', 'ddc_lazy', 'ddu_lazy', 'ai_lazy', 'colorscheme_lazy', 'lualine_lazy', 'markdown_lazy', 'python_lazy', 'treesitter_lazy'}, true)
-    -- 'dpp.lazy', 'lightline_lazy'
+    load_toml_files({'dein_lazy'}, true)
+    -- 'dpp.lazy'
 
     -- end the setting
     dein.end_()

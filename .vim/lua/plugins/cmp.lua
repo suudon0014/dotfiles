@@ -1,0 +1,44 @@
+return {
+    {
+        'saghen/blink.cmp',
+        event = { 'VeryLazy' },
+        dependencies = {
+            'rafamadriz/friendly-snippets',
+            {
+                'saghen/blink.compat',
+                version = '*',
+                opts = { impersonate_nvim_cmp = true },
+            },
+            'vim-skk/skkeleton',
+            'rinx/cmp-skkeleton',
+        },
+        version = '1.*',
+
+        opts = {
+            keymap = { preset = 'super-tab' },
+            appearance = { nerd_font_variant = 'mono', },
+            completion = { documentation = { auto_show = true, auto_show_delay_ms = 100 } },
+            cmdline = {
+                completion = { menu = { auto_show = true } },
+                keymap = {
+                    preset = 'cmdline',
+                    ['<Tab>'] = { 'select_and_accept', 'fallback' },
+                    ['<S-Tab>'] = { 'select_prev', 'fallback' }
+                }
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+            signature = { enabled = true },
+            sources = {
+                default = { 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
+                providers = {
+                    skkeleton = {
+                        name = 'skkeleton',
+                        module = 'blink.compat.source',
+                        score_offset = 100,
+                    },
+                },
+            },
+        },
+        opts_extend = { "sources.default" },
+    }
+}

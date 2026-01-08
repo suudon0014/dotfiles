@@ -1,14 +1,37 @@
-﻿if vim.loader then vim.loader.enable() end
+﻿-- [Temporary] deinからlazy.nvimへの移行期間中、パス解決のキャッシュトラブルを避けるため無効化。
+-- 移行完了後は、パフォーマンス向上のためアンコメント（有効化）を推奨。
+-- if vim.loader then vim.loader.enable() end
 
 vim.cmd.filetype('off')
 vim.cmd.filetype('plugin indent off')
 
 -- load separated setting files
-vim.opt.runtimepath:append('~/dotfiles/.vim/')
+-- [Temporary] 移行期間中のモジュール読み込みエラー回避のためのワークアラウンド。
+-- lazy.nvimへの一本化完了後、ディレクトリ構成が整理されれば削除可能。
+local dotfiles_path = vim.fn.expand('~/dotfiles/.vim')
+vim.opt.runtimepath:prepend(dotfiles_path)
+package.path = package.path .. ';' .. dotfiles_path .. '/lua/?.lua'
 require('mappings')
 require('sets')
 -- require('extui')
 
+-- lazy.nvim bootstrap
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("plugins")
+
+-- lazy.nvimへの一本化完了後に削除
 require('dein_rc')
 -- vim.cmd.source('~/dotfiles/.vim/settings/dpp_install.vim')
 require('submode')

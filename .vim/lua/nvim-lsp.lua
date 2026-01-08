@@ -80,7 +80,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Set up of LSP servers
-local capabilities = require('ddc_source_lsp').make_client_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 capabilities.textDocument.completion.completionItem.preselectSupport = true
