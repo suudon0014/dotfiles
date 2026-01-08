@@ -7,7 +7,15 @@ return {
         explorer = { enabled = true, hidden = true, ignore = true },
         indent = { enabled = true },
         input = { enabled = true },
-        picker = { enabled = true, hidden = true },
+        picker = {
+            enabled = true,
+            hidden = true,
+            sources = {
+                projects = {
+                    projects = { "~/OneDrive/obsidian", },
+                },
+            },
+        },
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
@@ -26,8 +34,8 @@ return {
           {',sh', function() Snacks.picker.help() end, desc = 'Help'},
           {',sl', function() Snacks.picker.lines() end, desc = 'Lines'},
           {',sma', function() Snacks.picker.marks() end, desc = 'Marks'},
+          {',sp', function() Snacks.picker.projects() end, desc = 'Projects'},
           {',sr', function() Snacks.picker.recent() end, desc = 'Recent files'},
-
       },
       init = function()
           vim.api.nvim_create_autocmd("FileType", {
