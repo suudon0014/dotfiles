@@ -18,7 +18,14 @@ return {
             keymap = { preset = 'super-tab' },
             appearance = { nerd_font_variant = 'mono', },
             completion = { documentation = { auto_show = true, auto_show_delay_ms = 100 } },
-            cmdline = { completion = { menu = { auto_show = true } } },
+            cmdline = {
+                completion = { menu = { auto_show = true } },
+                keymap = {
+                    preset = 'cmdline',
+                    ['<Tab>'] = { 'select_and_accept', 'fallback' },
+                    ['<S-Tab>'] = { 'select_prev', 'fallback' }
+                }
+            },
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = { enabled = true },
             sources = {
