@@ -11,7 +11,7 @@ return {
     config = function()
       local leximaAuGroup = vim.api.nvim_create_augroup('leximaAuGroup', {})
       vim.api.nvim_create_autocmd({ 'FileType' }, {
-        pattern = 'ddu-ff-filter',
+        pattern = 'snacks_picker_input',
         callback = function()
           vim.b.lexima_disabled = 1
         end,
@@ -162,7 +162,7 @@ return {
     'bronson/vim-trailing-whitespace',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
     config = function()
-      vim.g.extra_whitespace_ignored_filetypes = { '', 'ddu-filer', 'ddu-ff', 'mason', 'lspsagafinder' }
+      vim.g.extra_whitespace_ignored_filetypes = { '', 'mason', 'lspsagafinder' }
     end,
   },
   {
@@ -269,12 +269,6 @@ return {
 
         { '<C-g>', group = 'gp.nvim', mode = { 'n', 'v' } },
         { '<C-g>t', group = 'translate (gp.nvim)', mode = { 'v' } },
-
-        { ',a', group = 'ddu (arglist)' },
-        { ',f', group = 'ddu (file)' },
-        { ',g', group = 'ddu (git)' },
-        { ',o', group = 'ddu (obsidian)' },
-        { ',r', group = 'ddu (grep)' },
 
         { '<Leader>t', group = 'translate (google)', mode = { 'n', 'v' } },
         { '<C-l>', group = 'LSP', mode = { 'n', 'v' } },
