@@ -17,7 +17,14 @@ return {
         opts = {
             keymap = { preset = 'super-tab' },
             appearance = { nerd_font_variant = 'mono', },
-            completion = { documentation = { auto_show = true, auto_show_delay_ms = 100 } },
+            completion = {
+                documentation = { auto_show = true, auto_show_delay_ms = 100 },
+                trigger = {
+                    show_on_backspace = true,
+                    show_on_backspace_in_keyword = true,
+                    show_on_insert = true,
+                },
+            },
             cmdline = {
                 completion = { menu = { auto_show = true } },
                 keymap = {
