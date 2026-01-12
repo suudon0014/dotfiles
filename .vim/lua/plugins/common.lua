@@ -361,6 +361,7 @@ return {
               folder = '02_Daily',
               date_format = '%Y%m%d000000',
           },
+          preferred_link_style = "markdown",
           frontmatter = {
               enabled = true,
               sort = { "uid", "title", "aliases", "tags", "note_type", "created", "updated" },

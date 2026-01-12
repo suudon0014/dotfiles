@@ -37,7 +37,22 @@ return {
             signature = { enabled = true },
             sources = {
                 default = { 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
+                per_filetype = {
+                    markdown = { 'obsidian', 'obsidian_new', 'obsidian_tags', 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
+                },
                 providers = {
+                    obsidian = {
+                        name = 'obsidian',
+                        module = 'blink.compat.source',
+                    },
+                    obsidian_new = {
+                        name = 'obsidian_new',
+                        module = 'blink.compat.source',
+                    },
+                    obsidian_tags = {
+                        name = 'obsidian_tags',
+                        module = 'blink.compat.source',
+                    },
                     skkeleton = {
                         name = 'skkeleton',
                         module = 'blink.compat.source',
