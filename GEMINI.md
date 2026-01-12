@@ -9,6 +9,7 @@ This repository contains the user's personal configuration files (dotfiles) for 
 *   **Editor:** Neovim (primary) and Vim. The configuration relies heavily on Lua and external plugin managers.
 *   **Terminal:** WezTerm, Windows Terminal.
 *   **Package Manager:** Scoop (Windows).
+*   **AI CLI:** Gemini CLI.
 
 ## Directory Structure
 
@@ -19,12 +20,16 @@ This repository contains the user's personal configuration files (dotfiles) for 
     *   `settings/`: TypeScript and Vimscript configurations for the `dpp.vim` plugin manager.
 *   **`.fish/`**: Configuration for the Fish shell.
 *   **`.zsh/`**: Configuration for the Zsh shell (`.zshrc`).
+*   **`gemini-cli/`**: Configuration and custom commands for the Gemini CLI.
 *   **`lazygit/`**: Configuration for `lazygit`.
 *   **`scoop/`**: Windows package management configuration.
     *   `scoopfile.json`: Exported list of installed Scoop apps.
     *   `windows_terminal_settings.json`: Settings for Windows Terminal.
 *   **`install.sh`**: The main setup script to symlink dotfiles to their appropriate locations.
 *   **`.wezterm.lua`**: Configuration for the WezTerm terminal emulator.
+*   **`.tmux.conf`**: Configuration for Tmux.
+*   **`.latexmkrc`**: Configuration for LaTeX compilation (latexmk).
+*   **`config.ctags`**: Configuration for Ctags.
 
 ## Installation & Usage
 
@@ -45,6 +50,9 @@ The `install.sh` script handles the symlinking of configuration files to the use
     *   Git: `.gitconfig`, `.git_commit_template`.
     *   Shell: `.zshrc` (Fish config linking is currently commented out).
     *   Lazygit: `config.yml`.
+    *   Tmux: `.tmux.conf`.
+    *   LaTeX: `.latexmkrc`.
+    *   Gemini CLI: `GEMINI.md`, `settings.json`, `commands/` -> `~/.gemini/`.
 
 ### 2. Windows Environment (Scoop)
 
@@ -72,3 +80,6 @@ On Windows, the environment is heavily managed by [Scoop](https://scoop.sh/).
 ### Shell & Terminal
 *   **Cross-Platform:** Scripts and configs try to account for both Windows and Linux paths/behaviors.
 *   **Terminals:** WezTerm is configured via Lua (`.wezterm.lua`), and Windows Terminal settings are backed up in `scoop/`.
+
+### Gemini CLI
+*   **Configuration:** The settings and custom commands for the Gemini CLI are managed in `gemini-cli/` and symlinked to `~/.gemini/` by `install.sh`.
