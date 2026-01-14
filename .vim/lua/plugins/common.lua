@@ -1,12 +1,16 @@
+local not_vscode = not vim.g.vscode
+
 return {
   {
     'rbtnn/vim-ambiwidth',
+    cond = not_vscode,
     init = function()
       vim.g.ambiwidth_cica_enabled = false
     end,
   },
   {
     'cohama/lexima.vim',
+    cond = not_vscode,
     event = { 'InsertEnter' },
     config = function()
       local leximaAuGroup = vim.api.nvim_create_augroup('leximaAuGroup', {})
@@ -42,6 +46,7 @@ return {
   },
   {
     'lervag/vimtex',
+    cond = not_vscode,
     ft = { 'tex' },
     init = function()
       vim.g.vimtex_compiler_latexmk = {
@@ -72,6 +77,7 @@ return {
   {
     'osyo-manga/vim-precious',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    cond = not_vscode,
     dependencies = { 'Shougo/context_filetype.vim' },
     config = function()
       vim.g.precious_enable_switch_CursorMoved = {
@@ -102,6 +108,7 @@ return {
   },
   {
     'mechatroner/rainbow_csv',
+    cond = not_vscode,
     ft = { 'csv' },
   },
   {
@@ -153,6 +160,7 @@ return {
   {
     'Yggdroot/indentLine',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    cond = not_vscode,
     config = function()
       vim.g.indentLine_setConceal = 0
       vim.g.indentLine_char = '¦'
@@ -221,6 +229,7 @@ return {
   },
   {
     'simrat39/rust-tools.nvim',
+    cond = not_vscode,
     ft = { 'rust' },
   },
   {
@@ -230,6 +239,7 @@ return {
   {
     'shellRaining/hlchunk.nvim',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    cond = not_vscode,
     config = function()
       require('hlchunk').setup({})
     end,
@@ -240,6 +250,7 @@ return {
   },
   {
     'stevearc/oil.nvim',
+    cond = not_vscode,
     cmd = { 'Oil' },
     keys = {
       { '<Leader>o', desc = 'Open parent directory' },
@@ -255,6 +266,7 @@ return {
   },
   {
     'folke/which-key.nvim',
+    cond = not_vscode,
     event = { 'VeryLazy' },
     config = function()
       local wk = require('which-key')
@@ -318,6 +330,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    cond = not_vscode,
     config = function()
       vim.cmd.source('~/dotfiles/.vim/lua/gitsigns.lua')
       vim.keymap.set('n', '<Leader>gsb', require('gitsigns').stage_buffer, { desc = 'buffer' })

@@ -1,3 +1,5 @@
+local not_vscode = not vim.g.vscode
+
 return {
   {
     'vim-denops/denops.vim',
@@ -13,6 +15,7 @@ return {
   },
   {
     'skanehira/denops-translate.vim',
+    cond = not_vscode,
     dependencies = { 'vim-denops/denops.vim' },
     cmd = {'Translate'},
     keys = {
@@ -24,6 +27,7 @@ return {
   },
   {
     'gamoutatsumi/dps-ghosttext.vim',
+    cond = not_vscode,
     dependencies = { 'vim-denops/denops.vim' },
     cmd = { 'GhostStart' },
     config = function()
@@ -37,6 +41,7 @@ return {
   },
   {
     'lambdalisue/vim-gin',
+    cond = not_vscode,
     dependencies = { 'vim-denops/denops.vim' },
     cmd = { 'Gin', 'GinBuffer', 'GinBranch', 'GinChaperon', 'GinDiff', 'GinEdit', 'GinPatch', 'GinStatus', 'ShowGitDashboard' },
     config = function()
@@ -119,6 +124,7 @@ return {
   {
     'lambdalisue/kensaku.vim',
     lazy = true,
+    cond = not_vscode,
     dependencies = { 'vim-denops/denops.vim' },
     config = function()
       require('denops-lazy').load('kensaku.vim')
@@ -126,6 +132,7 @@ return {
   },
   {
     'lambdalisue/kensaku-search.vim',
+    cond = not_vscode,
     dependencies = { 'lambdalisue/kensaku.vim' },
     event = 'CmdlineEnter',
     config = function()
