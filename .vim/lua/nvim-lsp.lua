@@ -6,17 +6,6 @@ vim.diagnostic.config({
     }
 })
 
-local saga = require('lspsaga')
-saga.setup({
-    outline = {
-        auto_preview = false,
-        keys = {
-            jump = '<CR>',
-            expand_collapse = 'o',
-        },
-    },
-})
-
 local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_set_option_value(...) end
     local opts = {noremap=true, silent=true, buffer=bufnr}
@@ -97,23 +86,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
-local mason = require("mason")
-mason.setup({
-    ui = {
-        check_outdated_packages_on_open = false,
-        border = "single",
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
-local lspconfig = require("lspconfig")
-local mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup()
-
 vim.lsp.config('*', {
     on_attach = on_attach,
     detached = false,
@@ -172,17 +144,8 @@ vim.lsp.config('denols', {
     },
 })
 
+-- local lspconfig = require("lspconfig")
 -- vim.lsp.config('ts_ls', {
 --     root_dir = lspconfig.util.root_pattern("package.json"),
 --     single_file_support = false
 -- })
-
-require("fidget").setup{
-    progress = {
-        display = {
-            progress_icon = {
-                pattern = 'moon',
-            },
-        },
-    },
-}
