@@ -29,7 +29,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup(
+    "plugins",
+    {
+        concurrency = 16,
+    }
+)
 
 -- lazy.nvimへの一本化完了後に削除
 require('dein_rc')
