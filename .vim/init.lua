@@ -1,6 +1,4 @@
-﻿-- [Temporary] deinからlazy.nvimへの移行期間中、パス解決のキャッシュトラブルを避けるため無効化。
--- 移行完了後は、パフォーマンス向上のためアンコメント（有効化）を推奨。
--- if vim.loader then vim.loader.enable() end
+﻿if vim.loader then vim.loader.enable() end
 
 vim.cmd.filetype('off')
 vim.cmd.filetype('plugin indent off')
@@ -33,12 +31,10 @@ require("lazy").setup(
     "plugins",
     {
         concurrency = 16,
+        change_detection = { enabled = false, },
     }
 )
 
--- lazy.nvimへの一本化完了後に削除
-require('dein_rc')
--- vim.cmd.source('~/dotfiles/.vim/settings/dpp_install.vim')
 require('submode')
 
 local myAuGroup = vim.api.nvim_create_augroup('myAuGroup', {})

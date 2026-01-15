@@ -1,3 +1,0 @@
-[[plugins]]
-repo = 'Shougo/dein.vim'
-on_event = 'CursorHold'
