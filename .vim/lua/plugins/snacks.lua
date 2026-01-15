@@ -16,7 +16,11 @@ return {
             hidden = true,
             sources = {
                 projects = {
-                    projects = { "~/OneDrive/obsidian", },
+                    projects = {
+                        "~/Desktop",
+                        "~/OneDrive/obsidian",
+                        "~/AppData/Local/nvim-data/lazy",
+                    },
                 },
             },
         },
@@ -38,6 +42,7 @@ return {
           {',sh', function() Snacks.picker.help() end, desc = 'Help'},
           {',sl', function() Snacks.picker.lines() end, desc = 'Lines'},
           {',sma', function() Snacks.picker.marks() end, desc = 'Marks'},
+          {',sn', function() Snacks.notifier.show_history() end, desc = 'Notifier History'},
           {',sp', function() Snacks.picker.projects() end, desc = 'Projects'},
           {',sr', function() Snacks.picker.recent() end, desc = 'Recent files'},
       },
