@@ -4,6 +4,7 @@ return {
   {
     'rbtnn/vim-ambiwidth',
     cond = not_vscode,
+    event = 'VeryLazy',
     init = function()
       vim.g.ambiwidth_cica_enabled = false
     end,
@@ -76,8 +77,8 @@ return {
   },
   {
     'osyo-manga/vim-precious',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
     cond = not_vscode,
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     dependencies = { 'Shougo/context_filetype.vim' },
     config = function()
       vim.g.precious_enable_switch_CursorMoved = {
@@ -113,11 +114,11 @@ return {
   },
   {
     'kshenoy/vim-signature',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
   },
   {
     'kevinhwang91/nvim-hlslens',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     dependencies = { 'haya14busa/vim-asterisk' },
     config = function()
       local opts = { noremap = true, silent = true }
@@ -159,8 +160,8 @@ return {
   },
   {
     'Yggdroot/indentLine',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
     cond = not_vscode,
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
       vim.g.indentLine_setConceal = 0
       vim.g.indentLine_char = '¦'
@@ -168,7 +169,7 @@ return {
   },
   {
     'bronson/vim-trailing-whitespace',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
       vim.g.extra_whitespace_ignored_filetypes = { '', 'mason', 'lspsagafinder' }
     end,
@@ -196,14 +197,14 @@ return {
   },
   {
     'easymotion/vim-easymotion',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     config = function()
       vim.g.EasyMotion_smartcase = 1
     end,
   },
   {
     'terryma/vim-multiple-cursors',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
   },
   {
     'uga-rosa/ccc.nvim',
@@ -238,8 +239,8 @@ return {
   },
   {
     'shellRaining/hlchunk.nvim',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
     cond = not_vscode,
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
       require('hlchunk').setup({})
     end,
@@ -329,8 +330,8 @@ return {
   },
   {
     'lewis6991/gitsigns.nvim',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
     cond = not_vscode,
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
       vim.cmd.source('~/dotfiles/.vim/lua/gitsigns.lua')
       vim.keymap.set('n', '<Leader>gsb', require('gitsigns').stage_buffer, { desc = 'buffer' })

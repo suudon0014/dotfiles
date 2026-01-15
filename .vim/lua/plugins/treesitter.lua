@@ -6,7 +6,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     cmd = { 'TSUpdate', 'TSUpdateSync' },
     build = ':TSUpdate',
     dependencies = {

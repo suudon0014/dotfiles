@@ -9,7 +9,7 @@ return {
       'nvim-tree/nvim-web-devicons',
       'sainnhe/sonokai',
     },
-    event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     config = function()
       require('lualine').setup()
     end,

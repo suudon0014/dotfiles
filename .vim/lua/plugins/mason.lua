@@ -5,7 +5,6 @@ end
 return {
   {
     'mason-org/mason.nvim',
-    event = { 'CursorHold', 'InsertEnter', 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     cmd = { 'Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog' },
     dependencies = {
       'mason-org/mason-lspconfig.nvim',
@@ -24,7 +23,7 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    lazy = true,
+    event = {'BufReadPost', 'BufNewFile', 'VeryLazy'},
     config = function()
       vim.api.nvim_create_autocmd({ 'FileType' }, {
         pattern = { 'lspinfo' },
