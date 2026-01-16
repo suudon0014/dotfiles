@@ -16,12 +16,10 @@ return {
             {"<Leader>kv", function() require("sidekick.cli").send({ msg = "{selection}" }) end, mode = "x", desc = "Send Visual Selection" },
             {"<Leader>kp", function() require("sidekick.cli").prompt() end, mode = { "n", "x" }, desc = "Sidekick Select Prompt" },
         },
-        config = function()
-            require('sidekick').setup({
-                nes = { enabled = false },
-                cli = { tools = { gemini = { cmd = { "pnpm", "dlx", "@google/gemini-cli" }}}},
-            })
-        end,
+        opts = {
+            nes = { enabled = false },
+            cli = { tools = { gemini = { cmd = { "pnpm", "dlx", "@google/gemini-cli" }}}},
+        },
     },
     {
         'Robitx/gp.nvim',
@@ -127,15 +125,13 @@ return {
         keys = {
             { "<Leader>m", ":MCPHub<CR>", desc = "Open McpHub", noremap = true, silent = true, nowait = true },
         },
-        config = function()
-            require("mcphub").setup({
-                extensions = {
-                    avante = {
-                        make_slash_commands = true,
-                    },
-                }
-            })
-        end,
+        opts = {
+            extensions = {
+                avante = {
+                    make_slash_commands = true,
+                },
+            }
+        },
     },
     {
         'olimorris/codecompanion.nvim',

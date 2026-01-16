@@ -25,26 +25,22 @@ return {
     {
         'glepnir/lspsaga.nvim',
         lazy = true,
-        config = function()
-            require('lspsaga').setup({
-                outline = {
-                    auto_preview = false,
-                    keys = {
-                        jump = '<CR>',
-                        expand_collapse = 'o',
-                    },
+        opts = {
+            outline = {
+                auto_preview = false,
+                keys = {
+                    jump = '<CR>',
+                    expand_collapse = 'o',
                 },
-            })
-        end,
+            },
+        },
     },
     {
         'j-hui/fidget.nvim',
         lazy = true,
-        config = function()
-            require("fidget").setup{
-                progress = { display = { progress_icon = { pattern = 'moon' }}},
-            }
-        end,
+        opts = {
+            progress = { display = { progress_icon = { pattern = 'moon' }}},
+        },
     },
     {
         'mason-org/mason.nvim',
@@ -67,9 +63,7 @@ return {
     {
         'mason-org/mason-lspconfig.nvim',
         lazy = true,
-        config = function()
-            require("mason-lspconfig").setup()
-        end,
+        opts = {},
     },
     {
         'folke/lazydev.nvim',

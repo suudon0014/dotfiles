@@ -14,14 +14,12 @@ return {
       'm-demare/hlargs.nvim',
       {
         'Wansmer/treesj',
-        config = function()
-          require('treesj').setup({
+        keys = {
+            { '<Leader>M', function() require('treesj').toggle({ split = { recursive = true } }) end, desc = 'Toggle TreeSJ' },
+        },
+        opts = {
             use_default_keymaps = false,
-          })
-          vim.keymap.set('n', '<Leader>M', function()
-            require('treesj').toggle({ split = { recursive = true } })
-          end)
-        end,
+        },
       },
       -- 'nvim-treesitter/nvim-treesitter-textobjects',
       -- 'RRethy/nvim-treesitter-textsubjects',

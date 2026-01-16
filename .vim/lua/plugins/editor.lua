@@ -61,9 +61,9 @@ return {
         },
       }
     end,
-    config = function()
-      vim.keymap.set('n', '<Leader>tc', '<Plug>(vimtex-compile)', { remap = true })
-    end,
+    keys = {
+      { '<Leader>tc', '<Plug>(vimtex-compile)', desc = 'Vimtex Compile', remap = true },
+    },
   },
   {
     'junegunn/vim-easy-align',
@@ -142,13 +142,11 @@ return {
   {
     'uga-rosa/ccc.nvim',
     event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
-    config = function()
-      require('ccc').setup({
-        highlighter = {
-          auto_enable = true,
-        },
-      })
-    end,
+    opts = {
+      highlighter = {
+        auto_enable = true,
+      },
+    },
   },
   {
     'simrat39/rust-tools.nvim',
@@ -174,25 +172,23 @@ return {
     'lewis6991/gitsigns.nvim',
     cond = not_vscode,
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
+    keys = {
+      { '<Leader>gsb', function() require('gitsigns').stage_buffer() end, desc = 'buffer' },
+      { '<Leader>gsh', function() require('gitsigns').stage_hunk() end, mode = { 'n', 'v' }, desc = 'hunk(toggle)' },
+      { '<Leader>grb', function() require('gitsigns').reset_buffer() end, desc = 'buffer' },
+      { '<Leader>grh', function() require('gitsigns').reset_hunk() end, mode = { 'n', 'v' }, desc = 'hunk' },
+      { '<Leader>gdc', function() require('gitsigns').diffthis('~1') end, desc = 'last commit' },
+      { '<Leader>gdi', function() require('gitsigns').diffthis() end, desc = 'index' },
+      { '<Leader>gtb', function() require('gitsigns').toggle_current_line_blame() end, desc = 'blame (line)' },
+      { '<Leader>gtl', function() require('gitsigns').toggle_linehl() end, desc = 'line highlight' },
+      { '<Leader>gtn', function() require('gitsigns').toggle_numhl() end, desc = 'num highlight' },
+      { '<Leader>gts', function() require('gitsigns').toggle_signs() end, desc = 'signs' },
+      { '<Leader>gtw', function() require('gitsigns').toggle_word_diff() end, desc = 'word diff' },
+      { '<Leader>gb', function() require('gitsigns').blame_line({ full = true }) end, desc = 'blame(full)' },
+      { '<Leader>gp', function() require('gitsigns').preview_hunk() end, desc = 'preview' },
+    },
     config = function()
       require('config_gitsigns').setup()
-      vim.keymap.set('n', '<Leader>gsb', require('gitsigns').stage_buffer, { desc = 'buffer' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>gsh', require('gitsigns').stage_hunk, { desc = 'hunk(toggle)' })
-      vim.keymap.set('n', '<Leader>grb', require('gitsigns').reset_buffer, { desc = 'buffer' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>grh', require('gitsigns').reset_hunk, { desc = 'hunk' })
-      vim.keymap.set('n', '<Leader>gdc', function()
-        require('gitsigns').diffthis('~1')
-      end, { desc = 'last commit' })
-      vim.keymap.set('n', '<Leader>gdi', require('gitsigns').diffthis, { desc = 'index' })
-      vim.keymap.set('n', '<Leader>gtb', require('gitsigns').toggle_current_line_blame, { desc = 'blame (line)' })
-      vim.keymap.set('n', '<Leader>gtl', require('gitsigns').toggle_linehl, { desc = 'line highlight' })
-      vim.keymap.set('n', '<Leader>gtn', require('gitsigns').toggle_numhl, { desc = 'num highlight' })
-      vim.keymap.set('n', '<Leader>gts', require('gitsigns').toggle_signs, { desc = 'signs' })
-      vim.keymap.set('n', '<Leader>gtw', require('gitsigns').toggle_word_diff, { desc = 'word diff' })
-      vim.keymap.set('n', '<Leader>gb', function()
-        require('gitsigns').blame_line({ full = true })
-      end, { desc = 'blame(full)' })
-      vim.keymap.set('n', '<Leader>gp', require('gitsigns').preview_hunk, { desc = 'preview' })
     end,
   },
 }

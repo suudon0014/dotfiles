@@ -26,38 +26,18 @@ return {
     'kevinhwang91/nvim-hlslens',
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     dependencies = { 'haya14busa/vim-asterisk' },
+    keys = {
+      { 'n', function() vim.cmd.normal({ args = { vim.v.count1 .. 'n' }, bang = true, mods = { silent = true, emsg_silent = true }, }) require('hlslens').start() end, desc = 'hlslens n' },
+      { 'N', function() vim.cmd.normal({ args = { vim.v.count1 .. 'N' }, bang = true, mods = { silent = true, emsg_silent = true }, }) require('hlslens').start() end, desc = 'hlslens N' },
+      { '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>", mode = { 'n', 'x' }, desc = 'hlslens *' },
+      { '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>", mode = { 'n', 'x' }, desc = 'hlslens #' },
+      { 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>", mode = { 'n', 'x' }, desc = 'hlslens g*' },
+      { 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>", mode = { 'n', 'x' }, desc = 'hlslens g#' },
+      { '<Leader>c', vim.cmd.nohlsearch, desc = 'nohlsearch' },
+      { '<esc><esc>', function() vim.cmd.nohlsearch() return '<Esc>' end, desc = 'nohlsearch & esc' },
+    },
     config = function()
-      local opts = { noremap = true, silent = true }
-
       require('hlslens').setup()
-
-      vim.keymap.set('n', 'n', function()
-        vim.cmd.normal({
-          args = { vim.v.count1 .. 'n' },
-          bang = true,
-          mods = { silent = true, emsg_silent = true },
-        })
-        require('hlslens').start()
-      end, opts)
-
-      vim.keymap.set('n', 'N', function()
-        vim.cmd.normal({
-          args = { vim.v.count1 .. 'N' },
-          bang = true,
-          mods = { silent = true, emsg_silent = true },
-        })
-        require('hlslens').start()
-      end, opts)
-
-      vim.keymap.set({ 'n', 'x' }, '*', "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>")
-      vim.keymap.set({ 'n', 'x' }, '#', "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>")
-      vim.keymap.set({ 'n', 'x' }, 'g*', "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>")
-      vim.keymap.set({ 'n', 'x' }, 'g#', "<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>")
-      vim.keymap.set('n', '<Leader>c', vim.cmd.nohlsearch, opts)
-      vim.keymap.set('n', '<esc><esc>', function()
-        vim.cmd.nohlsearch()
-        return '<Esc>'
-      end, opts)
     end,
   },
   {
@@ -80,30 +60,28 @@ return {
     'shellRaining/hlchunk.nvim',
     cond = not_vscode,
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
-    config = function()
-      require('hlchunk').setup({})
-    end,
+    opts = {},
   },
   {
     'stevearc/oil.nvim',
     cond = not_vscode,
     cmd = { 'Oil' },
     keys = {
-      { '<Leader>o', desc = 'Open parent directory' },
+      { '<Leader>o', '<Cmd>Oil<CR>', desc = 'Open parent directory' },
     },
-    config = function()
-      require('oil').setup({
-        view_options = {
-          show_hidden = true,
-        },
-      })
-      vim.keymap.set('n', '<Leader>o', vim.cmd.Oil, { desc = 'Open parent directory' })
-    end,
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
   },
   {
     'folke/which-key.nvim',
     cond = not_vscode,
     event = { 'VeryLazy' },
+    keys = {
+      { '<Leader>?', function() require('which-key').show({ global = false }) end, desc = 'Buffer Local Keymaps (which-key)' },
+    },
     config = function()
       local wk = require('which-key')
       wk.add({
@@ -121,9 +99,6 @@ return {
         { '<Leader>t', group = 'translate (google)', mode = { 'n', 'v' } },
         { '<C-l>', group = 'LSP', mode = { 'n', 'v' } },
       })
-      vim.keymap.set('n', '<Leader>?', function()
-        require('which-key').show({ global = false })
-      end, { desc = 'Buffer Local Keymaps (which-key)' })
     end,
   },
 }

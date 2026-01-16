@@ -10,9 +10,7 @@ return {
       'sainnhe/sonokai',
     },
     event = { 'VeryLazy' },
-    config = function()
-      require('lualine').setup()
-    end,
+    opts = {},
   },
   {
     'nvim-tree/nvim-web-devicons',

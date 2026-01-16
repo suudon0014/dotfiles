@@ -11,8 +11,8 @@ return {
       vim.g.mkdp_auto_start = 0
       vim.g.mkdp_auto_close = 0
     end,
-    config = function()
-      vim.keymap.set('n', '<C-p>', '<Plug>MarkdownPreview', { remap = true })
-    end,
+    keys = {
+      { '<C-p>', '<Plug>MarkdownPreview', desc = 'Markdown Preview', remap = true },
+    },
   },
 }
