@@ -38,6 +38,7 @@ return {
           {',se', function() Snacks.explorer() end, desc = 'Explorer'},
           {',sf', function() Snacks.picker.files({ hidden = true }) end, desc = 'Files'},
           {',sgd', function() Snacks.picker.git_diff() end, desc = 'Git Diff'},
+          {',sgl', function() Snacks.picker.git_log_file() end, desc = 'Git Log'},
           {',sgs', function() Snacks.picker.git_status() end, desc = 'Git Status'},
           {',sh', function() Snacks.picker.help() end, desc = 'Help'},
           {',sl', function() Snacks.picker.lines() end, desc = 'Lines'},
