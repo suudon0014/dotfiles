@@ -19,6 +19,7 @@ return {
         config = function()
             require('sidekick').setup({
                 nes = { enabled = false },
+                cli = { tools = { gemini = { cmd = { "pnpm", "dlx", "@google/gemini-cli" }}}},
             })
         end,
     },
