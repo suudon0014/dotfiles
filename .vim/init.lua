@@ -9,8 +9,8 @@ vim.cmd.filetype('plugin indent off')
 local dotfiles_path = vim.fn.expand('~/dotfiles/.vim')
 vim.opt.runtimepath:prepend(dotfiles_path)
 package.path = package.path .. ';' .. dotfiles_path .. '/lua/?.lua'
-require('mappings')
-require('sets')
+require('keymaps')
+require('options')
 -- require('extui')
 
 -- lazy.nvim bootstrap
@@ -78,11 +78,11 @@ vim.api.nvim_create_autocmd({'VimLeave'}, {
 
 -- show full path
 vim.api.nvim_create_user_command('Path', function ()
-    require('my_commands').show_path()
+    require('commands').show_path()
 end, {})
 
 vim.api.nvim_create_user_command('Profile', function ()
-    require('my_commands').start_profile()
+    require('commands').start_profile()
 end, {})
 
 vim.cmd.filetype('plugin indent on')

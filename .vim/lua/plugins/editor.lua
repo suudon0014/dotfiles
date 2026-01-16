@@ -188,7 +188,7 @@ return {
       { '<Leader>gp', function() require('gitsigns').preview_hunk() end, desc = 'preview' },
     },
     config = function()
-      require('config_gitsigns').setup()
+      require('setup_gitsigns').setup()
     end,
   },
 }

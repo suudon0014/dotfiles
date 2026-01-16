@@ -25,7 +25,7 @@ return {
       -- 'RRethy/nvim-treesitter-textsubjects',
     },
     config = function()
-      require('treesitter-setup').setup()
+      require('setup_treesitter').setup()
     end,
   },
 }

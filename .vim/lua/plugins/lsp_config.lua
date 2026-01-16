@@ -19,7 +19,7 @@ return {
                     vim.keymap.set('n', 'q', vim.cmd.close, { remap = false, buffer = true, silent = true })
                 end,
             })
-            require('nvim-lsp').setup()
+            require('setup_lsp').setup()
         end,
     },
     {
