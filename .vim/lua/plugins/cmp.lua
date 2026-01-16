@@ -40,7 +40,7 @@ return {
             fuzzy = { implementation = "prefer_rust_with_warning" },
             signature = { enabled = true },
             sources = {
-                default = { 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'skkeleton', 'lsp', 'lazydev', 'path', 'snippets', 'buffer' },
                 per_filetype = {
                     markdown = { 'obsidian', 'obsidian_new', 'obsidian_tags', 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
                 },
@@ -48,6 +48,11 @@ return {
                     skkeleton = {
                         name = 'skkeleton',
                         module = 'blink.compat.source',
+                        score_offset = 100,
+                    },
+                    lazydev = {
+                        name = 'LazyDev',
+                        module = 'lazydev.integrations.blink',
                         score_offset = 100,
                     },
                 },
