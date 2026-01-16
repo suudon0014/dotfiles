@@ -27,7 +27,7 @@ return {
       -- 'RRethy/nvim-treesitter-textsubjects',
     },
     config = function()
-      vim.cmd.source(vim.fn.expand('~/dotfiles/.vim/lua/treesitter-setup.lua'))
+      require('treesitter-setup').setup()
     end,
   },
 }

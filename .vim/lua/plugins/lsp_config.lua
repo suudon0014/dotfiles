@@ -19,7 +19,7 @@ return {
                     vim.keymap.set('n', 'q', vim.cmd.close, { remap = false, buffer = true, silent = true })
                 end,
             })
-            vim.cmd.source(vim.fn.expand('~/dotfiles/.vim/lua/nvim-lsp.lua'))
+            require('nvim-lsp').setup()
         end,
     },
     {
