@@ -2,6 +2,8 @@ if vim.g.vscode then
     return {}
 end
 
+local obsidian_vault_dir = (vim.fn.expand("~") .. "/OneDrive/obsidian"):gsub("\\", "/")
+
 return {
   {
     'obsidian-nvim/obsidian.nvim',
@@ -18,7 +20,7 @@ return {
       workspaces = {
         {
           name = 'my_vault',
-          path = '~/OneDrive/obsidian',
+          path = obsidian_vault_dir,
         },
       },
       daily_notes = {
@@ -66,5 +68,15 @@ return {
         end,
       },
     },
+    init = function ()
+        local obsidian_group = vim.api.nvim_create_augroup("ObsidianConceal", { clear = true })
+        vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+            pattern = obsidian_vault_dir .. "/**/*.md",
+            group = obsidian_group,
+            callback = function()
+                vim.opt_local.conceallevel = 2
+            end,
+        })
+    end,
   },
 }
