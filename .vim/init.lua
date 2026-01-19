@@ -35,7 +35,9 @@ require("lazy").setup(
     }
 )
 
-require('submode')
+if not vim.g.vscode then
+    require('submode')
+end
 
 local myAuGroup = vim.api.nvim_create_augroup('myAuGroup', {})
 
