@@ -1,12 +1,12 @@
 local M = {}
 
 function M.setup()
-    local status_ok, config = pcall(require, "nvim-treesitter.config")
+    local status_ok, configs = pcall(require, "nvim-treesitter.configs")
     if not status_ok then
         return
     end
 
-    config.setup {
+    configs.setup {
         ensure_installed = {
             "bash", "c", "c_sharp", "cmake", "comment", "cpp", "diff", "dockerfile", "git_config", "git_rebase",
             "gitattributes", "gitcommit", "gitignore", "html", "java", "javascript", "jsdoc", "json", "latex", "lua",
