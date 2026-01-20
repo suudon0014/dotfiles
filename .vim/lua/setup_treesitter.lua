@@ -9,7 +9,8 @@ function M.setup()
     configs.setup {
         ensure_installed = {
             "bash", "c", "c_sharp", "cmake", "comment", "cpp", "diff", "dockerfile", "git_config", "git_rebase",
-            "gitattributes", "gitcommit", "gitignore", "html", "java", "javascript", "jsdoc", "json", "latex", "lua",
+            "gitattributes", "gitcommit", "gitignore", "html", "java", "javascript", "jsdoc", "json", -- "latex",
+            "lua",
             "luadoc", "make", "markdown", "markdown_inline", "matlab", "python", "r", "regex", "rust", "sql",
             "todotxt", "toml", "tsx", "typescript", "vim", "vimdoc", "yaml",
         },
