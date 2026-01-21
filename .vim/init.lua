@@ -35,6 +35,10 @@ require("lazy").setup(
     }
 )
 
+local lazy = require('lazy')
+vim.keymap.set('n', ',lh', function() lazy.home() end, {desc = 'Lazy(Home)'})
+vim.keymap.set('n', ',lc', function() lazy.check() end, {desc = 'Lazy(Check)'})
+
 if not vim.g.vscode then
     require('submode')
 end
