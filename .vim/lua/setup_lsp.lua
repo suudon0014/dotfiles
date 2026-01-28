@@ -97,6 +97,7 @@ function M.setup()
     })
 
     vim.lsp.config('clangd', {
+        on_attach = on_attach,
         cmd = {
             "clangd",
             "--all-scopes-completion",
@@ -113,9 +114,9 @@ function M.setup()
           completeUnimported = true,
           clangdFileStatus = true,
         },
-        capabilities = {
+        capabilities = vim.tbl_deep_extend('force', capabilities, {
             offsetEncoding = {"utf-16"},
-        },
+        }),
     })
 
     vim.lsp.config('lua_ls', {
