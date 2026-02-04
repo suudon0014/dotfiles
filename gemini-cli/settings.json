@@ -20,14 +20,14 @@
       "hideSandboxStatus": false
     },
     "accessibility": {
-      "disableLoadingPhrases": true
+      "enableLoadingPhrases": false
     }
   },
   "general": {
     "preferredEditor": "neovim",
     "vimMode": false,
     "previewFeatures": true,
-    "disableAutoUpdate": true
+    "enableAutoUpdate": false
   },
   "tools": {
     "shell": {
