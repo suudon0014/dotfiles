@@ -14,7 +14,8 @@ return {
                 opts = { impersonate_nvim_cmp = true },
             },
             'vim-skk/skkeleton',
-            'rinx/cmp-skkeleton',
+            'uga-rosa/cmp-skkeleton',
+            'Xantibody/blink-cmp-skkeleton',
         },
         version = '1.*',
 
@@ -47,7 +48,7 @@ return {
                 providers = {
                     skkeleton = {
                         name = 'skkeleton',
-                        module = 'blink.compat.source',
+                        module = 'blink-cmp-skkeleton',
                         score_offset = 100,
                     },
                     lazydev = {
