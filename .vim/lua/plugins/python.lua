@@ -13,6 +13,10 @@ return {
   {
     'jupyter-vim/jupyter-vim',
     ft = { 'python' },
+    init = function ()
+        vim.g.jupyter_highlight_cells = 1
+        vim.g.jupyter_cell_separators = {'##', '#%%', '# %%', '# <codecell>'}
+    end,
     config = function()
       local jupyterAuGroup = vim.api.nvim_create_augroup('jupyterAuGroup', {})
       vim.api.nvim_create_autocmd({ 'FileType' }, {
