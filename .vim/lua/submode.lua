@@ -34,10 +34,11 @@ local mappings = {
     {'R', '<C-w>R'},
 }
 
+local plug_prefix = '<Plug>(submode-window-suffix)'
 for _, map in ipairs(mappings) do
     local key, action = map[1], map[2]
 
-    local suffix = '<SID>ws'
+    local suffix = plug_prefix
     if map.stop then
         suffix = ''
     end
@@ -45,8 +46,7 @@ for _, map in ipairs(mappings) do
     if not map.disable_nmap then
         nmap('s' .. key, action .. suffix)
     end
-    nnoremap_script('<SID>ws' .. key, action .. suffix)
+    nmap(plug_prefix .. key, action .. suffix)
 end
 
-nnoremap_script('<SID>ws', '<Nop>')
-nmap('<SID>w', '<Nop>')
+vim.keymap.set({'n', 't'}, plug_prefix, '<Nop>')
