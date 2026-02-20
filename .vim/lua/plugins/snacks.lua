@@ -41,6 +41,10 @@ return {
           {',sgl', function() Snacks.picker.git_log_file() end, desc = 'Git Log'},
           {',sgs', function() Snacks.picker.git_status() end, desc = 'Git Status'},
           {',sh', function() Snacks.picker.help() end, desc = 'Help'},
+          {',si', function()
+              local cmd = [[uv run ipython --matplotlib=auto]]
+              Snacks.terminal(cmd,
+              {win = {position = 'right', width = 60,}}) end, desc = 'Toggle IPython REPL'},
           {',sl', function() Snacks.picker.lines() end, desc = 'Lines'},
           {',sma', function() Snacks.picker.marks() end, desc = 'Marks'},
           {',sn', function() Snacks.notifier.show_history() end, desc = 'Notifier History'},

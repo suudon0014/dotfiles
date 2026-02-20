@@ -44,4 +44,12 @@ return {
       })
     end,
   },
+  {
+    'jpalardy/vim-slime',
+    event = { 'VeryLazy' },
+    init = function()
+      vim.g.slime_target = 'neovim'
+      vim.g.slime_bracketed_paste = 1
+    end,
+  },
 }
