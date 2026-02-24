@@ -33,7 +33,7 @@ config.font = wezterm.font('Cica', {weight='Regular', stretch='Normal', style='N
 config.font_size = 11
 config.initial_cols = 100
 config.initial_rows = 50
-config.leader = {key = 'a', mods = 'CTRL'}
+config.leader = {key = 'Space', mods = 'CTRL'}
 config.window_background_opacity = 0.85
 config.window_close_confirmation = 'NeverPrompt'
 
