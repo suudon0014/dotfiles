@@ -18,7 +18,7 @@ return {
         },
         opts = {
             nes = { enabled = false },
-            cli = { tools = { gemini = { cmd = { "pnpm", "dlx", "@google/gemini-cli" }}}},
+            cli = { tools = { gemini = { cmd = { "pnpm", "--allow-build=protobufjs", "--allow-build=keytar", "--allow-build=node-pty", "--allow-build=tree-sitter-bash", "dlx", "@google/gemini-cli" }}}},
         },
     },
     {
