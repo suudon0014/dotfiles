@@ -27,20 +27,20 @@
     "preferredEditor": "neovim",
     "vimMode": false,
     "previewFeatures": true,
-    "enableAutoUpdate": false
+    "enableAutoUpdate": false,
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
+    }
   },
+  "policyPaths": [
+    "~/.gemini/policies"
+  ],
   "tools": {
     "shell": {
       "showColor": true
-    },
-    "allowed": [
-      "run_shell_command(ls)",
-      "run_shell_command(git add)",
-      "run_shell_command(git diff)",
-      "run_shell_command(git show)",
-      "run_shell_command(git status)",
-      "run_shell_command(git log)"
-    ]
+    }
   },
   "output": {
     "format": "text"

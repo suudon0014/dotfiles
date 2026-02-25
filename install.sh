@@ -48,6 +48,7 @@ mkdir -p ~/.gemini
 ln -sfv ${DOTFILES}/gemini-cli/GEMINI.md ~/.gemini/GEMINI.md
 ln -sfv ${DOTFILES}/gemini-cli/settings.json ~/.gemini/settings.json
 ln -sfv ${DOTFILES}/gemini-cli/commands ~/.gemini/commands
+ln -sfv ${DOTFILES}/gemini-cli/policies ~/.gemini/policies
 
 # scoop
 # SCOOP_DIR=${DOTFILES}/scoop
