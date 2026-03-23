@@ -4,4 +4,5 @@ gui:
   filterMode: 'fuzzy'
   mouseEvents: false
   showFileTree: false
+  autoFetch: false
 promptToReturnFromSubprocess: false
