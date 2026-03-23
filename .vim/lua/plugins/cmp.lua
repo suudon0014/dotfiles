@@ -27,7 +27,7 @@ return {
                 trigger = {
                     show_on_backspace = true,
                     show_on_backspace_in_keyword = true,
-                    show_on_insert = true,
+                    show_on_insert = false,
                 },
             },
             cmdline = {
@@ -46,6 +46,8 @@ return {
                     markdown = { 'obsidian', 'obsidian_new', 'obsidian_tags', 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
                 },
                 providers = {
+                    lsp = { min_keyword_length = 1 },
+                    buffer = { min_keyword_length = 1 },
                     skkeleton = {
                         name = 'skkeleton',
                         module = 'blink-cmp-skkeleton',
