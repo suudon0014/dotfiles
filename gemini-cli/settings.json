@@ -21,7 +21,8 @@
     },
     "accessibility": {
       "enableLoadingPhrases": false
-    }
+    },
+    "loadingPhrases": "off"
   },
   "general": {
     "preferredEditor": "neovim",
