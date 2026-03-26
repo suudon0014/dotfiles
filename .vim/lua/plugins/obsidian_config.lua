@@ -4,6 +4,10 @@ end
 
 local obsidian_vault_dir = (vim.fn.expand("~") .. "/OneDrive/obsidian"):gsub("\\", "/")
 
+if vim.fn.isdirectory(obsidian_vault_dir) == 0 then
+    return {}
+end
+
 return {
   {
     'obsidian-nvim/obsidian.nvim',

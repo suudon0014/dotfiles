@@ -2,6 +2,12 @@ if vim.g.vscode then
     return {}
 end
 
+local obsidian_vault_dir = (vim.fn.expand("~") .. "/OneDrive/obsidian"):gsub("\\", "/")
+local markdown_sources = { 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' }
+if vim.fn.isdirectory(obsidian_vault_dir) == 1 then
+    markdown_sources = { 'obsidian', 'obsidian_new', 'obsidian_tags', 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' }
+end
+
 return {
     {
         'saghen/blink.cmp',
@@ -43,7 +49,7 @@ return {
             sources = {
                 default = { 'skkeleton', 'lsp', 'lazydev', 'path', 'snippets', 'buffer' },
                 per_filetype = {
-                    markdown = { 'obsidian', 'obsidian_new', 'obsidian_tags', 'skkeleton', 'lsp', 'path', 'snippets', 'buffer' },
+                    markdown = markdown_sources,
                 },
                 providers = {
                     lsp = { min_keyword_length = 1 },
