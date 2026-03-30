@@ -140,6 +140,7 @@ return {
             'nvim-lua/plenary.nvim',
             'MunifTanjim/nui.nvim',
         },
+        build = false,
         cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionActions', 'CodeCompanionCmd' },
         keys = {
             { 'cci', 'CodeCompanion', mode = 'ca', desc = 'CodeCompanion' },
