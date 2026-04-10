@@ -38,7 +38,13 @@ return {
           {',se', function() Snacks.explorer() end, desc = 'Explorer'},
           {',sf', function() Snacks.picker.files({ hidden = true }) end, desc = 'Files'},
           {',sgd', function() Snacks.picker.git_diff() end, desc = 'Git Diff'},
-          {',sgl', function() Snacks.picker.git_log_file() end, desc = 'Git Log'},
+          {',sgl', function()
+              if vim.api.nvim_buf_get_name(0) == "" then
+                  Snacks.picker.git_log()
+              else
+                  Snacks.picker.git_log_file()
+              end
+          end, desc = 'Git Log'},
           {',sgs', function() Snacks.picker.git_status() end, desc = 'Git Status'},
           {',sh', function() Snacks.picker.help() end, desc = 'Help'},
           {',si', function()
