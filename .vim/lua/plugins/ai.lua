@@ -61,6 +61,41 @@ return {
                 },
                 agents = {
                     {
+                        name = "Gemma 4 31B",
+                        provider = "googleai",
+                        chat = true,
+                        command = true,
+                        model = { model = "gemma-4-31b-it", top_k = 40 },
+                        system_prompt = general_system_prompt,
+                    },
+                    {
+                        name = "Gemma 4 26B(Thinking)",
+                        provider = "googleai",
+                        chat = true,
+                        command = true,
+                        model = {
+                            model = "gemma-4-26b-a4b-it",
+                            temperature = 0.4,
+                            top_p = 0.85,
+                            top_k = 40,
+                            thinkingConfig = { thinkingLevel = "high" },
+                        },
+                        system_prompt = general_system_prompt,
+                    },
+                    {
+                        name = "Gemma 4 26B(Fast)",
+                        provider = "googleai",
+                        chat = true,
+                        command = true,
+                        model = {
+                            model = "gemma-4-26b-a4b-it",
+                            temperature = 0.7,
+                            top_p = 0.95,
+                            top_k = 80,
+                        },
+                        system_prompt = general_system_prompt,
+                    },
+                    {
                         name = "Gemini-Pro",
                         provider = "googleai",
                         chat = true,
