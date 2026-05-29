@@ -19,6 +19,16 @@ cnoremap ‚Š‚Š <Esc>
 
 imap <C-j> <esc>
 
+" j,k <-> gj,gk
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
+
 "key bindings of Space + another
 let mapleader = "\<Space>"
 noremap <Leader>v 0v$h
