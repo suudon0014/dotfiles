@@ -174,9 +174,11 @@ return {
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     keys = {
       { '<Leader>gsb', function() require('gitsigns').stage_buffer() end, desc = 'buffer' },
-      { '<Leader>gsh', function() require('gitsigns').stage_hunk() end, mode = { 'n', 'v' }, desc = 'hunk(toggle)' },
+      { '<Leader>gsh', function() require('gitsigns').stage_hunk() end, mode = { 'n' }, desc = 'hunk(toggle)' },
+      { '<Leader>gsh', function() require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, mode = { 'v' }, desc = 'hunk(toggle)' },
       { '<Leader>grb', function() require('gitsigns').reset_buffer() end, desc = 'buffer' },
-      { '<Leader>grh', function() require('gitsigns').reset_hunk() end, mode = { 'n', 'v' }, desc = 'hunk' },
+      { '<Leader>grh', function() require('gitsigns').reset_hunk() end, mode = { 'n' }, desc = 'hunk' },
+      { '<Leader>grh', function() require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, mode = { 'v' }, desc = 'hunk' },
       { '<Leader>gdc', function() require('gitsigns').diffthis('~1') end, desc = 'last commit' },
       { '<Leader>gdi', function() require('gitsigns').diffthis() end, desc = 'index' },
       { '<Leader>gtb', function() require('gitsigns').toggle_current_line_blame() end, desc = 'blame (line)' },
