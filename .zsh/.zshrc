@@ -77,6 +77,8 @@ alias fzfnvim='nvim $(/bin/find . -path ./.git -prune -o -type f -print | fzf)'
 alias tree='tree -C'
 alias treea='eza --tree --all --git-ignore'
 alias obsidian='Obsidian.com'
+alias npm="npm.cmd"
+alias npx="npx.cmd"
 
 # Plugins
 zinit light "zsh-users/zsh-completions"
